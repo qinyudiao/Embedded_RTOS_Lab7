@@ -7,7 +7,7 @@
 #define PB7 (*((volatile unsigned long *)0x40005200))
 #define PB4_PB7 (*((volatile unsigned long *)0x40005240))
 
-#define PWM_PERIOD (80000000 / 40000) // 2000 ticks for 40Khz PWM period
+#define PWM_PERIOD (2500000 / 25000) // 100 ticks for 25Khz PWM period
 
 static int16_t constrain_duty(int16_t user_input)
 {
@@ -38,7 +38,9 @@ void Motors_Init(void)
   GPIO_PORTB_DEN_R |= 0xF0; // enable digital I/O on PB4,5,6,7
   GPIO_PORTB_DIR_R |= 0x90;    // make PB4,7 digital outputs
 
-  SYSCTL_RCC_R &= ~SYSCTL_RCC_USEPWMDIV; // disable PWM divider, PWM clock 80MHz
+  SYSCTL_RCC_R |= SYSCTL_RCC_USEPWMDIV; // use PWM divider
+  SYSCTL_RCC_R &= ~SYSCTL_RCC_PWMDIV_M; // clear PWM divider field
+  SYSCTL_RCC_R |= SYSCTL_RCC_PWMDIV_32; // configure for /32 divider
   PWM0_0_CTL_R = 0; // disable PWM while initializing
   PWM0_1_CTL_R = 0; // disable PWM while initializing
   // PWM0, Generator A (PWM0/PB6) goes to 0 when count==CMPA counting down and 1 when count==CMPA counting up
