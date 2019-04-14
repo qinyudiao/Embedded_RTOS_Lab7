@@ -3,10 +3,10 @@
 #include "tm4c123gh6pm.h"
 #include "servo.h"
 
-#define PWM_PERIOD (2500000 / 50) // 2.5MHz PWM clock / 50 Hz PWM period = # ticks
+#define SERVO_PWM_PERIOD (2500000 / 50) // 2.5MHz PWM clock / 50 Hz PWM period = # ticks
 
-#define DUTY_MIN (PWM_PERIOD / 20) // 2.5% duty = 0.5ms pulse
-#define DUTY_MAX (PWM_PERIOD / 8)  // 12.5% duty = 2.5ms pulse
+#define DUTY_MIN (SERVO_PWM_PERIOD / 20) // 2.5% duty = 0.5ms pulse
+#define DUTY_MAX (SERVO_PWM_PERIOD / 8)  // 12.5% duty = 2.5ms pulse
 
 #define DEGREES_MAX (180)
 
@@ -26,10 +26,11 @@ void Servo_Init(void)
   SYSCTL_RCC_R |= SYSCTL_RCC_USEPWMDIV; // use PWM divider
   SYSCTL_RCC_R &= ~SYSCTL_RCC_PWMDIV_M; // clear PWM divider field
   SYSCTL_RCC_R |= SYSCTL_RCC_PWMDIV_32; // configure for /32 divider
-  PWM1_0_CTL_R = 0;                      // disable PWM while initializing
+  PWM1_0_CTL_R = 0;                     // disable PWM while initializing
   // Count up mode. PWM goes high on zero, low on compare value
-  PWM1_0_GENA_R = (PWM_0_GENA_ACTZERO_ONE | PWM_0_GENA_ACTCMPAU_ZERO);
-  PWM1_0_LOAD_R = PWM_PERIOD; // count from zero to this number and back to zero in (period - 1) cycles
+  PWM1_0_GENA_R = (PWM_0_GENA_ACTLOAD_ONE | PWM_0_GENA_ACTCMPAD_ZERO);
+  PWM1_0_LOAD_R = SERVO_PWM_PERIOD; // count from zero to this number and back to zero in (period - 1) cycles
+  PWM1_0_CMPA_R = 0;
   // Synchronize PWM enable/disable to counter, enable generator
   PWM1_ENUPD_R = PWM_ENUPD_ENUPD0_LSYNC;
   PWM1_0_CTL_R = PWM_0_CTL_ENABLE;
@@ -58,7 +59,7 @@ static uint16_t degrees_to_duty(uint16_t degrees)
 void Servo_SetAngle(uint16_t degrees)
 {
   uint16_t duty = degrees_to_duty(degrees);
-  PWM1_0_CMPA_R = duty;
+  PWM1_0_CMPA_R = SERVO_PWM_PERIOD - duty; // PWM counts down
   PWM1_ENABLE_R |= PWM_ENABLE_PWM0EN;
 }
 
