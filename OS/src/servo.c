@@ -13,10 +13,8 @@
 void Servo_Init(void)
 {
   // PWM clock = 80MHz PLL clock / 32 = 2.5MHz
-  // Initialize PB5 and PB6 as PWM outputs
-  // Initialize PB4 and PB7 as digital outputs
-  SYSCTL_RCGCPWM_R |= 0x02;  // 1) activate PWM1
-  SYSCTL_RCGCGPIO_R |= 0x08; // 2) activate port D
+  SYSCTL_RCGCPWM_R |= 0x02;  // activate PWM1
+  SYSCTL_RCGCGPIO_R |= 0x08; // activate port D
   while (!(SYSCTL_RCGCPWM_R & 0x02) || !(SYSCTL_RCGCGPIO_R & 0x08));
 
   GPIO_PORTD_AFSEL_R |= 0x01;       // enable alt funct on PD0
@@ -32,7 +30,7 @@ void Servo_Init(void)
   // Count up mode. PWM goes high on zero, low on compare value
   PWM1_0_GENA_R = (PWM_0_GENA_ACTZERO_ONE | PWM_0_GENA_ACTCMPAU_ZERO);
   PWM1_0_LOAD_R = PWM_PERIOD; // count from zero to this number and back to zero in (period - 1) cycles
-  // Synchronize PWM comparator updates, put in up/down mode, enable generators
+  // Synchronize PWM enable/disable to counter, enable generator
   PWM1_ENUPD_R = PWM_ENUPD_ENUPD0_LSYNC;
   PWM1_0_CTL_R = PWM_0_CTL_ENABLE;
   Servo_Off();
