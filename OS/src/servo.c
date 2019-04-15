@@ -5,7 +5,7 @@
 
 #define SERVO_PWM_PERIOD (2500000 / 50) // 2.5MHz PWM clock / 50 Hz PWM period = # ticks
 
-#define DUTY_MIN (SERVO_PWM_PERIOD / 20) // 2.5% duty = 0.5ms pulse
+#define DUTY_MIN (SERVO_PWM_PERIOD / 40) // 2.5% duty = 0.5ms pulse
 #define DUTY_MAX (SERVO_PWM_PERIOD / 8)  // 12.5% duty = 2.5ms pulse
 
 #define DEGREES_MAX (180)

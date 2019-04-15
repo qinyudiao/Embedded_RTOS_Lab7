@@ -361,8 +361,7 @@ void motor_task(void)
 void servo_task(void)
 {
   static int angle = 0;
-//   Servo_SetAngle(angle);
-  Servo_Off();
+  Servo_SetAngle(angle);
   angle += 18;
   if(angle > 180)
   {
@@ -375,13 +374,11 @@ int motor_testmain(void)
 {
   OS_Init(); // initialize, disable interrupts
   Motors_Init();
-  PortD_Init();
-  PD0 = 1;
-//   Servo_Init();
+  Servo_Init();
   NumCreated = 0;
   // create initial foreground threads
   NumCreated += OS_AddPeriodicThread(&motor_task, 10 * TIME_1MS, 2);
-//   NumCreated += OS_AddPeriodicThread(&servo_task, 1000 * TIME_1MS, 2);
+  NumCreated += OS_AddPeriodicThread(&servo_task, 1000 * TIME_1MS, 2);
 
   OS_Launch(TIMESLICE); // doesn't return, interrupts enabled in here
   return 0;             // this never executes
