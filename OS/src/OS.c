@@ -833,7 +833,7 @@ void OS_Launch(unsigned long theTimeSlice)
   NVIC_ST_RELOAD_R = theTimeSlice;
   NVIC_ST_CTRL_R |= 0x7;
 
-  NVIC_EN1_R = 1 << (35 - 32); // 9) enable IRQ 35 in NVIC
+  NVIC_EN1_R |= 1 << (35 - 32); // 9) enable IRQ 35 in NVIC
   NVIC_EN3_R |= 1 << 0;        // Enable wtimer1A interrupt
   NVIC_EN3_R |= 1 << 1;        // Enable wtimerB interrupt
 

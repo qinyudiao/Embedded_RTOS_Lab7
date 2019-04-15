@@ -131,8 +131,8 @@ void CAN0_Open(void){
   CANIntEnable(CAN0_BASE, CAN_INT_MASTER | CAN_INT_ERROR | CAN_INT_STATUS);
 // Set up filter to receive these IDs
 // in this case there is just one type, but you could accept multiple ID types
-  CAN0_Setup_Message_Object(RCV_ID, MSG_OBJ_RX_INT_ENABLE, 4, NULL, RCV_ID, MSG_OBJ_TYPE_RX);
-  NVIC_EN1_R = (1 << (INT_CAN0 - 48)); //IntEnable(INT_CAN0);
+  //CAN0_Setup_Message_Object(RCV_ID, MSG_OBJ_RX_INT_ENABLE, 4, NULL, RCV_ID, MSG_OBJ_TYPE_RX); // This will be done by CAN0_SetRecv
+  NVIC_EN1_R |= (1 << (INT_CAN0 - 48)); //IntEnable(INT_CAN0);
     
   for(int idx = 0;idx<32;idx++) { 
     OS_InitSemaphore(&Msgkey[idx],0);
@@ -144,10 +144,23 @@ void CAN0_Open(void){
   return;
 }
 
+int CAN0_SetRecv(int idx)
+{
+  CAN0_Setup_Message_Object(idx, MSG_OBJ_RX_INT_ENABLE, 4, NULL, idx, MSG_OBJ_TYPE_RX);
+  RCVARR[idx] = idx;
+  return 0;
+}
+
+//// send 4 bytes of data to other microcontroller 
+//void CAN0_SendData(uint8_t data[4]){
+//// in this case there is just one type, but you could accept multiple ID types
+//  CAN0_Setup_Message_Object(XMT_ID, NULL, 4, data, XMT_ID, MSG_OBJ_TYPE_TX);
+//}
+
 // send 4 bytes of data to other microcontroller 
-void CAN0_SendData(uint8_t data[4]){
+void CAN0_SendDatawithIdx(uint8_t data[4], int idx){
 // in this case there is just one type, but you could accept multiple ID types
-  CAN0_Setup_Message_Object(XMT_ID, NULL, 4, data, XMT_ID, MSG_OBJ_TYPE_TX);
+  CAN0_Setup_Message_Object(idx, NULL, 4, data, idx, MSG_OBJ_TYPE_TX);
 }
 
 // if receive data is ready, gets the data and returns true
@@ -165,7 +178,6 @@ int CAN0_GetMailNonBlock(uint8_t data[4]){
 }
 
 void CAN0_GetMailwithIdx(uint8_t data[4], int idx){
-  RCVARR[idx] = idx;
   OS_bWait(&Msgkey[idx]);
   data[0] = RCVData[idx][0];
   data[1] = RCVData[idx][1];
@@ -176,11 +188,11 @@ void CAN0_GetMailwithIdx(uint8_t data[4], int idx){
 
 // if receive data is ready, gets the data 
 // if no receive data is ready, it waits until it is ready
-void CAN0_GetMail(uint8_t data[4]){
-  OS_bWait(&Msgkey[0]);
-  data[0] = RCVData[0][0];
-  data[1] = RCVData[0][1];
-  data[2] = RCVData[0][2];
-  data[3] = RCVData[0][3];
-}
+//void CAN0_GetMail(uint8_t data[4]){
+//  OS_bWait(&Msgkey[0]);
+//  data[0] = RCVData[0][0];
+//  data[1] = RCVData[0][1];
+//  data[2] = RCVData[0][2];
+//  data[3] = RCVData[0][3];
+//}
 

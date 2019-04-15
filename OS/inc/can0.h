@@ -44,13 +44,17 @@ int CAN0_GetMailNonBlock(uint8_t data[4]);
 // if receive data is ready, gets the data 
 // if no receive data is ready, it waits until it is ready
 void CAN0_GetMailwithIdx(uint8_t data[4], int rxidx);
-void CAN0_GetMail(uint8_t data[4]);
+//void CAN0_GetMail(uint8_t data[4]);
 
 // Initialize CAN port
 void CAN0_Open(void);
 
+// Set handler work for specific recieve ID
+int CAN0_SetRecv(int idx);
+
 // send 4 bytes of data to other microcontroller 
-void CAN0_SendData(uint8_t data[4]);
+//void CAN0_SendData(uint8_t data[4]);
+void CAN0_SendDatawithIdx(uint8_t data[4],int idx);
 
 
 
