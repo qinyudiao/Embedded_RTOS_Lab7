@@ -78,7 +78,7 @@
 #include "ADC.h"
 #include "UART.h"
 #include "interpreter.h"
-
+#include "servo.h"
 #include "ff.h"
 #include "diskio.h"
 #include "motors.h"
@@ -348,23 +348,38 @@ int realmain(void)
 void motor_task(void)
 {
   static int step = 1;
-  static int torque = -1000;
+  static int torque = -50;
   // Motors_SetTorque(torque, torque);
   Motors_SetTorque(torque, torque);
   torque += step;
-  if((torque > 1000) || (torque < -1000))
+  if((torque > 50) || (torque < -50))
   {
     step = -step;
+    torque += step;
   }
+}
+
+void servo_task(void)
+{
+  static int angle = 0;
+  Servo_SetAngle(angle);
+  angle += 18;
+  if(angle > 180)
+  {
+    angle = 0;
+  }
+
 }
 
 int motor_testmain(void)
 {
   OS_Init(); // initialize, disable interrupts
   Motors_Init();
+  Servo_Init();
   NumCreated = 0;
   // create initial foreground threads
-  NumCreated += OS_AddPeriodicThread(&motor_task, 1 * TIME_1MS, 2);
+  NumCreated += OS_AddPeriodicThread(&motor_task, 10 * TIME_1MS, 2);
+  NumCreated += OS_AddPeriodicThread(&servo_task, 1000 * TIME_1MS, 2);
 
   OS_Launch(TIMESLICE); // doesn't return, interrupts enabled in here
   return 0;             // this never executes
