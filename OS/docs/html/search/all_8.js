@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['lengthof',['lengthof',['../misc__macros_8h.html#ad53b2827d15d4f100433764eea395a94',1,'misc_macros.h']]]
+  ['jitter',['Jitter',['../OS_8h.html#a075cf7301361417f66be1d5c22e36b0f',1,'OS.h']]]
 ];

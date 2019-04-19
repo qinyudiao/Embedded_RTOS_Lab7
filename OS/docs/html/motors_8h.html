@@ -135,6 +135,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="moto
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Interface to two DC motors controlled by PWM. Allows differential driving. </p>
 <dl class="section author"><dt>Author</dt><dd>Riley Wood (<a href="#" onclick="location.href='mai'+'lto:'+'ril'+'ey'+'.wo'+'od'+'@ut'+'ex'+'as.'+'ed'+'u'; return false;">riley<span style="display: none;">.nosp@m.</span>.woo<span style="display: none;">.nosp@m.</span>d@ute<span style="display: none;">.nosp@m.</span>xas.<span style="display: none;">.nosp@m.</span>edu</a>)</dd></dl>
+<p>This library makes use of PWM module 0, outputs 0 and 3. These are produced by PWM module 0's generators numbered 0 and 1.</p>
 <p>Conventions:</p><ul>
 <li>Definition of "left" versus "right":<ul>
 <li>The "left motor" is the motor on your left when the robot is on the ground with the servo pointed away from you.</li>
@@ -194,8 +195,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="moto
 <p>Set the torque for each of the two motors atomically. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">left_trq</td><td>Torque for left motor. Positive argument indicates forward motion of robot, negative indicates backward. Zero indicates no rotation. </td></tr>
-    <tr><td class="paramname">right_trq</td><td>Torque for right motor. Positive argument indicates forward motion of robot, negative indicates backward. Zero indicates no rotation. </td></tr>
+    <tr><td class="paramname">left_trq</td><td>Torque for left motor. Between -50 and 50. Positive argument indicates forward motion of robot, negative indicates backward. Zero indicates no rotation. </td></tr>
+    <tr><td class="paramname">right_trq</td><td>Torque for right motor. Between -50 and 50. Positive argument indicates forward motion of robot, negative indicates backward. Zero indicates no rotation. </td></tr>
   </table>
   </dd>
 </dl>
@@ -219,7 +220,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="moto
 <p>Set the torque of the left motor individually. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">left_trq</td><td>Torque for left motor. Positive argument indicates forward motion of robot, negative indicates backward. Zero indicates no rotation. </td></tr>
+    <tr><td class="paramname">left_trq</td><td>Torque for left motor. Between -50 and 50. Positive argument indicates forward motion of robot, negative indicates backward. Zero indicates no rotation. </td></tr>
   </table>
   </dd>
 </dl>
@@ -243,7 +244,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="moto
 <p>Set the torque of the left motor individually. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">right_trq</td><td>Torque for right motor. Positive argument indicates forward motion of robot, negative indicates backward. Zero indicates no rotation. </td></tr>
+    <tr><td class="paramname">right_trq</td><td>Torque for right motor. Between -50 and 50. Positive argument indicates forward motion of robot, negative indicates backward. Zero indicates no rotation. </td></tr>
   </table>
   </dd>
 </dl>

@@ -178,8 +178,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the most recent sample collected by the channel configured in ADC_Init(...) </p>
-<p>If the channel has not finished collecting its first sample, this function returns 0xFFFF.</p>
-<p>If you call this rapidly, faster than the ADC samples, this function may repeat values (since it always returns the most recent).</p>
+<p>This function uses busy-wait for the ADC sampling to be done</p>
 <dl class="section return"><dt>Returns</dt><dd>uint16_t The conversion result </dd></dl>
 
 </div>

@@ -69,9 +69,7 @@ int 0 on success, -\/1 on failure.
 
 Returns the most recent sample collected by the channel configured in A\+D\+C\+\_\+\+Init(...) 
 
-If the channel has not finished collecting its first sample, this function returns 0x\+F\+F\+FF.
-
-If you call this rapidly, faster than the A\+DC samples, this function may repeat values (since it always returns the most recent).
+This function uses busy-\/wait for the A\+DC sampling to be done
 
 \begin{DoxyReturn}{Returns}
 uint16\+\_\+t The conversion result 

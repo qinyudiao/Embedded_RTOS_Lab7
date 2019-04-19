@@ -1,0 +1,268 @@
+\hypertarget{group__can__api}{}\section{Can\+\_\+api}
+\label{group__can__api}\index{Can\+\_\+api@{Can\+\_\+api}}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structtCANMsgObject}{t\+C\+A\+N\+Msg\+Object}
+\item 
+struct \hyperlink{structtCANBitClkParms}{t\+C\+A\+N\+Bit\+Clk\+Parms}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group__can__api_ga72160bfa35ab86bf0e68c1e2c2dd67a2}{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+T\+X\+\_\+\+I\+N\+T\+\_\+\+E\+N\+A\+B\+LE}~0x00000001
+\item 
+\#define \hyperlink{group__can__api_ga8e611898e5a16c95b1e9ed517d84b463}{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+R\+X\+\_\+\+I\+N\+T\+\_\+\+E\+N\+A\+B\+LE}~0x00000002
+\item 
+\#define \hyperlink{group__can__api_ga9387d98cd6262e0be419aceab45295e4}{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+ID}~0x00000004
+\item 
+\#define \hyperlink{group__can__api_gac8b622ceb867ab7de6f285ae630c534a}{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+U\+S\+E\+\_\+\+I\+D\+\_\+\+F\+I\+L\+T\+ER}~0x00000008
+\item 
+\#define \hyperlink{group__can__api_ga3c0e245fe4dcf8cb1d987c6a4ff3fc0a}{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+N\+E\+W\+\_\+\+D\+A\+TA}~0x00000080\hypertarget{group__can__api_ga3c0e245fe4dcf8cb1d987c6a4ff3fc0a}{}\label{group__can__api_ga3c0e245fe4dcf8cb1d987c6a4ff3fc0a}
+
+\begin{DoxyCompactList}\small\item\em This indicates that new data was available in the message object. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__can__api_ga6405afc8e3cc146889ea8bc32bd0f0ca}{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+D\+A\+T\+A\+\_\+\+L\+O\+ST}~0x00000100
+\item 
+\#define \hyperlink{group__can__api_gabd8bebbc78a6f49c3c3088c5c7d53ca9}{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+U\+S\+E\+\_\+\+D\+I\+R\+\_\+\+F\+I\+L\+T\+ER}~(0x00000010 $\vert$ M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+U\+S\+E\+\_\+\+I\+D\+\_\+\+F\+I\+L\+T\+E\+R)
+\item 
+\#define \hyperlink{group__can__api_gacead63b8e758f947f7aecf11d928e490}{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+U\+S\+E\+\_\+\+E\+X\+T\+\_\+\+F\+I\+L\+T\+ER}~(0x00000020 $\vert$ M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+U\+S\+E\+\_\+\+I\+D\+\_\+\+F\+I\+L\+T\+E\+R)
+\item 
+\#define \hyperlink{group__can__api_gaba15117b85b019f6e907fcadd0333a8f}{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+R\+E\+M\+O\+T\+E\+\_\+\+F\+R\+A\+ME}~0x00000040\hypertarget{group__can__api_gaba15117b85b019f6e907fcadd0333a8f}{}\label{group__can__api_gaba15117b85b019f6e907fcadd0333a8f}
+
+\begin{DoxyCompactList}\small\item\em This indicates that a message object is a remote frame. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__can__api_ga5e3141ec2c5c1130f5c8c0601ce9e614}{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+F\+I\+FO}~0x00000200
+\item 
+\#define \hyperlink{group__can__api_gac72c7dc1fe5ae5e73682f9602e9c92c7}{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+N\+O\+\_\+\+F\+L\+A\+GS}~0x00000000\hypertarget{group__can__api_gac72c7dc1fe5ae5e73682f9602e9c92c7}{}\label{group__can__api_gac72c7dc1fe5ae5e73682f9602e9c92c7}
+
+\begin{DoxyCompactList}\small\item\em This indicates that a message object has no flags set. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__can__api_gac00ece1facc432a0454b9de2e35ad9ad}{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+M\+A\+SK}~(\hyperlink{group__can__api_ga3c0e245fe4dcf8cb1d987c6a4ff3fc0a}{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+N\+E\+W\+\_\+\+D\+A\+TA} $\vert$ \hyperlink{group__can__api_ga6405afc8e3cc146889ea8bc32bd0f0ca}{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+D\+A\+T\+A\+\_\+\+L\+O\+ST})
+\item 
+\#define \hyperlink{group__can__api_gaaeedfcc6f76b6f3edc4e389eb66969a7}{C\+A\+N\+\_\+\+I\+N\+T\+\_\+\+E\+R\+R\+OR}~0x00000008
+\item 
+\#define \hyperlink{group__can__api_ga9b574346c3ba9d87d77e39051c7361ef}{C\+A\+N\+\_\+\+I\+N\+T\+\_\+\+S\+T\+A\+T\+US}~0x00000004
+\item 
+\#define \hyperlink{group__can__api_ga7e4406f4eca9ad39d1062708d4afdcb0}{C\+A\+N\+\_\+\+I\+N\+T\+\_\+\+M\+A\+S\+T\+ER}~0x00000002
+\item 
+\#define \hyperlink{group__can__api_ga128af659ae92e97d117a488dbe31655c}{C\+A\+N\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+B\+U\+S\+\_\+\+O\+FF}~0x00000080\hypertarget{group__can__api_ga128af659ae92e97d117a488dbe31655c}{}\label{group__can__api_ga128af659ae92e97d117a488dbe31655c}
+
+\begin{DoxyCompactList}\small\item\em C\+AN controller has entered a Bus Off state. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__can__api_ga598142e112fd7dcdf29227ddc3a18628}{C\+A\+N\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+E\+W\+A\+RN}~0x00000040\hypertarget{group__can__api_ga598142e112fd7dcdf29227ddc3a18628}{}\label{group__can__api_ga598142e112fd7dcdf29227ddc3a18628}
+
+\begin{DoxyCompactList}\small\item\em C\+AN controller error level has reached warning level. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__can__api_ga0ad72c583aeccf70ca41a458a4c4a418}{C\+A\+N\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+E\+P\+A\+SS}~0x00000020\hypertarget{group__can__api_ga0ad72c583aeccf70ca41a458a4c4a418}{}\label{group__can__api_ga0ad72c583aeccf70ca41a458a4c4a418}
+
+\begin{DoxyCompactList}\small\item\em C\+AN controller error level has reached error passive level. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__can__api_ga780dfd5173c3ca51be021325fcb301e6}{C\+A\+N\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+R\+X\+OK}~0x00000010\hypertarget{group__can__api_ga780dfd5173c3ca51be021325fcb301e6}{}\label{group__can__api_ga780dfd5173c3ca51be021325fcb301e6}
+
+\begin{DoxyCompactList}\small\item\em A message was received successfully since the last read of this status. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__can__api_gae8a21b993556fac574a61c600c41d860}{C\+A\+N\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+T\+X\+OK}~0x00000008
+\item 
+\#define \hyperlink{group__can__api_ga09d4f385b401cb9e226b9f52d0c7c8ef}{C\+A\+N\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+L\+E\+C\+\_\+\+M\+SK}~0x00000007\hypertarget{group__can__api_ga09d4f385b401cb9e226b9f52d0c7c8ef}{}\label{group__can__api_ga09d4f385b401cb9e226b9f52d0c7c8ef}
+
+\begin{DoxyCompactList}\small\item\em This is the mask for the last error code field. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__can__api_ga1b5513adc24698aa0e2c32d67d7c730f}{C\+A\+N\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+L\+E\+C\+\_\+\+N\+O\+NE}~0x00000000\hypertarget{group__can__api_ga1b5513adc24698aa0e2c32d67d7c730f}{}\label{group__can__api_ga1b5513adc24698aa0e2c32d67d7c730f}
+
+\begin{DoxyCompactList}\small\item\em There was no error. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__can__api_ga881c00803433a71131fcdae8bcd55fdc}{C\+A\+N\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+L\+E\+C\+\_\+\+S\+T\+U\+FF}~0x00000001\hypertarget{group__can__api_ga881c00803433a71131fcdae8bcd55fdc}{}\label{group__can__api_ga881c00803433a71131fcdae8bcd55fdc}
+
+\begin{DoxyCompactList}\small\item\em A bit stuffing error has occurred. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__can__api_ga09ffe0100093929da99dc790c0c1c155}{C\+A\+N\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+L\+E\+C\+\_\+\+F\+O\+RM}~0x00000002\hypertarget{group__can__api_ga09ffe0100093929da99dc790c0c1c155}{}\label{group__can__api_ga09ffe0100093929da99dc790c0c1c155}
+
+\begin{DoxyCompactList}\small\item\em A formatting error has occurred. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__can__api_ga09678c99a5e937f8af5ec659f2a2ea44}{C\+A\+N\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+L\+E\+C\+\_\+\+A\+CK}~0x00000003\hypertarget{group__can__api_ga09678c99a5e937f8af5ec659f2a2ea44}{}\label{group__can__api_ga09678c99a5e937f8af5ec659f2a2ea44}
+
+\begin{DoxyCompactList}\small\item\em An acknowledge error has occurred. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__can__api_ga8a78754c15f75b6b422116055116e661}{C\+A\+N\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+L\+E\+C\+\_\+\+B\+I\+T1}~0x00000004\hypertarget{group__can__api_ga8a78754c15f75b6b422116055116e661}{}\label{group__can__api_ga8a78754c15f75b6b422116055116e661}
+
+\begin{DoxyCompactList}\small\item\em The bus remained a bit level of 1 for longer than is allowed. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__can__api_gadb270e9f4ea428522ec8cef106160729}{C\+A\+N\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+L\+E\+C\+\_\+\+B\+I\+T0}~0x00000005\hypertarget{group__can__api_gadb270e9f4ea428522ec8cef106160729}{}\label{group__can__api_gadb270e9f4ea428522ec8cef106160729}
+
+\begin{DoxyCompactList}\small\item\em The bus remained a bit level of 0 for longer than is allowed. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__can__api_ga8658d447348d87ecfd5c1386c48ee781}{C\+A\+N\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+L\+E\+C\+\_\+\+C\+RC}~0x00000006\hypertarget{group__can__api_ga8658d447348d87ecfd5c1386c48ee781}{}\label{group__can__api_ga8658d447348d87ecfd5c1386c48ee781}
+
+\begin{DoxyCompactList}\small\item\em A C\+RC error has occurred. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__can__api_gad5d011f8a4533a174f037e151a35cebe}{C\+A\+N\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+L\+E\+C\+\_\+\+M\+A\+SK}~0x00000007\hypertarget{group__can__api_gad5d011f8a4533a174f037e151a35cebe}{}\label{group__can__api_gad5d011f8a4533a174f037e151a35cebe}
+
+\begin{DoxyCompactList}\small\item\em This is the mask for the C\+AN Last Error Code (L\+EC). \end{DoxyCompactList}\item 
+\#define {\bfseries C\+A\+N\+Set\+Bit\+Timing}(a,  b)~C\+A\+N\+Bit\+Timing\+Set(a, b)\hypertarget{group__can__api_ga08204cc7ba65ec3fd720e47fadd60559}{}\label{group__can__api_ga08204cc7ba65ec3fd720e47fadd60559}
+
+\item 
+\#define {\bfseries C\+A\+N\+Get\+Bit\+Timing}(a,  b)~C\+A\+N\+Bit\+Timing\+Get(a, b)\hypertarget{group__can__api_ga449194e3e6419c901d077ccbe0021aec}{}\label{group__can__api_ga449194e3e6419c901d077ccbe0021aec}
+
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{group__can__api_ga73584383f566e98bf822b371a03becfc}{t\+C\+A\+N\+Int\+Sts\+Reg} \{ \hyperlink{group__can__api_gga73584383f566e98bf822b371a03becfcaaab739e796c1216de72acf16410795a5}{C\+A\+N\+\_\+\+I\+N\+T\+\_\+\+S\+T\+S\+\_\+\+C\+A\+U\+SE}, 
+\hyperlink{group__can__api_gga73584383f566e98bf822b371a03becfca8cb85391f55d762fcff16bb285903304}{C\+A\+N\+\_\+\+I\+N\+T\+\_\+\+S\+T\+S\+\_\+\+O\+B\+J\+E\+CT}
+ \}
+\item 
+enum \hyperlink{group__can__api_gad898b7c10eb4d9282bd4c25fc935b3d2}{t\+C\+A\+N\+Sts\+Reg} \{ \hyperlink{group__can__api_ggad898b7c10eb4d9282bd4c25fc935b3d2aac2ece80a767774a99d1fb1e463aa932}{C\+A\+N\+\_\+\+S\+T\+S\+\_\+\+C\+O\+N\+T\+R\+OL}, 
+\hyperlink{group__can__api_ggad898b7c10eb4d9282bd4c25fc935b3d2afffa0c96b01a03aff5a5dd32c5aa77c7}{C\+A\+N\+\_\+\+S\+T\+S\+\_\+\+T\+X\+R\+E\+Q\+U\+E\+ST}, 
+\hyperlink{group__can__api_ggad898b7c10eb4d9282bd4c25fc935b3d2afa63f81ede60a5209bc32c6eb94e7512}{C\+A\+N\+\_\+\+S\+T\+S\+\_\+\+N\+E\+W\+D\+AT}, 
+\hyperlink{group__can__api_ggad898b7c10eb4d9282bd4c25fc935b3d2a3fe016f4c8154bf2ef524621edfb293d}{C\+A\+N\+\_\+\+S\+T\+S\+\_\+\+M\+S\+G\+V\+AL}
+ \}
+\item 
+enum \hyperlink{group__can__api_gad3fa840d5e84a9366ba2a8c958c069a2}{t\+Msg\+Obj\+Type} \{ \\*
+\hyperlink{group__can__api_ggad3fa840d5e84a9366ba2a8c958c069a2aa13483d5640bff99d693d271c2238230}{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+T\+Y\+P\+E\+\_\+\+TX}, 
+\hyperlink{group__can__api_ggad3fa840d5e84a9366ba2a8c958c069a2a01289338e40c4573d4a78e6d40cab433}{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+T\+Y\+P\+E\+\_\+\+T\+X\+\_\+\+R\+E\+M\+O\+TE}, 
+\hyperlink{group__can__api_ggad3fa840d5e84a9366ba2a8c958c069a2a19480934236e65a7090acd45caecb0a3}{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+T\+Y\+P\+E\+\_\+\+RX}, 
+\hyperlink{group__can__api_ggad3fa840d5e84a9366ba2a8c958c069a2ae268696d7605c98094e4136eb646a251}{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+T\+Y\+P\+E\+\_\+\+R\+X\+\_\+\+R\+E\+M\+O\+TE}, 
+\\*
+\hyperlink{group__can__api_ggad3fa840d5e84a9366ba2a8c958c069a2a8aed86e235facdf4ab0ce8cb53de65c1}{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+T\+Y\+P\+E\+\_\+\+R\+X\+T\+X\+\_\+\+R\+E\+M\+O\+TE}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries C\+A\+N\+Bit\+Timing\+Get} (uint32\+\_\+t ul\+Base, \hyperlink{structtCANBitClkParms}{t\+C\+A\+N\+Bit\+Clk\+Parms} $\ast$p\+Clk\+Parms)\hypertarget{group__can__api_ga371176a5650920741fc0993879983d5e}{}\label{group__can__api_ga371176a5650920741fc0993879983d5e}
+
+\item 
+void {\bfseries C\+A\+N\+Bit\+Timing\+Set} (uint32\+\_\+t ul\+Base, \hyperlink{structtCANBitClkParms}{t\+C\+A\+N\+Bit\+Clk\+Parms} $\ast$p\+Clk\+Parms)\hypertarget{group__can__api_ga4e4b9e0e2f20d4c7749eaca1321da1a0}{}\label{group__can__api_ga4e4b9e0e2f20d4c7749eaca1321da1a0}
+
+\item 
+uint32\+\_\+t {\bfseries C\+A\+N\+Bit\+Rate\+Set} (uint32\+\_\+t ul\+Base, uint32\+\_\+t ul\+Source\+Clock, uint32\+\_\+t ul\+Bit\+Rate)\hypertarget{group__can__api_gabbbb2deb01808516a657c9c3442d2214}{}\label{group__can__api_gabbbb2deb01808516a657c9c3442d2214}
+
+\item 
+void {\bfseries C\+A\+N\+Disable} (uint32\+\_\+t ul\+Base)\hypertarget{group__can__api_ga9fd01ed5e5b6511455e457f85e07d039}{}\label{group__can__api_ga9fd01ed5e5b6511455e457f85e07d039}
+
+\item 
+void {\bfseries C\+A\+N\+Enable} (uint32\+\_\+t ul\+Base)\hypertarget{group__can__api_gac924425e382812baabdb5fd987ac0434}{}\label{group__can__api_gac924425e382812baabdb5fd987ac0434}
+
+\item 
+t\+Boolean {\bfseries C\+A\+N\+Err\+Cntr\+Get} (uint32\+\_\+t ul\+Base, uint32\+\_\+t $\ast$pul\+Rx\+Count, uint32\+\_\+t $\ast$pul\+Tx\+Count)\hypertarget{group__can__api_ga29ff4f182bc29434059d1ad95df44626}{}\label{group__can__api_ga29ff4f182bc29434059d1ad95df44626}
+
+\item 
+void {\bfseries C\+A\+N\+Init} (uint32\+\_\+t ul\+Base)\hypertarget{group__can__api_ga5a940bd5f7b4dc4940bf14d0c511dc3a}{}\label{group__can__api_ga5a940bd5f7b4dc4940bf14d0c511dc3a}
+
+\item 
+void {\bfseries C\+A\+N\+Int\+Clear} (uint32\+\_\+t ul\+Base, uint32\+\_\+t ul\+Int\+Clr)\hypertarget{group__can__api_ga9a124df323d35da52ce6cf20b6627839}{}\label{group__can__api_ga9a124df323d35da52ce6cf20b6627839}
+
+\item 
+void {\bfseries C\+A\+N\+Int\+Disable} (uint32\+\_\+t ul\+Base, uint32\+\_\+t ul\+Int\+Flags)\hypertarget{group__can__api_ga5b7a19ea95b3223053b9befcf08a616d}{}\label{group__can__api_ga5b7a19ea95b3223053b9befcf08a616d}
+
+\item 
+void {\bfseries C\+A\+N\+Int\+Enable} (uint32\+\_\+t ul\+Base, uint32\+\_\+t ul\+Int\+Flags)\hypertarget{group__can__api_ga1b44b0814917b67cd28882e735bdf17a}{}\label{group__can__api_ga1b44b0814917b67cd28882e735bdf17a}
+
+\item 
+void {\bfseries C\+A\+N\+Int\+Register} (uint32\+\_\+t ul\+Base, void($\ast$pfn\+Handler)(void))\hypertarget{group__can__api_ga251f6f4d6fd75d80d5439ce96bd80069}{}\label{group__can__api_ga251f6f4d6fd75d80d5439ce96bd80069}
+
+\item 
+uint32\+\_\+t {\bfseries C\+A\+N\+Int\+Status} (uint32\+\_\+t ul\+Base, \hyperlink{group__can__api_ga73584383f566e98bf822b371a03becfc}{t\+C\+A\+N\+Int\+Sts\+Reg} e\+Int\+Sts\+Reg)\hypertarget{group__can__api_ga2646a8a39363eab7bc1f3f4a6980e048}{}\label{group__can__api_ga2646a8a39363eab7bc1f3f4a6980e048}
+
+\item 
+void {\bfseries C\+A\+N\+Int\+Unregister} (uint32\+\_\+t ul\+Base)\hypertarget{group__can__api_ga1bc0cb97655af0296f283d6410e00f33}{}\label{group__can__api_ga1bc0cb97655af0296f283d6410e00f33}
+
+\item 
+void {\bfseries C\+A\+N\+Message\+Clear} (uint32\+\_\+t ul\+Base, uint32\+\_\+t ul\+Obj\+ID)\hypertarget{group__can__api_ga5c64ee3b2e0839bc0aad5f2d716ddc57}{}\label{group__can__api_ga5c64ee3b2e0839bc0aad5f2d716ddc57}
+
+\item 
+void {\bfseries C\+A\+N\+Message\+Get} (uint32\+\_\+t ul\+Base, uint32\+\_\+t ul\+Obj\+ID, \hyperlink{structtCANMsgObject}{t\+C\+A\+N\+Msg\+Object} $\ast$p\+Msg\+Object, t\+Boolean b\+Clr\+Pending\+Int)\hypertarget{group__can__api_ga79e75c0930e75fd7e58a337c781ad4a5}{}\label{group__can__api_ga79e75c0930e75fd7e58a337c781ad4a5}
+
+\item 
+void {\bfseries C\+A\+N\+Message\+Set} (uint32\+\_\+t ul\+Base, uint32\+\_\+t ul\+Obj\+ID, \hyperlink{structtCANMsgObject}{t\+C\+A\+N\+Msg\+Object} $\ast$p\+Msg\+Object, \hyperlink{group__can__api_gad3fa840d5e84a9366ba2a8c958c069a2}{t\+Msg\+Obj\+Type} e\+Msg\+Type)\hypertarget{group__can__api_ga79cb2284660acd82feb1d24d91dbe5a2}{}\label{group__can__api_ga79cb2284660acd82feb1d24d91dbe5a2}
+
+\item 
+t\+Boolean {\bfseries C\+A\+N\+Retry\+Get} (uint32\+\_\+t ul\+Base)\hypertarget{group__can__api_ga3ccc30ee3dcf3fdc531b68d9bde87836}{}\label{group__can__api_ga3ccc30ee3dcf3fdc531b68d9bde87836}
+
+\item 
+void {\bfseries C\+A\+N\+Retry\+Set} (uint32\+\_\+t ul\+Base, t\+Boolean b\+Auto\+Retry)\hypertarget{group__can__api_gad48198463ffd855e63ccefbc4ab85109}{}\label{group__can__api_gad48198463ffd855e63ccefbc4ab85109}
+
+\item 
+uint32\+\_\+t {\bfseries C\+A\+N\+Status\+Get} (uint32\+\_\+t ul\+Base, \hyperlink{group__can__api_gad898b7c10eb4d9282bd4c25fc935b3d2}{t\+C\+A\+N\+Sts\+Reg} e\+Status\+Reg)\hypertarget{group__can__api_ga4ff66fe06bc5bcfe7fadad84655cb118}{}\label{group__can__api_ga4ff66fe06bc5bcfe7fadad84655cb118}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Macro Definition Documentation}
+\index{Can\+\_\+api@{Can\+\_\+api}!C\+A\+N\+\_\+\+I\+N\+T\+\_\+\+E\+R\+R\+OR@{C\+A\+N\+\_\+\+I\+N\+T\+\_\+\+E\+R\+R\+OR}}
+\index{C\+A\+N\+\_\+\+I\+N\+T\+\_\+\+E\+R\+R\+OR@{C\+A\+N\+\_\+\+I\+N\+T\+\_\+\+E\+R\+R\+OR}!Can\+\_\+api@{Can\+\_\+api}}
+\subsubsection[{\texorpdfstring{C\+A\+N\+\_\+\+I\+N\+T\+\_\+\+E\+R\+R\+OR}{CAN_INT_ERROR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+A\+N\+\_\+\+I\+N\+T\+\_\+\+E\+R\+R\+OR~0x00000008}\hypertarget{group__can__api_gaaeedfcc6f76b6f3edc4e389eb66969a7}{}\label{group__can__api_gaaeedfcc6f76b6f3edc4e389eb66969a7}
+This flag is used to allow a C\+AN controller to generate error interrupts. \index{Can\+\_\+api@{Can\+\_\+api}!C\+A\+N\+\_\+\+I\+N\+T\+\_\+\+M\+A\+S\+T\+ER@{C\+A\+N\+\_\+\+I\+N\+T\+\_\+\+M\+A\+S\+T\+ER}}
+\index{C\+A\+N\+\_\+\+I\+N\+T\+\_\+\+M\+A\+S\+T\+ER@{C\+A\+N\+\_\+\+I\+N\+T\+\_\+\+M\+A\+S\+T\+ER}!Can\+\_\+api@{Can\+\_\+api}}
+\subsubsection[{\texorpdfstring{C\+A\+N\+\_\+\+I\+N\+T\+\_\+\+M\+A\+S\+T\+ER}{CAN_INT_MASTER}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+A\+N\+\_\+\+I\+N\+T\+\_\+\+M\+A\+S\+T\+ER~0x00000002}\hypertarget{group__can__api_ga7e4406f4eca9ad39d1062708d4afdcb0}{}\label{group__can__api_ga7e4406f4eca9ad39d1062708d4afdcb0}
+This flag is used to allow a C\+AN controller to generate any C\+AN interrupts. If this is not set, then no interrupts will be generated by the C\+AN controller. \index{Can\+\_\+api@{Can\+\_\+api}!C\+A\+N\+\_\+\+I\+N\+T\+\_\+\+S\+T\+A\+T\+US@{C\+A\+N\+\_\+\+I\+N\+T\+\_\+\+S\+T\+A\+T\+US}}
+\index{C\+A\+N\+\_\+\+I\+N\+T\+\_\+\+S\+T\+A\+T\+US@{C\+A\+N\+\_\+\+I\+N\+T\+\_\+\+S\+T\+A\+T\+US}!Can\+\_\+api@{Can\+\_\+api}}
+\subsubsection[{\texorpdfstring{C\+A\+N\+\_\+\+I\+N\+T\+\_\+\+S\+T\+A\+T\+US}{CAN_INT_STATUS}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+A\+N\+\_\+\+I\+N\+T\+\_\+\+S\+T\+A\+T\+US~0x00000004}\hypertarget{group__can__api_ga9b574346c3ba9d87d77e39051c7361ef}{}\label{group__can__api_ga9b574346c3ba9d87d77e39051c7361ef}
+This flag is used to allow a C\+AN controller to generate status interrupts. \index{Can\+\_\+api@{Can\+\_\+api}!C\+A\+N\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+T\+X\+OK@{C\+A\+N\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+T\+X\+OK}}
+\index{C\+A\+N\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+T\+X\+OK@{C\+A\+N\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+T\+X\+OK}!Can\+\_\+api@{Can\+\_\+api}}
+\subsubsection[{\texorpdfstring{C\+A\+N\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+T\+X\+OK}{CAN_STATUS_TXOK}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+A\+N\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+T\+X\+OK~0x00000008}\hypertarget{group__can__api_gae8a21b993556fac574a61c600c41d860}{}\label{group__can__api_gae8a21b993556fac574a61c600c41d860}
+A message was transmitted successfully since the last read of this status. \index{Can\+\_\+api@{Can\+\_\+api}!M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+D\+A\+T\+A\+\_\+\+L\+O\+ST@{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+D\+A\+T\+A\+\_\+\+L\+O\+ST}}
+\index{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+D\+A\+T\+A\+\_\+\+L\+O\+ST@{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+D\+A\+T\+A\+\_\+\+L\+O\+ST}!Can\+\_\+api@{Can\+\_\+api}}
+\subsubsection[{\texorpdfstring{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+D\+A\+T\+A\+\_\+\+L\+O\+ST}{MSG_OBJ_DATA_LOST}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+D\+A\+T\+A\+\_\+\+L\+O\+ST~0x00000100}\hypertarget{group__can__api_ga6405afc8e3cc146889ea8bc32bd0f0ca}{}\label{group__can__api_ga6405afc8e3cc146889ea8bc32bd0f0ca}
+This indicates that data was lost since this message object was last read. \index{Can\+\_\+api@{Can\+\_\+api}!M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+ID@{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+ID}}
+\index{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+ID@{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+ID}!Can\+\_\+api@{Can\+\_\+api}}
+\subsubsection[{\texorpdfstring{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+ID}{MSG_OBJ_EXTENDED_ID}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+ID~0x00000004}\hypertarget{group__can__api_ga9387d98cd6262e0be419aceab45295e4}{}\label{group__can__api_ga9387d98cd6262e0be419aceab45295e4}
+This indicates that a message object will use or is using an extended identifier. \index{Can\+\_\+api@{Can\+\_\+api}!M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+F\+I\+FO@{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+F\+I\+FO}}
+\index{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+F\+I\+FO@{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+F\+I\+FO}!Can\+\_\+api@{Can\+\_\+api}}
+\subsubsection[{\texorpdfstring{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+F\+I\+FO}{MSG_OBJ_FIFO}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+F\+I\+FO~0x00000200}\hypertarget{group__can__api_ga5e3141ec2c5c1130f5c8c0601ce9e614}{}\label{group__can__api_ga5e3141ec2c5c1130f5c8c0601ce9e614}
+This indicates that this message object is part of a F\+I\+FO structure and not the final message object in a F\+I\+FO. \index{Can\+\_\+api@{Can\+\_\+api}!M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+R\+X\+\_\+\+I\+N\+T\+\_\+\+E\+N\+A\+B\+LE@{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+R\+X\+\_\+\+I\+N\+T\+\_\+\+E\+N\+A\+B\+LE}}
+\index{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+R\+X\+\_\+\+I\+N\+T\+\_\+\+E\+N\+A\+B\+LE@{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+R\+X\+\_\+\+I\+N\+T\+\_\+\+E\+N\+A\+B\+LE}!Can\+\_\+api@{Can\+\_\+api}}
+\subsubsection[{\texorpdfstring{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+R\+X\+\_\+\+I\+N\+T\+\_\+\+E\+N\+A\+B\+LE}{MSG_OBJ_RX_INT_ENABLE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+R\+X\+\_\+\+I\+N\+T\+\_\+\+E\+N\+A\+B\+LE~0x00000002}\hypertarget{group__can__api_ga8e611898e5a16c95b1e9ed517d84b463}{}\label{group__can__api_ga8e611898e5a16c95b1e9ed517d84b463}
+This indicates that receive interrupts should be enabled, or are enabled. \index{Can\+\_\+api@{Can\+\_\+api}!M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+M\+A\+SK@{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+M\+A\+SK}}
+\index{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+M\+A\+SK@{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+M\+A\+SK}!Can\+\_\+api@{Can\+\_\+api}}
+\subsubsection[{\texorpdfstring{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+M\+A\+SK}{MSG_OBJ_STATUS_MASK}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+M\+A\+SK~({\bf M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+N\+E\+W\+\_\+\+D\+A\+TA} $\vert$ {\bf M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+D\+A\+T\+A\+\_\+\+L\+O\+ST})}\hypertarget{group__can__api_gac00ece1facc432a0454b9de2e35ad9ad}{}\label{group__can__api_gac00ece1facc432a0454b9de2e35ad9ad}
+This define is used with the flag values to allow checking only status flags and not configuration flags. \index{Can\+\_\+api@{Can\+\_\+api}!M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+T\+X\+\_\+\+I\+N\+T\+\_\+\+E\+N\+A\+B\+LE@{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+T\+X\+\_\+\+I\+N\+T\+\_\+\+E\+N\+A\+B\+LE}}
+\index{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+T\+X\+\_\+\+I\+N\+T\+\_\+\+E\+N\+A\+B\+LE@{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+T\+X\+\_\+\+I\+N\+T\+\_\+\+E\+N\+A\+B\+LE}!Can\+\_\+api@{Can\+\_\+api}}
+\subsubsection[{\texorpdfstring{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+T\+X\+\_\+\+I\+N\+T\+\_\+\+E\+N\+A\+B\+LE}{MSG_OBJ_TX_INT_ENABLE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+T\+X\+\_\+\+I\+N\+T\+\_\+\+E\+N\+A\+B\+LE~0x00000001}\hypertarget{group__can__api_ga72160bfa35ab86bf0e68c1e2c2dd67a2}{}\label{group__can__api_ga72160bfa35ab86bf0e68c1e2c2dd67a2}
+This definition is used with the \hyperlink{structtCANMsgObject}{t\+C\+A\+N\+Msg\+Object} ul\+Flags value and indicates that transmit interrupts should be enabled, or are enabled. \index{Can\+\_\+api@{Can\+\_\+api}!M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+U\+S\+E\+\_\+\+D\+I\+R\+\_\+\+F\+I\+L\+T\+ER@{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+U\+S\+E\+\_\+\+D\+I\+R\+\_\+\+F\+I\+L\+T\+ER}}
+\index{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+U\+S\+E\+\_\+\+D\+I\+R\+\_\+\+F\+I\+L\+T\+ER@{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+U\+S\+E\+\_\+\+D\+I\+R\+\_\+\+F\+I\+L\+T\+ER}!Can\+\_\+api@{Can\+\_\+api}}
+\subsubsection[{\texorpdfstring{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+U\+S\+E\+\_\+\+D\+I\+R\+\_\+\+F\+I\+L\+T\+ER}{MSG_OBJ_USE_DIR_FILTER}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+U\+S\+E\+\_\+\+D\+I\+R\+\_\+\+F\+I\+L\+T\+ER~(0x00000010 $\vert$ M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+U\+S\+E\+\_\+\+I\+D\+\_\+\+F\+I\+L\+T\+E\+R)}\hypertarget{group__can__api_gabd8bebbc78a6f49c3c3088c5c7d53ca9}{}\label{group__can__api_gabd8bebbc78a6f49c3c3088c5c7d53ca9}
+This indicates that a message object will use or is using filtering based on the direction of the transfer. If the direction filtering is used, then ID filtering must also be enabled. \index{Can\+\_\+api@{Can\+\_\+api}!M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+U\+S\+E\+\_\+\+E\+X\+T\+\_\+\+F\+I\+L\+T\+ER@{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+U\+S\+E\+\_\+\+E\+X\+T\+\_\+\+F\+I\+L\+T\+ER}}
+\index{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+U\+S\+E\+\_\+\+E\+X\+T\+\_\+\+F\+I\+L\+T\+ER@{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+U\+S\+E\+\_\+\+E\+X\+T\+\_\+\+F\+I\+L\+T\+ER}!Can\+\_\+api@{Can\+\_\+api}}
+\subsubsection[{\texorpdfstring{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+U\+S\+E\+\_\+\+E\+X\+T\+\_\+\+F\+I\+L\+T\+ER}{MSG_OBJ_USE_EXT_FILTER}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+U\+S\+E\+\_\+\+E\+X\+T\+\_\+\+F\+I\+L\+T\+ER~(0x00000020 $\vert$ M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+U\+S\+E\+\_\+\+I\+D\+\_\+\+F\+I\+L\+T\+E\+R)}\hypertarget{group__can__api_gacead63b8e758f947f7aecf11d928e490}{}\label{group__can__api_gacead63b8e758f947f7aecf11d928e490}
+This indicates that a message object will use or is using message identifier filtering based on the extended identifier. If the extended identifier filtering is used, then ID filtering must also be enabled. \index{Can\+\_\+api@{Can\+\_\+api}!M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+U\+S\+E\+\_\+\+I\+D\+\_\+\+F\+I\+L\+T\+ER@{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+U\+S\+E\+\_\+\+I\+D\+\_\+\+F\+I\+L\+T\+ER}}
+\index{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+U\+S\+E\+\_\+\+I\+D\+\_\+\+F\+I\+L\+T\+ER@{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+U\+S\+E\+\_\+\+I\+D\+\_\+\+F\+I\+L\+T\+ER}!Can\+\_\+api@{Can\+\_\+api}}
+\subsubsection[{\texorpdfstring{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+U\+S\+E\+\_\+\+I\+D\+\_\+\+F\+I\+L\+T\+ER}{MSG_OBJ_USE_ID_FILTER}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+U\+S\+E\+\_\+\+I\+D\+\_\+\+F\+I\+L\+T\+ER~0x00000008}\hypertarget{group__can__api_gac8b622ceb867ab7de6f285ae630c534a}{}\label{group__can__api_gac8b622ceb867ab7de6f285ae630c534a}
+This indicates that a message object will use or is using filtering based on the object\textquotesingle{}s message identifier. 
+
+\subsection{Enumeration Type Documentation}
+\index{Can\+\_\+api@{Can\+\_\+api}!t\+C\+A\+N\+Int\+Sts\+Reg@{t\+C\+A\+N\+Int\+Sts\+Reg}}
+\index{t\+C\+A\+N\+Int\+Sts\+Reg@{t\+C\+A\+N\+Int\+Sts\+Reg}!Can\+\_\+api@{Can\+\_\+api}}
+\subsubsection[{\texorpdfstring{t\+C\+A\+N\+Int\+Sts\+Reg}{tCANIntStsReg}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf t\+C\+A\+N\+Int\+Sts\+Reg}}\hypertarget{group__can__api_ga73584383f566e98bf822b371a03becfc}{}\label{group__can__api_ga73584383f566e98bf822b371a03becfc}
+This data type is used to identify the interrupt status register. This is used when calling the C\+A\+N\+Int\+Status() function. \begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{C\+A\+N\+\_\+\+I\+N\+T\+\_\+\+S\+T\+S\+\_\+\+C\+A\+U\+SE@{C\+A\+N\+\_\+\+I\+N\+T\+\_\+\+S\+T\+S\+\_\+\+C\+A\+U\+SE}!Can\+\_\+api@{Can\+\_\+api}}\index{Can\+\_\+api@{Can\+\_\+api}!C\+A\+N\+\_\+\+I\+N\+T\+\_\+\+S\+T\+S\+\_\+\+C\+A\+U\+SE@{C\+A\+N\+\_\+\+I\+N\+T\+\_\+\+S\+T\+S\+\_\+\+C\+A\+U\+SE}}\item[{\em 
+C\+A\+N\+\_\+\+I\+N\+T\+\_\+\+S\+T\+S\+\_\+\+C\+A\+U\+SE\hypertarget{group__can__api_gga73584383f566e98bf822b371a03becfcaaab739e796c1216de72acf16410795a5}{}\label{group__can__api_gga73584383f566e98bf822b371a03becfcaaab739e796c1216de72acf16410795a5}
+}]Read the C\+AN interrupt status information. \index{C\+A\+N\+\_\+\+I\+N\+T\+\_\+\+S\+T\+S\+\_\+\+O\+B\+J\+E\+CT@{C\+A\+N\+\_\+\+I\+N\+T\+\_\+\+S\+T\+S\+\_\+\+O\+B\+J\+E\+CT}!Can\+\_\+api@{Can\+\_\+api}}\index{Can\+\_\+api@{Can\+\_\+api}!C\+A\+N\+\_\+\+I\+N\+T\+\_\+\+S\+T\+S\+\_\+\+O\+B\+J\+E\+CT@{C\+A\+N\+\_\+\+I\+N\+T\+\_\+\+S\+T\+S\+\_\+\+O\+B\+J\+E\+CT}}\item[{\em 
+C\+A\+N\+\_\+\+I\+N\+T\+\_\+\+S\+T\+S\+\_\+\+O\+B\+J\+E\+CT\hypertarget{group__can__api_gga73584383f566e98bf822b371a03becfca8cb85391f55d762fcff16bb285903304}{}\label{group__can__api_gga73584383f566e98bf822b371a03becfca8cb85391f55d762fcff16bb285903304}
+}]Read a message object\textquotesingle{}s interrupt status. \end{description}
+\end{Desc}
+\index{Can\+\_\+api@{Can\+\_\+api}!t\+C\+A\+N\+Sts\+Reg@{t\+C\+A\+N\+Sts\+Reg}}
+\index{t\+C\+A\+N\+Sts\+Reg@{t\+C\+A\+N\+Sts\+Reg}!Can\+\_\+api@{Can\+\_\+api}}
+\subsubsection[{\texorpdfstring{t\+C\+A\+N\+Sts\+Reg}{tCANStsReg}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf t\+C\+A\+N\+Sts\+Reg}}\hypertarget{group__can__api_gad898b7c10eb4d9282bd4c25fc935b3d2}{}\label{group__can__api_gad898b7c10eb4d9282bd4c25fc935b3d2}
+This data type is used to identify which of several status registers to read when calling the C\+A\+N\+Status\+Get() function. \begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{C\+A\+N\+\_\+\+S\+T\+S\+\_\+\+C\+O\+N\+T\+R\+OL@{C\+A\+N\+\_\+\+S\+T\+S\+\_\+\+C\+O\+N\+T\+R\+OL}!Can\+\_\+api@{Can\+\_\+api}}\index{Can\+\_\+api@{Can\+\_\+api}!C\+A\+N\+\_\+\+S\+T\+S\+\_\+\+C\+O\+N\+T\+R\+OL@{C\+A\+N\+\_\+\+S\+T\+S\+\_\+\+C\+O\+N\+T\+R\+OL}}\item[{\em 
+C\+A\+N\+\_\+\+S\+T\+S\+\_\+\+C\+O\+N\+T\+R\+OL\hypertarget{group__can__api_ggad898b7c10eb4d9282bd4c25fc935b3d2aac2ece80a767774a99d1fb1e463aa932}{}\label{group__can__api_ggad898b7c10eb4d9282bd4c25fc935b3d2aac2ece80a767774a99d1fb1e463aa932}
+}]Read the full C\+AN controller status. \index{C\+A\+N\+\_\+\+S\+T\+S\+\_\+\+T\+X\+R\+E\+Q\+U\+E\+ST@{C\+A\+N\+\_\+\+S\+T\+S\+\_\+\+T\+X\+R\+E\+Q\+U\+E\+ST}!Can\+\_\+api@{Can\+\_\+api}}\index{Can\+\_\+api@{Can\+\_\+api}!C\+A\+N\+\_\+\+S\+T\+S\+\_\+\+T\+X\+R\+E\+Q\+U\+E\+ST@{C\+A\+N\+\_\+\+S\+T\+S\+\_\+\+T\+X\+R\+E\+Q\+U\+E\+ST}}\item[{\em 
+C\+A\+N\+\_\+\+S\+T\+S\+\_\+\+T\+X\+R\+E\+Q\+U\+E\+ST\hypertarget{group__can__api_ggad898b7c10eb4d9282bd4c25fc935b3d2afffa0c96b01a03aff5a5dd32c5aa77c7}{}\label{group__can__api_ggad898b7c10eb4d9282bd4c25fc935b3d2afffa0c96b01a03aff5a5dd32c5aa77c7}
+}]Read the full 32-\/bit mask of message objects with a transmit request set. \index{C\+A\+N\+\_\+\+S\+T\+S\+\_\+\+N\+E\+W\+D\+AT@{C\+A\+N\+\_\+\+S\+T\+S\+\_\+\+N\+E\+W\+D\+AT}!Can\+\_\+api@{Can\+\_\+api}}\index{Can\+\_\+api@{Can\+\_\+api}!C\+A\+N\+\_\+\+S\+T\+S\+\_\+\+N\+E\+W\+D\+AT@{C\+A\+N\+\_\+\+S\+T\+S\+\_\+\+N\+E\+W\+D\+AT}}\item[{\em 
+C\+A\+N\+\_\+\+S\+T\+S\+\_\+\+N\+E\+W\+D\+AT\hypertarget{group__can__api_ggad898b7c10eb4d9282bd4c25fc935b3d2afa63f81ede60a5209bc32c6eb94e7512}{}\label{group__can__api_ggad898b7c10eb4d9282bd4c25fc935b3d2afa63f81ede60a5209bc32c6eb94e7512}
+}]Read the full 32-\/bit mask of message objects with new data available. \index{C\+A\+N\+\_\+\+S\+T\+S\+\_\+\+M\+S\+G\+V\+AL@{C\+A\+N\+\_\+\+S\+T\+S\+\_\+\+M\+S\+G\+V\+AL}!Can\+\_\+api@{Can\+\_\+api}}\index{Can\+\_\+api@{Can\+\_\+api}!C\+A\+N\+\_\+\+S\+T\+S\+\_\+\+M\+S\+G\+V\+AL@{C\+A\+N\+\_\+\+S\+T\+S\+\_\+\+M\+S\+G\+V\+AL}}\item[{\em 
+C\+A\+N\+\_\+\+S\+T\+S\+\_\+\+M\+S\+G\+V\+AL\hypertarget{group__can__api_ggad898b7c10eb4d9282bd4c25fc935b3d2a3fe016f4c8154bf2ef524621edfb293d}{}\label{group__can__api_ggad898b7c10eb4d9282bd4c25fc935b3d2a3fe016f4c8154bf2ef524621edfb293d}
+}]Read the full 32-\/bit mask of message objects that are enabled. \end{description}
+\end{Desc}
+\index{Can\+\_\+api@{Can\+\_\+api}!t\+Msg\+Obj\+Type@{t\+Msg\+Obj\+Type}}
+\index{t\+Msg\+Obj\+Type@{t\+Msg\+Obj\+Type}!Can\+\_\+api@{Can\+\_\+api}}
+\subsubsection[{\texorpdfstring{t\+Msg\+Obj\+Type}{tMsgObjType}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf t\+Msg\+Obj\+Type}}\hypertarget{group__can__api_gad3fa840d5e84a9366ba2a8c958c069a2}{}\label{group__can__api_gad3fa840d5e84a9366ba2a8c958c069a2}
+This definition is used to determine the type of message object that will be set up via a call to the C\+A\+N\+Message\+Set() A\+PI. \begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+T\+Y\+P\+E\+\_\+\+TX@{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+T\+Y\+P\+E\+\_\+\+TX}!Can\+\_\+api@{Can\+\_\+api}}\index{Can\+\_\+api@{Can\+\_\+api}!M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+T\+Y\+P\+E\+\_\+\+TX@{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+T\+Y\+P\+E\+\_\+\+TX}}\item[{\em 
+M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+T\+Y\+P\+E\+\_\+\+TX\hypertarget{group__can__api_ggad3fa840d5e84a9366ba2a8c958c069a2aa13483d5640bff99d693d271c2238230}{}\label{group__can__api_ggad3fa840d5e84a9366ba2a8c958c069a2aa13483d5640bff99d693d271c2238230}
+}]Transmit message object. \index{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+T\+Y\+P\+E\+\_\+\+T\+X\+\_\+\+R\+E\+M\+O\+TE@{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+T\+Y\+P\+E\+\_\+\+T\+X\+\_\+\+R\+E\+M\+O\+TE}!Can\+\_\+api@{Can\+\_\+api}}\index{Can\+\_\+api@{Can\+\_\+api}!M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+T\+Y\+P\+E\+\_\+\+T\+X\+\_\+\+R\+E\+M\+O\+TE@{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+T\+Y\+P\+E\+\_\+\+T\+X\+\_\+\+R\+E\+M\+O\+TE}}\item[{\em 
+M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+T\+Y\+P\+E\+\_\+\+T\+X\+\_\+\+R\+E\+M\+O\+TE\hypertarget{group__can__api_ggad3fa840d5e84a9366ba2a8c958c069a2a01289338e40c4573d4a78e6d40cab433}{}\label{group__can__api_ggad3fa840d5e84a9366ba2a8c958c069a2a01289338e40c4573d4a78e6d40cab433}
+}]Transmit remote request message object. \index{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+T\+Y\+P\+E\+\_\+\+RX@{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+T\+Y\+P\+E\+\_\+\+RX}!Can\+\_\+api@{Can\+\_\+api}}\index{Can\+\_\+api@{Can\+\_\+api}!M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+T\+Y\+P\+E\+\_\+\+RX@{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+T\+Y\+P\+E\+\_\+\+RX}}\item[{\em 
+M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+T\+Y\+P\+E\+\_\+\+RX\hypertarget{group__can__api_ggad3fa840d5e84a9366ba2a8c958c069a2a19480934236e65a7090acd45caecb0a3}{}\label{group__can__api_ggad3fa840d5e84a9366ba2a8c958c069a2a19480934236e65a7090acd45caecb0a3}
+}]Receive message object. \index{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+T\+Y\+P\+E\+\_\+\+R\+X\+\_\+\+R\+E\+M\+O\+TE@{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+T\+Y\+P\+E\+\_\+\+R\+X\+\_\+\+R\+E\+M\+O\+TE}!Can\+\_\+api@{Can\+\_\+api}}\index{Can\+\_\+api@{Can\+\_\+api}!M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+T\+Y\+P\+E\+\_\+\+R\+X\+\_\+\+R\+E\+M\+O\+TE@{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+T\+Y\+P\+E\+\_\+\+R\+X\+\_\+\+R\+E\+M\+O\+TE}}\item[{\em 
+M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+T\+Y\+P\+E\+\_\+\+R\+X\+\_\+\+R\+E\+M\+O\+TE\hypertarget{group__can__api_ggad3fa840d5e84a9366ba2a8c958c069a2ae268696d7605c98094e4136eb646a251}{}\label{group__can__api_ggad3fa840d5e84a9366ba2a8c958c069a2ae268696d7605c98094e4136eb646a251}
+}]Receive remote request message object. \index{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+T\+Y\+P\+E\+\_\+\+R\+X\+T\+X\+\_\+\+R\+E\+M\+O\+TE@{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+T\+Y\+P\+E\+\_\+\+R\+X\+T\+X\+\_\+\+R\+E\+M\+O\+TE}!Can\+\_\+api@{Can\+\_\+api}}\index{Can\+\_\+api@{Can\+\_\+api}!M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+T\+Y\+P\+E\+\_\+\+R\+X\+T\+X\+\_\+\+R\+E\+M\+O\+TE@{M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+T\+Y\+P\+E\+\_\+\+R\+X\+T\+X\+\_\+\+R\+E\+M\+O\+TE}}\item[{\em 
+M\+S\+G\+\_\+\+O\+B\+J\+\_\+\+T\+Y\+P\+E\+\_\+\+R\+X\+T\+X\+\_\+\+R\+E\+M\+O\+TE\hypertarget{group__can__api_ggad3fa840d5e84a9366ba2a8c958c069a2a8aed86e235facdf4ab0ce8cb53de65c1}{}\label{group__can__api_ggad3fa840d5e84a9366ba2a8c958c069a2a8aed86e235facdf4ab0ce8cb53de65c1}
+}]Remote frame receive remote, with auto-\/transmit message object. \end{description}
+\end{Desc}

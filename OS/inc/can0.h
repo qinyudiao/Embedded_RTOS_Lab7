@@ -1,29 +1,3 @@
-// *********Can0.h ***************
-// Runs on LM4F120/TM4C123
-// Use CAN0 to communicate on CAN bus
-
-// Jonathan Valvano
-// May 2, 2015
-
-/* This example accompanies the books
-   Embedded Systems: Real-Time Operating Systems for ARM Cortex-M Microcontrollers, Volume 3,  
-   ISBN: 978-1466468863, Jonathan Valvano, copyright (c) 2015
-
-   Embedded Systems: Real Time Interfacing to ARM Cortex M Microcontrollers, Volume 2
-   ISBN: 978-1463590154, Jonathan Valvano, copyright (c) 2015
-
- Copyright 2014 by Jonathan W. Valvano, valvano@mail.utexas.edu
-    You may use, edit, run or distribute this file
-    as long as the above copyright notice remains
- THIS SOFTWARE IS PROVIDED "AS IS".  NO WARRANTIES, WHETHER EXPRESS, IMPLIED
- OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF
- MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE.
- VALVANO SHALL NOT, IN ANY CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL,
- OR CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
- For more information about my classes, my research, and my books, see
- http://users.ece.utexas.edu/~valvano/
- */
- 
  /**
  * @file
  * @author Jonathan Valvano and modified by Jeageun Jung
@@ -56,7 +30,7 @@
 //int CAN0_CheckMail(void);
 
 
-int CAN0_GetMailNonBlock(uint8_t data[4]);
+// int CAN0_GetMailNonBlock(uint8_t data[4]);
 
 /**
  * @brief If receive data is ready, gets the data 

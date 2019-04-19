@@ -1,0 +1,56 @@
+\hypertarget{servo_8h}{}\section{inc/servo.h File Reference}
+\label{servo_8h}\index{inc/servo.\+h@{inc/servo.\+h}}
+
+
+Implements a driver for a single hitec H\+S-\/300 servo motor. P\+WM Module 1 is allocated to this driver.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\\*
+Include dependency graph for servo.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=145pt]{servo_8h__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{servo_8h_a4363bf9b248b133828855ea668bdb3a4}{Servo\+\_\+\+Init} (void)\hypertarget{servo_8h_a4363bf9b248b133828855ea668bdb3a4}{}\label{servo_8h_a4363bf9b248b133828855ea668bdb3a4}
+
+\begin{DoxyCompactList}\small\item\em Initialize the servo module. \end{DoxyCompactList}\item 
+void \hyperlink{servo_8h_a0f6181b037fb710da35e87ac964bc3fc}{Servo\+\_\+\+Set\+Angle} (uint16\+\_\+t degrees)
+\begin{DoxyCompactList}\small\item\em Command the servo to hold a specific angular position. \end{DoxyCompactList}\item 
+void \hyperlink{servo_8h_a9d19d84a7f1262b442c330eaa39c4e2b}{Servo\+\_\+\+Off} (void)\hypertarget{servo_8h_a9d19d84a7f1262b442c330eaa39c4e2b}{}\label{servo_8h_a9d19d84a7f1262b442c330eaa39c4e2b}
+
+\begin{DoxyCompactList}\small\item\em Stop driving the servo, allowing it to move freely. Call Servo\+\_\+\+Set\+Angle to activate the servo again. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implements a driver for a single hitec H\+S-\/300 servo motor. P\+WM Module 1 is allocated to this driver. 
+
+\begin{DoxyAuthor}{Author}
+Riley Wood (\href{mailto:riley.wood@utexas.edu}{\tt riley.\+wood@utexas.\+edu}) 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2019 
+\end{DoxyCopyright}
+
+
+\subsection{Function Documentation}
+\index{servo.\+h@{servo.\+h}!Servo\+\_\+\+Set\+Angle@{Servo\+\_\+\+Set\+Angle}}
+\index{Servo\+\_\+\+Set\+Angle@{Servo\+\_\+\+Set\+Angle}!servo.\+h@{servo.\+h}}
+\subsubsection[{\texorpdfstring{Servo\+\_\+\+Set\+Angle(uint16\+\_\+t degrees)}{Servo_SetAngle(uint16_t degrees)}}]{\setlength{\rightskip}{0pt plus 5cm}void Servo\+\_\+\+Set\+Angle (
+\begin{DoxyParamCaption}
+\item[{uint16\+\_\+t}]{degrees}
+\end{DoxyParamCaption}
+)}\hypertarget{servo_8h_a0f6181b037fb710da35e87ac964bc3fc}{}\label{servo_8h_a0f6181b037fb710da35e87ac964bc3fc}
+
+
+Command the servo to hold a specific angular position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em degrees} & Desired position in degrees (0-\/180) \\
+\hline
+\end{DoxyParams}

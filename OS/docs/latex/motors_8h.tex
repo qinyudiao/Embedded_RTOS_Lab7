@@ -42,6 +42,8 @@ Interface to two DC motors controlled by P\+WM. Allows differential driving.
 \begin{DoxyAuthor}{Author}
 Riley Wood (\href{mailto:riley.wood@utexas.edu}{\tt riley.\+wood@utexas.\+edu})
 \end{DoxyAuthor}
+This library makes use of P\+WM module 0, outputs 0 and 3. These are produced by P\+WM module 0\textquotesingle{}s generators numbered 0 and 1.
+
 Conventions\+:
 \begin{DoxyItemize}
 \item Definition of \char`\"{}left\char`\"{} versus \char`\"{}right\char`\"{}\+:
@@ -94,9 +96,9 @@ Set the torque for each of the two motors atomically.
 
 
 \begin{DoxyParams}{Parameters}
-{\em left\+\_\+trq} & Torque for left motor. Positive argument indicates forward motion of robot, negative indicates backward. Zero indicates no rotation. \\
+{\em left\+\_\+trq} & Torque for left motor. Between -\/50 and 50. Positive argument indicates forward motion of robot, negative indicates backward. Zero indicates no rotation. \\
 \hline
-{\em right\+\_\+trq} & Torque for right motor. Positive argument indicates forward motion of robot, negative indicates backward. Zero indicates no rotation. \\
+{\em right\+\_\+trq} & Torque for right motor. Between -\/50 and 50. Positive argument indicates forward motion of robot, negative indicates backward. Zero indicates no rotation. \\
 \hline
 \end{DoxyParams}
 \index{motors.\+h@{motors.\+h}!Motors\+\_\+\+Set\+Torque\+\_\+\+Left@{Motors\+\_\+\+Set\+Torque\+\_\+\+Left}}
@@ -112,7 +114,7 @@ Set the torque of the left motor individually.
 
 
 \begin{DoxyParams}{Parameters}
-{\em left\+\_\+trq} & Torque for left motor. Positive argument indicates forward motion of robot, negative indicates backward. Zero indicates no rotation. \\
+{\em left\+\_\+trq} & Torque for left motor. Between -\/50 and 50. Positive argument indicates forward motion of robot, negative indicates backward. Zero indicates no rotation. \\
 \hline
 \end{DoxyParams}
 \index{motors.\+h@{motors.\+h}!Motors\+\_\+\+Set\+Torque\+\_\+\+Right@{Motors\+\_\+\+Set\+Torque\+\_\+\+Right}}
@@ -128,6 +130,6 @@ Set the torque of the left motor individually.
 
 
 \begin{DoxyParams}{Parameters}
-{\em right\+\_\+trq} & Torque for right motor. Positive argument indicates forward motion of robot, negative indicates backward. Zero indicates no rotation. \\
+{\em right\+\_\+trq} & Torque for right motor. Between -\/50 and 50. Positive argument indicates forward motion of robot, negative indicates backward. Zero indicates no rotation. \\
 \hline
 \end{DoxyParams}
