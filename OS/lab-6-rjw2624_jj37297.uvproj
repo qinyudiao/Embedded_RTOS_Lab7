@@ -530,6 +530,11 @@
               <FileType>1</FileType>
               <FilePath>.\src\interrupt.c</FilePath>
             </File>
+            <File>
+              <FileName>servo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\servo.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -839,6 +844,11 @@
               <FileName>interrupt.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\inc\interrupt.h</FilePath>
+            </File>
+            <File>
+              <FileName>servo.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\inc\servo.h</FilePath>
             </File>
           </Files>
         </Group>

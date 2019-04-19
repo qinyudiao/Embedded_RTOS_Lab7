@@ -7,17 +7,17 @@
 #define PB7 (*((volatile unsigned long *)0x40005200))
 #define PB4_PB7 (*((volatile unsigned long *)0x40005240))
 
-#define PWM_PERIOD (80000000 / 40000) // 2000 ticks for 40Khz PWM period
+#define MOTOR_PWM_PERIOD (2500000 / 25000) // 100 ticks for 25Khz PWM period
 
 static int16_t constrain_duty(int16_t user_input)
 {
-  if(user_input >= PWM_PERIOD/2)
+  if(user_input >= MOTOR_PWM_PERIOD/2)
   {
-    user_input = PWM_PERIOD/2 - 1;
+    user_input = MOTOR_PWM_PERIOD/2 - 1;
   }
-  else if(user_input <= -(PWM_PERIOD/2))
+  else if(user_input <= -(MOTOR_PWM_PERIOD/2))
   {
-    user_input = -(PWM_PERIOD/2 - 1);
+    user_input = -(MOTOR_PWM_PERIOD/2 - 1);
   }
   return user_input;
 }
@@ -38,15 +38,17 @@ void Motors_Init(void)
   GPIO_PORTB_DEN_R |= 0xF0; // enable digital I/O on PB4,5,6,7
   GPIO_PORTB_DIR_R |= 0x90;    // make PB4,7 digital outputs
 
-  SYSCTL_RCC_R &= ~SYSCTL_RCC_USEPWMDIV; // disable PWM divider, PWM clock 80MHz
+  SYSCTL_RCC_R |= SYSCTL_RCC_USEPWMDIV; // use PWM divider
+  SYSCTL_RCC_R &= ~SYSCTL_RCC_PWMDIV_M; // clear PWM divider field
+  SYSCTL_RCC_R |= SYSCTL_RCC_PWMDIV_32; // configure for /32 divider
   PWM0_0_CTL_R = 0; // disable PWM while initializing
   PWM0_1_CTL_R = 0; // disable PWM while initializing
   // PWM0, Generator A (PWM0/PB6) goes to 0 when count==CMPA counting down and 1 when count==CMPA counting up
   PWM0_0_GENA_R = (PWM_0_GENA_ACTCMPAD_ONE|PWM_0_GENA_ACTCMPAU_ZERO);
   // PWM0, Generator B (PWM3/PB5) goes to 0 when count==CMPA counting down and 1 when count==CMPA counting up
   PWM0_1_GENB_R = (PWM_1_GENB_ACTCMPAD_ONE|PWM_1_GENB_ACTCMPAU_ZERO);
-  PWM0_0_LOAD_R = PWM_PERIOD/2; // count from zero to this number and back to zero in (period - 1) cycles
-  PWM0_1_LOAD_R = PWM_PERIOD/2; // count from zero to this number and back to zero in (period - 1) cycles
+  PWM0_0_LOAD_R = MOTOR_PWM_PERIOD/2; // count from zero to this number and back to zero in (period - 1) cycles
+  PWM0_1_LOAD_R = MOTOR_PWM_PERIOD/2; // count from zero to this number and back to zero in (period - 1) cycles
   // Synchronize PWM comparator updates, put in up/down mode, enable generators
   PWM0_ENUPD_R = (PWM_ENUPD_ENUPD0_GSYNC|PWM_ENUPD_ENUPD3_GSYNC);
   PWM0_0_CTL_R = (PWM_0_CTL_CMPAUPD|PWM_0_CTL_MODE|PWM_0_CTL_ENABLE);
@@ -64,7 +66,7 @@ static void __set_left(int16_t left_trq)
   if(left_trq > 0)
   {
     PB7 = 1<<7;
-    PWM0_0_CMPA_R = (PWM_PERIOD/2 - left_trq);
+    PWM0_0_CMPA_R = (MOTOR_PWM_PERIOD/2 - left_trq);
   }
   else
   {
@@ -81,7 +83,7 @@ static void __set_right(int16_t right_trq)
   if(right_trq > 0)
   {
     PB4 = 1<<4;
-    PWM0_1_CMPA_R = (PWM_PERIOD/2 - right_trq);
+    PWM0_1_CMPA_R = (MOTOR_PWM_PERIOD/2 - right_trq);
   }
   else
   {
