@@ -373,13 +373,12 @@ int motor_testmain(void)
 void can0_task(void)
 {
   uint8_t data[4];
-  static int i = 0;
+  static int i = 1024;
   data[0] = i%10;
   data[1] = i/10;
   data[2] = i/100;
   data[3] = i/1000;
   CAN0_SendDatawithIdx(data,6);
-  i++;
 }
 void can0_recvtask(void)
 {
@@ -400,8 +399,8 @@ int can0_testmain()
   CAN0_SetRecv(6);
   // create initial foreground threads
  // NumCreated += OS_AddPeriodicThread(&motor_task, 1 * TIME_1MS, 2);
-  //NumCreated += OS_AddPeriodicThread(&can0_task, 1000 * TIME_1MS,1);
-  NumCreated += OS_AddThread(&can0_recvtask, 128, 2);
+  NumCreated += OS_AddPeriodicThread(&can0_task, 1 * TIME_1MS,1);
+  //NumCreated += OS_AddThread(&can0_recvtask, 128, 2);
   NumCreated += OS_AddThread(&Interpreter, 128, 2);
   OS_Launch(TIMESLICE); // doesn't return, interrupts enabled in here
   return 0;
