@@ -46,15 +46,21 @@ void ADC_test() {
   OS_Kill();
 }
 
+long IR_getmm(void)
+{
+    long sr = StartCritical();
+    long dis_copy = dis;
+    EndCritical(sr);
+    return dis_copy;
+}
+
 static long x1, x2, x3;
 static void IR_handler(unsigned long data) {
-    // x3 = x2;
-    // x2 = x1;       // MACQ
-    // x1 = data; // channel set when calling ADC_Init
-    // long output = median(x1, x2, x3); // 3-wide median filter
-    dis = ADC2millimeter(data);
-	  //dis = data;
-    OS_AddThread(&ADC_test, 128, 1);
+    x3 = x2;
+    x2 = x1;       // MACQ
+    x1 = data; // channel set when calling ADC_Init
+    long output = median(x1, x2, x3); // 3-wide median filter
+    dis = ADC2millimeter(output);
 }
 
 /**

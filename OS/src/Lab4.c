@@ -80,6 +80,7 @@
 #include "interpreter.h"
 #include "servo.h"
 #include "ff.h"
+#include "IR.h"
 #include "diskio.h"
 #include "motors.h"
 #include <string.h>
@@ -421,8 +422,24 @@ int can0_testmain()
   return 0;
 }
 
+static void ir_task(void)
+{
+    printf("%d\r\n", IR_getmm());
+}
+
+int ir_testmain(void)
+{
+  OS_Init();
+  IR_Init();
+  NumCreated = 0;
+  // create initial foreground threads
+  NumCreated += OS_AddPeriodicThread(&ir_task, 1 * TIME_1MS,1);
+  OS_Launch(TIMESLICE); // doesn't return, interrupts enabled in here
+  return 0;
+}
+
 // Main stub
 int main(void)
 {
-  return can0_testmain();
+  return ir_testmain();
 }
