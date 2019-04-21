@@ -137,6 +137,14 @@ void ADC_test() {
 	OS_Kill();
 }
 
+long IR_getmm(void)
+{
+    long sr = StartCritical();
+    long dis_copy = dis;
+    EndCritical(sr);
+    return dis_copy;
+}
+
 static long x1, x2, x3;
 static void IR_handler(unsigned long data) {
 	  static int curSensorIndex = 0; 
