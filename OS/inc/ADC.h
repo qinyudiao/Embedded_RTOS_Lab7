@@ -45,5 +45,8 @@ uint16_t ADC_In(void);
  */
 int ADC_Collect(uint32_t channelNum, uint32_t fs, void (*handler)(unsigned long));
 
-
+/**
+ * channels: 4 element array with each element indiciating one channel to open
+ */
+int ADC_Collect4Chan(uint32_t channels[], uint32_t fs, void (*handler)(unsigned long));
 #endif

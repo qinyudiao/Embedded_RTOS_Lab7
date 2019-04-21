@@ -45,7 +45,7 @@
 #include "ff.h"
 #include "heap.h"
 #include "UART.h"
-#include "os.h"
+#include "OS.h"
 
 typedef unsigned long int off_t;
 typedef void(entry_t)(void);
