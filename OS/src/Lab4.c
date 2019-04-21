@@ -86,6 +86,8 @@
 #include <stdio.h>
 #include <stdint.h>
 #include "can0.h"
+#include "IR.h"
+#include "lidar.h"
 
 //*********Prototype for FFT in cr4_fft_64_stm32.s, STMicroelectronics
 void cr4_fft_64_stm32(void *pssOUT, void *pssIN, unsigned short Nbin);
@@ -421,8 +423,16 @@ int can0_testmain()
   return 0;
 }
 
+int sensor_testmain() {
+	  OS_Init();
+		IR_Init();
+	  OS_AddThread(&Interpreter, 128, 2);
+	  OS_Launch(TIMESLICE); // doesn't return, interrupts enabled in here
+		return 0;
+}
+
 // Main stub
 int main(void)
 {
-  return can0_testmain();
+  return sensor_testmain();
 }

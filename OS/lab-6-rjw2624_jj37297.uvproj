@@ -535,6 +535,11 @@
               <FileType>1</FileType>
               <FilePath>.\src\servo.c</FilePath>
             </File>
+            <File>
+              <FileName>LED.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\LED.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
