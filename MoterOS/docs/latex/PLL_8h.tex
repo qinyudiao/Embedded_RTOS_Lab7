@@ -1,0 +1,438 @@
+\hypertarget{PLL_8h}{}\section{inc/\+P\+LL.h File Reference}
+\label{PLL_8h}\index{inc/\+P\+L\+L.\+h@{inc/\+P\+L\+L.\+h}}
+
+
+Runs on L\+M4\+F120/\+T\+M4\+C123 A software function to change the bus frequency using the P\+LL.  
+
+
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries Bus80\+M\+Hz}~4\hypertarget{PLL_8h_ab21b31cf06dfd3379b4a1e8f3cc3f8ca}{}\label{PLL_8h_ab21b31cf06dfd3379b4a1e8f3cc3f8ca}
+
+\item 
+\#define {\bfseries Bus80\+\_\+000\+M\+Hz}~4\hypertarget{PLL_8h_afffe54062bbe64fa48441eff94f1466d}{}\label{PLL_8h_afffe54062bbe64fa48441eff94f1466d}
+
+\item 
+\#define {\bfseries Bus66\+\_\+667\+M\+Hz}~5\hypertarget{PLL_8h_a988d29f18b04ba7029162c042b4d6af8}{}\label{PLL_8h_a988d29f18b04ba7029162c042b4d6af8}
+
+\item 
+\#define {\bfseries Bus50\+\_\+000\+M\+Hz}~7\hypertarget{PLL_8h_a930c95225c821e87c7fa8e5f7f67d84d}{}\label{PLL_8h_a930c95225c821e87c7fa8e5f7f67d84d}
+
+\item 
+\#define {\bfseries Bus50\+M\+Hz}~7\hypertarget{PLL_8h_aaa9ae4f5860e89ff744628ce72551e52}{}\label{PLL_8h_aaa9ae4f5860e89ff744628ce72551e52}
+
+\item 
+\#define {\bfseries Bus44\+\_\+444\+M\+Hz}~8\hypertarget{PLL_8h_ae7101c2b9c9c47e9e7317826189740cd}{}\label{PLL_8h_ae7101c2b9c9c47e9e7317826189740cd}
+
+\item 
+\#define {\bfseries Bus40\+\_\+000\+M\+Hz}~9\hypertarget{PLL_8h_acc3d8a0a7fd8acd358ed3034486ccda7}{}\label{PLL_8h_acc3d8a0a7fd8acd358ed3034486ccda7}
+
+\item 
+\#define {\bfseries Bus40\+M\+Hz}~9\hypertarget{PLL_8h_a51e5200c397453e63807785878e4acc0}{}\label{PLL_8h_a51e5200c397453e63807785878e4acc0}
+
+\item 
+\#define {\bfseries Bus36\+\_\+364\+M\+Hz}~10\hypertarget{PLL_8h_aa2edaf3ce37176684319e116ceb06926}{}\label{PLL_8h_aa2edaf3ce37176684319e116ceb06926}
+
+\item 
+\#define {\bfseries Bus33\+\_\+333\+M\+Hz}~11\hypertarget{PLL_8h_aef1fe709bdf64825eb9eaeb151e4c02a}{}\label{PLL_8h_aef1fe709bdf64825eb9eaeb151e4c02a}
+
+\item 
+\#define {\bfseries Bus30\+\_\+769\+M\+Hz}~12\hypertarget{PLL_8h_ad1769f97a583b861732acae8ba7d66e4}{}\label{PLL_8h_ad1769f97a583b861732acae8ba7d66e4}
+
+\item 
+\#define {\bfseries Bus28\+\_\+571\+M\+Hz}~13\hypertarget{PLL_8h_a7f405a90ccb0ee6854330f342011fb0f}{}\label{PLL_8h_a7f405a90ccb0ee6854330f342011fb0f}
+
+\item 
+\#define {\bfseries Bus26\+\_\+667\+M\+Hz}~14\hypertarget{PLL_8h_af17f31cd3a2e9593eb162f376ad8094f}{}\label{PLL_8h_af17f31cd3a2e9593eb162f376ad8094f}
+
+\item 
+\#define {\bfseries Bus25\+\_\+000\+M\+Hz}~15\hypertarget{PLL_8h_a14e12bf55e55c2cdfab2fd6ef5c92594}{}\label{PLL_8h_a14e12bf55e55c2cdfab2fd6ef5c92594}
+
+\item 
+\#define {\bfseries Bus25\+M\+Hz}~15\hypertarget{PLL_8h_ab85f5997ad850dce22544b953e46173a}{}\label{PLL_8h_ab85f5997ad850dce22544b953e46173a}
+
+\item 
+\#define {\bfseries Bus23\+\_\+529\+M\+Hz}~16\hypertarget{PLL_8h_ad1fccb98db0f9bfd0b5f531e5c6b46a1}{}\label{PLL_8h_ad1fccb98db0f9bfd0b5f531e5c6b46a1}
+
+\item 
+\#define {\bfseries Bus22\+\_\+222\+M\+Hz}~17\hypertarget{PLL_8h_a5f1b699366d48a4671d52b6e6f14cde3}{}\label{PLL_8h_a5f1b699366d48a4671d52b6e6f14cde3}
+
+\item 
+\#define {\bfseries Bus21\+\_\+053\+M\+Hz}~18\hypertarget{PLL_8h_a9a364f3000f7ce76e34a3d8377be9439}{}\label{PLL_8h_a9a364f3000f7ce76e34a3d8377be9439}
+
+\item 
+\#define {\bfseries Bus20\+\_\+000\+M\+Hz}~19\hypertarget{PLL_8h_a36a7a06384d4eb5fb5575bad19953b2d}{}\label{PLL_8h_a36a7a06384d4eb5fb5575bad19953b2d}
+
+\item 
+\#define {\bfseries Bus20\+M\+Hz}~19\hypertarget{PLL_8h_acab7cc96047b2ce73ae1169040e345f2}{}\label{PLL_8h_acab7cc96047b2ce73ae1169040e345f2}
+
+\item 
+\#define {\bfseries Bus19\+\_\+048\+M\+Hz}~20\hypertarget{PLL_8h_a93bf1b923623046280e3939f093cbb8d}{}\label{PLL_8h_a93bf1b923623046280e3939f093cbb8d}
+
+\item 
+\#define {\bfseries Bus18\+\_\+182\+M\+Hz}~21\hypertarget{PLL_8h_a039aeca2b02c532f13a76affb0ed2ee1}{}\label{PLL_8h_a039aeca2b02c532f13a76affb0ed2ee1}
+
+\item 
+\#define {\bfseries Bus17\+\_\+391\+M\+Hz}~22\hypertarget{PLL_8h_a5bc84f437a2d818a8324c75b69bfeb1a}{}\label{PLL_8h_a5bc84f437a2d818a8324c75b69bfeb1a}
+
+\item 
+\#define {\bfseries Bus16\+\_\+667\+M\+Hz}~23\hypertarget{PLL_8h_a4b3d052452dbdf78066222916b4c6fef}{}\label{PLL_8h_a4b3d052452dbdf78066222916b4c6fef}
+
+\item 
+\#define {\bfseries Bus16\+\_\+000\+M\+Hz}~24\hypertarget{PLL_8h_aea823f124d3bbea1d7c1244f652fedd3}{}\label{PLL_8h_aea823f124d3bbea1d7c1244f652fedd3}
+
+\item 
+\#define {\bfseries Bus16\+M\+Hz}~24\hypertarget{PLL_8h_a0d65c1a9d41947cacdec54f9c14444bc}{}\label{PLL_8h_a0d65c1a9d41947cacdec54f9c14444bc}
+
+\item 
+\#define {\bfseries Bus15\+\_\+385\+M\+Hz}~25\hypertarget{PLL_8h_a2b8164357fb50e14814888b782bf3ed6}{}\label{PLL_8h_a2b8164357fb50e14814888b782bf3ed6}
+
+\item 
+\#define {\bfseries Bus14\+\_\+815\+M\+Hz}~26\hypertarget{PLL_8h_a23b0e9aeb9530e75c5e1e13831c4e7b6}{}\label{PLL_8h_a23b0e9aeb9530e75c5e1e13831c4e7b6}
+
+\item 
+\#define {\bfseries Bus14\+\_\+286\+M\+Hz}~27\hypertarget{PLL_8h_a70da668e20c77fda0b89055c1b5287c1}{}\label{PLL_8h_a70da668e20c77fda0b89055c1b5287c1}
+
+\item 
+\#define {\bfseries Bus13\+\_\+793\+M\+Hz}~28\hypertarget{PLL_8h_abba6333586931471f8265a20e820a4aa}{}\label{PLL_8h_abba6333586931471f8265a20e820a4aa}
+
+\item 
+\#define {\bfseries Bus13\+\_\+333\+M\+Hz}~29\hypertarget{PLL_8h_a410b08658efe04a684b3487f74bc7a39}{}\label{PLL_8h_a410b08658efe04a684b3487f74bc7a39}
+
+\item 
+\#define {\bfseries Bus12\+\_\+903\+M\+Hz}~30\hypertarget{PLL_8h_a3146ee7b29537850e454164ebb2b2eb6}{}\label{PLL_8h_a3146ee7b29537850e454164ebb2b2eb6}
+
+\item 
+\#define {\bfseries Bus12\+\_\+500\+M\+Hz}~31\hypertarget{PLL_8h_a43e1c0003cb8db69d6a2d13bc7735908}{}\label{PLL_8h_a43e1c0003cb8db69d6a2d13bc7735908}
+
+\item 
+\#define {\bfseries Bus12\+\_\+121\+M\+Hz}~32\hypertarget{PLL_8h_a47e612236aae60e3123313175ba6db68}{}\label{PLL_8h_a47e612236aae60e3123313175ba6db68}
+
+\item 
+\#define {\bfseries Bus11\+\_\+765\+M\+Hz}~33\hypertarget{PLL_8h_a8b94e2490600a097523a80c1d15d4e7b}{}\label{PLL_8h_a8b94e2490600a097523a80c1d15d4e7b}
+
+\item 
+\#define {\bfseries Bus11\+\_\+429\+M\+Hz}~34\hypertarget{PLL_8h_a6aeaaee24109f7cc2fbc155f088f5c9c}{}\label{PLL_8h_a6aeaaee24109f7cc2fbc155f088f5c9c}
+
+\item 
+\#define {\bfseries Bus11\+\_\+111\+M\+Hz}~35\hypertarget{PLL_8h_a62e1475395f72fd6f6a6af7b1fe049a2}{}\label{PLL_8h_a62e1475395f72fd6f6a6af7b1fe049a2}
+
+\item 
+\#define {\bfseries Bus10\+\_\+811\+M\+Hz}~36\hypertarget{PLL_8h_a199bfec05c7bc86dec3c46b337b059e8}{}\label{PLL_8h_a199bfec05c7bc86dec3c46b337b059e8}
+
+\item 
+\#define {\bfseries Bus10\+\_\+526\+M\+Hz}~37\hypertarget{PLL_8h_ae7d9c398e6a5961dc6b7a952455e707f}{}\label{PLL_8h_ae7d9c398e6a5961dc6b7a952455e707f}
+
+\item 
+\#define {\bfseries Bus10\+\_\+256\+M\+Hz}~38\hypertarget{PLL_8h_a1c6e53071fd1645d26cadd040510f2fe}{}\label{PLL_8h_a1c6e53071fd1645d26cadd040510f2fe}
+
+\item 
+\#define {\bfseries Bus10\+\_\+000\+M\+Hz}~39\hypertarget{PLL_8h_ad72b00b8df54565e9a5e9df32a6720a4}{}\label{PLL_8h_ad72b00b8df54565e9a5e9df32a6720a4}
+
+\item 
+\#define {\bfseries Bus10\+M\+Hz}~39\hypertarget{PLL_8h_a361cb0bea072e970e5fb36579feaec6b}{}\label{PLL_8h_a361cb0bea072e970e5fb36579feaec6b}
+
+\item 
+\#define {\bfseries Bus9\+\_\+756\+M\+Hz}~40\hypertarget{PLL_8h_a838130c20fa5bfdc65c350bc0b067668}{}\label{PLL_8h_a838130c20fa5bfdc65c350bc0b067668}
+
+\item 
+\#define {\bfseries Bus9\+\_\+524\+M\+Hz}~41\hypertarget{PLL_8h_a7c45e3e467675adb3b80135d0e82e940}{}\label{PLL_8h_a7c45e3e467675adb3b80135d0e82e940}
+
+\item 
+\#define {\bfseries Bus9\+\_\+302\+M\+Hz}~42\hypertarget{PLL_8h_a164eb387033c944bc1d0e12a7abeb0cf}{}\label{PLL_8h_a164eb387033c944bc1d0e12a7abeb0cf}
+
+\item 
+\#define {\bfseries Bus9\+\_\+091\+M\+Hz}~43\hypertarget{PLL_8h_a7b8577c96782a5815240738ed7b3697c}{}\label{PLL_8h_a7b8577c96782a5815240738ed7b3697c}
+
+\item 
+\#define {\bfseries Bus8\+\_\+889\+M\+Hz}~44\hypertarget{PLL_8h_a29d05c87e059b45c1f4cbbef4f943c77}{}\label{PLL_8h_a29d05c87e059b45c1f4cbbef4f943c77}
+
+\item 
+\#define {\bfseries Bus8\+\_\+696\+M\+Hz}~45\hypertarget{PLL_8h_aea39e64a0f97adc91ee2dfa1bc3fef6c}{}\label{PLL_8h_aea39e64a0f97adc91ee2dfa1bc3fef6c}
+
+\item 
+\#define {\bfseries Bus8\+\_\+511\+M\+Hz}~46\hypertarget{PLL_8h_a579625bb479e3aa8f6bf28645180cfb9}{}\label{PLL_8h_a579625bb479e3aa8f6bf28645180cfb9}
+
+\item 
+\#define {\bfseries Bus8\+\_\+333\+M\+Hz}~47\hypertarget{PLL_8h_aa766d82e8de637883e3cf88629da2f3c}{}\label{PLL_8h_aa766d82e8de637883e3cf88629da2f3c}
+
+\item 
+\#define {\bfseries Bus8\+\_\+163\+M\+Hz}~48\hypertarget{PLL_8h_a5103b5eefa36047085434262fe61b5a4}{}\label{PLL_8h_a5103b5eefa36047085434262fe61b5a4}
+
+\item 
+\#define {\bfseries Bus8\+\_\+000\+M\+Hz}~49\hypertarget{PLL_8h_a1feb150e03b83dd161a2d60337986964}{}\label{PLL_8h_a1feb150e03b83dd161a2d60337986964}
+
+\item 
+\#define {\bfseries Bus8\+M\+Hz}~49\hypertarget{PLL_8h_a8ec930b2fe7b56703f8e659e5370f587}{}\label{PLL_8h_a8ec930b2fe7b56703f8e659e5370f587}
+
+\item 
+\#define {\bfseries Bus7\+\_\+843\+M\+Hz}~50\hypertarget{PLL_8h_ac01919c586a3dd7fdcaa2e88f8f61576}{}\label{PLL_8h_ac01919c586a3dd7fdcaa2e88f8f61576}
+
+\item 
+\#define {\bfseries Bus7\+\_\+692\+M\+Hz}~51\hypertarget{PLL_8h_a65a8c749e360bd3f56e019c4c038fcc0}{}\label{PLL_8h_a65a8c749e360bd3f56e019c4c038fcc0}
+
+\item 
+\#define {\bfseries Bus7\+\_\+547\+M\+Hz}~52\hypertarget{PLL_8h_a9310134e51df7c1a30209197ecd593dd}{}\label{PLL_8h_a9310134e51df7c1a30209197ecd593dd}
+
+\item 
+\#define {\bfseries Bus7\+\_\+407\+M\+Hz}~53\hypertarget{PLL_8h_a5e754f2ca051717d299afcc5668afd29}{}\label{PLL_8h_a5e754f2ca051717d299afcc5668afd29}
+
+\item 
+\#define {\bfseries Bus7\+\_\+273\+M\+Hz}~54\hypertarget{PLL_8h_a2d0525be7c02d7196c0630f2215bfdee}{}\label{PLL_8h_a2d0525be7c02d7196c0630f2215bfdee}
+
+\item 
+\#define {\bfseries Bus7\+\_\+143\+M\+Hz}~55\hypertarget{PLL_8h_a5923fce2aaf4fde63428f8d978e70902}{}\label{PLL_8h_a5923fce2aaf4fde63428f8d978e70902}
+
+\item 
+\#define {\bfseries Bus7\+\_\+018\+M\+Hz}~56\hypertarget{PLL_8h_a247c035313d71a073d55fc5ae368a791}{}\label{PLL_8h_a247c035313d71a073d55fc5ae368a791}
+
+\item 
+\#define {\bfseries Bus6\+\_\+897\+M\+Hz}~57\hypertarget{PLL_8h_a351a012d9384403f63698d37ce8512f1}{}\label{PLL_8h_a351a012d9384403f63698d37ce8512f1}
+
+\item 
+\#define {\bfseries Bus6\+\_\+780\+M\+Hz}~58\hypertarget{PLL_8h_afaece39411a3abf1f072a7908de00ab8}{}\label{PLL_8h_afaece39411a3abf1f072a7908de00ab8}
+
+\item 
+\#define {\bfseries Bus6\+\_\+667\+M\+Hz}~59\hypertarget{PLL_8h_ab8276cb17f701fd0a988d289ffb94a15}{}\label{PLL_8h_ab8276cb17f701fd0a988d289ffb94a15}
+
+\item 
+\#define {\bfseries Bus6\+\_\+557\+M\+Hz}~60\hypertarget{PLL_8h_a968c84425a2f6a2e5c54a63c5622df95}{}\label{PLL_8h_a968c84425a2f6a2e5c54a63c5622df95}
+
+\item 
+\#define {\bfseries Bus6\+\_\+452\+M\+Hz}~61\hypertarget{PLL_8h_a6aa84541be3b642a15d8d736ac8a2940}{}\label{PLL_8h_a6aa84541be3b642a15d8d736ac8a2940}
+
+\item 
+\#define {\bfseries Bus6\+\_\+349\+M\+Hz}~62\hypertarget{PLL_8h_a993369c6e4e5ccd148c4d76afd34a66d}{}\label{PLL_8h_a993369c6e4e5ccd148c4d76afd34a66d}
+
+\item 
+\#define {\bfseries Bus6\+\_\+250\+M\+Hz}~63\hypertarget{PLL_8h_ad9726b744dac2c5bf180d6ff0b0c89db}{}\label{PLL_8h_ad9726b744dac2c5bf180d6ff0b0c89db}
+
+\item 
+\#define {\bfseries Bus6\+\_\+154\+M\+Hz}~64\hypertarget{PLL_8h_ad49e38e65ae925876bf83f299c0797b0}{}\label{PLL_8h_ad49e38e65ae925876bf83f299c0797b0}
+
+\item 
+\#define {\bfseries Bus6\+\_\+061\+M\+Hz}~65\hypertarget{PLL_8h_aa8401582359504bcbcd8c03339614496}{}\label{PLL_8h_aa8401582359504bcbcd8c03339614496}
+
+\item 
+\#define {\bfseries Bus5\+\_\+970\+M\+Hz}~66\hypertarget{PLL_8h_a2cb9f375fea566a2f4c5ad9b257e8baa}{}\label{PLL_8h_a2cb9f375fea566a2f4c5ad9b257e8baa}
+
+\item 
+\#define {\bfseries Bus5\+\_\+882\+M\+Hz}~67\hypertarget{PLL_8h_a52e2bcea8b2ed5346de49a9755cef2c0}{}\label{PLL_8h_a52e2bcea8b2ed5346de49a9755cef2c0}
+
+\item 
+\#define {\bfseries Bus5\+\_\+797\+M\+Hz}~68\hypertarget{PLL_8h_a8fd5d371ddc8283000acdc5e753da9e2}{}\label{PLL_8h_a8fd5d371ddc8283000acdc5e753da9e2}
+
+\item 
+\#define {\bfseries Bus5\+\_\+714\+M\+Hz}~69\hypertarget{PLL_8h_a5483001cf44f372f28dbf8ce4fe4662f}{}\label{PLL_8h_a5483001cf44f372f28dbf8ce4fe4662f}
+
+\item 
+\#define {\bfseries Bus5\+\_\+634\+M\+Hz}~70\hypertarget{PLL_8h_a11b867333f5b7ffc97b0336fa04fe821}{}\label{PLL_8h_a11b867333f5b7ffc97b0336fa04fe821}
+
+\item 
+\#define {\bfseries Bus5\+\_\+556\+M\+Hz}~71\hypertarget{PLL_8h_a747fe814f94ab57f9882cd2aa866b5b6}{}\label{PLL_8h_a747fe814f94ab57f9882cd2aa866b5b6}
+
+\item 
+\#define {\bfseries Bus5\+\_\+479\+M\+Hz}~72\hypertarget{PLL_8h_ad62b905bae6948e2b610078e7b35e751}{}\label{PLL_8h_ad62b905bae6948e2b610078e7b35e751}
+
+\item 
+\#define {\bfseries Bus5\+\_\+405\+M\+Hz}~73\hypertarget{PLL_8h_a0d02c885d45dd4f6bb034dd39424e1f8}{}\label{PLL_8h_a0d02c885d45dd4f6bb034dd39424e1f8}
+
+\item 
+\#define {\bfseries Bus5\+\_\+333\+M\+Hz}~74\hypertarget{PLL_8h_ab43652f18788ceef3ed71170a7170f0f}{}\label{PLL_8h_ab43652f18788ceef3ed71170a7170f0f}
+
+\item 
+\#define {\bfseries Bus5\+\_\+263\+M\+Hz}~75\hypertarget{PLL_8h_a445552d6ef81088ed8ac504d6259032e}{}\label{PLL_8h_a445552d6ef81088ed8ac504d6259032e}
+
+\item 
+\#define {\bfseries Bus5\+\_\+195\+M\+Hz}~76\hypertarget{PLL_8h_a60ed26ca90e470dae2edbfc09ab985e7}{}\label{PLL_8h_a60ed26ca90e470dae2edbfc09ab985e7}
+
+\item 
+\#define {\bfseries Bus5\+\_\+128\+M\+Hz}~77\hypertarget{PLL_8h_aeae7fe8e5a3ce4f471d68ca26f5e5877}{}\label{PLL_8h_aeae7fe8e5a3ce4f471d68ca26f5e5877}
+
+\item 
+\#define {\bfseries Bus5\+\_\+063\+M\+Hz}~78\hypertarget{PLL_8h_a454c529495b31cb5e7f70663f2761d23}{}\label{PLL_8h_a454c529495b31cb5e7f70663f2761d23}
+
+\item 
+\#define {\bfseries Bus5\+\_\+000\+M\+Hz}~79\hypertarget{PLL_8h_a9a3173653f538569501dde6a3a5c1636}{}\label{PLL_8h_a9a3173653f538569501dde6a3a5c1636}
+
+\item 
+\#define {\bfseries Bus4\+\_\+938\+M\+Hz}~80\hypertarget{PLL_8h_a75353b481cae6feed0c0c65cfdd6f5b2}{}\label{PLL_8h_a75353b481cae6feed0c0c65cfdd6f5b2}
+
+\item 
+\#define {\bfseries Bus4\+\_\+878\+M\+Hz}~81\hypertarget{PLL_8h_aa8e81f60111420569cf5a3a46a6e52cb}{}\label{PLL_8h_aa8e81f60111420569cf5a3a46a6e52cb}
+
+\item 
+\#define {\bfseries Bus4\+\_\+819\+M\+Hz}~82\hypertarget{PLL_8h_a961ed2ca8a9df50371347adc39b3d60b}{}\label{PLL_8h_a961ed2ca8a9df50371347adc39b3d60b}
+
+\item 
+\#define {\bfseries Bus4\+\_\+762\+M\+Hz}~83\hypertarget{PLL_8h_ac1bbef8ed52d3bc1e53eeb22cb0e8529}{}\label{PLL_8h_ac1bbef8ed52d3bc1e53eeb22cb0e8529}
+
+\item 
+\#define {\bfseries Bus4\+\_\+706\+M\+Hz}~84\hypertarget{PLL_8h_abc1d24ecac16c170d889602d72fc552c}{}\label{PLL_8h_abc1d24ecac16c170d889602d72fc552c}
+
+\item 
+\#define {\bfseries Bus4\+\_\+651\+M\+Hz}~85\hypertarget{PLL_8h_ae2c25c06337ee8992c0d8de0b14353a3}{}\label{PLL_8h_ae2c25c06337ee8992c0d8de0b14353a3}
+
+\item 
+\#define {\bfseries Bus4\+\_\+598\+M\+Hz}~86\hypertarget{PLL_8h_a12b15f0d0d16d26813da3cb99e41395a}{}\label{PLL_8h_a12b15f0d0d16d26813da3cb99e41395a}
+
+\item 
+\#define {\bfseries Bus4\+\_\+545\+M\+Hz}~87\hypertarget{PLL_8h_afdc2829d3c2907ca8c2c7d08e07d1991}{}\label{PLL_8h_afdc2829d3c2907ca8c2c7d08e07d1991}
+
+\item 
+\#define {\bfseries Bus4\+\_\+494\+M\+Hz}~88\hypertarget{PLL_8h_a534f61f3ac56b0cadbd3341141766876}{}\label{PLL_8h_a534f61f3ac56b0cadbd3341141766876}
+
+\item 
+\#define {\bfseries Bus4\+\_\+444\+M\+Hz}~89\hypertarget{PLL_8h_a3347140aede5310ff6c3c85623c1d1f8}{}\label{PLL_8h_a3347140aede5310ff6c3c85623c1d1f8}
+
+\item 
+\#define {\bfseries Bus4\+\_\+396\+M\+Hz}~90\hypertarget{PLL_8h_ad5c7fe5e78622c738506305e7ef2acd5}{}\label{PLL_8h_ad5c7fe5e78622c738506305e7ef2acd5}
+
+\item 
+\#define {\bfseries Bus4\+\_\+348\+M\+Hz}~91\hypertarget{PLL_8h_a159391e433123c0545fa988ffe27b295}{}\label{PLL_8h_a159391e433123c0545fa988ffe27b295}
+
+\item 
+\#define {\bfseries Bus4\+\_\+301\+M\+Hz}~92\hypertarget{PLL_8h_aa90fbeef7169d0014de513a475b88d75}{}\label{PLL_8h_aa90fbeef7169d0014de513a475b88d75}
+
+\item 
+\#define {\bfseries Bus4\+\_\+255\+M\+Hz}~93\hypertarget{PLL_8h_a403c525424a52b097311a7658a0a3953}{}\label{PLL_8h_a403c525424a52b097311a7658a0a3953}
+
+\item 
+\#define {\bfseries Bus4\+\_\+211\+M\+Hz}~94\hypertarget{PLL_8h_a7a759e0113a3cbcd281bcc85076d9b3e}{}\label{PLL_8h_a7a759e0113a3cbcd281bcc85076d9b3e}
+
+\item 
+\#define {\bfseries Bus4\+\_\+167\+M\+Hz}~95\hypertarget{PLL_8h_a3e364432250e1df920892c195784cd33}{}\label{PLL_8h_a3e364432250e1df920892c195784cd33}
+
+\item 
+\#define {\bfseries Bus4\+\_\+124\+M\+Hz}~96\hypertarget{PLL_8h_a5738631c3b8fe3aa6d13b3ef72afac0f}{}\label{PLL_8h_a5738631c3b8fe3aa6d13b3ef72afac0f}
+
+\item 
+\#define {\bfseries Bus4\+\_\+082\+M\+Hz}~97\hypertarget{PLL_8h_af77a72414c51c87ce2718ad0b5a83a7a}{}\label{PLL_8h_af77a72414c51c87ce2718ad0b5a83a7a}
+
+\item 
+\#define {\bfseries Bus4\+\_\+040\+M\+Hz}~98\hypertarget{PLL_8h_a9eddb3a80574a60a97e543deab682c24}{}\label{PLL_8h_a9eddb3a80574a60a97e543deab682c24}
+
+\item 
+\#define {\bfseries Bus4\+\_\+000\+M\+Hz}~99\hypertarget{PLL_8h_aa090b6c11026babe83810c501c879c22}{}\label{PLL_8h_aa090b6c11026babe83810c501c879c22}
+
+\item 
+\#define {\bfseries Bus4\+M\+Hz}~99\hypertarget{PLL_8h_a17c36d61ac074fdfeb041848e2d36268}{}\label{PLL_8h_a17c36d61ac074fdfeb041848e2d36268}
+
+\item 
+\#define {\bfseries Bus3\+\_\+960\+M\+Hz}~100\hypertarget{PLL_8h_abd5a677fb391148b8ef0c6760efac917}{}\label{PLL_8h_abd5a677fb391148b8ef0c6760efac917}
+
+\item 
+\#define {\bfseries Bus3\+\_\+922\+M\+Hz}~101\hypertarget{PLL_8h_a3e536333be34d253cb130280165dbca4}{}\label{PLL_8h_a3e536333be34d253cb130280165dbca4}
+
+\item 
+\#define {\bfseries Bus3\+\_\+883\+M\+Hz}~102\hypertarget{PLL_8h_a3e6153b087dbed5ccf3ce3b8c331e7b2}{}\label{PLL_8h_a3e6153b087dbed5ccf3ce3b8c331e7b2}
+
+\item 
+\#define {\bfseries Bus3\+\_\+846\+M\+Hz}~103\hypertarget{PLL_8h_abcb487fa5b739792d958cbc81582402f}{}\label{PLL_8h_abcb487fa5b739792d958cbc81582402f}
+
+\item 
+\#define {\bfseries Bus3\+\_\+810\+M\+Hz}~104\hypertarget{PLL_8h_a3c87ae9bf59f89c95051c2ae0454f101}{}\label{PLL_8h_a3c87ae9bf59f89c95051c2ae0454f101}
+
+\item 
+\#define {\bfseries Bus3\+\_\+774\+M\+Hz}~105\hypertarget{PLL_8h_adeb1a48ab87f3c38d4cb1a2d8f7ced78}{}\label{PLL_8h_adeb1a48ab87f3c38d4cb1a2d8f7ced78}
+
+\item 
+\#define {\bfseries Bus3\+\_\+738\+M\+Hz}~106\hypertarget{PLL_8h_ac5e7a8755237690e1eba2d012340e33b}{}\label{PLL_8h_ac5e7a8755237690e1eba2d012340e33b}
+
+\item 
+\#define {\bfseries Bus3\+\_\+704\+M\+Hz}~107\hypertarget{PLL_8h_a7083952a80cbc4b7ec5d937d9e8d428a}{}\label{PLL_8h_a7083952a80cbc4b7ec5d937d9e8d428a}
+
+\item 
+\#define {\bfseries Bus3\+\_\+670\+M\+Hz}~108\hypertarget{PLL_8h_a0d0463af2f6a42c82aab1108742309f7}{}\label{PLL_8h_a0d0463af2f6a42c82aab1108742309f7}
+
+\item 
+\#define {\bfseries Bus3\+\_\+636\+M\+Hz}~109\hypertarget{PLL_8h_a55aa033011f03a2f80d559fbe70f79c7}{}\label{PLL_8h_a55aa033011f03a2f80d559fbe70f79c7}
+
+\item 
+\#define {\bfseries Bus3\+\_\+604\+M\+Hz}~110\hypertarget{PLL_8h_a344ef9f23af9d3b8a98bc84542fee2bc}{}\label{PLL_8h_a344ef9f23af9d3b8a98bc84542fee2bc}
+
+\item 
+\#define {\bfseries Bus3\+\_\+571\+M\+Hz}~111\hypertarget{PLL_8h_ae2027c29f1c27502cf54fe1caa92eeba}{}\label{PLL_8h_ae2027c29f1c27502cf54fe1caa92eeba}
+
+\item 
+\#define {\bfseries Bus3\+\_\+540\+M\+Hz}~112\hypertarget{PLL_8h_a8764bef97197870fe4858ff3528e2faf}{}\label{PLL_8h_a8764bef97197870fe4858ff3528e2faf}
+
+\item 
+\#define {\bfseries Bus3\+\_\+509\+M\+Hz}~113\hypertarget{PLL_8h_a5cd1623d14a28f00d3aefa12cb58178a}{}\label{PLL_8h_a5cd1623d14a28f00d3aefa12cb58178a}
+
+\item 
+\#define {\bfseries Bus3\+\_\+478\+M\+Hz}~114\hypertarget{PLL_8h_a39fdb726d481b9bcb1649212fb92dd03}{}\label{PLL_8h_a39fdb726d481b9bcb1649212fb92dd03}
+
+\item 
+\#define {\bfseries Bus3\+\_\+448\+M\+Hz}~115\hypertarget{PLL_8h_a990c92e5b2225770b5d4fbc599934c26}{}\label{PLL_8h_a990c92e5b2225770b5d4fbc599934c26}
+
+\item 
+\#define {\bfseries Bus3\+\_\+419\+M\+Hz}~116\hypertarget{PLL_8h_a942184d1c12f8e2e892a49480ba3cfd8}{}\label{PLL_8h_a942184d1c12f8e2e892a49480ba3cfd8}
+
+\item 
+\#define {\bfseries Bus3\+\_\+390\+M\+Hz}~117\hypertarget{PLL_8h_a9c27678ef398fd8abdf91d1a14841fa4}{}\label{PLL_8h_a9c27678ef398fd8abdf91d1a14841fa4}
+
+\item 
+\#define {\bfseries Bus3\+\_\+361\+M\+Hz}~118\hypertarget{PLL_8h_a07dab50e37eb7241ddd164f85c8b4269}{}\label{PLL_8h_a07dab50e37eb7241ddd164f85c8b4269}
+
+\item 
+\#define {\bfseries Bus3\+\_\+333\+M\+Hz}~119\hypertarget{PLL_8h_a9ce71451e5502c901eee1f96b73ac6ad}{}\label{PLL_8h_a9ce71451e5502c901eee1f96b73ac6ad}
+
+\item 
+\#define {\bfseries Bus3\+\_\+306\+M\+Hz}~120\hypertarget{PLL_8h_a82a17582be13b086bcb76cf70f099b47}{}\label{PLL_8h_a82a17582be13b086bcb76cf70f099b47}
+
+\item 
+\#define {\bfseries Bus3\+\_\+279\+M\+Hz}~121\hypertarget{PLL_8h_abb54f6fd0a034d4c38573903969614a6}{}\label{PLL_8h_abb54f6fd0a034d4c38573903969614a6}
+
+\item 
+\#define {\bfseries Bus3\+\_\+252\+M\+Hz}~122\hypertarget{PLL_8h_ad5b5aaaa81c4c3351330ecbf1f201868}{}\label{PLL_8h_ad5b5aaaa81c4c3351330ecbf1f201868}
+
+\item 
+\#define {\bfseries Bus3\+\_\+226\+M\+Hz}~123\hypertarget{PLL_8h_ad4249169021ca732ef2000ab96bda6b1}{}\label{PLL_8h_ad4249169021ca732ef2000ab96bda6b1}
+
+\item 
+\#define {\bfseries Bus3\+\_\+200\+M\+Hz}~124\hypertarget{PLL_8h_a0c7aea46947d8d52796ed3ae7b23550f}{}\label{PLL_8h_a0c7aea46947d8d52796ed3ae7b23550f}
+
+\item 
+\#define {\bfseries Bus3\+\_\+175\+M\+Hz}~125\hypertarget{PLL_8h_a5815aa6d14d36c819744584174eefbde}{}\label{PLL_8h_a5815aa6d14d36c819744584174eefbde}
+
+\item 
+\#define {\bfseries Bus3\+\_\+150\+M\+Hz}~126\hypertarget{PLL_8h_a5eebde4de68fd0a84f4e611a9e932813}{}\label{PLL_8h_a5eebde4de68fd0a84f4e611a9e932813}
+
+\item 
+\#define {\bfseries Bus3\+\_\+125\+M\+Hz}~127\hypertarget{PLL_8h_a481f1254c46765337199676299b9cf16}{}\label{PLL_8h_a481f1254c46765337199676299b9cf16}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{PLL_8h_a6c42c1a41857964a1cf126e28f5828b1}{P\+L\+L\+\_\+\+Init} (uint32\+\_\+t freq)
+\begin{DoxyCompactList}\small\item\em configure the system to get its clock from the P\+LL \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Runs on L\+M4\+F120/\+T\+M4\+C123 A software function to change the bus frequency using the P\+LL. 
+
+\begin{DoxyAuthor}{Author}
+Daniel Valvano 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\index{P\+L\+L.\+h@{P\+L\+L.\+h}!P\+L\+L\+\_\+\+Init@{P\+L\+L\+\_\+\+Init}}
+\index{P\+L\+L\+\_\+\+Init@{P\+L\+L\+\_\+\+Init}!P\+L\+L.\+h@{P\+L\+L.\+h}}
+\subsubsection[{\texorpdfstring{P\+L\+L\+\_\+\+Init(uint32\+\_\+t freq)}{PLL_Init(uint32_t freq)}}]{\setlength{\rightskip}{0pt plus 5cm}void P\+L\+L\+\_\+\+Init (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{freq}
+\end{DoxyParamCaption}
+)}\hypertarget{PLL_8h_a6c42c1a41857964a1cf126e28f5828b1}{}\label{PLL_8h_a6c42c1a41857964a1cf126e28f5828b1}
+
+
+configure the system to get its clock from the P\+LL 
+
+
+\begin{DoxyParams}{Parameters}
+{\em freq} & Macro defined in \hyperlink{PLL_8h}{P\+L\+L.\+h} to choose frequency \\
+\hline
+\end{DoxyParams}

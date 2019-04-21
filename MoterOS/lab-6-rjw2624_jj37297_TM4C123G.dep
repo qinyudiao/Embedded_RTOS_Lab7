@@ -1,0 +1,64 @@
+Dependencies for Project 'lab-1-rjw2624_jj37297', Target 'TM4C123G': (DO NOT MODIFY !)
+F (.\src\PLL.c)(0x5C525175)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections --signed_chars -I./inc/ --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\TI\TM4C123-Drvmdk -DPART_LM4F120H5QR -DTM4C123GH6PM-o .\obj\pll.o --omf_browse .\obj\pll.crf --depend .\obj\pll.d)
+I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C87C24)
+I (./inc/PLL.h)(0x55463040)
+I (./inc/tm4c123gh6pm.h)(0x5388C2DA)
+F (.\src\ST7735.c)(0x5C54CF55)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections --signed_chars -I./inc/ --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\TI\TM4C123-Drvmdk -DPART_LM4F120H5QR -DTM4C123GH6PM-o .\obj\st7735.o --omf_browse .\obj\st7735.crf --depend .\obj\st7735.d)
+I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x51C87C24)
+I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C87C24)
+I (./inc/ST7735.h)(0x5C54CEEB)
+I (./inc/tm4c123gh6pm.h)(0x5388C2DA)
+F (.\src\startup.s)(0x5C54A0F5)(--cpu Cortex-M4.fp --pd "__EVAL SETA 1" -g --apcs=interwork --pd "__MICROLIB SETA 1"-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\TI\TM4C123--list .\startup.lst --xref -o .\obj\startup.o --depend .\obj\startup.d)
+F (.\src\ADC.c)(0x5C54A23C)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections --signed_chars -I./inc/ --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\TI\TM4C123-Drvmdk -DPART_LM4F120H5QR -DTM4C123GH6PM-o .\obj\adc.o --omf_browse .\obj\adc.crf --depend .\obj\adc.d)
+I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C87C24)
+I (./inc/ADC.h)(0x5C54A1F4)
+I (./inc/tm4c123gh6pm.h)(0x5388C2DA)
+F (.\src\main.c)(0x5C54CF12)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections --signed_chars -I./inc/ --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\TI\TM4C123-Drvmdk -DPART_LM4F120H5QR -DTM4C123GH6PM-o .\obj\main.o --omf_browse .\obj\main.crf --depend .\obj\main.d)
+I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C87C24)
+I (C:\Keil\ARM\ARMCC\include\string.h)(0x51C87C24)
+I (C:\Keil\ARM\ARMCC\include\assert.h)(0x51C87C24)
+I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x51C87C24)
+I (./inc/PLL.h)(0x55463040)
+I (./inc/ADC.h)(0x5C54A1F4)
+I (./inc/tm4c123gh6pm.h)(0x5388C2DA)
+I (./inc/ST7735.h)(0x5C54CEEB)
+F (.\inc\asmdefs.h)(0x5388C2D8)()
+F (.\inc\hw_adc.h)(0x5388C2D8)()
+F (.\inc\hw_aes.h)(0x5388C2D8)()
+F (.\inc\hw_can.h)(0x5388C2D8)()
+F (.\inc\hw_ccm.h)(0x5388C2D8)()
+F (.\inc\hw_comp.h)(0x5388C2D8)()
+F (.\inc\hw_des.h)(0x5388C2D8)()
+F (.\inc\hw_eeprom.h)(0x5388C2D8)()
+F (.\inc\hw_emac.h)(0x5388C2D8)()
+F (.\inc\hw_epi.h)(0x5388C2D8)()
+F (.\inc\hw_ethernet.h)(0x5063B5B2)()
+F (.\inc\hw_fan.h)(0x5388C2D8)()
+F (.\inc\hw_flash.h)(0x5388C2D8)()
+F (.\inc\hw_gpio.h)(0x5388C2D8)()
+F (.\inc\hw_hibernate.h)(0x5388C2D8)()
+F (.\inc\hw_i2c.h)(0x5388C2D8)()
+F (.\inc\hw_i2s.h)(0x5063B5B2)()
+F (.\inc\hw_ints.h)(0x5388C2D8)()
+F (.\inc\hw_lcd.h)(0x5388C2D8)()
+F (.\inc\hw_lpc.h)(0x5063B5B2)()
+F (.\inc\hw_memmap.h)(0x5388C2D8)()
+F (.\inc\hw_nvic.h)(0x5388C2D8)()
+F (.\inc\hw_peci.h)(0x5063B5B2)()
+F (.\inc\hw_pwm.h)(0x5388C2D8)()
+F (.\inc\hw_qei.h)(0x5388C2D8)()
+F (.\inc\hw_shamd5.h)(0x5388C2D8)()
+F (.\inc\hw_ssi.h)(0x5388C2D8)()
+F (.\inc\hw_sysctl.h)(0x5388C2D8)()
+F (.\inc\hw_sysexc.h)(0x5388C2D8)()
+F (.\inc\hw_timer.h)(0x5388C2D8)()
+F (.\inc\hw_types.h)(0x5388C2D8)()
+F (.\inc\hw_uart.h)(0x5388C2D8)()
+F (.\inc\hw_udma.h)(0x5388C2D8)()
+F (.\inc\hw_usb.h)(0x5388C2D8)()
+F (.\inc\hw_watchdog.h)(0x5388C2D8)()
+F (.\inc\lm4f120h5qr.h)(0x5063B5B2)()
+F (.\inc\PLL.h)(0x55463040)()
+F (.\inc\ST7735.h)(0x5C54CEEB)()
+F (.\inc\tm4c123gh6pm.h)(0x5388C2DA)()
+F (.\inc\ADC.h)(0x5C54A1F4)()

@@ -1,0 +1,37 @@
+\hypertarget{structtCANMsgObject}{}\section{t\+C\+A\+N\+Msg\+Object Struct Reference}
+\label{structtCANMsgObject}\index{t\+C\+A\+N\+Msg\+Object@{t\+C\+A\+N\+Msg\+Object}}
+
+
+{\ttfamily \#include $<$can.\+h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \hyperlink{structtCANMsgObject_a663d0cdd6893cd3ee998795dd0620dfd}{ul\+Msg\+ID}\hypertarget{structtCANMsgObject_a663d0cdd6893cd3ee998795dd0620dfd}{}\label{structtCANMsgObject_a663d0cdd6893cd3ee998795dd0620dfd}
+
+\begin{DoxyCompactList}\small\item\em The C\+AN message identifier used for 11 or 29 bit identifiers. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{structtCANMsgObject_a99a0c309158bfe53401884a66711e80c}{ul\+Msg\+I\+D\+Mask}\hypertarget{structtCANMsgObject_a99a0c309158bfe53401884a66711e80c}{}\label{structtCANMsgObject_a99a0c309158bfe53401884a66711e80c}
+
+\begin{DoxyCompactList}\small\item\em The message identifier mask used when identifier filtering is enabled. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{structtCANMsgObject_a23801a4be509591978e7b4f9bcafe124}{ul\+Flags}
+\item 
+uint32\+\_\+t \hyperlink{structtCANMsgObject_a5364beed437bfdfa7c536ab5b3417ea9}{ul\+Msg\+Len}\hypertarget{structtCANMsgObject_a5364beed437bfdfa7c536ab5b3417ea9}{}\label{structtCANMsgObject_a5364beed437bfdfa7c536ab5b3417ea9}
+
+\begin{DoxyCompactList}\small\item\em This value is the number of bytes of data in the message object. \end{DoxyCompactList}\item 
+uint8\+\_\+t $\ast$ \hyperlink{structtCANMsgObject_a2f2a9f1ed9b01b6a2caf2256ec938a1b}{puc\+Msg\+Data}\hypertarget{structtCANMsgObject_a2f2a9f1ed9b01b6a2caf2256ec938a1b}{}\label{structtCANMsgObject_a2f2a9f1ed9b01b6a2caf2256ec938a1b}
+
+\begin{DoxyCompactList}\small\item\em This is a pointer to the message object\textquotesingle{}s data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The structure used for encapsulating all the items associated with a C\+AN message object in the C\+AN controller. 
+
+\subsection{Field Documentation}
+\index{t\+C\+A\+N\+Msg\+Object@{t\+C\+A\+N\+Msg\+Object}!ul\+Flags@{ul\+Flags}}
+\index{ul\+Flags@{ul\+Flags}!t\+C\+A\+N\+Msg\+Object@{t\+C\+A\+N\+Msg\+Object}}
+\subsubsection[{\texorpdfstring{ul\+Flags}{ulFlags}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t t\+C\+A\+N\+Msg\+Object\+::ul\+Flags}\hypertarget{structtCANMsgObject_a23801a4be509591978e7b4f9bcafe124}{}\label{structtCANMsgObject_a23801a4be509591978e7b4f9bcafe124}
+This value holds various status flags and settings specified by t\+C\+A\+N\+Obj\+Flags. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+inc/can.\+h\end{DoxyCompactItemize}

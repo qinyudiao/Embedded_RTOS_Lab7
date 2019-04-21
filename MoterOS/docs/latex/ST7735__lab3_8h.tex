@@ -1,0 +1,705 @@
+\hypertarget{ST7735__lab3_8h}{}\section{inc/\+S\+T7735\+\_\+lab3.h File Reference}
+\label{ST7735__lab3_8h}\index{inc/\+S\+T7735\+\_\+lab3.\+h@{inc/\+S\+T7735\+\_\+lab3.\+h}}
+
+
+This is a library for the Adafruit 1.\+8" S\+PI display.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\\*
+Include dependency graph for S\+T7735\+\_\+lab3.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=178pt]{ST7735__lab3_8h__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries S\+T7735\+\_\+\+T\+F\+T\+W\+I\+D\+TH}~128\hypertarget{ST7735__lab3_8h_a17fb18a972efbcba457b22ac53ab39bf}{}\label{ST7735__lab3_8h_a17fb18a972efbcba457b22ac53ab39bf}
+
+\item 
+\#define {\bfseries S\+T7735\+\_\+\+T\+F\+T\+H\+E\+I\+G\+HT}~160\hypertarget{ST7735__lab3_8h_ae39c2160287830a930ae303f4d9eb102}{}\label{ST7735__lab3_8h_ae39c2160287830a930ae303f4d9eb102}
+
+\item 
+\#define {\bfseries S\+T7735\+\_\+\+B\+L\+A\+CK}~0x0000\hypertarget{ST7735__lab3_8h_aaa96c65299e5f6da446f29dc44362df4}{}\label{ST7735__lab3_8h_aaa96c65299e5f6da446f29dc44362df4}
+
+\item 
+\#define {\bfseries S\+T7735\+\_\+\+B\+L\+UE}~0x\+F800\hypertarget{ST7735__lab3_8h_a16ebfdbf93e5ef70d658bf2c38a95939}{}\label{ST7735__lab3_8h_a16ebfdbf93e5ef70d658bf2c38a95939}
+
+\item 
+\#define {\bfseries S\+T7735\+\_\+\+R\+ED}~0x001F\hypertarget{ST7735__lab3_8h_a2449a6653137f07d2feb059750c7a0e0}{}\label{ST7735__lab3_8h_a2449a6653137f07d2feb059750c7a0e0}
+
+\item 
+\#define {\bfseries S\+T7735\+\_\+\+G\+R\+E\+EN}~0x07\+E0\hypertarget{ST7735__lab3_8h_aaa6015ded61cf7d99ef6d59f1516853a}{}\label{ST7735__lab3_8h_aaa6015ded61cf7d99ef6d59f1516853a}
+
+\item 
+\#define {\bfseries S\+T7735\+\_\+\+C\+Y\+AN}~0x\+F\+F\+E0\hypertarget{ST7735__lab3_8h_ad810da70a616c774959a2b8e01bdbccd}{}\label{ST7735__lab3_8h_ad810da70a616c774959a2b8e01bdbccd}
+
+\item 
+\#define {\bfseries S\+T7735\+\_\+\+M\+A\+G\+E\+N\+TA}~0x\+F81F\hypertarget{ST7735__lab3_8h_afeb931b9ea5b9e7d1d3034f68da9ca64}{}\label{ST7735__lab3_8h_afeb931b9ea5b9e7d1d3034f68da9ca64}
+
+\item 
+\#define {\bfseries S\+T7735\+\_\+\+Y\+E\+L\+L\+OW}~0x07\+FF\hypertarget{ST7735__lab3_8h_ab45f6510169efe9c541a881c8ed56f1c}{}\label{ST7735__lab3_8h_ab45f6510169efe9c541a881c8ed56f1c}
+
+\item 
+\#define {\bfseries S\+T7735\+\_\+\+W\+H\+I\+TE}~0x\+F\+F\+FF\hypertarget{ST7735__lab3_8h_af8065f00d6684d4af187dc58b0611af3}{}\label{ST7735__lab3_8h_af8065f00d6684d4af187dc58b0611af3}
+
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{ST7735__lab3_8h_a9568e103412377d5867f1f367ac7f424}{init\+R\+Flags} \{ \\*
+{\bfseries none}, 
+{\bfseries I\+N\+I\+T\+R\+\_\+\+G\+R\+E\+E\+N\+T\+AB}, 
+{\bfseries I\+N\+I\+T\+R\+\_\+\+R\+E\+D\+T\+AB}, 
+{\bfseries I\+N\+I\+T\+R\+\_\+\+B\+L\+A\+C\+K\+T\+AB}, 
+\\*
+{\bfseries none}, 
+{\bfseries I\+N\+I\+T\+R\+\_\+\+G\+R\+E\+E\+N\+T\+AB}, 
+{\bfseries I\+N\+I\+T\+R\+\_\+\+R\+E\+D\+T\+AB}, 
+{\bfseries I\+N\+I\+T\+R\+\_\+\+B\+L\+A\+C\+K\+T\+AB}
+ \}\hypertarget{ST7735__lab3_8h_a9568e103412377d5867f1f367ac7f424}{}\label{ST7735__lab3_8h_a9568e103412377d5867f1f367ac7f424}
+\begin{DoxyCompactList}\small\item\em some flags for \hyperlink{ST7735__lab3_8h_a204a442207d7367ace616bd6bfd79348}{S\+T7735\+\_\+\+Init\+R()} \end{DoxyCompactList}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{ST7735__lab3_8h_aec8e637c759ad0adde0758c0935f383a}{S\+T7735\+\_\+\+InitB} (void)\hypertarget{ST7735__lab3_8h_aec8e637c759ad0adde0758c0935f383a}{}\label{ST7735__lab3_8h_aec8e637c759ad0adde0758c0935f383a}
+
+\begin{DoxyCompactList}\small\item\em Initialization for S\+T7735B screens. \end{DoxyCompactList}\item 
+void \hyperlink{ST7735__lab3_8h_a204a442207d7367ace616bd6bfd79348}{S\+T7735\+\_\+\+InitR} (enum \hyperlink{ST7735__lab3_8h_a9568e103412377d5867f1f367ac7f424}{init\+R\+Flags} option)
+\begin{DoxyCompactList}\small\item\em Initialization for S\+T7735R screens (green or red tabs). \end{DoxyCompactList}\item 
+void \hyperlink{ST7735__lab3_8h_aa2dc768f637489753a7b70eac676c4a5}{S\+T7735\+\_\+\+Draw\+Pixel} (int16\+\_\+t x, int16\+\_\+t y, uint16\+\_\+t color)
+\begin{DoxyCompactList}\small\item\em Color the pixel at the given coordinates with the given color. Requires 13 bytes of transmission. \end{DoxyCompactList}\item 
+void \hyperlink{ST7735__lab3_8h_a2c091bb2f7905e4464a6152015a49989}{S\+T7735\+\_\+\+Draw\+Fast\+V\+Line} (int16\+\_\+t x, int16\+\_\+t y, int16\+\_\+t h, uint16\+\_\+t color)
+\begin{DoxyCompactList}\small\item\em Draw a vertical line at the given coordinates with the given height and color. A vertical line is parallel to the longer side of the rectangular display Requires (11 + 2$\ast$h) bytes of transmission (assuming image fully on screen) \end{DoxyCompactList}\item 
+void \hyperlink{ST7735__lab3_8h_a05c18aa8dd363fe991d5bc73a02e7abc}{S\+T7735\+\_\+\+Draw\+Fast\+H\+Line} (int16\+\_\+t x, int16\+\_\+t y, int16\+\_\+t w, uint16\+\_\+t color)
+\begin{DoxyCompactList}\small\item\em Draw a horizontal line at the given coordinates with the given width and color. A horizontal line is parallel to the shorter side of the rectangular display Requires (11 + 2$\ast$w) bytes of transmission (assuming image fully on screen) \end{DoxyCompactList}\item 
+void \hyperlink{ST7735__lab3_8h_a3a14506207ab49aee2c40700b5036271}{S\+T7735\+\_\+\+Fill\+Screen} (uint16\+\_\+t color)
+\begin{DoxyCompactList}\small\item\em Fill the screen with the given color. Requires 40,971 bytes of transmission. \end{DoxyCompactList}\item 
+void \hyperlink{ST7735__lab3_8h_ada283d88275b972d188afad1c8649829}{S\+T7735\+\_\+\+Fill\+Rect} (int16\+\_\+t x, int16\+\_\+t y, int16\+\_\+t w, int16\+\_\+t h, uint16\+\_\+t color)
+\begin{DoxyCompactList}\small\item\em Draw a filled rectangle at the given coordinates with the given width, height, and color. Requires (11 + 2$\ast$w$\ast$h) bytes of transmission (assuming image fully on screen) \end{DoxyCompactList}\item 
+uint16\+\_\+t \hyperlink{ST7735__lab3_8h_a29294596f660f05ad8738db73ee07cfa}{S\+T7735\+\_\+\+Color565} (uint8\+\_\+t r, uint8\+\_\+t g, uint8\+\_\+t b)
+\begin{DoxyCompactList}\small\item\em Pass 8-\/bit (each) R,G,B and get back 16-\/bit packed color. \end{DoxyCompactList}\item 
+uint16\+\_\+t \hyperlink{ST7735__lab3_8h_acd13666f7002b9b8cb7a11164b2203ca}{S\+T7735\+\_\+\+Swap\+Color} (uint16\+\_\+t x)
+\begin{DoxyCompactList}\small\item\em Swaps the red and blue values of the given 16-\/bit packed color; green is unchanged. \end{DoxyCompactList}\item 
+void \hyperlink{ST7735__lab3_8h_aaf5af072e5213fcc3d6b852a2553e048}{S\+T7735\+\_\+\+Draw\+Bitmap} (int16\+\_\+t x, int16\+\_\+t y, const uint16\+\_\+t $\ast$image, int16\+\_\+t w, int16\+\_\+t h)
+\begin{DoxyCompactList}\small\item\em Displays a 16-\/bit color B\+MP image. A bitmap file that is created by a PC image processing program has a header and may be padded with dummy columns so the data have four byte alignment. This function assumes that all of that has been stripped out, and the array image\mbox{[}\mbox{]} has one 16-\/bit halfword for each pixel to be displayed on the screen (encoded in reverse order, which is standard for bitmap files). An array can be created in this format from a 24-\/bit-\/per-\/pixel .bmp file using the associated converter program. (x,y) is the screen location of the lower left corner of B\+MP image Requires (11 + 2$\ast$w$\ast$h) bytes of transmission (assuming image fully on screen) Must be less than or equal to 128 pixels wide by 160 pixels high. \end{DoxyCompactList}\item 
+void \hyperlink{ST7735__lab3_8h_a0d092afe5e5a087662adc8e5befa0078}{S\+T7735\+\_\+\+Draw\+CharS} (int16\+\_\+t x, int16\+\_\+t y, char c, int16\+\_\+t text\+Color, int16\+\_\+t bg\+Color, uint8\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Simple character draw function. This is the same function from Adafruit\+\_\+\+G\+F\+X.\+c but adapted for this processor. However, each call to \hyperlink{ST7735__lab3_8h_aa2dc768f637489753a7b70eac676c4a5}{S\+T7735\+\_\+\+Draw\+Pixel()} calls set\+Addr\+Window(), which needs to send many extra data and commands. If the background color is the same as the text color, no background will be printed, and text can be drawn right over existing images without covering them with a box. Requires (11 + 2$\ast$size$\ast$size)$\ast$6$\ast$8 (image fully on screen; textcolor != bg\+Color) \end{DoxyCompactList}\item 
+void \hyperlink{ST7735__lab3_8h_a66c54533bdb1555b1e488bb9fcf9885b}{S\+T7735\+\_\+\+Draw\+Char} (int16\+\_\+t x, int16\+\_\+t y, char c, int16\+\_\+t text\+Color, int16\+\_\+t bg\+Color, uint8\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Advanced character draw function. This is similar to the function from Adafruit\+\_\+\+G\+F\+X.\+c but adapted for this processor. However, this function only uses one call to set\+Addr\+Window(), which allows it to run at least twice as fast. Requires (11 + size$\ast$size$\ast$6$\ast$8) bytes of transmission (assuming image fully on screen) \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{ST7735__lab3_8h_a6ba26fa5ccecc77525017d0dcacf037b}{S\+T7735\+\_\+\+Draw\+String} (uint16\+\_\+t x, uint16\+\_\+t y, char $\ast$pt, int16\+\_\+t text\+Color, int16\+\_\+t bg\+Color)
+\begin{DoxyCompactList}\small\item\em String draw function. 16 rows (0 to 15) and 21 characters (0 to 20) Requires (11 + size$\ast$size$\ast$6$\ast$8) bytes of transmission for each character If bg\+Color is same as text\+Color, no background will be filled in for chars. \end{DoxyCompactList}\item 
+void \hyperlink{ST7735__lab3_8h_a6edc4479f68eb34624157cc1dda2cbb3}{S\+T7735\+\_\+\+Set\+Cursor} (uint32\+\_\+t newX, uint32\+\_\+t newY)
+\begin{DoxyCompactList}\small\item\em Move the cursor to the desired X-\/ and Y-\/position. The next character will be printed here. X=0 is the leftmost column. Y=0 is the top row. \end{DoxyCompactList}\item 
+void \hyperlink{ST7735__lab3_8h_a072f5f963df6e48f5985977526d2466c}{S\+T7735\+\_\+\+Out\+U\+Dec} (uint32\+\_\+t n)
+\begin{DoxyCompactList}\small\item\em Output a 32-\/bit number in unsigned decimal format Position determined by S\+T7735\+\_\+\+Set\+Cursor command Color set by S\+T7735\+\_\+\+Set\+Text\+Color. \end{DoxyCompactList}\item 
+void \hyperlink{ST7735__lab3_8h_ac07019a4990ece959dd04dd58339f839}{S\+T7735\+\_\+\+Set\+Rotation} (uint8\+\_\+t m)
+\begin{DoxyCompactList}\small\item\em Change the image rotation. Requires 2 bytes of transmission. \end{DoxyCompactList}\item 
+void \hyperlink{ST7735__lab3_8h_a2138bd237e97da48ad87137fb616be37}{S\+T7735\+\_\+\+Invert\+Display} (int i)
+\begin{DoxyCompactList}\small\item\em Send the command to invert all of the colors. Requires 1 byte of transmission. \end{DoxyCompactList}\item 
+void \hyperlink{ST7735__lab3_8h_affbb292ebbf7082c331ab6195da3385c}{S\+T7735\+\_\+\+Plot\+Clear} (int32\+\_\+t ymin, int32\+\_\+t ymax)
+\begin{DoxyCompactList}\small\item\em Clear the graphics buffer, set X coordinate to 0 This routine clears the display. \end{DoxyCompactList}\item 
+void \hyperlink{ST7735__lab3_8h_a1ae5c293f7cf004c66ca1c0f0d365fcd}{S\+T7735\+\_\+\+Plot\+Point} (int32\+\_\+t y)
+\begin{DoxyCompactList}\small\item\em Used in the voltage versus time plot, plot one point at y It does output to display. \end{DoxyCompactList}\item 
+void \hyperlink{ST7735__lab3_8h_a3b19f449b1072070e3dd7f92ce8150fa}{S\+T7735\+\_\+\+Plot\+Line} (int32\+\_\+t y)
+\begin{DoxyCompactList}\small\item\em Used in the voltage versus time plot, plot line to new point It does output to display. \end{DoxyCompactList}\item 
+void \hyperlink{ST7735__lab3_8h_af8a878e2129edc09d38b3f3aadcad42f}{S\+T7735\+\_\+\+Plot\+Points} (int32\+\_\+t y1, int32\+\_\+t y2)
+\begin{DoxyCompactList}\small\item\em Used in the voltage versus time plot, plot two points at y1, y2 It does output to display. \end{DoxyCompactList}\item 
+void \hyperlink{ST7735__lab3_8h_adff58b909cb89f694117603da4ab7a1b}{S\+T7735\+\_\+\+Plot\+Bar} (int32\+\_\+t y)
+\begin{DoxyCompactList}\small\item\em Used in the voltage versus time bar, plot one bar at y It does not output to display until R\+I\+T128x96x4\+Show\+Plot called. \end{DoxyCompactList}\item 
+void \hyperlink{ST7735__lab3_8h_a179ccebd4bfe4529903a02ce797e78ea}{S\+T7735\+\_\+\+Plotd\+Bfs} (int32\+\_\+t y)
+\begin{DoxyCompactList}\small\item\em Used in the amplitude versus frequency plot, plot bar point at y 0 to 0.\+625V scaled on a log plot from min to max It does output to display. \end{DoxyCompactList}\item 
+void \hyperlink{ST7735__lab3_8h_afc91fa494b54f542c2d7cc7ef1fed3e9}{S\+T7735\+\_\+\+Plot\+Next} (void)\hypertarget{ST7735__lab3_8h_afc91fa494b54f542c2d7cc7ef1fed3e9}{}\label{ST7735__lab3_8h_afc91fa494b54f542c2d7cc7ef1fed3e9}
+
+\begin{DoxyCompactList}\small\item\em Used in all the plots to step the X coordinate one pixel X steps from 0 to 127, then back to 0 again It does not output to display. \end{DoxyCompactList}\item 
+void \hyperlink{ST7735__lab3_8h_a3c7b330d12b052f9334781dba849aa0e}{S\+T7735\+\_\+\+Plot\+Next\+Erase} (void)\hypertarget{ST7735__lab3_8h_a3c7b330d12b052f9334781dba849aa0e}{}\label{ST7735__lab3_8h_a3c7b330d12b052f9334781dba849aa0e}
+
+\begin{DoxyCompactList}\small\item\em Used in all the plots to step the X coordinate one pixel X steps from 0 to 127, then back to 0 again It clears the vertical space into which the next pixel will be drawn. \end{DoxyCompactList}\item 
+void \hyperlink{ST7735__lab3_8h_a49a0a636404c51a7fe1b54768e47d1eb}{S\+T7735\+\_\+\+Out\+Char} (char ch)
+\begin{DoxyCompactList}\small\item\em Output one character to the L\+CD Position determined by S\+T7735\+\_\+\+Set\+Cursor command Color set by S\+T7735\+\_\+\+Set\+Text\+Color. \end{DoxyCompactList}\item 
+void \hyperlink{ST7735__lab3_8h_a6bd647233ed938c4006694552b8fd9a0}{S\+T7735\+\_\+\+Out\+String} (char $\ast$ptr)
+\begin{DoxyCompactList}\small\item\em Print a string of characters to the S\+T7735 L\+CD. Position determined by S\+T7735\+\_\+\+Set\+Cursor command Color set by S\+T7735\+\_\+\+Set\+Text\+Color The string will not automatically wrap. \end{DoxyCompactList}\item 
+void \hyperlink{ST7735__lab3_8h_a749b305138c366373f55e39a2ae15f17}{S\+T7735\+\_\+\+Set\+Text\+Color} (uint16\+\_\+t color)
+\begin{DoxyCompactList}\small\item\em Sets the color in which the characters will be printed Background color is fixed at black. \end{DoxyCompactList}\item 
+void \hyperlink{ST7735__lab3_8h_a8c197f8fb3fd2b2da459e71b44978d53}{Output\+\_\+\+Init} (void)\hypertarget{ST7735__lab3_8h_a8c197f8fb3fd2b2da459e71b44978d53}{}\label{ST7735__lab3_8h_a8c197f8fb3fd2b2da459e71b44978d53}
+
+\begin{DoxyCompactList}\small\item\em Standard device driver initialization function for printf Initialize S\+T7735 L\+CD. \end{DoxyCompactList}\item 
+void \hyperlink{ST7735__lab3_8h_a991e9f71a35a1f6ec9d857ca0e01868a}{Output\+\_\+\+Clear} (void)\hypertarget{ST7735__lab3_8h_a991e9f71a35a1f6ec9d857ca0e01868a}{}\label{ST7735__lab3_8h_a991e9f71a35a1f6ec9d857ca0e01868a}
+
+\begin{DoxyCompactList}\small\item\em Clear display. \end{DoxyCompactList}\item 
+void \hyperlink{ST7735__lab3_8h_a4ff293d693c5298110cf8a170e9b9165}{Output\+\_\+\+Off} (void)\hypertarget{ST7735__lab3_8h_a4ff293d693c5298110cf8a170e9b9165}{}\label{ST7735__lab3_8h_a4ff293d693c5298110cf8a170e9b9165}
+
+\begin{DoxyCompactList}\small\item\em Turn off display (low power) \end{DoxyCompactList}\item 
+void \hyperlink{ST7735__lab3_8h_a7e57930cfb2d70ead5a1686d9f36a734}{Output\+\_\+\+On} (void)\hypertarget{ST7735__lab3_8h_a7e57930cfb2d70ead5a1686d9f36a734}{}\label{ST7735__lab3_8h_a7e57930cfb2d70ead5a1686d9f36a734}
+
+\begin{DoxyCompactList}\small\item\em Turn on display. \end{DoxyCompactList}\item 
+void \hyperlink{ST7735__lab3_8h_a1719f525285902712d14efeab76cedcd}{Output\+\_\+\+Color} (uint32\+\_\+t new\+Color)
+\begin{DoxyCompactList}\small\item\em set the color for future output Background color is fixed at black \end{DoxyCompactList}\item 
+void \hyperlink{ST7735__lab3_8h_a458e4307692b8df8ab1aef53666e1435}{S\+T7735\+\_\+\+Message} (int device, int line, char $\ast$string, int32\+\_\+t value)
+\begin{DoxyCompactList}\small\item\em Display a string and number on one of two logical displays at a given line number relative to that display. The L\+CD display is logically divided into two displays\+: top and bottom. These logical displays are identified with a device ID. Device 0 is the top display, device 1 is the bottom display. Each logical device has 4 lines, numbered 0 to 3. Prints in black text on a white background. This function is not (yet) reentrant. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is a library for the Adafruit 1.\+8" S\+PI display. 
+
+
+
+\subsection{Function Documentation}
+\index{S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}!Output\+\_\+\+Color@{Output\+\_\+\+Color}}
+\index{Output\+\_\+\+Color@{Output\+\_\+\+Color}!S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}}
+\subsubsection[{\texorpdfstring{Output\+\_\+\+Color(uint32\+\_\+t new\+Color)}{Output_Color(uint32_t newColor)}}]{\setlength{\rightskip}{0pt plus 5cm}void Output\+\_\+\+Color (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{new\+Color}
+\end{DoxyParamCaption}
+)}\hypertarget{ST7735__lab3_8h_a1719f525285902712d14efeab76cedcd}{}\label{ST7735__lab3_8h_a1719f525285902712d14efeab76cedcd}
+
+
+set the color for future output Background color is fixed at black 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Color} & 16-\/bit packed color \\
+\hline
+\end{DoxyParams}
+\index{S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}!S\+T7735\+\_\+\+Color565@{S\+T7735\+\_\+\+Color565}}
+\index{S\+T7735\+\_\+\+Color565@{S\+T7735\+\_\+\+Color565}!S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}}
+\subsubsection[{\texorpdfstring{S\+T7735\+\_\+\+Color565(uint8\+\_\+t r, uint8\+\_\+t g, uint8\+\_\+t b)}{ST7735_Color565(uint8_t r, uint8_t g, uint8_t b)}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t S\+T7735\+\_\+\+Color565 (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{r, }
+\item[{uint8\+\_\+t}]{g, }
+\item[{uint8\+\_\+t}]{b}
+\end{DoxyParamCaption}
+)}\hypertarget{ST7735__lab3_8h_a29294596f660f05ad8738db73ee07cfa}{}\label{ST7735__lab3_8h_a29294596f660f05ad8738db73ee07cfa}
+
+
+Pass 8-\/bit (each) R,G,B and get back 16-\/bit packed color. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & red value \\
+\hline
+{\em g} & green value \\
+\hline
+{\em b} & blue value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint16\+\_\+t 16-\/bit color 
+\end{DoxyReturn}
+\index{S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}!S\+T7735\+\_\+\+Draw\+Bitmap@{S\+T7735\+\_\+\+Draw\+Bitmap}}
+\index{S\+T7735\+\_\+\+Draw\+Bitmap@{S\+T7735\+\_\+\+Draw\+Bitmap}!S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}}
+\subsubsection[{\texorpdfstring{S\+T7735\+\_\+\+Draw\+Bitmap(int16\+\_\+t x, int16\+\_\+t y, const uint16\+\_\+t $\ast$image, int16\+\_\+t w, int16\+\_\+t h)}{ST7735_DrawBitmap(int16_t x, int16_t y, const uint16_t *image, int16_t w, int16_t h)}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+T7735\+\_\+\+Draw\+Bitmap (
+\begin{DoxyParamCaption}
+\item[{int16\+\_\+t}]{x, }
+\item[{int16\+\_\+t}]{y, }
+\item[{const uint16\+\_\+t $\ast$}]{image, }
+\item[{int16\+\_\+t}]{w, }
+\item[{int16\+\_\+t}]{h}
+\end{DoxyParamCaption}
+)}\hypertarget{ST7735__lab3_8h_aaf5af072e5213fcc3d6b852a2553e048}{}\label{ST7735__lab3_8h_aaf5af072e5213fcc3d6b852a2553e048}
+
+
+Displays a 16-\/bit color B\+MP image. A bitmap file that is created by a PC image processing program has a header and may be padded with dummy columns so the data have four byte alignment. This function assumes that all of that has been stripped out, and the array image\mbox{[}\mbox{]} has one 16-\/bit halfword for each pixel to be displayed on the screen (encoded in reverse order, which is standard for bitmap files). An array can be created in this format from a 24-\/bit-\/per-\/pixel .bmp file using the associated converter program. (x,y) is the screen location of the lower left corner of B\+MP image Requires (11 + 2$\ast$w$\ast$h) bytes of transmission (assuming image fully on screen) Must be less than or equal to 128 pixels wide by 160 pixels high. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & horizontal position of the bottom left corner of the image, columns from the left edge \\
+\hline
+{\em y} & vertical position of the bottom left corner of the image, rows from the top edge \\
+\hline
+{\em image} & pointer to a 16-\/bit color B\+MP image \\
+\hline
+{\em w} & number of pixels wide \\
+\hline
+{\em h} & number of pixels tall \\
+\hline
+\end{DoxyParams}
+\index{S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}!S\+T7735\+\_\+\+Draw\+Char@{S\+T7735\+\_\+\+Draw\+Char}}
+\index{S\+T7735\+\_\+\+Draw\+Char@{S\+T7735\+\_\+\+Draw\+Char}!S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}}
+\subsubsection[{\texorpdfstring{S\+T7735\+\_\+\+Draw\+Char(int16\+\_\+t x, int16\+\_\+t y, char c, int16\+\_\+t text\+Color, int16\+\_\+t bg\+Color, uint8\+\_\+t size)}{ST7735_DrawChar(int16_t x, int16_t y, char c, int16_t textColor, int16_t bgColor, uint8_t size)}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+T7735\+\_\+\+Draw\+Char (
+\begin{DoxyParamCaption}
+\item[{int16\+\_\+t}]{x, }
+\item[{int16\+\_\+t}]{y, }
+\item[{char}]{c, }
+\item[{int16\+\_\+t}]{text\+Color, }
+\item[{int16\+\_\+t}]{bg\+Color, }
+\item[{uint8\+\_\+t}]{size}
+\end{DoxyParamCaption}
+)}\hypertarget{ST7735__lab3_8h_a66c54533bdb1555b1e488bb9fcf9885b}{}\label{ST7735__lab3_8h_a66c54533bdb1555b1e488bb9fcf9885b}
+
+
+Advanced character draw function. This is similar to the function from Adafruit\+\_\+\+G\+F\+X.\+c but adapted for this processor. However, this function only uses one call to set\+Addr\+Window(), which allows it to run at least twice as fast. Requires (11 + size$\ast$size$\ast$6$\ast$8) bytes of transmission (assuming image fully on screen) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & horizontal position of the top left corner of the character, columns from the left edge \\
+\hline
+{\em y} & vertical position of the top left corner of the character, rows from the top edge \\
+\hline
+{\em c} & character to be printed \\
+\hline
+{\em text\+Color} & 16-\/bit color of the character \\
+\hline
+{\em bg\+Color} & 16-\/bit color of the background \\
+\hline
+{\em size} & number of pixels per character pixel (e.\+g. size==2 prints each pixel of font as 2x2 square) \\
+\hline
+\end{DoxyParams}
+\index{S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}!S\+T7735\+\_\+\+Draw\+CharS@{S\+T7735\+\_\+\+Draw\+CharS}}
+\index{S\+T7735\+\_\+\+Draw\+CharS@{S\+T7735\+\_\+\+Draw\+CharS}!S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}}
+\subsubsection[{\texorpdfstring{S\+T7735\+\_\+\+Draw\+Char\+S(int16\+\_\+t x, int16\+\_\+t y, char c, int16\+\_\+t text\+Color, int16\+\_\+t bg\+Color, uint8\+\_\+t size)}{ST7735_DrawCharS(int16_t x, int16_t y, char c, int16_t textColor, int16_t bgColor, uint8_t size)}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+T7735\+\_\+\+Draw\+CharS (
+\begin{DoxyParamCaption}
+\item[{int16\+\_\+t}]{x, }
+\item[{int16\+\_\+t}]{y, }
+\item[{char}]{c, }
+\item[{int16\+\_\+t}]{text\+Color, }
+\item[{int16\+\_\+t}]{bg\+Color, }
+\item[{uint8\+\_\+t}]{size}
+\end{DoxyParamCaption}
+)}\hypertarget{ST7735__lab3_8h_a0d092afe5e5a087662adc8e5befa0078}{}\label{ST7735__lab3_8h_a0d092afe5e5a087662adc8e5befa0078}
+
+
+Simple character draw function. This is the same function from Adafruit\+\_\+\+G\+F\+X.\+c but adapted for this processor. However, each call to \hyperlink{ST7735__lab3_8h_aa2dc768f637489753a7b70eac676c4a5}{S\+T7735\+\_\+\+Draw\+Pixel()} calls set\+Addr\+Window(), which needs to send many extra data and commands. If the background color is the same as the text color, no background will be printed, and text can be drawn right over existing images without covering them with a box. Requires (11 + 2$\ast$size$\ast$size)$\ast$6$\ast$8 (image fully on screen; textcolor != bg\+Color) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & horizontal position of the top left corner of the character, columns from the left edge \\
+\hline
+{\em y} & vertical position of the top left corner of the character, rows from the top edge \\
+\hline
+{\em c} & character to be printed \\
+\hline
+{\em text\+Color} & 16-\/bit color of the character \\
+\hline
+{\em bg\+Color} & 16-\/bit color of the background \\
+\hline
+{\em size} & number of pixels per character pixel (e.\+g. size==2 prints each pixel of font as 2x2 square) \\
+\hline
+\end{DoxyParams}
+\index{S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}!S\+T7735\+\_\+\+Draw\+Fast\+H\+Line@{S\+T7735\+\_\+\+Draw\+Fast\+H\+Line}}
+\index{S\+T7735\+\_\+\+Draw\+Fast\+H\+Line@{S\+T7735\+\_\+\+Draw\+Fast\+H\+Line}!S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}}
+\subsubsection[{\texorpdfstring{S\+T7735\+\_\+\+Draw\+Fast\+H\+Line(int16\+\_\+t x, int16\+\_\+t y, int16\+\_\+t w, uint16\+\_\+t color)}{ST7735_DrawFastHLine(int16_t x, int16_t y, int16_t w, uint16_t color)}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+T7735\+\_\+\+Draw\+Fast\+H\+Line (
+\begin{DoxyParamCaption}
+\item[{int16\+\_\+t}]{x, }
+\item[{int16\+\_\+t}]{y, }
+\item[{int16\+\_\+t}]{w, }
+\item[{uint16\+\_\+t}]{color}
+\end{DoxyParamCaption}
+)}\hypertarget{ST7735__lab3_8h_a05c18aa8dd363fe991d5bc73a02e7abc}{}\label{ST7735__lab3_8h_a05c18aa8dd363fe991d5bc73a02e7abc}
+
+
+Draw a horizontal line at the given coordinates with the given width and color. A horizontal line is parallel to the shorter side of the rectangular display Requires (11 + 2$\ast$w) bytes of transmission (assuming image fully on screen) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & horizontal position of the start of the line, columns from the left edge \\
+\hline
+{\em y} & vertical position of the start of the line, rows from the top edge \\
+\hline
+{\em w} & horizontal width of the line \\
+\hline
+{\em color} & 16-\/bit color, which can be produced by \hyperlink{ST7735__lab3_8h_a29294596f660f05ad8738db73ee07cfa}{S\+T7735\+\_\+\+Color565()} \\
+\hline
+\end{DoxyParams}
+\index{S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}!S\+T7735\+\_\+\+Draw\+Fast\+V\+Line@{S\+T7735\+\_\+\+Draw\+Fast\+V\+Line}}
+\index{S\+T7735\+\_\+\+Draw\+Fast\+V\+Line@{S\+T7735\+\_\+\+Draw\+Fast\+V\+Line}!S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}}
+\subsubsection[{\texorpdfstring{S\+T7735\+\_\+\+Draw\+Fast\+V\+Line(int16\+\_\+t x, int16\+\_\+t y, int16\+\_\+t h, uint16\+\_\+t color)}{ST7735_DrawFastVLine(int16_t x, int16_t y, int16_t h, uint16_t color)}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+T7735\+\_\+\+Draw\+Fast\+V\+Line (
+\begin{DoxyParamCaption}
+\item[{int16\+\_\+t}]{x, }
+\item[{int16\+\_\+t}]{y, }
+\item[{int16\+\_\+t}]{h, }
+\item[{uint16\+\_\+t}]{color}
+\end{DoxyParamCaption}
+)}\hypertarget{ST7735__lab3_8h_a2c091bb2f7905e4464a6152015a49989}{}\label{ST7735__lab3_8h_a2c091bb2f7905e4464a6152015a49989}
+
+
+Draw a vertical line at the given coordinates with the given height and color. A vertical line is parallel to the longer side of the rectangular display Requires (11 + 2$\ast$h) bytes of transmission (assuming image fully on screen) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & horizontal position of the start of the line, columns from the left edge \\
+\hline
+{\em y} & vertical position of the start of the line, rows from the top edge \\
+\hline
+{\em h} & vertical height of the line \\
+\hline
+{\em color} & 16-\/bit color, which can be produced by \hyperlink{ST7735__lab3_8h_a29294596f660f05ad8738db73ee07cfa}{S\+T7735\+\_\+\+Color565()} \\
+\hline
+\end{DoxyParams}
+\index{S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}!S\+T7735\+\_\+\+Draw\+Pixel@{S\+T7735\+\_\+\+Draw\+Pixel}}
+\index{S\+T7735\+\_\+\+Draw\+Pixel@{S\+T7735\+\_\+\+Draw\+Pixel}!S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}}
+\subsubsection[{\texorpdfstring{S\+T7735\+\_\+\+Draw\+Pixel(int16\+\_\+t x, int16\+\_\+t y, uint16\+\_\+t color)}{ST7735_DrawPixel(int16_t x, int16_t y, uint16_t color)}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+T7735\+\_\+\+Draw\+Pixel (
+\begin{DoxyParamCaption}
+\item[{int16\+\_\+t}]{x, }
+\item[{int16\+\_\+t}]{y, }
+\item[{uint16\+\_\+t}]{color}
+\end{DoxyParamCaption}
+)}\hypertarget{ST7735__lab3_8h_aa2dc768f637489753a7b70eac676c4a5}{}\label{ST7735__lab3_8h_aa2dc768f637489753a7b70eac676c4a5}
+
+
+Color the pixel at the given coordinates with the given color. Requires 13 bytes of transmission. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & horizontal position of the pixel, columns from the left edge must be less than 128 0 is on the left, 126 is near the right \\
+\hline
+{\em y} & vertical position of the pixel, rows from the top edge must be less than 160 159 is near the wires, 0 is the side opposite the wires \\
+\hline
+{\em color} & 16-\/bit color, which can be produced by \hyperlink{ST7735__lab3_8h_a29294596f660f05ad8738db73ee07cfa}{S\+T7735\+\_\+\+Color565()} \\
+\hline
+\end{DoxyParams}
+\index{S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}!S\+T7735\+\_\+\+Draw\+String@{S\+T7735\+\_\+\+Draw\+String}}
+\index{S\+T7735\+\_\+\+Draw\+String@{S\+T7735\+\_\+\+Draw\+String}!S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}}
+\subsubsection[{\texorpdfstring{S\+T7735\+\_\+\+Draw\+String(uint16\+\_\+t x, uint16\+\_\+t y, char $\ast$pt, int16\+\_\+t text\+Color, int16\+\_\+t bg\+Color)}{ST7735_DrawString(uint16_t x, uint16_t y, char *pt, int16_t textColor, int16_t bgColor)}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t S\+T7735\+\_\+\+Draw\+String (
+\begin{DoxyParamCaption}
+\item[{uint16\+\_\+t}]{x, }
+\item[{uint16\+\_\+t}]{y, }
+\item[{char $\ast$}]{pt, }
+\item[{int16\+\_\+t}]{text\+Color, }
+\item[{int16\+\_\+t}]{bg\+Color}
+\end{DoxyParamCaption}
+)}\hypertarget{ST7735__lab3_8h_a6ba26fa5ccecc77525017d0dcacf037b}{}\label{ST7735__lab3_8h_a6ba26fa5ccecc77525017d0dcacf037b}
+
+
+String draw function. 16 rows (0 to 15) and 21 characters (0 to 20) Requires (11 + size$\ast$size$\ast$6$\ast$8) bytes of transmission for each character If bg\+Color is same as text\+Color, no background will be filled in for chars. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & columns from the left edge (0 to 20) \\
+\hline
+{\em y} & rows from the top edge (0 to 15) \\
+\hline
+{\em pt} & pointer to a null terminated string to be printed \\
+\hline
+{\em text\+Color} & 16-\/bit color of the characters \\
+\hline
+{\em bg\+Color} & 16-\/bit color of the background \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint32\+\_\+t number of characters printed 
+\end{DoxyReturn}
+\index{S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}!S\+T7735\+\_\+\+Fill\+Rect@{S\+T7735\+\_\+\+Fill\+Rect}}
+\index{S\+T7735\+\_\+\+Fill\+Rect@{S\+T7735\+\_\+\+Fill\+Rect}!S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}}
+\subsubsection[{\texorpdfstring{S\+T7735\+\_\+\+Fill\+Rect(int16\+\_\+t x, int16\+\_\+t y, int16\+\_\+t w, int16\+\_\+t h, uint16\+\_\+t color)}{ST7735_FillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color)}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+T7735\+\_\+\+Fill\+Rect (
+\begin{DoxyParamCaption}
+\item[{int16\+\_\+t}]{x, }
+\item[{int16\+\_\+t}]{y, }
+\item[{int16\+\_\+t}]{w, }
+\item[{int16\+\_\+t}]{h, }
+\item[{uint16\+\_\+t}]{color}
+\end{DoxyParamCaption}
+)}\hypertarget{ST7735__lab3_8h_ada283d88275b972d188afad1c8649829}{}\label{ST7735__lab3_8h_ada283d88275b972d188afad1c8649829}
+
+
+Draw a filled rectangle at the given coordinates with the given width, height, and color. Requires (11 + 2$\ast$w$\ast$h) bytes of transmission (assuming image fully on screen) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & horizontal position of the top left corner of the rectangle, columns from the left edge \\
+\hline
+{\em y} & vertical position of the top left corner of the rectangle, rows from the top edge \\
+\hline
+{\em w} & horizontal width of the rectangle \\
+\hline
+{\em h} & vertical height of the rectangle \\
+\hline
+{\em color} & 16-\/bit color, which can be produced by \hyperlink{ST7735__lab3_8h_a29294596f660f05ad8738db73ee07cfa}{S\+T7735\+\_\+\+Color565()} \\
+\hline
+\end{DoxyParams}
+\index{S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}!S\+T7735\+\_\+\+Fill\+Screen@{S\+T7735\+\_\+\+Fill\+Screen}}
+\index{S\+T7735\+\_\+\+Fill\+Screen@{S\+T7735\+\_\+\+Fill\+Screen}!S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}}
+\subsubsection[{\texorpdfstring{S\+T7735\+\_\+\+Fill\+Screen(uint16\+\_\+t color)}{ST7735_FillScreen(uint16_t color)}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+T7735\+\_\+\+Fill\+Screen (
+\begin{DoxyParamCaption}
+\item[{uint16\+\_\+t}]{color}
+\end{DoxyParamCaption}
+)}\hypertarget{ST7735__lab3_8h_a3a14506207ab49aee2c40700b5036271}{}\label{ST7735__lab3_8h_a3a14506207ab49aee2c40700b5036271}
+
+
+Fill the screen with the given color. Requires 40,971 bytes of transmission. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & 16-\/bit color, which can be produced by \hyperlink{ST7735__lab3_8h_a29294596f660f05ad8738db73ee07cfa}{S\+T7735\+\_\+\+Color565()} \\
+\hline
+\end{DoxyParams}
+\index{S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}!S\+T7735\+\_\+\+InitR@{S\+T7735\+\_\+\+InitR}}
+\index{S\+T7735\+\_\+\+InitR@{S\+T7735\+\_\+\+InitR}!S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}}
+\subsubsection[{\texorpdfstring{S\+T7735\+\_\+\+Init\+R(enum init\+R\+Flags option)}{ST7735_InitR(enum initRFlags option)}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+T7735\+\_\+\+InitR (
+\begin{DoxyParamCaption}
+\item[{enum {\bf init\+R\+Flags}}]{option}
+\end{DoxyParamCaption}
+)}\hypertarget{ST7735__lab3_8h_a204a442207d7367ace616bd6bfd79348}{}\label{ST7735__lab3_8h_a204a442207d7367ace616bd6bfd79348}
+
+
+Initialization for S\+T7735R screens (green or red tabs). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em init\+R\+Flags} & one of the enumerated options depending on tabs \\
+\hline
+\end{DoxyParams}
+\index{S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}!S\+T7735\+\_\+\+Invert\+Display@{S\+T7735\+\_\+\+Invert\+Display}}
+\index{S\+T7735\+\_\+\+Invert\+Display@{S\+T7735\+\_\+\+Invert\+Display}!S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}}
+\subsubsection[{\texorpdfstring{S\+T7735\+\_\+\+Invert\+Display(int i)}{ST7735_InvertDisplay(int i)}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+T7735\+\_\+\+Invert\+Display (
+\begin{DoxyParamCaption}
+\item[{int}]{i}
+\end{DoxyParamCaption}
+)}\hypertarget{ST7735__lab3_8h_a2138bd237e97da48ad87137fb616be37}{}\label{ST7735__lab3_8h_a2138bd237e97da48ad87137fb616be37}
+
+
+Send the command to invert all of the colors. Requires 1 byte of transmission. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & 0 to disable inversion; non-\/zero to enable inversion \\
+\hline
+\end{DoxyParams}
+\index{S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}!S\+T7735\+\_\+\+Message@{S\+T7735\+\_\+\+Message}}
+\index{S\+T7735\+\_\+\+Message@{S\+T7735\+\_\+\+Message}!S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}}
+\subsubsection[{\texorpdfstring{S\+T7735\+\_\+\+Message(int device, int line, char $\ast$string, int32\+\_\+t value)}{ST7735_Message(int device, int line, char *string, int32_t value)}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+T7735\+\_\+\+Message (
+\begin{DoxyParamCaption}
+\item[{int}]{device, }
+\item[{int}]{line, }
+\item[{char $\ast$}]{string, }
+\item[{int32\+\_\+t}]{value}
+\end{DoxyParamCaption}
+)}\hypertarget{ST7735__lab3_8h_a458e4307692b8df8ab1aef53666e1435}{}\label{ST7735__lab3_8h_a458e4307692b8df8ab1aef53666e1435}
+
+
+Display a string and number on one of two logical displays at a given line number relative to that display. The L\+CD display is logically divided into two displays\+: top and bottom. These logical displays are identified with a device ID. Device 0 is the top display, device 1 is the bottom display. Each logical device has 4 lines, numbered 0 to 3. Prints in black text on a white background. This function is not (yet) reentrant. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em device} & Device ID, 0 or 1 \\
+\hline
+{\em line} & Line number, 0 to 3, relative to the logical display. \\
+\hline
+{\em string} & Null-\/terminated string to print on the select logical display and line. \\
+\hline
+{\em value} & Integer value printed after the string. \\
+\hline
+\end{DoxyParams}
+\index{S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}!S\+T7735\+\_\+\+Out\+Char@{S\+T7735\+\_\+\+Out\+Char}}
+\index{S\+T7735\+\_\+\+Out\+Char@{S\+T7735\+\_\+\+Out\+Char}!S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}}
+\subsubsection[{\texorpdfstring{S\+T7735\+\_\+\+Out\+Char(char ch)}{ST7735_OutChar(char ch)}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+T7735\+\_\+\+Out\+Char (
+\begin{DoxyParamCaption}
+\item[{char}]{ch}
+\end{DoxyParamCaption}
+)}\hypertarget{ST7735__lab3_8h_a49a0a636404c51a7fe1b54768e47d1eb}{}\label{ST7735__lab3_8h_a49a0a636404c51a7fe1b54768e47d1eb}
+
+
+Output one character to the L\+CD Position determined by S\+T7735\+\_\+\+Set\+Cursor command Color set by S\+T7735\+\_\+\+Set\+Text\+Color. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ch} & 8-\/bit A\+S\+C\+II character \\
+\hline
+\end{DoxyParams}
+\index{S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}!S\+T7735\+\_\+\+Out\+String@{S\+T7735\+\_\+\+Out\+String}}
+\index{S\+T7735\+\_\+\+Out\+String@{S\+T7735\+\_\+\+Out\+String}!S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}}
+\subsubsection[{\texorpdfstring{S\+T7735\+\_\+\+Out\+String(char $\ast$ptr)}{ST7735_OutString(char *ptr)}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+T7735\+\_\+\+Out\+String (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{ptr}
+\end{DoxyParamCaption}
+)}\hypertarget{ST7735__lab3_8h_a6bd647233ed938c4006694552b8fd9a0}{}\label{ST7735__lab3_8h_a6bd647233ed938c4006694552b8fd9a0}
+
+
+Print a string of characters to the S\+T7735 L\+CD. Position determined by S\+T7735\+\_\+\+Set\+Cursor command Color set by S\+T7735\+\_\+\+Set\+Text\+Color The string will not automatically wrap. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ptr} & pointer to N\+U\+L\+L-\/terminated A\+S\+C\+II string \\
+\hline
+\end{DoxyParams}
+\index{S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}!S\+T7735\+\_\+\+Out\+U\+Dec@{S\+T7735\+\_\+\+Out\+U\+Dec}}
+\index{S\+T7735\+\_\+\+Out\+U\+Dec@{S\+T7735\+\_\+\+Out\+U\+Dec}!S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}}
+\subsubsection[{\texorpdfstring{S\+T7735\+\_\+\+Out\+U\+Dec(uint32\+\_\+t n)}{ST7735_OutUDec(uint32_t n)}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+T7735\+\_\+\+Out\+U\+Dec (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{n}
+\end{DoxyParamCaption}
+)}\hypertarget{ST7735__lab3_8h_a072f5f963df6e48f5985977526d2466c}{}\label{ST7735__lab3_8h_a072f5f963df6e48f5985977526d2466c}
+
+
+Output a 32-\/bit number in unsigned decimal format Position determined by S\+T7735\+\_\+\+Set\+Cursor command Color set by S\+T7735\+\_\+\+Set\+Text\+Color. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & 32-\/bit number to be transferred \\
+\hline
+\end{DoxyParams}
+\index{S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}!S\+T7735\+\_\+\+Plot\+Bar@{S\+T7735\+\_\+\+Plot\+Bar}}
+\index{S\+T7735\+\_\+\+Plot\+Bar@{S\+T7735\+\_\+\+Plot\+Bar}!S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}}
+\subsubsection[{\texorpdfstring{S\+T7735\+\_\+\+Plot\+Bar(int32\+\_\+t y)}{ST7735_PlotBar(int32_t y)}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+T7735\+\_\+\+Plot\+Bar (
+\begin{DoxyParamCaption}
+\item[{int32\+\_\+t}]{y}
+\end{DoxyParamCaption}
+)}\hypertarget{ST7735__lab3_8h_adff58b909cb89f694117603da4ab7a1b}{}\label{ST7735__lab3_8h_adff58b909cb89f694117603da4ab7a1b}
+
+
+Used in the voltage versus time bar, plot one bar at y It does not output to display until R\+I\+T128x96x4\+Show\+Plot called. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em y} & the y coordinate of the bar plotted \\
+\hline
+\end{DoxyParams}
+\index{S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}!S\+T7735\+\_\+\+Plot\+Clear@{S\+T7735\+\_\+\+Plot\+Clear}}
+\index{S\+T7735\+\_\+\+Plot\+Clear@{S\+T7735\+\_\+\+Plot\+Clear}!S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}}
+\subsubsection[{\texorpdfstring{S\+T7735\+\_\+\+Plot\+Clear(int32\+\_\+t ymin, int32\+\_\+t ymax)}{ST7735_PlotClear(int32_t ymin, int32_t ymax)}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+T7735\+\_\+\+Plot\+Clear (
+\begin{DoxyParamCaption}
+\item[{int32\+\_\+t}]{ymin, }
+\item[{int32\+\_\+t}]{ymax}
+\end{DoxyParamCaption}
+)}\hypertarget{ST7735__lab3_8h_affbb292ebbf7082c331ab6195da3385c}{}\label{ST7735__lab3_8h_affbb292ebbf7082c331ab6195da3385c}
+
+
+Clear the graphics buffer, set X coordinate to 0 This routine clears the display. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ymin} & Lower bound of plot \\
+\hline
+{\em ymax} & Upper bound of plot \\
+\hline
+\end{DoxyParams}
+\index{S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}!S\+T7735\+\_\+\+Plotd\+Bfs@{S\+T7735\+\_\+\+Plotd\+Bfs}}
+\index{S\+T7735\+\_\+\+Plotd\+Bfs@{S\+T7735\+\_\+\+Plotd\+Bfs}!S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}}
+\subsubsection[{\texorpdfstring{S\+T7735\+\_\+\+Plotd\+Bfs(int32\+\_\+t y)}{ST7735_PlotdBfs(int32_t y)}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+T7735\+\_\+\+Plotd\+Bfs (
+\begin{DoxyParamCaption}
+\item[{int32\+\_\+t}]{y}
+\end{DoxyParamCaption}
+)}\hypertarget{ST7735__lab3_8h_a179ccebd4bfe4529903a02ce797e78ea}{}\label{ST7735__lab3_8h_a179ccebd4bfe4529903a02ce797e78ea}
+
+
+Used in the amplitude versus frequency plot, plot bar point at y 0 to 0.\+625V scaled on a log plot from min to max It does output to display. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em y} & the y A\+DC value of the bar plotted \\
+\hline
+\end{DoxyParams}
+\index{S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}!S\+T7735\+\_\+\+Plot\+Line@{S\+T7735\+\_\+\+Plot\+Line}}
+\index{S\+T7735\+\_\+\+Plot\+Line@{S\+T7735\+\_\+\+Plot\+Line}!S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}}
+\subsubsection[{\texorpdfstring{S\+T7735\+\_\+\+Plot\+Line(int32\+\_\+t y)}{ST7735_PlotLine(int32_t y)}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+T7735\+\_\+\+Plot\+Line (
+\begin{DoxyParamCaption}
+\item[{int32\+\_\+t}]{y}
+\end{DoxyParamCaption}
+)}\hypertarget{ST7735__lab3_8h_a3b19f449b1072070e3dd7f92ce8150fa}{}\label{ST7735__lab3_8h_a3b19f449b1072070e3dd7f92ce8150fa}
+
+
+Used in the voltage versus time plot, plot line to new point It does output to display. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em y} & the y coordinate of the point plotted \\
+\hline
+\end{DoxyParams}
+\index{S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}!S\+T7735\+\_\+\+Plot\+Point@{S\+T7735\+\_\+\+Plot\+Point}}
+\index{S\+T7735\+\_\+\+Plot\+Point@{S\+T7735\+\_\+\+Plot\+Point}!S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}}
+\subsubsection[{\texorpdfstring{S\+T7735\+\_\+\+Plot\+Point(int32\+\_\+t y)}{ST7735_PlotPoint(int32_t y)}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+T7735\+\_\+\+Plot\+Point (
+\begin{DoxyParamCaption}
+\item[{int32\+\_\+t}]{y}
+\end{DoxyParamCaption}
+)}\hypertarget{ST7735__lab3_8h_a1ae5c293f7cf004c66ca1c0f0d365fcd}{}\label{ST7735__lab3_8h_a1ae5c293f7cf004c66ca1c0f0d365fcd}
+
+
+Used in the voltage versus time plot, plot one point at y It does output to display. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em y} & the y coordinate of the point plotted \\
+\hline
+\end{DoxyParams}
+\index{S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}!S\+T7735\+\_\+\+Plot\+Points@{S\+T7735\+\_\+\+Plot\+Points}}
+\index{S\+T7735\+\_\+\+Plot\+Points@{S\+T7735\+\_\+\+Plot\+Points}!S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}}
+\subsubsection[{\texorpdfstring{S\+T7735\+\_\+\+Plot\+Points(int32\+\_\+t y1, int32\+\_\+t y2)}{ST7735_PlotPoints(int32_t y1, int32_t y2)}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+T7735\+\_\+\+Plot\+Points (
+\begin{DoxyParamCaption}
+\item[{int32\+\_\+t}]{y1, }
+\item[{int32\+\_\+t}]{y2}
+\end{DoxyParamCaption}
+)}\hypertarget{ST7735__lab3_8h_af8a878e2129edc09d38b3f3aadcad42f}{}\label{ST7735__lab3_8h_af8a878e2129edc09d38b3f3aadcad42f}
+
+
+Used in the voltage versus time plot, plot two points at y1, y2 It does output to display. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em y1} & the y coordinate of the first point plotted \\
+\hline
+{\em y2} & the y coordinate of the second point plotted \\
+\hline
+\end{DoxyParams}
+\index{S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}!S\+T7735\+\_\+\+Set\+Cursor@{S\+T7735\+\_\+\+Set\+Cursor}}
+\index{S\+T7735\+\_\+\+Set\+Cursor@{S\+T7735\+\_\+\+Set\+Cursor}!S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}}
+\subsubsection[{\texorpdfstring{S\+T7735\+\_\+\+Set\+Cursor(uint32\+\_\+t new\+X, uint32\+\_\+t new\+Y)}{ST7735_SetCursor(uint32_t newX, uint32_t newY)}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+T7735\+\_\+\+Set\+Cursor (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{newX, }
+\item[{uint32\+\_\+t}]{newY}
+\end{DoxyParamCaption}
+)}\hypertarget{ST7735__lab3_8h_a6edc4479f68eb34624157cc1dda2cbb3}{}\label{ST7735__lab3_8h_a6edc4479f68eb34624157cc1dda2cbb3}
+
+
+Move the cursor to the desired X-\/ and Y-\/position. The next character will be printed here. X=0 is the leftmost column. Y=0 is the top row. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em newX} & new X-\/position of the cursor (0$<$=newX$<$=20) \\
+\hline
+{\em newY} & new Y-\/position of the cursor (0$<$=newY$<$=15) \\
+\hline
+\end{DoxyParams}
+\index{S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}!S\+T7735\+\_\+\+Set\+Rotation@{S\+T7735\+\_\+\+Set\+Rotation}}
+\index{S\+T7735\+\_\+\+Set\+Rotation@{S\+T7735\+\_\+\+Set\+Rotation}!S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}}
+\subsubsection[{\texorpdfstring{S\+T7735\+\_\+\+Set\+Rotation(uint8\+\_\+t m)}{ST7735_SetRotation(uint8_t m)}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+T7735\+\_\+\+Set\+Rotation (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{m}
+\end{DoxyParamCaption}
+)}\hypertarget{ST7735__lab3_8h_ac07019a4990ece959dd04dd58339f839}{}\label{ST7735__lab3_8h_ac07019a4990ece959dd04dd58339f839}
+
+
+Change the image rotation. Requires 2 bytes of transmission. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & new rotation value (0 to 3) \\
+\hline
+\end{DoxyParams}
+\index{S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}!S\+T7735\+\_\+\+Set\+Text\+Color@{S\+T7735\+\_\+\+Set\+Text\+Color}}
+\index{S\+T7735\+\_\+\+Set\+Text\+Color@{S\+T7735\+\_\+\+Set\+Text\+Color}!S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}}
+\subsubsection[{\texorpdfstring{S\+T7735\+\_\+\+Set\+Text\+Color(uint16\+\_\+t color)}{ST7735_SetTextColor(uint16_t color)}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+T7735\+\_\+\+Set\+Text\+Color (
+\begin{DoxyParamCaption}
+\item[{uint16\+\_\+t}]{color}
+\end{DoxyParamCaption}
+)}\hypertarget{ST7735__lab3_8h_a749b305138c366373f55e39a2ae15f17}{}\label{ST7735__lab3_8h_a749b305138c366373f55e39a2ae15f17}
+
+
+Sets the color in which the characters will be printed Background color is fixed at black. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & 16-\/bit packed color \\
+\hline
+\end{DoxyParams}
+\index{S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}!S\+T7735\+\_\+\+Swap\+Color@{S\+T7735\+\_\+\+Swap\+Color}}
+\index{S\+T7735\+\_\+\+Swap\+Color@{S\+T7735\+\_\+\+Swap\+Color}!S\+T7735\+\_\+lab3.\+h@{S\+T7735\+\_\+lab3.\+h}}
+\subsubsection[{\texorpdfstring{S\+T7735\+\_\+\+Swap\+Color(uint16\+\_\+t x)}{ST7735_SwapColor(uint16_t x)}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t S\+T7735\+\_\+\+Swap\+Color (
+\begin{DoxyParamCaption}
+\item[{uint16\+\_\+t}]{x}
+\end{DoxyParamCaption}
+)}\hypertarget{ST7735__lab3_8h_acd13666f7002b9b8cb7a11164b2203ca}{}\label{ST7735__lab3_8h_acd13666f7002b9b8cb7a11164b2203ca}
+
+
+Swaps the red and blue values of the given 16-\/bit packed color; green is unchanged. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & 16-\/bit color in format B, G, R \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint16\+\_\+t 16-\/bit color in format R, G, B 
+\end{DoxyReturn}

@@ -1,0 +1,103 @@
+\hypertarget{can0_8h}{}\section{inc/can0.h File Reference}
+\label{can0_8h}\index{inc/can0.\+h@{inc/can0.\+h}}
+
+
+Use C\+A\+N0 to communicate on C\+AN bus Conventions\+:  
+
+
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries C\+A\+N\+\_\+\+B\+I\+T\+R\+A\+TE}~1000000\hypertarget{can0_8h_a936618a4fbd892618b0865b86a1fb22c}{}\label{can0_8h_a936618a4fbd892618b0865b86a1fb22c}
+
+\item 
+\#define {\bfseries R\+C\+V\+\_\+\+ID}~2\hypertarget{can0_8h_a56fba6772e038fe10c0dd8e4bcf20641}{}\label{can0_8h_a56fba6772e038fe10c0dd8e4bcf20641}
+
+\item 
+\#define {\bfseries X\+M\+T\+\_\+\+ID}~4\hypertarget{can0_8h_a4aa12540af41a668b2be0ae7a0656656}{}\label{can0_8h_a4aa12540af41a668b2be0ae7a0656656}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{can0_8h_a7c722dac971907f73490aa629ef6679a}{C\+A\+N0\+\_\+\+Get\+Mailwith\+Idx} (uint8\+\_\+t data\mbox{[}4\mbox{]}, int rxidx)
+\begin{DoxyCompactList}\small\item\em If receive data is ready, gets the data. \end{DoxyCompactList}\item 
+void \hyperlink{can0_8h_a5712d64a91eff0d7ae721b0c38285a0b}{C\+A\+N0\+\_\+\+Open} (void)\hypertarget{can0_8h_a5712d64a91eff0d7ae721b0c38285a0b}{}\label{can0_8h_a5712d64a91eff0d7ae721b0c38285a0b}
+
+\begin{DoxyCompactList}\small\item\em Initialize C\+A\+N0 port. \end{DoxyCompactList}\item 
+int \hyperlink{can0_8h_a0bf38cded711898d15b920026526a379}{C\+A\+N0\+\_\+\+Set\+Recv} (int idx)
+\begin{DoxyCompactList}\small\item\em Set handler work for specific recieve ID. \end{DoxyCompactList}\item 
+void \hyperlink{can0_8h_a1b63d0fab42d3831fe2a04db5ece1387}{C\+A\+N0\+\_\+\+Send\+Datawith\+Idx} (uint8\+\_\+t data\mbox{[}4\mbox{]}, int idx)
+\begin{DoxyCompactList}\small\item\em Send 4 bytes of data to other microcontroller. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Use C\+A\+N0 to communicate on C\+AN bus Conventions\+: 
+
+\begin{DoxyAuthor}{Author}
+Jonathan Valvano and modified by Jeageun Jung
+\end{DoxyAuthor}
+
+\begin{DoxyItemize}
+\item How to use \+: When Initialize OS, \hyperlink{can0_8h_a5712d64a91eff0d7ae721b0c38285a0b}{C\+A\+N0\+\_\+\+Open()} one time. Every ID that want to use as an receive port, C\+A\+N0\+\_\+\+Set\+Recv(receive idx) to make interrupt for specific index. C\+A\+N0\+\_\+\+Get\+Mailwith\+Idx(data, index) in the point that we want to get data. It automatically block code until data arrive using blocking semaphore. C\+A\+N0\+\_\+\+Send\+Datawith\+Idx(data, index) when we have data to send.
+\item Pin configurations\+: C\+A\+N0\+Rx P\+E4 (8) I T\+TL C\+AN module 0 receive. C\+A\+N0\+Tx P\+E5 (8) O T\+TL C\+AN module 0 transmit. \begin{DoxyCopyright}{Copyright}
+Copyright (c) 2019 
+\end{DoxyCopyright}
+
+\end{DoxyItemize}
+
+\subsection{Function Documentation}
+\index{can0.\+h@{can0.\+h}!C\+A\+N0\+\_\+\+Get\+Mailwith\+Idx@{C\+A\+N0\+\_\+\+Get\+Mailwith\+Idx}}
+\index{C\+A\+N0\+\_\+\+Get\+Mailwith\+Idx@{C\+A\+N0\+\_\+\+Get\+Mailwith\+Idx}!can0.\+h@{can0.\+h}}
+\subsubsection[{\texorpdfstring{C\+A\+N0\+\_\+\+Get\+Mailwith\+Idx(uint8\+\_\+t data[4], int rxidx)}{CAN0_GetMailwithIdx(uint8_t data[4], int rxidx)}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+N0\+\_\+\+Get\+Mailwith\+Idx (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{data\mbox{[}4\mbox{]}, }
+\item[{int}]{rxidx}
+\end{DoxyParamCaption}
+)}\hypertarget{can0_8h_a7c722dac971907f73490aa629ef6679a}{}\label{can0_8h_a7c722dac971907f73490aa629ef6679a}
+
+
+If receive data is ready, gets the data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Pointer to get data \\
+\hline
+{\em rxidx} & Recieve ID which is previously opened \\
+\hline
+\end{DoxyParams}
+\index{can0.\+h@{can0.\+h}!C\+A\+N0\+\_\+\+Send\+Datawith\+Idx@{C\+A\+N0\+\_\+\+Send\+Datawith\+Idx}}
+\index{C\+A\+N0\+\_\+\+Send\+Datawith\+Idx@{C\+A\+N0\+\_\+\+Send\+Datawith\+Idx}!can0.\+h@{can0.\+h}}
+\subsubsection[{\texorpdfstring{C\+A\+N0\+\_\+\+Send\+Datawith\+Idx(uint8\+\_\+t data[4], int idx)}{CAN0_SendDatawithIdx(uint8_t data[4], int idx)}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+N0\+\_\+\+Send\+Datawith\+Idx (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{data\mbox{[}4\mbox{]}, }
+\item[{int}]{idx}
+\end{DoxyParamCaption}
+)}\hypertarget{can0_8h_a1b63d0fab42d3831fe2a04db5ece1387}{}\label{can0_8h_a1b63d0fab42d3831fe2a04db5ece1387}
+
+
+Send 4 bytes of data to other microcontroller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Pointer to send data \\
+\hline
+{\em idx} & ID to send the data \\
+\hline
+\end{DoxyParams}
+\index{can0.\+h@{can0.\+h}!C\+A\+N0\+\_\+\+Set\+Recv@{C\+A\+N0\+\_\+\+Set\+Recv}}
+\index{C\+A\+N0\+\_\+\+Set\+Recv@{C\+A\+N0\+\_\+\+Set\+Recv}!can0.\+h@{can0.\+h}}
+\subsubsection[{\texorpdfstring{C\+A\+N0\+\_\+\+Set\+Recv(int idx)}{CAN0_SetRecv(int idx)}}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+N0\+\_\+\+Set\+Recv (
+\begin{DoxyParamCaption}
+\item[{int}]{idx}
+\end{DoxyParamCaption}
+)}\hypertarget{can0_8h_a0bf38cded711898d15b920026526a379}{}\label{can0_8h_a0bf38cded711898d15b920026526a379}
+
+
+Set handler work for specific recieve ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em idx} & ID to use for recieving data \\
+\hline
+\end{DoxyParams}

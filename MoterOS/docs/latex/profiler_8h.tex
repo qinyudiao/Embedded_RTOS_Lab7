@@ -1,0 +1,91 @@
+\hypertarget{profiler_8h}{}\section{inc/profiler.h File Reference}
+\label{profiler_8h}\index{inc/profiler.\+h@{inc/profiler.\+h}}
+
+
+Thread profiler utility.  
+
+
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structevent__t}{event\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries E\+V\+E\+N\+T\+\_\+\+M\+A\+G\+IC}~(0x02344629)\hypertarget{profiler_8h_a6367e260239294864a6ec977ed48cc02}{}\label{profiler_8h_a6367e260239294864a6ec977ed48cc02}
+
+\item 
+\#define {\bfseries M\+A\+X\+\_\+\+E\+V\+E\+N\+TS}~(100)\hypertarget{profiler_8h_ae42954bb8545d24e3e9dcde5920c9a0b}{}\label{profiler_8h_ae42954bb8545d24e3e9dcde5920c9a0b}
+
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries event\+\_\+type\+\_\+e} \{ {\bfseries E\+V\+E\+N\+T\+\_\+\+F\+G\+T\+H\+\_\+\+S\+T\+A\+RT}, 
+{\bfseries E\+V\+E\+N\+T\+\_\+\+P\+T\+H\+\_\+\+S\+T\+A\+RT}, 
+{\bfseries E\+V\+E\+N\+T\+\_\+\+P\+T\+H\+\_\+\+E\+ND}, 
+{\bfseries E\+V\+E\+N\+T\+\_\+\+N\+U\+M\+\_\+\+T\+Y\+P\+ES}
+ \}\hypertarget{profiler_8h_ab9a826a649bbc6b8084e7c7d6bc23881}{}\label{profiler_8h_ab9a826a649bbc6b8084e7c7d6bc23881}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{profiler_8h_a6f5baaa09bec86812a3c79abb07729d9}{Profiler\+\_\+\+Init} (void)\hypertarget{profiler_8h_a6f5baaa09bec86812a3c79abb07729d9}{}\label{profiler_8h_a6f5baaa09bec86812a3c79abb07729d9}
+
+\begin{DoxyCompactList}\small\item\em Initialize the thread profiler. Call before use. \end{DoxyCompactList}\item 
+int \hyperlink{profiler_8h_a5ecc289aa64f3dc4268e3d85176ca338}{Profiler\+\_\+\+Event} (event\+\_\+type\+\_\+e event\+\_\+type, char $\ast$event\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Register an event has occurred in the profiler. \end{DoxyCompactList}\item 
+void \hyperlink{profiler_8h_aac136c299cd1261916a32c6cb68a8b28}{Profiler\+\_\+\+Clear} (void)\hypertarget{profiler_8h_aac136c299cd1261916a32c6cb68a8b28}{}\label{profiler_8h_aac136c299cd1261916a32c6cb68a8b28}
+
+\begin{DoxyCompactList}\small\item\em Clear profiler history. \end{DoxyCompactList}\item 
+void \hyperlink{profiler_8h_a828422b77b8c01f615b99c1e060aa5de}{Profiler\+\_\+\+Foreach} (void($\ast$f)(const \hyperlink{structevent__t}{event\+\_\+t} $\ast$))
+\begin{DoxyCompactList}\small\item\em Executes a function f on each event in the log in the order they occurred in the system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Thread profiler utility. 
+
+\begin{DoxyAuthor}{Author}
+Riley Wood (\href{mailto:riley.wood@utexas.edu}{\tt riley.\+wood@utexas.\+edu}) 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\index{profiler.\+h@{profiler.\+h}!Profiler\+\_\+\+Event@{Profiler\+\_\+\+Event}}
+\index{Profiler\+\_\+\+Event@{Profiler\+\_\+\+Event}!profiler.\+h@{profiler.\+h}}
+\subsubsection[{\texorpdfstring{Profiler\+\_\+\+Event(event\+\_\+type\+\_\+e event\+\_\+type, char $\ast$event\+\_\+name)}{Profiler_Event(event_type_e event_type, char *event_name)}}]{\setlength{\rightskip}{0pt plus 5cm}int Profiler\+\_\+\+Event (
+\begin{DoxyParamCaption}
+\item[{event\+\_\+type\+\_\+e}]{event\+\_\+type, }
+\item[{char $\ast$}]{event\+\_\+name}
+\end{DoxyParamCaption}
+)}\hypertarget{profiler_8h_a5ecc289aa64f3dc4268e3d85176ca338}{}\label{profiler_8h_a5ecc289aa64f3dc4268e3d85176ca338}
+
+
+Register an event has occurred in the profiler. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event\+\_\+id} & ID of the event that occurred\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/1 on error, 0 on success 
+\end{DoxyReturn}
+\index{profiler.\+h@{profiler.\+h}!Profiler\+\_\+\+Foreach@{Profiler\+\_\+\+Foreach}}
+\index{Profiler\+\_\+\+Foreach@{Profiler\+\_\+\+Foreach}!profiler.\+h@{profiler.\+h}}
+\subsubsection[{\texorpdfstring{Profiler\+\_\+\+Foreach(void($\ast$f)(const event\+\_\+t $\ast$))}{Profiler_Foreach(void(*f)(const event_t *))}}]{\setlength{\rightskip}{0pt plus 5cm}void Profiler\+\_\+\+Foreach (
+\begin{DoxyParamCaption}
+\item[{void($\ast$)(const {\bf event\+\_\+t} $\ast$)}]{f}
+\end{DoxyParamCaption}
+)}\hypertarget{profiler_8h_a828422b77b8c01f615b99c1e060aa5de}{}\label{profiler_8h_a828422b77b8c01f615b99c1e060aa5de}
+
+
+Executes a function f on each event in the log in the order they occurred in the system. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & Function to execute on each event in the log. \\
+\hline
+\end{DoxyParams}

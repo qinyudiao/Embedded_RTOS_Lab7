@@ -1,0 +1,334 @@
+\hypertarget{eFile_8h}{}\section{inc/e\+File.h File Reference}
+\label{eFile_8h}\index{inc/e\+File.\+h@{inc/e\+File.\+h}}
+
+
+high-\/level file system  
+
+
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{eFile_8h_aabd3d6fbc5392d6fc27e65c63d633548}{e\+File\+\_\+\+Init} (void)
+\begin{DoxyCompactList}\small\item\em Activate the file system, without formating. \end{DoxyCompactList}\item 
+int \hyperlink{eFile_8h_ae7812a1b639e7107dbf5ebb166737cec}{e\+File\+\_\+\+Format} (void)
+\begin{DoxyCompactList}\small\item\em Format the disk. \end{DoxyCompactList}\item 
+int \hyperlink{eFile_8h_a00f42b4968d5a2d2627f2515b60a65d8}{e\+File\+\_\+\+Create} (char name\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Create a new file. \end{DoxyCompactList}\item 
+int \hyperlink{eFile_8h_abd7b532ab73309cd8ba9dcd4539ea04f}{e\+File\+\_\+\+W\+Open} (char name\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Open an existing file for writing. \end{DoxyCompactList}\item 
+int \hyperlink{eFile_8h_a41a38a50deb424e0e7672e51bb9c1ca3}{e\+File\+\_\+\+Write} (char data)
+\begin{DoxyCompactList}\small\item\em Format the disk. \end{DoxyCompactList}\item 
+int \hyperlink{eFile_8h_a4868d9ed04279e7e62743e90a40523ff}{e\+File\+\_\+\+Close} (void)
+\begin{DoxyCompactList}\small\item\em Close the disk. \end{DoxyCompactList}\item 
+int \hyperlink{eFile_8h_a68df762a5710e57e759cb51c89d96c2c}{e\+File\+\_\+\+W\+Close} (void)
+\begin{DoxyCompactList}\small\item\em Close the file that was being written. \end{DoxyCompactList}\item 
+int \hyperlink{eFile_8h_a2affef181e666b5a1a43185b67602834}{e\+File\+\_\+\+R\+Open} (char name\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Open an existing file for reading. \end{DoxyCompactList}\item 
+int \hyperlink{eFile_8h_acd2e14c3498c0d9a820737cd459ef6fb}{e\+File\+\_\+\+Read\+Next} (char $\ast$pt)
+\begin{DoxyCompactList}\small\item\em Retreive data from open file. \end{DoxyCompactList}\item 
+int \hyperlink{eFile_8h_a0d4b4d9cddb15950b6d7fa76a1870f1c}{e\+File\+\_\+\+R\+Close} (void)
+\begin{DoxyCompactList}\small\item\em Close the file that was being read. \end{DoxyCompactList}\item 
+int \hyperlink{eFile_8h_a8917d27f4e025a5c952b3e6c1fe8f9cc}{e\+File\+\_\+\+Directory} (void($\ast$fp)(char))
+\begin{DoxyCompactList}\small\item\em Show directory. \end{DoxyCompactList}\item 
+int \hyperlink{eFile_8h_aa939b7793cd6852026d5e3355e85d2d1}{e\+File\+\_\+\+Delete} (char name\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em delete this file \end{DoxyCompactList}\item 
+int \hyperlink{eFile_8h_ae6d4b2da3ee16668a707310e085fcc52}{e\+File\+\_\+\+Redirect\+To\+File} (char $\ast$name)
+\begin{DoxyCompactList}\small\item\em redirect printf output into this file \end{DoxyCompactList}\item 
+int \hyperlink{eFile_8h_a4007427effe89e1d02fdbccaf137a3d7}{e\+File\+\_\+\+End\+Redirect\+To\+File} (void)
+\begin{DoxyCompactList}\small\item\em Stop streaming printf to file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+high-\/level file system 
+
+This file system sits on top of e\+Disk. \begin{DoxyVersion}{Version}
+V1.\+0 
+\end{DoxyVersion}
+\begin{DoxyAuthor}{Author}
+Interface by JW Valvano, implementation by Riley Wood and Jeageun Jung 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+Copyright 2017 by Jonathan W. Valvano, \href{mailto:valvano@mail.utexas.edu}{\tt valvano@mail.\+utexas.\+edu}, 
+\end{DoxyCopyright}
+\begin{DoxyWarning}{Warning}
+A\+S-\/\+IS 
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+For more information see \href{http://users.ece.utexas.edu/~valvano/}{\tt http\+://users.\+ece.\+utexas.\+edu/$\sim$valvano/} 
+\end{DoxyNote}
+\begin{DoxyDate}{Date}
+March 9, 2017 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\index{e\+File.\+h@{e\+File.\+h}!e\+File\+\_\+\+Close@{e\+File\+\_\+\+Close}}
+\index{e\+File\+\_\+\+Close@{e\+File\+\_\+\+Close}!e\+File.\+h@{e\+File.\+h}}
+\subsubsection[{\texorpdfstring{e\+File\+\_\+\+Close(void)}{eFile_Close(void)}}]{\setlength{\rightskip}{0pt plus 5cm}int e\+File\+\_\+\+Close (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{eFile_8h_a4868d9ed04279e7e62743e90a40523ff}{}\label{eFile_8h_a4868d9ed04279e7e62743e90a40523ff}
+
+
+Close the disk. 
+
+Deactivate the file system. One can reactive the file system with e\+File\+\_\+\+Init. 
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful and 1 on failure (e.\+g., trouble writing to flash) 
+\end{DoxyReturn}
+\index{e\+File.\+h@{e\+File.\+h}!e\+File\+\_\+\+Create@{e\+File\+\_\+\+Create}}
+\index{e\+File\+\_\+\+Create@{e\+File\+\_\+\+Create}!e\+File.\+h@{e\+File.\+h}}
+\subsubsection[{\texorpdfstring{e\+File\+\_\+\+Create(char name[])}{eFile_Create(char name[])}}]{\setlength{\rightskip}{0pt plus 5cm}int e\+File\+\_\+\+Create (
+\begin{DoxyParamCaption}
+\item[{char}]{name\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}\hypertarget{eFile_8h_a00f42b4968d5a2d2627f2515b60a65d8}{}\label{eFile_8h_a00f42b4968d5a2d2627f2515b60a65d8}
+
+
+Create a new file. 
+
+Create a new, empty file with one allocated block 
+\begin{DoxyParams}{Parameters}
+{\em name} & file name is an A\+S\+C\+II string up to seven characters \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful and 1 on failure (e.\+g., already exists) 
+\end{DoxyReturn}
+\index{e\+File.\+h@{e\+File.\+h}!e\+File\+\_\+\+Delete@{e\+File\+\_\+\+Delete}}
+\index{e\+File\+\_\+\+Delete@{e\+File\+\_\+\+Delete}!e\+File.\+h@{e\+File.\+h}}
+\subsubsection[{\texorpdfstring{e\+File\+\_\+\+Delete(char name[])}{eFile_Delete(char name[])}}]{\setlength{\rightskip}{0pt plus 5cm}int e\+File\+\_\+\+Delete (
+\begin{DoxyParamCaption}
+\item[{char}]{name\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}\hypertarget{eFile_8h_aa939b7793cd6852026d5e3355e85d2d1}{}\label{eFile_8h_aa939b7793cd6852026d5e3355e85d2d1}
+
+
+delete this file 
+
+Delete the file with this name, recover blocks so they can be used by another file 
+\begin{DoxyParams}{Parameters}
+{\em name} & file name is an A\+S\+C\+II string up to seven characters \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful and 1 on failure (e.\+g., file doesn\textquotesingle{}t exist) 
+\end{DoxyReturn}
+\index{e\+File.\+h@{e\+File.\+h}!e\+File\+\_\+\+Directory@{e\+File\+\_\+\+Directory}}
+\index{e\+File\+\_\+\+Directory@{e\+File\+\_\+\+Directory}!e\+File.\+h@{e\+File.\+h}}
+\subsubsection[{\texorpdfstring{e\+File\+\_\+\+Directory(void($\ast$fp)(char))}{eFile_Directory(void(*fp)(char))}}]{\setlength{\rightskip}{0pt plus 5cm}int e\+File\+\_\+\+Directory (
+\begin{DoxyParamCaption}
+\item[{void($\ast$)(char)}]{fp}
+\end{DoxyParamCaption}
+)}\hypertarget{eFile_8h_a8917d27f4e025a5c952b3e6c1fe8f9cc}{}\label{eFile_8h_a8917d27f4e025a5c952b3e6c1fe8f9cc}
+
+
+Show directory. 
+
+Display the directory with filenames and sizes 
+\begin{DoxyParams}{Parameters}
+{\em fp} & pointer to a function that outputs A\+S\+C\+II characters to display \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful and 1 on failure (e.\+g., trouble reading from flash) 
+\end{DoxyReturn}
+\index{e\+File.\+h@{e\+File.\+h}!e\+File\+\_\+\+End\+Redirect\+To\+File@{e\+File\+\_\+\+End\+Redirect\+To\+File}}
+\index{e\+File\+\_\+\+End\+Redirect\+To\+File@{e\+File\+\_\+\+End\+Redirect\+To\+File}!e\+File.\+h@{e\+File.\+h}}
+\subsubsection[{\texorpdfstring{e\+File\+\_\+\+End\+Redirect\+To\+File(void)}{eFile_EndRedirectToFile(void)}}]{\setlength{\rightskip}{0pt plus 5cm}int e\+File\+\_\+\+End\+Redirect\+To\+File (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{eFile_8h_a4007427effe89e1d02fdbccaf137a3d7}{}\label{eFile_8h_a4007427effe89e1d02fdbccaf137a3d7}
+
+
+Stop streaming printf to file. 
+
+close the file for writing, redirect stream I/O (printf) back to the U\+A\+RT 
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful and 1 on failure (e.\+g., trouble writing) 
+\end{DoxyReturn}
+\index{e\+File.\+h@{e\+File.\+h}!e\+File\+\_\+\+Format@{e\+File\+\_\+\+Format}}
+\index{e\+File\+\_\+\+Format@{e\+File\+\_\+\+Format}!e\+File.\+h@{e\+File.\+h}}
+\subsubsection[{\texorpdfstring{e\+File\+\_\+\+Format(void)}{eFile_Format(void)}}]{\setlength{\rightskip}{0pt plus 5cm}int e\+File\+\_\+\+Format (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{eFile_8h_ae7812a1b639e7107dbf5ebb166737cec}{}\label{eFile_8h_ae7812a1b639e7107dbf5ebb166737cec}
+
+
+Format the disk. 
+
+Erase all files, create blank directory, initialize free space manager 
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful and 1 on failure (e.\+g., trouble writing to flash) 
+\end{DoxyReturn}
+\index{e\+File.\+h@{e\+File.\+h}!e\+File\+\_\+\+Init@{e\+File\+\_\+\+Init}}
+\index{e\+File\+\_\+\+Init@{e\+File\+\_\+\+Init}!e\+File.\+h@{e\+File.\+h}}
+\subsubsection[{\texorpdfstring{e\+File\+\_\+\+Init(void)}{eFile_Init(void)}}]{\setlength{\rightskip}{0pt plus 5cm}int e\+File\+\_\+\+Init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{eFile_8h_aabd3d6fbc5392d6fc27e65c63d633548}{}\label{eFile_8h_aabd3d6fbc5392d6fc27e65c63d633548}
+
+
+Activate the file system, without formating. 
+
+This function must be called first, before calling any of the other e\+File functions 
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful and 1 on failure (already initialized) 
+\end{DoxyReturn}
+\index{e\+File.\+h@{e\+File.\+h}!e\+File\+\_\+\+R\+Close@{e\+File\+\_\+\+R\+Close}}
+\index{e\+File\+\_\+\+R\+Close@{e\+File\+\_\+\+R\+Close}!e\+File.\+h@{e\+File.\+h}}
+\subsubsection[{\texorpdfstring{e\+File\+\_\+\+R\+Close(void)}{eFile_RClose(void)}}]{\setlength{\rightskip}{0pt plus 5cm}int e\+File\+\_\+\+R\+Close (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{eFile_8h_a0d4b4d9cddb15950b6d7fa76a1870f1c}{}\label{eFile_8h_a0d4b4d9cddb15950b6d7fa76a1870f1c}
+
+
+Close the file that was being read. 
+
+Close the file, leave disk in a state power can be removed. 
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful and 1 on failure (e.\+g., wasn\textquotesingle{}t open) 
+\end{DoxyReturn}
+\index{e\+File.\+h@{e\+File.\+h}!e\+File\+\_\+\+Read\+Next@{e\+File\+\_\+\+Read\+Next}}
+\index{e\+File\+\_\+\+Read\+Next@{e\+File\+\_\+\+Read\+Next}!e\+File.\+h@{e\+File.\+h}}
+\subsubsection[{\texorpdfstring{e\+File\+\_\+\+Read\+Next(char $\ast$pt)}{eFile_ReadNext(char *pt)}}]{\setlength{\rightskip}{0pt plus 5cm}int e\+File\+\_\+\+Read\+Next (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{pt}
+\end{DoxyParamCaption}
+)}\hypertarget{eFile_8h_acd2e14c3498c0d9a820737cd459ef6fb}{}\label{eFile_8h_acd2e14c3498c0d9a820737cd459ef6fb}
+
+
+Retreive data from open file. 
+
+Read one byte from disk into R\+AM 
+\begin{DoxyParams}{Parameters}
+{\em pt} & call by reference pointer to place to save data \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful and 1 on failure (e.\+g., trouble reading from flash) 
+\end{DoxyReturn}
+\index{e\+File.\+h@{e\+File.\+h}!e\+File\+\_\+\+Redirect\+To\+File@{e\+File\+\_\+\+Redirect\+To\+File}}
+\index{e\+File\+\_\+\+Redirect\+To\+File@{e\+File\+\_\+\+Redirect\+To\+File}!e\+File.\+h@{e\+File.\+h}}
+\subsubsection[{\texorpdfstring{e\+File\+\_\+\+Redirect\+To\+File(char $\ast$name)}{eFile_RedirectToFile(char *name)}}]{\setlength{\rightskip}{0pt plus 5cm}int e\+File\+\_\+\+Redirect\+To\+File (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{name}
+\end{DoxyParamCaption}
+)}\hypertarget{eFile_8h_ae6d4b2da3ee16668a707310e085fcc52}{}\label{eFile_8h_ae6d4b2da3ee16668a707310e085fcc52}
+
+
+redirect printf output into this file 
+
+open the file for writing, redirect stream I/O (printf) to this file \begin{DoxyNote}{Note}
+if the file exists it will append to the end~\newline
+ If the file doesn\textquotesingle{}t exist, it will create a new file with the name 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em name} & file name is an A\+S\+C\+II string up to seven characters \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful and 1 on failure (e.\+g., can\textquotesingle{}t open) 
+\end{DoxyReturn}
+\index{e\+File.\+h@{e\+File.\+h}!e\+File\+\_\+\+R\+Open@{e\+File\+\_\+\+R\+Open}}
+\index{e\+File\+\_\+\+R\+Open@{e\+File\+\_\+\+R\+Open}!e\+File.\+h@{e\+File.\+h}}
+\subsubsection[{\texorpdfstring{e\+File\+\_\+\+R\+Open(char name[])}{eFile_ROpen(char name[])}}]{\setlength{\rightskip}{0pt plus 5cm}int e\+File\+\_\+\+R\+Open (
+\begin{DoxyParamCaption}
+\item[{char}]{name\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}\hypertarget{eFile_8h_a2affef181e666b5a1a43185b67602834}{}\label{eFile_8h_a2affef181e666b5a1a43185b67602834}
+
+
+Open an existing file for reading. 
+
+Open the file for reading, read first block into R\+AM 
+\begin{DoxyParams}{Parameters}
+{\em name} & file name is an A\+S\+C\+II string up to seven characters \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful and 1 on failure (e.\+g., trouble reading from flash) 
+\end{DoxyReturn}
+\index{e\+File.\+h@{e\+File.\+h}!e\+File\+\_\+\+W\+Close@{e\+File\+\_\+\+W\+Close}}
+\index{e\+File\+\_\+\+W\+Close@{e\+File\+\_\+\+W\+Close}!e\+File.\+h@{e\+File.\+h}}
+\subsubsection[{\texorpdfstring{e\+File\+\_\+\+W\+Close(void)}{eFile_WClose(void)}}]{\setlength{\rightskip}{0pt plus 5cm}int e\+File\+\_\+\+W\+Close (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{eFile_8h_a68df762a5710e57e759cb51c89d96c2c}{}\label{eFile_8h_a68df762a5710e57e759cb51c89d96c2c}
+
+
+Close the file that was being written. 
+
+Close the file, leave disk in a state power can be removed. This function will flush all R\+AM buffers to the disk. 
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful and 1 on failure (e.\+g., trouble writing to flash) 
+\end{DoxyReturn}
+\index{e\+File.\+h@{e\+File.\+h}!e\+File\+\_\+\+W\+Open@{e\+File\+\_\+\+W\+Open}}
+\index{e\+File\+\_\+\+W\+Open@{e\+File\+\_\+\+W\+Open}!e\+File.\+h@{e\+File.\+h}}
+\subsubsection[{\texorpdfstring{e\+File\+\_\+\+W\+Open(char name[])}{eFile_WOpen(char name[])}}]{\setlength{\rightskip}{0pt plus 5cm}int e\+File\+\_\+\+W\+Open (
+\begin{DoxyParamCaption}
+\item[{char}]{name\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}\hypertarget{eFile_8h_abd7b532ab73309cd8ba9dcd4539ea04f}{}\label{eFile_8h_abd7b532ab73309cd8ba9dcd4539ea04f}
+
+
+Open an existing file for writing. 
+
+Open the file for writing, read into R\+AM last block 
+\begin{DoxyParams}{Parameters}
+{\em name} & file name is an A\+S\+C\+II string up to seven characters \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful and 1 on failure (e.\+g., trouble reading from flash) 
+\end{DoxyReturn}
+\index{e\+File.\+h@{e\+File.\+h}!e\+File\+\_\+\+Write@{e\+File\+\_\+\+Write}}
+\index{e\+File\+\_\+\+Write@{e\+File\+\_\+\+Write}!e\+File.\+h@{e\+File.\+h}}
+\subsubsection[{\texorpdfstring{e\+File\+\_\+\+Write(char data)}{eFile_Write(char data)}}]{\setlength{\rightskip}{0pt plus 5cm}int e\+File\+\_\+\+Write (
+\begin{DoxyParamCaption}
+\item[{char}]{data}
+\end{DoxyParamCaption}
+)}\hypertarget{eFile_8h_a41a38a50deb424e0e7672e51bb9c1ca3}{}\label{eFile_8h_a41a38a50deb424e0e7672e51bb9c1ca3}
+
+
+Format the disk. 
+
+Save one byte at end of the open file 
+\begin{DoxyParams}{Parameters}
+{\em data} & byte to be saved on the disk \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful and 1 on failure (e.\+g., trouble writing to flash) 
+\end{DoxyReturn}
