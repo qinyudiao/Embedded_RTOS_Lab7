@@ -87,6 +87,7 @@
 #include <stdint.h>
 #include "motorcan.h"
 #include "can0.h"
+#include "IR.h"
 
 
 //*********Prototype for FFT in cr4_fft_64_stm32.s, STMicroelectronics
@@ -103,8 +104,8 @@ void cr4_fft_64_stm32(void *pssOUT, void *pssIN, unsigned short Nbin);
 #define PD2 (*((volatile unsigned long *)0x40007010))
 #define PD3 (*((volatile unsigned long *)0x40007020))
 
-#define ANGLELEFT_OFFSET 170
-#define ANGELRIGHT_OFFSET 170
+#define ANGLELEFT_OFFSET 200
+#define ANGELRIGHT_OFFSET 200
 #define LEFT_OFFSET  105
 #define RIGHT_OFFSET 105
 #define cosTHETA (5255)
@@ -412,14 +413,15 @@ void sensor_task(void)
   int delta10us = 0;
   int FlagL = 0;
   int FlagR = 0;
+  char adc_string[64];
   while(1){
 
     
-    Front_Left_angle = getdata(FLeft) + ANGLELEFT_OFFSET;
-    Front_Right_angle = getdata(FRight) + ANGELRIGHT_OFFSET;
-    Left = getdata(Left) + LEFT_OFFSET;
-    Right = getdata(Right) + RIGHT_OFFSET;
-    Front = getdata(Front);
+    Front_Left_angle = IR_GetData(2) + ANGLELEFT_OFFSET;
+    Front_Right_angle = IR_GetData(1) + ANGELRIGHT_OFFSET;
+    Left = IR_GetData(3) + LEFT_OFFSET;
+    Right = IR_GetData(0) + RIGHT_OFFSET;
+   // Front = getdata(Front);
     
     prevtime = curtime;
     curtime = OS_Time();
@@ -471,16 +473,10 @@ void sensor_task(void)
       ControlFollow(U,1); //  is left following
     }
     
+    sprintf(adc_string, "Up Ui Ud U %d %d %d %d:  ",  Up,Ui,Ud,U);
+    UART_OutString(adc_string);
+    UART_OutString("\r\n");
     
-    
-    CAN_RightMotorTorch((idx+15)%50);
-    CAN_LeftMotorTorch((idx+15)%50);
-    CAN_Servo((idx*18)%180);
-    if(i>1000){
-      idx++;
-      i = 0;
-    }
-    i++;
   }
 }
 int Sensor_main(void)
@@ -488,6 +484,7 @@ int Sensor_main(void)
   OS_Init(); // initialize, disable interrupts
   CAN0_Open();
   NumCreated = 0;
+  NumCreated += OS_AddThread(&Interpreter,128,1);
   NumCreated += OS_AddThread(&sensor_task, 128, 2);
   OS_Launch(TIMESLICE); // doesn't return, interrupts enabled in here
   return 0;             // this never executes
