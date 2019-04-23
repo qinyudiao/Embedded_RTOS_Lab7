@@ -1,0 +1,40 @@
+\hypertarget{structtCANBitClkParms}{}\section{t\+C\+A\+N\+Bit\+Clk\+Parms Struct Reference}
+\label{structtCANBitClkParms}\index{t\+C\+A\+N\+Bit\+Clk\+Parms@{t\+C\+A\+N\+Bit\+Clk\+Parms}}
+
+
+{\ttfamily \#include $<$can.\+h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \hyperlink{structtCANBitClkParms_aa99151a686e0a3725b0fd84810ab6d12}{u\+Sync\+Prop\+Phase1\+Seg}
+\item 
+unsigned int \hyperlink{structtCANBitClkParms_ad95f806349e583b53aaa912f0fada94d}{u\+Phase2\+Seg}
+\item 
+unsigned int \hyperlink{structtCANBitClkParms_af7d91d76a38a5fe4a2b814bb54db1348}{u\+S\+JW}
+\item 
+unsigned int \hyperlink{structtCANBitClkParms_a2d5f2674b68dfc7f3c47b6113951e41e}{u\+Quantum\+Prescaler}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This structure is used for encapsulating the values associated with setting up the bit timing for a C\+AN controller. The structure is used when calling the C\+A\+N\+Get\+Bit\+Timing and C\+A\+N\+Set\+Bit\+Timing functions. 
+
+\subsection{Field Documentation}
+\index{t\+C\+A\+N\+Bit\+Clk\+Parms@{t\+C\+A\+N\+Bit\+Clk\+Parms}!u\+Phase2\+Seg@{u\+Phase2\+Seg}}
+\index{u\+Phase2\+Seg@{u\+Phase2\+Seg}!t\+C\+A\+N\+Bit\+Clk\+Parms@{t\+C\+A\+N\+Bit\+Clk\+Parms}}
+\subsubsection[{\texorpdfstring{u\+Phase2\+Seg}{uPhase2Seg}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int t\+C\+A\+N\+Bit\+Clk\+Parms\+::u\+Phase2\+Seg}\hypertarget{structtCANBitClkParms_ad95f806349e583b53aaa912f0fada94d}{}\label{structtCANBitClkParms_ad95f806349e583b53aaa912f0fada94d}
+This value holds the Phase Buffer 2 segment in time quanta. The valid values for this setting range from 1 to 8. \index{t\+C\+A\+N\+Bit\+Clk\+Parms@{t\+C\+A\+N\+Bit\+Clk\+Parms}!u\+Quantum\+Prescaler@{u\+Quantum\+Prescaler}}
+\index{u\+Quantum\+Prescaler@{u\+Quantum\+Prescaler}!t\+C\+A\+N\+Bit\+Clk\+Parms@{t\+C\+A\+N\+Bit\+Clk\+Parms}}
+\subsubsection[{\texorpdfstring{u\+Quantum\+Prescaler}{uQuantumPrescaler}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int t\+C\+A\+N\+Bit\+Clk\+Parms\+::u\+Quantum\+Prescaler}\hypertarget{structtCANBitClkParms_a2d5f2674b68dfc7f3c47b6113951e41e}{}\label{structtCANBitClkParms_a2d5f2674b68dfc7f3c47b6113951e41e}
+This value holds the C\+A\+N\+\_\+\+C\+LK divider used to determine time quanta. The valid values for this setting range from 1 to 1023. \index{t\+C\+A\+N\+Bit\+Clk\+Parms@{t\+C\+A\+N\+Bit\+Clk\+Parms}!u\+S\+JW@{u\+S\+JW}}
+\index{u\+S\+JW@{u\+S\+JW}!t\+C\+A\+N\+Bit\+Clk\+Parms@{t\+C\+A\+N\+Bit\+Clk\+Parms}}
+\subsubsection[{\texorpdfstring{u\+S\+JW}{uSJW}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int t\+C\+A\+N\+Bit\+Clk\+Parms\+::u\+S\+JW}\hypertarget{structtCANBitClkParms_af7d91d76a38a5fe4a2b814bb54db1348}{}\label{structtCANBitClkParms_af7d91d76a38a5fe4a2b814bb54db1348}
+This value holds the Resynchronization Jump Width in time quanta. The valid values for this setting range from 1 to 4. \index{t\+C\+A\+N\+Bit\+Clk\+Parms@{t\+C\+A\+N\+Bit\+Clk\+Parms}!u\+Sync\+Prop\+Phase1\+Seg@{u\+Sync\+Prop\+Phase1\+Seg}}
+\index{u\+Sync\+Prop\+Phase1\+Seg@{u\+Sync\+Prop\+Phase1\+Seg}!t\+C\+A\+N\+Bit\+Clk\+Parms@{t\+C\+A\+N\+Bit\+Clk\+Parms}}
+\subsubsection[{\texorpdfstring{u\+Sync\+Prop\+Phase1\+Seg}{uSyncPropPhase1Seg}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int t\+C\+A\+N\+Bit\+Clk\+Parms\+::u\+Sync\+Prop\+Phase1\+Seg}\hypertarget{structtCANBitClkParms_aa99151a686e0a3725b0fd84810ab6d12}{}\label{structtCANBitClkParms_aa99151a686e0a3725b0fd84810ab6d12}
+This value holds the sum of the Synchronization, Propagation, and Phase Buffer 1 segments, measured in time quanta. The valid values for this setting range from 2 to 16. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+inc/can.\+h\end{DoxyCompactItemize}

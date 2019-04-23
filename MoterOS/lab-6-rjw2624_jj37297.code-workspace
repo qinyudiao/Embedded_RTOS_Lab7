@@ -1,0 +1,38 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+    ],
+    "settings": {
+        "files.associations": {
+          "assert.h": "c",
+          "stdint.h": "c",
+          "adc.h": "c",
+          "tm4c123gh6pm.h": "c",
+          "tm4c123gh6pm.h\u000023gh6pm.h": "c",
+          "tm4c123gh6pm.h\u00003gh6pm.h": "c",
+          "tm4c123gh6pm.h\u00004c123gh6pm.h": "c",
+          "tm4c123gh6pm.h\u0000h6pm.h": "c",
+          "tm4c123gh6pm.h\u0000m4c123gh6pm.h": "c",
+          "tm4c123gh6pm.h\u0000tm4c123gh6pm.h": "c",
+          "tm4c123gh6pm.h\u0000123gh6pm.h": "c",
+          "tm4c123gh6pm.h\u0000gh6pm.h": "c",
+          "interpreter.h": "c",
+          "uart.h": "c",
+          "pll.h": "c",
+          "string.h": "c",
+          "heap.h": "c",
+          "os.h": "c",
+          "loader_config.h": "c"
+        },
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true,
+        "editor.detectIndentation": false,
+        "files.exclude": {
+          "**/*.bak": true,
+          "**/*.dep": true,
+          "**/*.uv*": true
+        }
+    }
+}

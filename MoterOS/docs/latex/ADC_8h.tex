@@ -1,0 +1,95 @@
+\hypertarget{ADC_8h}{}\section{inc/\+A\+DC.h File Reference}
+\label{ADC_8h}\index{inc/\+A\+D\+C.\+h@{inc/\+A\+D\+C.\+h}}
+
+
+A\+DC driver for the T\+M4\+C123G. Provides interfaces for collecting single samples or a series at a given sampling frequency. Does not allow for sampling of more than one channel at any given time. Timer 2 is reserved for this driver.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\\*
+Include dependency graph for A\+D\+C.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=142pt]{ADC_8h__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{ADC_8h_af9d370fc407dee15db32335255f6cf74}{A\+D\+C\+\_\+\+Init} (uint32\+\_\+t channel\+Num)
+\begin{DoxyCompactList}\small\item\em Configure an A\+DC channel for continuous sampling. Retrieve measurements from this channel with \hyperlink{ADC_8h_a25269c67b0ba9dd124734e05ffb38493}{A\+D\+C\+\_\+\+In()}. \end{DoxyCompactList}\item 
+uint16\+\_\+t \hyperlink{ADC_8h_a25269c67b0ba9dd124734e05ffb38493}{A\+D\+C\+\_\+\+In} (void)
+\begin{DoxyCompactList}\small\item\em Returns the most recent sample collected by the channel configured in A\+D\+C\+\_\+\+Init(...) \end{DoxyCompactList}\item 
+int \hyperlink{ADC_8h_a262f417393c62f81b4a37b3019b32095}{A\+D\+C\+\_\+\+Collect} (uint32\+\_\+t channel\+Num, uint32\+\_\+t fs, void($\ast$handler)(unsigned long))
+\begin{DoxyCompactList}\small\item\em Kick off collection of a sequence of samples to be passed to a user-\/provided handler. The A\+DC and Timer will be configured to collect samples at frequency fs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A\+DC driver for the T\+M4\+C123G. Provides interfaces for collecting single samples or a series at a given sampling frequency. Does not allow for sampling of more than one channel at any given time. Timer 2 is reserved for this driver. 
+
+\begin{DoxyAuthor}{Author}
+Riley Wood and Jeageun Jung 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\index{A\+D\+C.\+h@{A\+D\+C.\+h}!A\+D\+C\+\_\+\+Collect@{A\+D\+C\+\_\+\+Collect}}
+\index{A\+D\+C\+\_\+\+Collect@{A\+D\+C\+\_\+\+Collect}!A\+D\+C.\+h@{A\+D\+C.\+h}}
+\subsubsection[{\texorpdfstring{A\+D\+C\+\_\+\+Collect(uint32\+\_\+t channel\+Num, uint32\+\_\+t fs, void($\ast$handler)(unsigned long))}{ADC_Collect(uint32_t channelNum, uint32_t fs, void(*handler)(unsigned long))}}]{\setlength{\rightskip}{0pt plus 5cm}int A\+D\+C\+\_\+\+Collect (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{channel\+Num, }
+\item[{uint32\+\_\+t}]{fs, }
+\item[{void($\ast$)(unsigned long)}]{handler}
+\end{DoxyParamCaption}
+)}\hypertarget{ADC_8h_a262f417393c62f81b4a37b3019b32095}{}\label{ADC_8h_a262f417393c62f81b4a37b3019b32095}
+
+
+Kick off collection of a sequence of samples to be passed to a user-\/provided handler. The A\+DC and Timer will be configured to collect samples at frequency fs. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel\+Num} & A\+DC channel to sample \\
+\hline
+{\em fs} & Sampling frequency \\
+\hline
+{\em handler} & Function which will be passed each sample as it is collected. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 on success, -\/1 on failure. 
+\end{DoxyReturn}
+\index{A\+D\+C.\+h@{A\+D\+C.\+h}!A\+D\+C\+\_\+\+In@{A\+D\+C\+\_\+\+In}}
+\index{A\+D\+C\+\_\+\+In@{A\+D\+C\+\_\+\+In}!A\+D\+C.\+h@{A\+D\+C.\+h}}
+\subsubsection[{\texorpdfstring{A\+D\+C\+\_\+\+In(void)}{ADC_In(void)}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t A\+D\+C\+\_\+\+In (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{ADC_8h_a25269c67b0ba9dd124734e05ffb38493}{}\label{ADC_8h_a25269c67b0ba9dd124734e05ffb38493}
+
+
+Returns the most recent sample collected by the channel configured in A\+D\+C\+\_\+\+Init(...) 
+
+This function uses busy-\/wait for the A\+DC sampling to be done
+
+\begin{DoxyReturn}{Returns}
+uint16\+\_\+t The conversion result 
+\end{DoxyReturn}
+\index{A\+D\+C.\+h@{A\+D\+C.\+h}!A\+D\+C\+\_\+\+Init@{A\+D\+C\+\_\+\+Init}}
+\index{A\+D\+C\+\_\+\+Init@{A\+D\+C\+\_\+\+Init}!A\+D\+C.\+h@{A\+D\+C.\+h}}
+\subsubsection[{\texorpdfstring{A\+D\+C\+\_\+\+Init(uint32\+\_\+t channel\+Num)}{ADC_Init(uint32_t channelNum)}}]{\setlength{\rightskip}{0pt plus 5cm}int A\+D\+C\+\_\+\+Init (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{channel\+Num}
+\end{DoxyParamCaption}
+)}\hypertarget{ADC_8h_af9d370fc407dee15db32335255f6cf74}{}\label{ADC_8h_af9d370fc407dee15db32335255f6cf74}
+
+
+Configure an A\+DC channel for continuous sampling. Retrieve measurements from this channel with \hyperlink{ADC_8h_a25269c67b0ba9dd124734e05ffb38493}{A\+D\+C\+\_\+\+In()}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel\+Num} & The channel to set up \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 on success, -\/1 on failure. 
+\end{DoxyReturn}

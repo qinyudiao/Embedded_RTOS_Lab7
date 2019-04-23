@@ -21,7 +21,7 @@
 
 #define SDC_CS_PB0 1
 #define SDC_CS_PD7 0
-extern Sema4Type LCDFree;
+extern Sema4Type spi_sema;
 
 // SDC CS is PD7 or PB0 , TFT CS is PA3
 // to change CS to another GPIO, change SDC_CS and CS_Init
@@ -49,9 +49,9 @@ extern Sema4Type LCDFree;
 // CS   - PA3 TFT_CS, active low to enable TFT
 // *CS  - PD7/PB0 SDC_CS, active low to enable SDC
 // MISO - PA4 MISO SPI data from SDC to microcontroller
-// SDA  – (NC) I2C data for ADXL345 accelerometer
-// SCL  – (NC) I2C clock for ADXL345 accelerometer
-// SDO  – (NC) I2C alternate address for ADXL345 accelerometer
+// SDA  ï¿½ (NC) I2C data for ADXL345 accelerometer
+// SCL  ï¿½ (NC) I2C clock for ADXL345 accelerometer
+// SDO  ï¿½ (NC) I2C alternate address for ADXL345 accelerometer
 // Backlight + - Light, backlight connected to +3.3 V
 
 #define TFT_CS           (*((volatile uint32_t *)0x40004020))
@@ -494,7 +494,7 @@ DSTATUS disk_status(BYTE drv){
 DRESULT disk_read(BYTE drv, BYTE *buff, DWORD sector, UINT count){
   if (drv || !count) return RES_PARERR;    /* Check parameter */
   if (Stat & STA_NOINIT) return RES_NOTRDY;  /* Check if drive is ready */
-	OS_bWait(&LCDFree);
+	OS_bWait(&spi_sema);
   if (!(CardType & CT_BLOCK)) sector *= 512;  /* LBA ot BA conversion (byte addressing cards) */
 
   if (count == 1) {  /* Single sector read */
@@ -512,7 +512,7 @@ DRESULT disk_read(BYTE drv, BYTE *buff, DWORD sector, UINT count){
     }
   }
   deselect();
-  OS_bSignal(&LCDFree);
+  OS_bSignal(&spi_sema);
   return count ? RES_ERROR : RES_OK;  /* Return result */
 }
 
@@ -532,7 +532,7 @@ DRESULT disk_write(BYTE drv, const BYTE *buff, DWORD sector, UINT count){
   if (drv || !count) return RES_PARERR;    /* Check parameter */
   if (Stat & STA_NOINIT) return RES_NOTRDY;  /* Check drive status */
   if (Stat & STA_PROTECT) return RES_WRPRT;  /* Check write protect */
-  OS_bWait(&LCDFree);
+  OS_bWait(&spi_sema);
 
   if (!(CardType & CT_BLOCK)) sector *= 512;  /* LBA ==> BA conversion (byte addressing cards) */
 
@@ -553,7 +553,7 @@ DRESULT disk_write(BYTE drv, const BYTE *buff, DWORD sector, UINT count){
     }
   }
   deselect();
-  OS_bSignal(&LCDFree);
+  OS_bSignal(&spi_sema);
 
   return count ? RES_ERROR : RES_OK;  /* Return result */
 }
@@ -576,7 +576,7 @@ DRESULT disk_ioctl(BYTE drv, BYTE cmd, void *buff){
 
   if (drv) return RES_PARERR;          /* Check parameter */
   if (Stat & STA_NOINIT) return RES_NOTRDY;  /* Check if drive is ready */
-  OS_bWait(&LCDFree);
+  OS_bWait(&spi_sema);
 
   res = RES_ERROR;
 
@@ -638,7 +638,7 @@ DRESULT disk_ioctl(BYTE drv, BYTE cmd, void *buff){
   }
 
   deselect();
-  OS_bSignal(&LCDFree);
+  OS_bSignal(&spi_sema);
 
   return res;
 }

@@ -80,15 +80,15 @@
 #include "interpreter.h"
 #include "servo.h"
 #include "ff.h"
-#include "IR.h"
 #include "diskio.h"
 #include "motors.h"
 #include <string.h>
 #include <stdio.h>
 #include <stdint.h>
+#include "motorcan.h"
 #include "can0.h"
 #include "IR.h"
-#include "lidar.h"
+
 
 //*********Prototype for FFT in cr4_fft_64_stm32.s, STMicroelectronics
 void cr4_fft_64_stm32(void *pssOUT, void *pssIN, unsigned short Nbin);
@@ -103,6 +103,17 @@ void cr4_fft_64_stm32(void *pssOUT, void *pssIN, unsigned short Nbin);
 #define PD1 (*((volatile unsigned long *)0x40007008))
 #define PD2 (*((volatile unsigned long *)0x40007010))
 #define PD3 (*((volatile unsigned long *)0x40007020))
+
+#define ANGLELEFT_OFFSET 200
+#define ANGELRIGHT_OFFSET 200
+#define LEFT_OFFSET  105
+#define RIGHT_OFFSET 105
+#define cosTHETA (5255)
+// cosTHETA * 1000 value
+#define KP 1
+#define KD 1
+#define KI 1
+
 static FATFS g_sFatFs;
 
 void PortD_Init(void)
@@ -365,7 +376,7 @@ void motor_task(void)
 void servo_task(void)
 {
   static int angle = 0;
-  Servo_SetAngle(angle);
+  CAN_Servo(angle);
   angle += 18;
   if(angle > 180)
   {
@@ -374,16 +385,107 @@ void servo_task(void)
 
 }
 
-int motor_testmain(void)
+void ControlFollow(int U, int pos)
+{
+  int TH  = 1000;
+  int dir =0;
+}
+
+void sensor_task(void)
+{
+  int i = 0;
+  int idx = 0;
+  int Front_Left_angle;
+  int Front_Right_angle;
+  int Left;
+  int Right;
+  int Front;
+  int Error[4];
+  for(int i =0;i<4;i++)
+    Error[i] = 0xEFDFF1FF; // magic number
+  
+  int Up=0;
+  int Ui = 0;
+  int Ud = 0;
+  int U=0;
+  unsigned long long curtime = 0;;
+  unsigned long long prevtime = 0;
+  int delta10us = 0;
+  int FlagL = 0;
+  int FlagR = 0;
+  char adc_string[64];
+  while(1){
+
+    
+    Front_Left_angle = IR_GetData(2) + ANGLELEFT_OFFSET;
+    Front_Right_angle = IR_GetData(1) + ANGELRIGHT_OFFSET;
+    Left = IR_GetData(3) + LEFT_OFFSET;
+    Right = IR_GetData(0) + RIGHT_OFFSET;
+   // Front = getdata(Front);
+    
+    prevtime = curtime;
+    curtime = OS_Time();
+    for(int i =0;i<4;i++)
+    {
+      Error[3-i] = Error[3-i-1];
+    }
+    
+    if(Front_Right_angle+Right < Front_Left_angle+Left)
+    {
+      if(FlagR ==1)
+      {
+        FlagL = 1;
+        FlagR = 0;
+        for(int i =0;i<4;i++)
+         Error[i] = 0xEFDFF1FF; // magic number
+        Ui = 0;
+      }
+      Error[0] = (1000*Right/Front_Right_angle - (cosTHETA))/10;
+    }
+    else
+    {
+      if(FlagL ==1)
+      {
+        FlagL = 0;
+        FlagR = 1;
+        for(int i =0;i<4;i++)
+         Error[i] = 0xEFDFF1FF; // magic number
+        Ui = 0;
+      }
+      Error[0] = (1000*Left/Front_Left_angle - (cosTHETA))/10;
+    }
+    
+    if(prevtime ==0 || Error[3] == 0xEFDFF1FF)
+      continue;
+    delta10us = OS_TimeDifference(prevtime,curtime)/800;
+    
+    Up = KP*Error[0];
+    Ui = Ui+ KI*Error[0]*delta10us; // 10us 
+    Ud = KD*(Error[0]+3*Error[1]-3*Error[2]-Error[3])/(6*delta10us);
+    
+    U = Up + Ui + Ud;
+    if(Front_Right_angle+Right < Front_Left_angle+Left)
+    { 
+      ControlFollow(U,0); // 0 is right following
+    }
+    else
+    {
+      ControlFollow(U,1); //  is left following
+    }
+    
+    sprintf(adc_string, "Up Ui Ud U %d %d %d %d:  ",  Up,Ui,Ud,U);
+    UART_OutString(adc_string);
+    UART_OutString("\r\n");
+    
+  }
+}
+int Sensor_main(void)
 {
   OS_Init(); // initialize, disable interrupts
-  Motors_Init();
-  Servo_Init();
+  CAN0_Open();
   NumCreated = 0;
-  // create initial foreground threads
-  NumCreated += OS_AddPeriodicThread(&motor_task, 10 * TIME_1MS, 2);
-  NumCreated += OS_AddPeriodicThread(&servo_task, 1000 * TIME_1MS, 2);
-
+  NumCreated += OS_AddThread(&Interpreter,128,1);
+  NumCreated += OS_AddThread(&sensor_task, 128, 2);
   OS_Launch(TIMESLICE); // doesn't return, interrupts enabled in here
   return 0;             // this never executes
 }
@@ -424,19 +526,20 @@ int can0_testmain()
   return 0;
 }
 
-
-static void ir_task(void)
+void lcd_task(void)
 {
-    printf("%d\r\n", IR_getmm());
+    static int count = 0;
+    ST7735_Message(0, 1, "Hello world", count++);
 }
 
-int ir_testmain(void)
+int lcd_testmain(void)
 {
   OS_Init();
-  IR_Init();
+  ST7735_InitR(INITR_REDTAB);
+  ST7735_FillScreen(0xFFFF);
   NumCreated = 0;
   // create initial foreground threads
-  NumCreated += OS_AddPeriodicThread(&ir_task, 1 * TIME_1MS,1);
+  NumCreated += OS_AddPeriodicThread(&lcd_task, 1000 * TIME_1MS, 1);
   OS_Launch(TIMESLICE); // doesn't return, interrupts enabled in here
   return 0;
 }
@@ -444,5 +547,5 @@ int ir_testmain(void)
 // Main stub
 int main(void)
 {
-  return ir_testmain();
+  return lcd_testmain();
 }

@@ -1,0 +1,201 @@
+\hypertarget{UART_8h}{}\section{inc/\+U\+A\+RT.h File Reference}
+\label{UART_8h}\index{inc/\+U\+A\+R\+T.\+h@{inc/\+U\+A\+R\+T.\+h}}
+
+
+Runs on L\+M4\+F120/\+T\+M4\+C123 Use U\+A\+R\+T0 to implement bidirectional data transfer to and from a computer running Hyper\+Terminal. This time, interrupts and F\+I\+F\+Os are used.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\\*
+Include dependency graph for U\+A\+R\+T.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=148pt]{UART_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=178pt]{UART_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries CR}~0x0D\hypertarget{UART_8h_a876ce77f3c672c7162658151e648389e}{}\label{UART_8h_a876ce77f3c672c7162658151e648389e}
+
+\item 
+\#define {\bfseries LF}~0x0A\hypertarget{UART_8h_a350c9d6cb81908d59427ee96844d1a9c}{}\label{UART_8h_a350c9d6cb81908d59427ee96844d1a9c}
+
+\item 
+\#define {\bfseries BS}~0x08\hypertarget{UART_8h_a580a88f98668df1ac5e1683cae31c0b3}{}\label{UART_8h_a580a88f98668df1ac5e1683cae31c0b3}
+
+\item 
+\#define {\bfseries E\+SC}~0x1B\hypertarget{UART_8h_a4af1b6159e447ba72652bb7fcdfa726e}{}\label{UART_8h_a4af1b6159e447ba72652bb7fcdfa726e}
+
+\item 
+\#define {\bfseries SP}~0x20\hypertarget{UART_8h_aecd69d9a67487cc45c38eb184c50538a}{}\label{UART_8h_aecd69d9a67487cc45c38eb184c50538a}
+
+\item 
+\#define {\bfseries D\+EL}~0x7F\hypertarget{UART_8h_ad1e508e805e4ddbc05119be4bb260985}{}\label{UART_8h_ad1e508e805e4ddbc05119be4bb260985}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{UART_8h_ad5cbed2a2222bb84e8b5c1caaa50634e}{U\+A\+R\+T\+\_\+\+Init} (void)\hypertarget{UART_8h_ad5cbed2a2222bb84e8b5c1caaa50634e}{}\label{UART_8h_ad5cbed2a2222bb84e8b5c1caaa50634e}
+
+\begin{DoxyCompactList}\small\item\em Initialize the U\+A\+RT for 115,200 baud rate (assuming 50 M\+Hz clock), 8 bit word length, no parity bits, one stop bit, F\+I\+F\+Os enabled. \end{DoxyCompactList}\item 
+char \hyperlink{UART_8h_a00e894bb188320a2f4dcd5a78b80da52}{U\+A\+R\+T\+\_\+\+In\+Char} (void)
+\begin{DoxyCompactList}\small\item\em Wait for new serial port input. \end{DoxyCompactList}\item 
+void \hyperlink{UART_8h_a4ef2f92682b12a347cf1f81cccda4da7}{U\+A\+R\+T\+\_\+\+Out\+Char} (char data)
+\begin{DoxyCompactList}\small\item\em 8-\/bit to serial port \end{DoxyCompactList}\item 
+void \hyperlink{UART_8h_a2cbbed822dc8e6d801e6c9f21a2cd418}{U\+A\+R\+T\+\_\+\+Out\+String} (char $\ast$pt)
+\begin{DoxyCompactList}\small\item\em Output String (N\+U\+LL termination) \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{UART_8h_a0a28a219c31df1bd2182e4b3afbcc5cd}{U\+A\+R\+T\+\_\+\+In\+U\+Dec} (void)
+\begin{DoxyCompactList}\small\item\em In\+U\+Dec accepts A\+S\+C\+II input in unsigned decimal format and converts to a 32-\/bit unsigned number valid range is 0 to 4294967295 (2$^\wedge$32-\/1) If you enter a number above 4294967295, it will return an incorrect value Backspace will remove last digit typed. \end{DoxyCompactList}\item 
+void \hyperlink{UART_8h_a9a53c5fe8486e0282990b11a218c2625}{U\+A\+R\+T\+\_\+\+Out\+U\+Dec} (uint32\+\_\+t n)
+\begin{DoxyCompactList}\small\item\em Output a 32-\/bit number in unsigned decimal format. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{UART_8h_a5a7efc717f2c844f08689418dd50ee43}{U\+A\+R\+T\+\_\+\+In\+U\+Hex} (void)
+\begin{DoxyCompactList}\small\item\em Accepts A\+S\+C\+II input in unsigned hexadecimal (base 16) format No \textquotesingle{}\$\textquotesingle{} or \textquotesingle{}0x\textquotesingle{} need be entered, just the 1 to 8 hex digits It will convert lower case a-\/f to uppercase A-\/F and converts to a 16 bit unsigned number value range is 0 to F\+F\+F\+F\+F\+F\+FF If you enter a number above F\+F\+F\+F\+F\+F\+FF, it will return an incorrect value Backspace will remove last digit typed. \end{DoxyCompactList}\item 
+void \hyperlink{UART_8h_a21661aabfda94ec88e9514856f062a41}{U\+A\+R\+T\+\_\+\+Out\+U\+Hex} (uint32\+\_\+t number)
+\begin{DoxyCompactList}\small\item\em Output a 32-\/bit number in unsigned hexadecimal format Variable format 1 to 8 digits with no space before or after. \end{DoxyCompactList}\item 
+void \hyperlink{UART_8h_a4278ab3463fadff60a5a84792707c3a3}{U\+A\+R\+T\+\_\+\+In\+String} (char $\ast$buf\+Pt, uint16\+\_\+t max)
+\begin{DoxyCompactList}\small\item\em Accepts A\+S\+C\+II characters from the serial port and adds them to a string until $<$enter$>$ is typed or until max length of the string is reached. It echoes each character as it is inputted. If a backspace is inputted, the string is modified and the backspace is echoed terminates the string with a null character uses busy-\/waiting synchronization on R\+D\+RF Modified by Agustinus Darmawan + Mingjie Qiu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Runs on L\+M4\+F120/\+T\+M4\+C123 Use U\+A\+R\+T0 to implement bidirectional data transfer to and from a computer running Hyper\+Terminal. This time, interrupts and F\+I\+F\+Os are used. 
+
+\begin{DoxyAuthor}{Author}
+Daniel Valvano 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\index{U\+A\+R\+T.\+h@{U\+A\+R\+T.\+h}!U\+A\+R\+T\+\_\+\+In\+Char@{U\+A\+R\+T\+\_\+\+In\+Char}}
+\index{U\+A\+R\+T\+\_\+\+In\+Char@{U\+A\+R\+T\+\_\+\+In\+Char}!U\+A\+R\+T.\+h@{U\+A\+R\+T.\+h}}
+\subsubsection[{\texorpdfstring{U\+A\+R\+T\+\_\+\+In\+Char(void)}{UART_InChar(void)}}]{\setlength{\rightskip}{0pt plus 5cm}char U\+A\+R\+T\+\_\+\+In\+Char (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{UART_8h_a00e894bb188320a2f4dcd5a78b80da52}{}\label{UART_8h_a00e894bb188320a2f4dcd5a78b80da52}
+
+
+Wait for new serial port input. 
+
+\begin{DoxyReturn}{Returns}
+char A\+S\+C\+II code for key typed 
+\end{DoxyReturn}
+\index{U\+A\+R\+T.\+h@{U\+A\+R\+T.\+h}!U\+A\+R\+T\+\_\+\+In\+String@{U\+A\+R\+T\+\_\+\+In\+String}}
+\index{U\+A\+R\+T\+\_\+\+In\+String@{U\+A\+R\+T\+\_\+\+In\+String}!U\+A\+R\+T.\+h@{U\+A\+R\+T.\+h}}
+\subsubsection[{\texorpdfstring{U\+A\+R\+T\+\_\+\+In\+String(char $\ast$buf\+Pt, uint16\+\_\+t max)}{UART_InString(char *bufPt, uint16_t max)}}]{\setlength{\rightskip}{0pt plus 5cm}void U\+A\+R\+T\+\_\+\+In\+String (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{buf\+Pt, }
+\item[{uint16\+\_\+t}]{max}
+\end{DoxyParamCaption}
+)}\hypertarget{UART_8h_a4278ab3463fadff60a5a84792707c3a3}{}\label{UART_8h_a4278ab3463fadff60a5a84792707c3a3}
+
+
+Accepts A\+S\+C\+II characters from the serial port and adds them to a string until $<$enter$>$ is typed or until max length of the string is reached. It echoes each character as it is inputted. If a backspace is inputted, the string is modified and the backspace is echoed terminates the string with a null character uses busy-\/waiting synchronization on R\+D\+RF Modified by Agustinus Darmawan + Mingjie Qiu. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf\+Pt} & pointer to empty buffer \\
+\hline
+{\em max} & size of buffer \\
+\hline
+\end{DoxyParams}
+\index{U\+A\+R\+T.\+h@{U\+A\+R\+T.\+h}!U\+A\+R\+T\+\_\+\+In\+U\+Dec@{U\+A\+R\+T\+\_\+\+In\+U\+Dec}}
+\index{U\+A\+R\+T\+\_\+\+In\+U\+Dec@{U\+A\+R\+T\+\_\+\+In\+U\+Dec}!U\+A\+R\+T.\+h@{U\+A\+R\+T.\+h}}
+\subsubsection[{\texorpdfstring{U\+A\+R\+T\+\_\+\+In\+U\+Dec(void)}{UART_InUDec(void)}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t U\+A\+R\+T\+\_\+\+In\+U\+Dec (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{UART_8h_a0a28a219c31df1bd2182e4b3afbcc5cd}{}\label{UART_8h_a0a28a219c31df1bd2182e4b3afbcc5cd}
+
+
+In\+U\+Dec accepts A\+S\+C\+II input in unsigned decimal format and converts to a 32-\/bit unsigned number valid range is 0 to 4294967295 (2$^\wedge$32-\/1) If you enter a number above 4294967295, it will return an incorrect value Backspace will remove last digit typed. 
+
+\begin{DoxyReturn}{Returns}
+uint32\+\_\+t 32-\/bit unsigned number 
+\end{DoxyReturn}
+\index{U\+A\+R\+T.\+h@{U\+A\+R\+T.\+h}!U\+A\+R\+T\+\_\+\+In\+U\+Hex@{U\+A\+R\+T\+\_\+\+In\+U\+Hex}}
+\index{U\+A\+R\+T\+\_\+\+In\+U\+Hex@{U\+A\+R\+T\+\_\+\+In\+U\+Hex}!U\+A\+R\+T.\+h@{U\+A\+R\+T.\+h}}
+\subsubsection[{\texorpdfstring{U\+A\+R\+T\+\_\+\+In\+U\+Hex(void)}{UART_InUHex(void)}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t U\+A\+R\+T\+\_\+\+In\+U\+Hex (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{UART_8h_a5a7efc717f2c844f08689418dd50ee43}{}\label{UART_8h_a5a7efc717f2c844f08689418dd50ee43}
+
+
+Accepts A\+S\+C\+II input in unsigned hexadecimal (base 16) format No \textquotesingle{}\$\textquotesingle{} or \textquotesingle{}0x\textquotesingle{} need be entered, just the 1 to 8 hex digits It will convert lower case a-\/f to uppercase A-\/F and converts to a 16 bit unsigned number value range is 0 to F\+F\+F\+F\+F\+F\+FF If you enter a number above F\+F\+F\+F\+F\+F\+FF, it will return an incorrect value Backspace will remove last digit typed. 
+
+\begin{DoxyReturn}{Returns}
+uint32\+\_\+t 32-\/bit unsigned number 
+\end{DoxyReturn}
+\index{U\+A\+R\+T.\+h@{U\+A\+R\+T.\+h}!U\+A\+R\+T\+\_\+\+Out\+Char@{U\+A\+R\+T\+\_\+\+Out\+Char}}
+\index{U\+A\+R\+T\+\_\+\+Out\+Char@{U\+A\+R\+T\+\_\+\+Out\+Char}!U\+A\+R\+T.\+h@{U\+A\+R\+T.\+h}}
+\subsubsection[{\texorpdfstring{U\+A\+R\+T\+\_\+\+Out\+Char(char data)}{UART_OutChar(char data)}}]{\setlength{\rightskip}{0pt plus 5cm}void U\+A\+R\+T\+\_\+\+Out\+Char (
+\begin{DoxyParamCaption}
+\item[{char}]{data}
+\end{DoxyParamCaption}
+)}\hypertarget{UART_8h_a4ef2f92682b12a347cf1f81cccda4da7}{}\label{UART_8h_a4ef2f92682b12a347cf1f81cccda4da7}
+
+
+8-\/bit to serial port 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & letter is an 8-\/bit A\+S\+C\+II character to be transferred \\
+\hline
+\end{DoxyParams}
+\index{U\+A\+R\+T.\+h@{U\+A\+R\+T.\+h}!U\+A\+R\+T\+\_\+\+Out\+String@{U\+A\+R\+T\+\_\+\+Out\+String}}
+\index{U\+A\+R\+T\+\_\+\+Out\+String@{U\+A\+R\+T\+\_\+\+Out\+String}!U\+A\+R\+T.\+h@{U\+A\+R\+T.\+h}}
+\subsubsection[{\texorpdfstring{U\+A\+R\+T\+\_\+\+Out\+String(char $\ast$pt)}{UART_OutString(char *pt)}}]{\setlength{\rightskip}{0pt plus 5cm}void U\+A\+R\+T\+\_\+\+Out\+String (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{pt}
+\end{DoxyParamCaption}
+)}\hypertarget{UART_8h_a2cbbed822dc8e6d801e6c9f21a2cd418}{}\label{UART_8h_a2cbbed822dc8e6d801e6c9f21a2cd418}
+
+
+Output String (N\+U\+LL termination) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pt} & pointer to a N\+U\+L\+L-\/terminated string to be transferred \\
+\hline
+\end{DoxyParams}
+\index{U\+A\+R\+T.\+h@{U\+A\+R\+T.\+h}!U\+A\+R\+T\+\_\+\+Out\+U\+Dec@{U\+A\+R\+T\+\_\+\+Out\+U\+Dec}}
+\index{U\+A\+R\+T\+\_\+\+Out\+U\+Dec@{U\+A\+R\+T\+\_\+\+Out\+U\+Dec}!U\+A\+R\+T.\+h@{U\+A\+R\+T.\+h}}
+\subsubsection[{\texorpdfstring{U\+A\+R\+T\+\_\+\+Out\+U\+Dec(uint32\+\_\+t n)}{UART_OutUDec(uint32_t n)}}]{\setlength{\rightskip}{0pt plus 5cm}void U\+A\+R\+T\+\_\+\+Out\+U\+Dec (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{n}
+\end{DoxyParamCaption}
+)}\hypertarget{UART_8h_a9a53c5fe8486e0282990b11a218c2625}{}\label{UART_8h_a9a53c5fe8486e0282990b11a218c2625}
+
+
+Output a 32-\/bit number in unsigned decimal format. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & 32-\/bit number to be transferred \\
+\hline
+\end{DoxyParams}
+\index{U\+A\+R\+T.\+h@{U\+A\+R\+T.\+h}!U\+A\+R\+T\+\_\+\+Out\+U\+Hex@{U\+A\+R\+T\+\_\+\+Out\+U\+Hex}}
+\index{U\+A\+R\+T\+\_\+\+Out\+U\+Hex@{U\+A\+R\+T\+\_\+\+Out\+U\+Hex}!U\+A\+R\+T.\+h@{U\+A\+R\+T.\+h}}
+\subsubsection[{\texorpdfstring{U\+A\+R\+T\+\_\+\+Out\+U\+Hex(uint32\+\_\+t number)}{UART_OutUHex(uint32_t number)}}]{\setlength{\rightskip}{0pt plus 5cm}void U\+A\+R\+T\+\_\+\+Out\+U\+Hex (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{number}
+\end{DoxyParamCaption}
+)}\hypertarget{UART_8h_a21661aabfda94ec88e9514856f062a41}{}\label{UART_8h_a21661aabfda94ec88e9514856f062a41}
+
+
+Output a 32-\/bit number in unsigned hexadecimal format Variable format 1 to 8 digits with no space before or after. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em number} & 32-\/bit number to be transferred \\
+\hline
+\end{DoxyParams}

@@ -1,0 +1,126 @@
+\hypertarget{ST7735_8h}{}\section{inc/\+S\+T7735.h File Reference}
+\label{ST7735_8h}\index{inc/\+S\+T7735.\+h@{inc/\+S\+T7735.\+h}}
+
+
+Low level drivers for the S\+T7735.  
+
+
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries S\+T7735\+\_\+\+B\+L\+A\+CK}~0x0000\hypertarget{ST7735_8h_aaa96c65299e5f6da446f29dc44362df4}{}\label{ST7735_8h_aaa96c65299e5f6da446f29dc44362df4}
+
+\item 
+\#define {\bfseries S\+T7735\+\_\+\+B\+L\+UE}~0x\+F800\hypertarget{ST7735_8h_a16ebfdbf93e5ef70d658bf2c38a95939}{}\label{ST7735_8h_a16ebfdbf93e5ef70d658bf2c38a95939}
+
+\item 
+\#define {\bfseries S\+T7735\+\_\+\+R\+ED}~0x001F\hypertarget{ST7735_8h_a2449a6653137f07d2feb059750c7a0e0}{}\label{ST7735_8h_a2449a6653137f07d2feb059750c7a0e0}
+
+\item 
+\#define {\bfseries S\+T7735\+\_\+\+G\+R\+E\+EN}~0x07\+E0\hypertarget{ST7735_8h_aaa6015ded61cf7d99ef6d59f1516853a}{}\label{ST7735_8h_aaa6015ded61cf7d99ef6d59f1516853a}
+
+\item 
+\#define {\bfseries S\+T7735\+\_\+\+C\+Y\+AN}~0x\+F\+F\+E0\hypertarget{ST7735_8h_ad810da70a616c774959a2b8e01bdbccd}{}\label{ST7735_8h_ad810da70a616c774959a2b8e01bdbccd}
+
+\item 
+\#define {\bfseries S\+T7735\+\_\+\+M\+A\+G\+E\+N\+TA}~0x\+F81F\hypertarget{ST7735_8h_afeb931b9ea5b9e7d1d3034f68da9ca64}{}\label{ST7735_8h_afeb931b9ea5b9e7d1d3034f68da9ca64}
+
+\item 
+\#define {\bfseries S\+T7735\+\_\+\+Y\+E\+L\+L\+OW}~0x07\+FF\hypertarget{ST7735_8h_ab45f6510169efe9c541a881c8ed56f1c}{}\label{ST7735_8h_ab45f6510169efe9c541a881c8ed56f1c}
+
+\item 
+\#define {\bfseries S\+T7735\+\_\+\+W\+H\+I\+TE}~0x\+F\+F\+FF\hypertarget{ST7735_8h_af8065f00d6684d4af187dc58b0611af3}{}\label{ST7735_8h_af8065f00d6684d4af187dc58b0611af3}
+
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries init\+R\+Flags} \{ \\*
+{\bfseries none}, 
+{\bfseries I\+N\+I\+T\+R\+\_\+\+G\+R\+E\+E\+N\+T\+AB}, 
+{\bfseries I\+N\+I\+T\+R\+\_\+\+R\+E\+D\+T\+AB}, 
+{\bfseries I\+N\+I\+T\+R\+\_\+\+B\+L\+A\+C\+K\+T\+AB}, 
+\\*
+{\bfseries none}, 
+{\bfseries I\+N\+I\+T\+R\+\_\+\+G\+R\+E\+E\+N\+T\+AB}, 
+{\bfseries I\+N\+I\+T\+R\+\_\+\+R\+E\+D\+T\+AB}, 
+{\bfseries I\+N\+I\+T\+R\+\_\+\+B\+L\+A\+C\+K\+T\+AB}
+ \}\hypertarget{ST7735_8h_a9568e103412377d5867f1f367ac7f424}{}\label{ST7735_8h_a9568e103412377d5867f1f367ac7f424}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries S\+T7735\+\_\+\+InitB} (void)\hypertarget{ST7735_8h_aec8e637c759ad0adde0758c0935f383a}{}\label{ST7735_8h_aec8e637c759ad0adde0758c0935f383a}
+
+\item 
+void {\bfseries S\+T7735\+\_\+\+InitR} (enum \hyperlink{ST7735__lab3_8h_a9568e103412377d5867f1f367ac7f424}{init\+R\+Flags} option)\hypertarget{ST7735_8h_a204a442207d7367ace616bd6bfd79348}{}\label{ST7735_8h_a204a442207d7367ace616bd6bfd79348}
+
+\item 
+void {\bfseries S\+T7735\+\_\+\+Draw\+Pixel} (short x, short y, unsigned short color)\hypertarget{ST7735_8h_a5793205f5b04238ab466bae75a4edbd3}{}\label{ST7735_8h_a5793205f5b04238ab466bae75a4edbd3}
+
+\item 
+void {\bfseries S\+T7735\+\_\+\+Draw\+Fast\+V\+Line} (short x, short y, short h, unsigned short color)\hypertarget{ST7735_8h_ab1fb9585421197d1667aa9c9b52e0f1c}{}\label{ST7735_8h_ab1fb9585421197d1667aa9c9b52e0f1c}
+
+\item 
+void {\bfseries S\+T7735\+\_\+\+Draw\+Fast\+H\+Line} (short x, short y, short w, unsigned short color)\hypertarget{ST7735_8h_a11690550ffbb10c85b6b7619f8dcd928}{}\label{ST7735_8h_a11690550ffbb10c85b6b7619f8dcd928}
+
+\item 
+void {\bfseries S\+T7735\+\_\+\+Fill\+Screen} (unsigned short color)\hypertarget{ST7735_8h_a28f8ff17a782af7d0b1c4d5b6c0face6}{}\label{ST7735_8h_a28f8ff17a782af7d0b1c4d5b6c0face6}
+
+\item 
+void {\bfseries S\+T7735\+\_\+\+Fill\+Rect} (short x, short y, short w, short h, unsigned short color)\hypertarget{ST7735_8h_aa3626929dddd3d4eb142f62d26cf321f}{}\label{ST7735_8h_aa3626929dddd3d4eb142f62d26cf321f}
+
+\item 
+unsigned short {\bfseries S\+T7735\+\_\+\+Color565} (unsigned char r, unsigned char g, unsigned char b)\hypertarget{ST7735_8h_a70331f670468050218cc9bd1e1868a3b}{}\label{ST7735_8h_a70331f670468050218cc9bd1e1868a3b}
+
+\item 
+unsigned short {\bfseries S\+T7735\+\_\+\+Swap\+Color} (unsigned short x)\hypertarget{ST7735_8h_a420bdc9292067b8bf03c295d7d80eeca}{}\label{ST7735_8h_a420bdc9292067b8bf03c295d7d80eeca}
+
+\item 
+void {\bfseries S\+T7735\+\_\+\+Draw\+Bitmap} (short x, short y, const unsigned short $\ast$image, short w, short h)\hypertarget{ST7735_8h_af6347640dc0c61dc99998ca55f43c649}{}\label{ST7735_8h_af6347640dc0c61dc99998ca55f43c649}
+
+\item 
+void {\bfseries S\+T7735\+\_\+\+Draw\+CharS} (short x, short y, char c, short text\+Color, short bg\+Color, unsigned char size)\hypertarget{ST7735_8h_a755531bd92654b07b861a10b6292931e}{}\label{ST7735_8h_a755531bd92654b07b861a10b6292931e}
+
+\item 
+void {\bfseries S\+T7735\+\_\+\+Draw\+Char} (short x, short y, char c, short text\+Color, short bg\+Color, unsigned char size)\hypertarget{ST7735_8h_aeb3adba7db003fb4e4b9b07c93362c06}{}\label{ST7735_8h_aeb3adba7db003fb4e4b9b07c93362c06}
+
+\item 
+unsigned long {\bfseries S\+T7735\+\_\+\+Out\+String} (unsigned short x, unsigned short y, char $\ast$pt, short text\+Color)\hypertarget{ST7735_8h_aa8c8f3ac247431d71305d0369faa9bf1}{}\label{ST7735_8h_aa8c8f3ac247431d71305d0369faa9bf1}
+
+\item 
+void {\bfseries S\+T7735\+\_\+\+Message} (unsigned long d, unsigned long l, char $\ast$pt, long value)\hypertarget{ST7735_8h_a5c8762aec431727acd215391eef4f15a}{}\label{ST7735_8h_a5c8762aec431727acd215391eef4f15a}
+
+\item 
+void {\bfseries S\+T7735\+\_\+\+Set\+Rotation} (unsigned char m)\hypertarget{ST7735_8h_a6a58cb5e642d4888b72b7356616984b9}{}\label{ST7735_8h_a6a58cb5e642d4888b72b7356616984b9}
+
+\item 
+void {\bfseries S\+T7735\+\_\+\+Invert\+Display} (int i)\hypertarget{ST7735_8h_a2138bd237e97da48ad87137fb616be37}{}\label{ST7735_8h_a2138bd237e97da48ad87137fb616be37}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Low level drivers for the S\+T7735. 
+
+Runs on L\+M4\+F120/\+T\+M4\+C123. Low level drivers for the S\+T7735 160x128 L\+CD based off of the file described above. This version coexists with the S\+DC
+
+\begin{DoxyVersion}{Version}
+V1.\+0 
+\end{DoxyVersion}
+\begin{DoxyAuthor}{Author}
+Valvano 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+Copyright 2017 by Jonathan W. Valvano, \href{mailto:valvano@mail.utexas.edu}{\tt valvano@mail.\+utexas.\+edu}, 
+\end{DoxyCopyright}
+\begin{DoxyWarning}{Warning}
+A\+S-\/\+IS 
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+For more information see \href{http://users.ece.utexas.edu/~valvano/}{\tt http\+://users.\+ece.\+utexas.\+edu/$\sim$valvano/} 
+\end{DoxyNote}
+\begin{DoxyDate}{Date}
+March 9, 2017 
+\end{DoxyDate}

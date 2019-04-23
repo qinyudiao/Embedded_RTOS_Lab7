@@ -1449,8 +1449,8 @@ static unsigned char Rotation;           // 0 to 3
 static enum initRFlags TabColor;
 static short _width = ST7735_TFTWIDTH; // this could probably be a constant, except it is used in Adafruit_GFX and depends on image rotation
 static short _height = ST7735_TFTHEIGHT;
-Sema4Type LCDFree; // used for mutual exclusion
-Sema4Type pixel_semaphore;
+Sema4Type draw_semaphore;
+Sema4Type spi_sema;
 
 // The Data/Command pin must be valid when the eighth bit is
 // sent.  The SSI module has hardware input and output FIFOs
@@ -1476,6 +1476,7 @@ void static writecommand(unsigned char c)
   while ((SSI0_SR_R & SSI_SR_BSY) == SSI_SR_BSY)
   {
   };
+  OS_bWait(&spi_sema);
   SDC_CS = SDC_CS_HIGH;
   TFT_CS = TFT_CS_LOW;
   DC = DC_COMMAND;
@@ -1485,17 +1486,18 @@ void static writecommand(unsigned char c)
   }; // wait until response
   TFT_CS = TFT_CS_HIGH;
   response = SSI0_DR_R; // acknowledge response
+  OS_bSignal(&spi_sema);
 }
 
 void static writedata(unsigned char c)
 {
-    OS_bWait(&LCDFree);
 
   volatile uint32_t response;
   // wait until SSI0 not busy/transmit FIFO empty
   while ((SSI0_SR_R & SSI_SR_BSY) == SSI_SR_BSY)
   {
   };
+  OS_bWait(&spi_sema);
   SDC_CS = SDC_CS_HIGH;
   TFT_CS = TFT_CS_LOW;
   DC = DC_DATA;
@@ -1505,8 +1507,7 @@ void static writedata(unsigned char c)
   }; // wait until response
   TFT_CS = TFT_CS_HIGH;
   response = SSI0_DR_R; // acknowledge response
-    OS_bSignal(&LCDFree);
-
+  OS_bSignal(&spi_sema);
 }
 // Subroutine to wait 1 msec
 // Inputs: None
@@ -1699,7 +1700,8 @@ void static commonInit(const unsigned char *cmdList)
 {
   ColStart = RowStart = 0; // May be overridden in init func
   CS_Init();
-  OS_InitSemaphore(&pixel_semaphore, 1);
+  OS_InitSemaphore(&draw_semaphore, 1);
+  OS_InitSemaphore(&spi_sema, 1);
   SYSCTL_RCGCSSI_R |= 0x01;  // activate SSI0
   SYSCTL_RCGCGPIO_R |= 0x01; // activate port A
   while ((SYSCTL_PRGPIO_R & 0x01) == 0)
@@ -1716,11 +1718,11 @@ void static commonInit(const unsigned char *cmdList)
   GPIO_PORTA_AMSEL_R &= ~0xC8; // disable analog functionality on PA3,6,7
   TFT_CS = TFT_CS_LOW;
   RESET = RESET_HIGH;
-  Delay1ms(500);
+  Delay1ms(50);
   RESET = RESET_LOW;
-  Delay1ms(500);
+  Delay1ms(50);
   RESET = RESET_HIGH;
-  Delay1ms(500);
+  Delay1ms(50);
 
   // initialize SSI0
   GPIO_PORTA_AFSEL_R |= 0x34; // enable alt funct on PA2,4,5
@@ -1754,7 +1756,6 @@ void static commonInit(const unsigned char *cmdList)
 void ST7735_InitB(void)
 {
   commonInit(Bcmd);
-  OS_InitSemaphore(&LCDFree, 1); // means LCD free
 }
 
 //------------ST7735_InitR------------
@@ -1784,7 +1785,6 @@ void ST7735_InitR(enum initRFlags option)
     writedata(0xC0);
   }
   TabColor = option;
-  OS_InitSemaphore(&LCDFree, 1); // means LCD free
 }
 
 // Set the region of the screen RAM to be modified
@@ -1833,11 +1833,10 @@ void ST7735_DrawPixel(short x, short y, unsigned short color)
 
   if ((x < 0) || (x >= _width) || (y < 0) || (y >= _height))
     return;
-  OS_bWait(&pixel_semaphore);
+  OS_bWait(&draw_semaphore);
   setAddrWindow(x, y, x + 1, y + 1);
-  //OS_bWait(&pixel_semaphore);
   pushColor(color);
-  //OS_bSignal(&pixel_semaphore);
+  OS_bSignal(&draw_semaphore);
 }
 
 //------------ST7735_DrawFastVLine------------
@@ -1858,6 +1857,7 @@ void ST7735_DrawFastVLine(short x, short y, short h, unsigned short color)
     return;
   if ((y + h - 1) >= _height)
     h = _height - y;
+  OS_bWait(&draw_semaphore);
   setAddrWindow(x, y, x, y + h - 1);
 
   while (h--)
@@ -1865,6 +1865,7 @@ void ST7735_DrawFastVLine(short x, short y, short h, unsigned short color)
     writedata(hi);
     writedata(lo);
   }
+  OS_bSignal(&draw_semaphore);
 }
 
 //------------ST7735_DrawFastHLine------------
@@ -1885,6 +1886,7 @@ void ST7735_DrawFastHLine(short x, short y, short w, unsigned short color)
     return;
   if ((x + w - 1) >= _width)
     w = _width - x;
+  OS_bWait(&draw_semaphore);
   setAddrWindow(x, y, x + w - 1, y);
 
   while (w--)
@@ -1892,6 +1894,7 @@ void ST7735_DrawFastHLine(short x, short y, short w, unsigned short color)
     writedata(hi);
     writedata(lo);
   }
+  OS_bSignal(&draw_semaphore);
 }
 
 //------------ST7735_FillScreen------------
@@ -1925,6 +1928,7 @@ void ST7735_FillRect(short x, short y, short w, short h, unsigned short color)
   if ((y + h - 1) >= _height)
     h = _height - y;
 
+  OS_bWait(&draw_semaphore);
   setAddrWindow(x, y, x + w - 1, y + h - 1);
 
   for (y = h; y > 0; y--)
@@ -1935,6 +1939,7 @@ void ST7735_FillRect(short x, short y, short w, short h, unsigned short color)
       writedata(lo);
     }
   }
+  OS_bSignal(&draw_semaphore);
 }
 
 //------------ST7735_Color565------------
@@ -2018,6 +2023,7 @@ void ST7735_DrawBitmap(short x, short y, const unsigned short *image, short w, s
     y = _height - 1;
   }
 
+  OS_bWait(&draw_semaphore);
   setAddrWindow(x, y - h + 1, x + w - 1, y);
 
   for (y = 0; y < h; y = y + 1)
@@ -2033,6 +2039,7 @@ void ST7735_DrawBitmap(short x, short y, const unsigned short *image, short w, s
     i = i + skipC;
     i = i - 2 * originalWidth;
   }
+  OS_bSignal(&draw_semaphore);
 }
 
 //------------ST7735_DrawCharS------------
@@ -2116,6 +2123,7 @@ void ST7735_DrawChar(short x, short y, char c, short textColor, short bgColor, u
     return;
   }
 
+  OS_bWait(&draw_semaphore);
   setAddrWindow(x, y, x + 6 * size - 1, y + 8 * size - 1);
 
   line = 0x01; // print the top row first
@@ -2152,6 +2160,7 @@ void ST7735_DrawChar(short x, short y, char c, short textColor, short bgColor, u
     }
     line = line << 1; // move up to the next row
   }
+  OS_bSignal(&draw_semaphore);
 }
 //------------ST7735_OutString------------
 // String draw function.
@@ -2241,7 +2250,6 @@ void ST7735_Message(unsigned long d, unsigned long l, char *pt, long value)
   unsigned long sl = 8 * d + l;
   ST7735_OutString(0, sl, pt, ST7735_YELLOW);
   ST7735_OutUDec2(value, sl);
-  OS_bSignal(&LCDFree);
 }
 
 #define MADCTL_MY 0x80
@@ -2259,6 +2267,7 @@ void ST7735_Message(unsigned long d, unsigned long l, char *pt, long value)
 // Output: none
 void ST7735_SetRotation(unsigned char m)
 {
+  OS_bWait(&draw_semaphore);
 
   writecommand(ST7735_MADCTL);
   Rotation = m % 4; // can't be higher than 3
@@ -2313,6 +2322,7 @@ void ST7735_SetRotation(unsigned char m)
     _height = ST7735_TFTWIDTH;
     break;
   }
+  OS_bSignal(&draw_semaphore);
 }
 
 //------------ST7735_InvertDisplay------------
@@ -2322,6 +2332,7 @@ void ST7735_SetRotation(unsigned char m)
 // Output: none
 void ST7735_InvertDisplay(int i)
 {
+  OS_bWait(&draw_semaphore);
   if (i)
   {
     writecommand(ST7735_INVON);
@@ -2330,4 +2341,5 @@ void ST7735_InvertDisplay(int i)
   {
     writecommand(ST7735_INVOFF);
   }
+  OS_bSignal(&draw_semaphore);
 }

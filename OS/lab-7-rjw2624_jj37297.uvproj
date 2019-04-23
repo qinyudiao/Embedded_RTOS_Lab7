@@ -540,6 +540,11 @@
               <FileType>1</FileType>
               <FilePath>.\src\LED.c</FilePath>
             </File>
+            <File>
+              <FileName>motorcan.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\motorcan.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -854,6 +859,11 @@
               <FileName>servo.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\inc\servo.h</FilePath>
+            </File>
+            <File>
+              <FileName>motorcan.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\inc\motorcan.h</FilePath>
             </File>
           </Files>
         </Group>

@@ -1,0 +1,508 @@
+\hypertarget{eDisk_8h}{}\section{inc/e\+Disk.h File Reference}
+\label{eDisk_8h}\index{inc/e\+Disk.\+h@{inc/e\+Disk.\+h}}
+
+
+low-\/level S\+DC driver  
+
+
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{eDisk_8h_a1dd0d2b46dce637878416d489d2ddde2}{\+\_\+\+U\+S\+E\+\_\+\+W\+R\+I\+TE}~1\hypertarget{eDisk_8h_a1dd0d2b46dce637878416d489d2ddde2}{}\label{eDisk_8h_a1dd0d2b46dce637878416d489d2ddde2}
+
+\begin{DoxyCompactList}\small\item\em set to 1 to enable disk write \end{DoxyCompactList}\item 
+\#define \hyperlink{eDisk_8h_abd6503c70d862b979a3f7080a59e9acd}{S\+T\+A\+\_\+\+N\+O\+I\+N\+IT}~0x01	/$\ast$ Drive not initialized $\ast$/\hypertarget{eDisk_8h_abd6503c70d862b979a3f7080a59e9acd}{}\label{eDisk_8h_abd6503c70d862b979a3f7080a59e9acd}
+
+\begin{DoxyCompactList}\small\item\em Disk Status Bits (D\+S\+T\+A\+T\+US) \end{DoxyCompactList}\item 
+\#define {\bfseries S\+T\+A\+\_\+\+N\+O\+D\+I\+SK}~0x02	/$\ast$ No medium in the drive $\ast$/\hypertarget{eDisk_8h_aec625080763d6cf487e550a6c9a2dd19}{}\label{eDisk_8h_aec625080763d6cf487e550a6c9a2dd19}
+
+\item 
+\#define {\bfseries S\+T\+A\+\_\+\+P\+R\+O\+T\+E\+CT}~0x04	/$\ast$ Write protected $\ast$/\hypertarget{eDisk_8h_a9ec6dc5f6620a33fabe388d3a111ca8c}{}\label{eDisk_8h_a9ec6dc5f6620a33fabe388d3a111ca8c}
+
+\item 
+\#define {\bfseries C\+T\+R\+L\+\_\+\+S\+Y\+NC}~0	/$\ast$ Complete pending write process (needed at \+\_\+\+F\+S\+\_\+\+R\+E\+A\+D\+O\+N\+LY == 0) $\ast$/\hypertarget{eDisk_8h_a1b3c492f9aec325f0655941b75256f3c}{}\label{eDisk_8h_a1b3c492f9aec325f0655941b75256f3c}
+
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+S\+E\+C\+T\+O\+R\+\_\+\+C\+O\+U\+NT}~1	/$\ast$ Get media size (needed at \+\_\+\+U\+S\+E\+\_\+\+M\+K\+FS == 1) $\ast$/\hypertarget{eDisk_8h_a570216006f6a8fc4e1698b1bbb2d1dde}{}\label{eDisk_8h_a570216006f6a8fc4e1698b1bbb2d1dde}
+
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+S\+E\+C\+T\+O\+R\+\_\+\+S\+I\+ZE}~2	/$\ast$ Get sector size (needed at \+\_\+\+M\+A\+X\+\_\+\+SS != \+\_\+\+M\+I\+N\+\_\+\+SS) $\ast$/\hypertarget{eDisk_8h_ac73b5cf2135cbd459d109b96c9aa346a}{}\label{eDisk_8h_ac73b5cf2135cbd459d109b96c9aa346a}
+
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+B\+L\+O\+C\+K\+\_\+\+S\+I\+ZE}~3	/$\ast$ Get erase block size (needed at \+\_\+\+U\+S\+E\+\_\+\+M\+K\+FS == 1) $\ast$/\hypertarget{eDisk_8h_aec3bb4dfe075d0ba2f3b07b300a95500}{}\label{eDisk_8h_aec3bb4dfe075d0ba2f3b07b300a95500}
+
+\item 
+\#define {\bfseries C\+T\+R\+L\+\_\+\+T\+R\+IM}~4	/$\ast$ Inform device that the data on the block of sectors is no longer used (needed at \+\_\+\+U\+S\+E\+\_\+\+T\+R\+IM == 1) $\ast$/\hypertarget{eDisk_8h_af09fd84bea8d4e889e272471f44d60d6}{}\label{eDisk_8h_af09fd84bea8d4e889e272471f44d60d6}
+
+\item 
+\#define {\bfseries C\+T\+R\+L\+\_\+\+F\+O\+R\+M\+AT}~5	/$\ast$ Create physical format on the media $\ast$/\hypertarget{eDisk_8h_add07021167069f5914211a2f8830fabb}{}\label{eDisk_8h_add07021167069f5914211a2f8830fabb}
+
+\item 
+\#define {\bfseries C\+T\+R\+L\+\_\+\+P\+O\+W\+E\+R\+\_\+\+I\+D\+LE}~6	/$\ast$ Put the device idle state $\ast$/\hypertarget{eDisk_8h_a69bec9079062f809c3586977b2dc5d79}{}\label{eDisk_8h_a69bec9079062f809c3586977b2dc5d79}
+
+\item 
+\#define {\bfseries C\+T\+R\+L\+\_\+\+P\+O\+W\+E\+R\+\_\+\+O\+FF}~7	/$\ast$ Put the device off state $\ast$/\hypertarget{eDisk_8h_aa1f5a55ea2a24d274c16e51c111c97d8}{}\label{eDisk_8h_aa1f5a55ea2a24d274c16e51c111c97d8}
+
+\item 
+\#define {\bfseries C\+T\+R\+L\+\_\+\+L\+O\+CK}~8	/$\ast$ Lock media removal $\ast$/\hypertarget{eDisk_8h_af40e5cf3000553a978ff6e30dae70858}{}\label{eDisk_8h_af40e5cf3000553a978ff6e30dae70858}
+
+\item 
+\#define {\bfseries C\+T\+R\+L\+\_\+\+U\+N\+L\+O\+CK}~9	/$\ast$ Unlock media removal $\ast$/\hypertarget{eDisk_8h_a5d06770de580667138ca6101ae5138ac}{}\label{eDisk_8h_a5d06770de580667138ca6101ae5138ac}
+
+\item 
+\#define {\bfseries C\+T\+R\+L\+\_\+\+E\+J\+E\+CT}~10	/$\ast$ Eject media $\ast$/\hypertarget{eDisk_8h_a5e40e16d2d7ce196858950f070b9ec03}{}\label{eDisk_8h_a5e40e16d2d7ce196858950f070b9ec03}
+
+\item 
+\#define {\bfseries M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+T\+Y\+PE}~50	/$\ast$ Get card type $\ast$/\hypertarget{eDisk_8h_aba3a81a9a47c7d1bf3ac7749bc72dcfd}{}\label{eDisk_8h_aba3a81a9a47c7d1bf3ac7749bc72dcfd}
+
+\item 
+\#define {\bfseries M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+C\+SD}~51	/$\ast$ Get C\+SD $\ast$/\hypertarget{eDisk_8h_ae3b858b81287929f7c7bea3b7aec3087}{}\label{eDisk_8h_ae3b858b81287929f7c7bea3b7aec3087}
+
+\item 
+\#define {\bfseries M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+C\+ID}~52	/$\ast$ Get C\+ID $\ast$/\hypertarget{eDisk_8h_a17ad303dd18b19a4c90ab30a8a1c14c4}{}\label{eDisk_8h_a17ad303dd18b19a4c90ab30a8a1c14c4}
+
+\item 
+\#define {\bfseries M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+O\+CR}~53	/$\ast$ Get O\+CR $\ast$/\hypertarget{eDisk_8h_aff118ba6bd7a9fe7699cee049cff5d6c}{}\label{eDisk_8h_aff118ba6bd7a9fe7699cee049cff5d6c}
+
+\item 
+\#define {\bfseries M\+M\+C\+\_\+\+G\+E\+T\+\_\+\+S\+D\+S\+T\+AT}~54	/$\ast$ Get SD status $\ast$/\hypertarget{eDisk_8h_a5cc43c8449b872e16ea5ab42592f793e}{}\label{eDisk_8h_a5cc43c8449b872e16ea5ab42592f793e}
+
+\item 
+\#define {\bfseries A\+T\+A\+\_\+\+G\+E\+T\+\_\+\+R\+EV}~60	/$\ast$ Get F/W revision $\ast$/\hypertarget{eDisk_8h_a23f5fff3341e98825ea1f7367fd09f1a}{}\label{eDisk_8h_a23f5fff3341e98825ea1f7367fd09f1a}
+
+\item 
+\#define {\bfseries A\+T\+A\+\_\+\+G\+E\+T\+\_\+\+M\+O\+D\+EL}~61	/$\ast$ Get model name $\ast$/\hypertarget{eDisk_8h_a31f556ab98ab80c39058b38d9283865d}{}\label{eDisk_8h_a31f556ab98ab80c39058b38d9283865d}
+
+\item 
+\#define {\bfseries A\+T\+A\+\_\+\+G\+E\+T\+\_\+\+SN}~62	/$\ast$ Get serial number $\ast$/\hypertarget{eDisk_8h_a469c4f989757ee1ee404134fea3c74ba}{}\label{eDisk_8h_a469c4f989757ee1ee404134fea3c74ba}
+
+\item 
+\#define {\bfseries C\+T\+\_\+\+M\+MC}~0x01		/$\ast$ M\+M\+C ver 3 $\ast$/\hypertarget{eDisk_8h_ac52ec66c278308382fdf7b2c57f0ad8c}{}\label{eDisk_8h_ac52ec66c278308382fdf7b2c57f0ad8c}
+
+\item 
+\#define {\bfseries C\+T\+\_\+\+S\+D1}~0x02		/$\ast$ S\+D ver 1 $\ast$/\hypertarget{eDisk_8h_ad1c9fc863ec15d3320b3850dc571626e}{}\label{eDisk_8h_ad1c9fc863ec15d3320b3850dc571626e}
+
+\item 
+\#define {\bfseries C\+T\+\_\+\+S\+D2}~0x04		/$\ast$ S\+D ver 2 $\ast$/\hypertarget{eDisk_8h_a0db1b71113e73184a5ba511e7020a922}{}\label{eDisk_8h_a0db1b71113e73184a5ba511e7020a922}
+
+\item 
+\#define {\bfseries C\+T\+\_\+\+S\+DC}~(C\+T\+\_\+\+S\+D1$\vert$C\+T\+\_\+\+S\+D2)	/$\ast$ SD $\ast$/\hypertarget{eDisk_8h_ae76d94ac83c68d1f025cb0bcad77fa5d}{}\label{eDisk_8h_ae76d94ac83c68d1f025cb0bcad77fa5d}
+
+\item 
+\#define {\bfseries C\+T\+\_\+\+B\+L\+O\+CK}~0x08		/$\ast$ Block addressing $\ast$/\hypertarget{eDisk_8h_a7d48ce54c27f4f60666309e8627fab47}{}\label{eDisk_8h_a7d48ce54c27f4f60666309e8627fab47}
+
+\item 
+\#define {\bfseries \+\_\+\+D\+I\+S\+K\+IO}\hypertarget{eDisk_8h_adaaf74fb14f944682c41a495b64ede08}{}\label{eDisk_8h_adaaf74fb14f944682c41a495b64ede08}
+
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef signed int {\bfseries I\+NT}\hypertarget{eDisk_8h_ae5275e848e7ce7204e4ef11bc4523ced}{}\label{eDisk_8h_ae5275e848e7ce7204e4ef11bc4523ced}
+
+\item 
+typedef unsigned int {\bfseries U\+I\+NT}\hypertarget{eDisk_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{}\label{eDisk_8h_a36cb3b01d81ffd844bbbfb54003e06ec}
+
+\item 
+typedef signed char {\bfseries C\+H\+AR}\hypertarget{eDisk_8h_abdfff23a0f3483b45f7abc457927a1e8}{}\label{eDisk_8h_abdfff23a0f3483b45f7abc457927a1e8}
+
+\item 
+typedef unsigned char {\bfseries U\+C\+H\+AR}\hypertarget{eDisk_8h_a4f4bb67531a9bf6f0b9c6ad76aeba587}{}\label{eDisk_8h_a4f4bb67531a9bf6f0b9c6ad76aeba587}
+
+\item 
+typedef unsigned char {\bfseries B\+Y\+TE}\hypertarget{eDisk_8h_a4ae1dab0fb4b072a66584546209e7d58}{}\label{eDisk_8h_a4ae1dab0fb4b072a66584546209e7d58}
+
+\item 
+typedef signed short {\bfseries S\+H\+O\+RT}\hypertarget{eDisk_8h_a439bf4effbb8f7831abda94bbbb45f1c}{}\label{eDisk_8h_a439bf4effbb8f7831abda94bbbb45f1c}
+
+\item 
+typedef unsigned short {\bfseries U\+S\+H\+O\+RT}\hypertarget{eDisk_8h_a5850d5316caf7f4cedd742fdf8cd7c02}{}\label{eDisk_8h_a5850d5316caf7f4cedd742fdf8cd7c02}
+
+\item 
+typedef unsigned short {\bfseries W\+O\+RD}\hypertarget{eDisk_8h_a197942eefa7db30960ae396d68339b97}{}\label{eDisk_8h_a197942eefa7db30960ae396d68339b97}
+
+\item 
+typedef signed long {\bfseries L\+O\+NG}\hypertarget{eDisk_8h_a73a5fec9b19159a6647fbf000017b221}{}\label{eDisk_8h_a73a5fec9b19159a6647fbf000017b221}
+
+\item 
+typedef unsigned long {\bfseries U\+L\+O\+NG}\hypertarget{eDisk_8h_af632da489ebc3708ec3ab6791ee53fa4}{}\label{eDisk_8h_af632da489ebc3708ec3ab6791ee53fa4}
+
+\item 
+typedef unsigned long {\bfseries D\+W\+O\+RD}\hypertarget{eDisk_8h_ad342ac907eb044443153a22f964bf0af}{}\label{eDisk_8h_ad342ac907eb044443153a22f964bf0af}
+
+\item 
+typedef B\+Y\+TE \hyperlink{eDisk_8h_adba6790898ce4029c20a34b898ce73c1}{D\+S\+T\+A\+T\+US}\hypertarget{eDisk_8h_adba6790898ce4029c20a34b898ce73c1}{}\label{eDisk_8h_adba6790898ce4029c20a34b898ce73c1}
+
+\begin{DoxyCompactList}\small\item\em Status of Disk Functions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{eDisk_8h_a3e5b8192e7d9ffaf3542f1210aec18dd}{B\+O\+OL} \{ {\bfseries F\+A\+L\+SE} = 0, 
+{\bfseries T\+R\+UE}
+ \}\hypertarget{eDisk_8h_a3e5b8192e7d9ffaf3542f1210aec18dd}{}\label{eDisk_8h_a3e5b8192e7d9ffaf3542f1210aec18dd}
+\begin{DoxyCompactList}\small\item\em Boolean type. \end{DoxyCompactList}
+\item 
+enum {\bfseries D\+R\+E\+S\+U\+LT} \{ \\*
+{\bfseries R\+E\+S\+\_\+\+OK} = 0, 
+{\bfseries R\+E\+S\+\_\+\+E\+R\+R\+OR}, 
+{\bfseries R\+E\+S\+\_\+\+W\+R\+P\+RT}, 
+{\bfseries R\+E\+S\+\_\+\+N\+O\+T\+R\+DY}, 
+\\*
+{\bfseries R\+E\+S\+\_\+\+P\+A\+R\+E\+RR}
+ \}\hypertarget{eDisk_8h_aacdfef1dad6565f65c26d12fe0ea4b2b}{}\label{eDisk_8h_aacdfef1dad6565f65c26d12fe0ea4b2b}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{eDisk_8h_adba6790898ce4029c20a34b898ce73c1}{D\+S\+T\+A\+T\+US} \hyperlink{eDisk_8h_a21fc1fc0f4ee284014ed5a79c90b503a}{e\+Disk\+\_\+\+Init} (B\+Y\+TE drive)
+\begin{DoxyCompactList}\small\item\em Initialize the interface between microcontroller and the SD card. \end{DoxyCompactList}\item 
+\hyperlink{eDisk_8h_adba6790898ce4029c20a34b898ce73c1}{D\+S\+T\+A\+T\+US} \hyperlink{eDisk_8h_a661c0a5ef20fa55f5071904833038caa}{e\+Disk\+\_\+\+Status} (B\+Y\+TE drive)
+\begin{DoxyCompactList}\small\item\em Check the status of the SD card. \end{DoxyCompactList}\item 
+D\+R\+E\+S\+U\+LT \hyperlink{eDisk_8h_ac52891d5b5d2b157f0bc310800cce66e}{e\+Disk\+\_\+\+Read} (B\+Y\+TE drv, B\+Y\+TE $\ast$buff, D\+W\+O\+RD sector, U\+I\+NT count)
+\begin{DoxyCompactList}\small\item\em Read bytes from SD card. \end{DoxyCompactList}\item 
+D\+R\+E\+S\+U\+LT \hyperlink{eDisk_8h_a6e3f430b02e2559332f96954810f7199}{e\+Disk\+\_\+\+Read\+Block} (B\+Y\+TE $\ast$buff, D\+W\+O\+RD sector)
+\begin{DoxyCompactList}\small\item\em Read 512-\/byte block from SD card. \end{DoxyCompactList}\item 
+D\+R\+E\+S\+U\+LT \hyperlink{eDisk_8h_a1b99eac5fe78ee21c8aee551ea3aee26}{e\+Disk\+\_\+\+Write} (B\+Y\+TE drv, const B\+Y\+TE $\ast$buff, D\+W\+O\+RD sector, U\+I\+NT count)
+\begin{DoxyCompactList}\small\item\em Write bytes to SD card. \end{DoxyCompactList}\item 
+D\+R\+E\+S\+U\+LT \hyperlink{eDisk_8h_afefd560492e5613d2ddcff84e1449dc3}{e\+Disk\+\_\+\+Write\+Block} (const B\+Y\+TE $\ast$buff, D\+W\+O\+RD sector)
+\begin{DoxyCompactList}\small\item\em Write 512-\/byte block from SD card. \end{DoxyCompactList}\item 
+void \hyperlink{eDisk_8h_ab3ad33fe379379962edd4c549bbc9ffa}{C\+S\+\_\+\+Init} (void)
+\begin{DoxyCompactList}\small\item\em Configure S\+DC chip select. \end{DoxyCompactList}\item 
+void \hyperlink{eDisk_8h_a045f8898a243c16aca4e64e069c49c03}{disk\+\_\+timerproc} (void)
+\begin{DoxyCompactList}\small\item\em This should be called every 10 ms. \end{DoxyCompactList}\item 
+D\+R\+E\+S\+U\+LT \hyperlink{eDisk_8h_ac822cf3c1768a2c35e4858cc99b8f53b}{disk\+\_\+ioctl} (B\+Y\+TE drv, B\+Y\+TE cmd, void $\ast$buff)
+\begin{DoxyCompactList}\small\item\em Disk input/output. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+low-\/level S\+DC driver 
+
+This version of the driver has been configured to operate on the S\+T7735R, so that both the S\+DC card and the L\+CD use the same S\+SI port, but have different chip selects. \begin{DoxyVersion}{Version}
+V1.\+0 
+\end{DoxyVersion}
+\begin{DoxyAuthor}{Author}
+Valvano 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+Copyright 2017 by Jonathan W. Valvano, \href{mailto:valvano@mail.utexas.edu}{\tt valvano@mail.\+utexas.\+edu}, 
+\end{DoxyCopyright}
+\begin{DoxyWarning}{Warning}
+A\+S-\/\+IS 
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+For more information see \href{http://users.ece.utexas.edu/~valvano/}{\tt http\+://users.\+ece.\+utexas.\+edu/$\sim$valvano/} 
+\end{DoxyNote}
+\begin{DoxyDate}{Date}
+March 9, 2017 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\index{e\+Disk.\+h@{e\+Disk.\+h}!C\+S\+\_\+\+Init@{C\+S\+\_\+\+Init}}
+\index{C\+S\+\_\+\+Init@{C\+S\+\_\+\+Init}!e\+Disk.\+h@{e\+Disk.\+h}}
+\subsubsection[{\texorpdfstring{C\+S\+\_\+\+Init(void)}{CS_Init(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+S\+\_\+\+Init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{eDisk_8h_ab3ad33fe379379962edd4c549bbc9ffa}{}\label{eDisk_8h_ab3ad33fe379379962edd4c549bbc9ffa}
+
+
+Configure S\+DC chip select. 
+
+Enable S\+DC chip select, so it is an output 
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\index{e\+Disk.\+h@{e\+Disk.\+h}!disk\+\_\+ioctl@{disk\+\_\+ioctl}}
+\index{disk\+\_\+ioctl@{disk\+\_\+ioctl}!e\+Disk.\+h@{e\+Disk.\+h}}
+\subsubsection[{\texorpdfstring{disk\+\_\+ioctl(\+B\+Y\+T\+E drv, B\+Y\+T\+E cmd, void $\ast$buff)}{disk_ioctl(BYTE drv, BYTE cmd, void *buff)}}]{\setlength{\rightskip}{0pt plus 5cm}D\+R\+E\+S\+U\+LT disk\+\_\+ioctl (
+\begin{DoxyParamCaption}
+\item[{B\+Y\+TE}]{drv, }
+\item[{B\+Y\+TE}]{cmd, }
+\item[{void $\ast$}]{buff}
+\end{DoxyParamCaption}
+)}\hypertarget{eDisk_8h_ac822cf3c1768a2c35e4858cc99b8f53b}{}\label{eDisk_8h_ac822cf3c1768a2c35e4858cc99b8f53b}
+
+
+Disk input/output. 
+
+General purpose function for all disk I/O 
+\begin{DoxyParams}{Parameters}
+{\em drv} & (only drive 0 is supported) \\
+\hline
+{\em cmd} & disk command \\
+\hline
+{\em buff} & pointer to R\+AM input/output data \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+result (0 means OK) 
+\end{DoxyReturn}
+\index{e\+Disk.\+h@{e\+Disk.\+h}!disk\+\_\+timerproc@{disk\+\_\+timerproc}}
+\index{disk\+\_\+timerproc@{disk\+\_\+timerproc}!e\+Disk.\+h@{e\+Disk.\+h}}
+\subsubsection[{\texorpdfstring{disk\+\_\+timerproc(void)}{disk_timerproc(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void disk\+\_\+timerproc (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{eDisk_8h_a045f8898a243c16aca4e64e069c49c03}{}\label{eDisk_8h_a045f8898a243c16aca4e64e069c49c03}
+
+
+This should be called every 10 ms. 
+
+This implements timeout functions 
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\index{e\+Disk.\+h@{e\+Disk.\+h}!e\+Disk\+\_\+\+Init@{e\+Disk\+\_\+\+Init}}
+\index{e\+Disk\+\_\+\+Init@{e\+Disk\+\_\+\+Init}!e\+Disk.\+h@{e\+Disk.\+h}}
+\subsubsection[{\texorpdfstring{e\+Disk\+\_\+\+Init(\+B\+Y\+T\+E drive)}{eDisk_Init(BYTE drive)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\+S\+T\+A\+T\+US} e\+Disk\+\_\+\+Init (
+\begin{DoxyParamCaption}
+\item[{B\+Y\+TE}]{drive}
+\end{DoxyParamCaption}
+)}\hypertarget{eDisk_8h_a21fc1fc0f4ee284014ed5a79c90b503a}{}\label{eDisk_8h_a21fc1fc0f4ee284014ed5a79c90b503a}
+
+
+Initialize the interface between microcontroller and the SD card. 
+
+Turn on P\+LL. Since this program initializes the disk, it must run with the disk periodic task operating. \hypertarget{eDisk_8h_init}{}
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*3{|X[-1]}|}
+\caption{Return parameter}\label{eDisk_8h_init}\\
+\hline
+\rowcolor{\tableheadbgcolor}{\bf Return }&{\bf Value }&{\bf Meaning }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}{\bf Return }&{\bf Value }&{\bf Meaning }\\\cline{1-3}
+\endhead
+R\+E\+S\+\_\+\+OK &0x00 &Successful \\\cline{1-3}
+S\+T\+A\+\_\+\+N\+O\+I\+N\+IT &0x01 &Drive not initialized \\\cline{1-3}
+S\+T\+A\+\_\+\+N\+O\+D\+I\+SK &0x02 &No medium in the drive \\\cline{1-3}
+S\+T\+A\+\_\+\+P\+R\+O\+T\+E\+CT &0x04 &Write protected \\\cline{1-3}
+\end{longtabu}
+
+\begin{DoxyParams}{Parameters}
+{\em drive} & number (only drive 0 is supported) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status (0 means OK) 
+\end{DoxyReturn}
+\index{e\+Disk.\+h@{e\+Disk.\+h}!e\+Disk\+\_\+\+Read@{e\+Disk\+\_\+\+Read}}
+\index{e\+Disk\+\_\+\+Read@{e\+Disk\+\_\+\+Read}!e\+Disk.\+h@{e\+Disk.\+h}}
+\subsubsection[{\texorpdfstring{e\+Disk\+\_\+\+Read(\+B\+Y\+T\+E drv, B\+Y\+T\+E $\ast$buff, D\+W\+O\+R\+D sector, U\+I\+N\+T count)}{eDisk_Read(BYTE drv, BYTE *buff, DWORD sector, UINT count)}}]{\setlength{\rightskip}{0pt plus 5cm}D\+R\+E\+S\+U\+LT e\+Disk\+\_\+\+Read (
+\begin{DoxyParamCaption}
+\item[{B\+Y\+TE}]{drv, }
+\item[{B\+Y\+TE $\ast$}]{buff, }
+\item[{D\+W\+O\+RD}]{sector, }
+\item[{U\+I\+NT}]{count}
+\end{DoxyParamCaption}
+)}\hypertarget{eDisk_8h_ac52891d5b5d2b157f0bc310800cce66e}{}\label{eDisk_8h_ac52891d5b5d2b157f0bc310800cce66e}
+
+
+Read bytes from SD card. 
+
+Read data from the SD card (write to R\+AM) \hypertarget{eDisk_8h_read}{}
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*3{|X[-1]}|}
+\caption{Return parameter}\label{eDisk_8h_read}\\
+\hline
+\rowcolor{\tableheadbgcolor}{\bf Return }&{\bf Value }&{\bf Meaning }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}{\bf Return }&{\bf Value }&{\bf Meaning }\\\cline{1-3}
+\endhead
+R\+E\+S\+\_\+\+OK &0x00 &Successful \\\cline{1-3}
+R\+E\+S\+\_\+\+E\+R\+R\+OR &0x01 &R/W Error \\\cline{1-3}
+R\+E\+S\+\_\+\+W\+R\+P\+RT &0x02 &Write Protected \\\cline{1-3}
+R\+E\+S\+\_\+\+N\+O\+T\+R\+DY &0x03 &Not Ready \\\cline{1-3}
+R\+E\+S\+\_\+\+P\+A\+R\+E\+RR &0x04 &Invalid Parameter \\\cline{1-3}
+\end{longtabu}
+
+\begin{DoxyParams}{Parameters}
+{\em drv} & (only drive 0 is supported) \\
+\hline
+{\em buff} & pointer to an empty R\+AM buffer \\
+\hline
+{\em sector} & sector number of SD card to read\+: 0,1,2,... \\
+\hline
+{\em count} & number of sectors to read \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+result (0 means OK) 
+\end{DoxyReturn}
+\index{e\+Disk.\+h@{e\+Disk.\+h}!e\+Disk\+\_\+\+Read\+Block@{e\+Disk\+\_\+\+Read\+Block}}
+\index{e\+Disk\+\_\+\+Read\+Block@{e\+Disk\+\_\+\+Read\+Block}!e\+Disk.\+h@{e\+Disk.\+h}}
+\subsubsection[{\texorpdfstring{e\+Disk\+\_\+\+Read\+Block(\+B\+Y\+T\+E $\ast$buff, D\+W\+O\+R\+D sector)}{eDisk_ReadBlock(BYTE *buff, DWORD sector)}}]{\setlength{\rightskip}{0pt plus 5cm}D\+R\+E\+S\+U\+LT e\+Disk\+\_\+\+Read\+Block (
+\begin{DoxyParamCaption}
+\item[{B\+Y\+TE $\ast$}]{buff, }
+\item[{D\+W\+O\+RD}]{sector}
+\end{DoxyParamCaption}
+)}\hypertarget{eDisk_8h_a6e3f430b02e2559332f96954810f7199}{}\label{eDisk_8h_a6e3f430b02e2559332f96954810f7199}
+
+
+Read 512-\/byte block from SD card. 
+
+Read one block from the SD card (write to R\+AM) \hypertarget{eDisk_8h_readBlock}{}
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*3{|X[-1]}|}
+\caption{Return parameter}\label{eDisk_8h_readBlock}\\
+\hline
+\rowcolor{\tableheadbgcolor}{\bf Return }&{\bf Value }&{\bf Meaning }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}{\bf Return }&{\bf Value }&{\bf Meaning }\\\cline{1-3}
+\endhead
+R\+E\+S\+\_\+\+OK &0x00 &Successful \\\cline{1-3}
+R\+E\+S\+\_\+\+E\+R\+R\+OR &0x01 &R/W Error \\\cline{1-3}
+R\+E\+S\+\_\+\+W\+R\+P\+RT &0x02 &Write Protected \\\cline{1-3}
+R\+E\+S\+\_\+\+N\+O\+T\+R\+DY &0x03 &Not Ready \\\cline{1-3}
+R\+E\+S\+\_\+\+P\+A\+R\+E\+RR &0x04 &Invalid Parameter \\\cline{1-3}
+\end{longtabu}
+
+\begin{DoxyParams}{Parameters}
+{\em buff} & pointer to an empty R\+AM buffer \\
+\hline
+{\em sector} & sector number of SD card to read\+: 0,1,2,... \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+result (0 means OK) 
+\end{DoxyReturn}
+\index{e\+Disk.\+h@{e\+Disk.\+h}!e\+Disk\+\_\+\+Status@{e\+Disk\+\_\+\+Status}}
+\index{e\+Disk\+\_\+\+Status@{e\+Disk\+\_\+\+Status}!e\+Disk.\+h@{e\+Disk.\+h}}
+\subsubsection[{\texorpdfstring{e\+Disk\+\_\+\+Status(\+B\+Y\+T\+E drive)}{eDisk_Status(BYTE drive)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\+S\+T\+A\+T\+US} e\+Disk\+\_\+\+Status (
+\begin{DoxyParamCaption}
+\item[{B\+Y\+TE}]{drive}
+\end{DoxyParamCaption}
+)}\hypertarget{eDisk_8h_a661c0a5ef20fa55f5071904833038caa}{}\label{eDisk_8h_a661c0a5ef20fa55f5071904833038caa}
+
+
+Check the status of the SD card. 
+
+Checks the status of the secure digital care. \hypertarget{eDisk_8h_status}{}
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*3{|X[-1]}|}
+\caption{Return parameter}\label{eDisk_8h_status}\\
+\hline
+\rowcolor{\tableheadbgcolor}{\bf Return }&{\bf Value }&{\bf Meaning }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}{\bf Return }&{\bf Value }&{\bf Meaning }\\\cline{1-3}
+\endhead
+R\+E\+S\+\_\+\+OK &0x00 &Successful \\\cline{1-3}
+S\+T\+A\+\_\+\+N\+O\+I\+N\+IT &0x01 &Drive not initialized \\\cline{1-3}
+S\+T\+A\+\_\+\+N\+O\+D\+I\+SK &0x02 &No medium in the drive \\\cline{1-3}
+S\+T\+A\+\_\+\+P\+R\+O\+T\+E\+CT &0x04 &Write protected \\\cline{1-3}
+\end{longtabu}
+
+\begin{DoxyParams}{Parameters}
+{\em drive} & number (only drive 0 is supported) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status (0 means OK) 
+\end{DoxyReturn}
+\index{e\+Disk.\+h@{e\+Disk.\+h}!e\+Disk\+\_\+\+Write@{e\+Disk\+\_\+\+Write}}
+\index{e\+Disk\+\_\+\+Write@{e\+Disk\+\_\+\+Write}!e\+Disk.\+h@{e\+Disk.\+h}}
+\subsubsection[{\texorpdfstring{e\+Disk\+\_\+\+Write(\+B\+Y\+T\+E drv, const B\+Y\+T\+E $\ast$buff, D\+W\+O\+R\+D sector, U\+I\+N\+T count)}{eDisk_Write(BYTE drv, const BYTE *buff, DWORD sector, UINT count)}}]{\setlength{\rightskip}{0pt plus 5cm}D\+R\+E\+S\+U\+LT e\+Disk\+\_\+\+Write (
+\begin{DoxyParamCaption}
+\item[{B\+Y\+TE}]{drv, }
+\item[{const B\+Y\+TE $\ast$}]{buff, }
+\item[{D\+W\+O\+RD}]{sector, }
+\item[{U\+I\+NT}]{count}
+\end{DoxyParamCaption}
+)}\hypertarget{eDisk_8h_a1b99eac5fe78ee21c8aee551ea3aee26}{}\label{eDisk_8h_a1b99eac5fe78ee21c8aee551ea3aee26}
+
+
+Write bytes to SD card. 
+
+write data to the SD card (read to R\+AM) \hypertarget{eDisk_8h_write}{}
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*3{|X[-1]}|}
+\caption{Return parameter}\label{eDisk_8h_write}\\
+\hline
+\rowcolor{\tableheadbgcolor}{\bf Return }&{\bf Value }&{\bf Meaning }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}{\bf Return }&{\bf Value }&{\bf Meaning }\\\cline{1-3}
+\endhead
+R\+E\+S\+\_\+\+OK &0x00 &Successful \\\cline{1-3}
+R\+E\+S\+\_\+\+E\+R\+R\+OR &0x01 &R/W Error \\\cline{1-3}
+R\+E\+S\+\_\+\+W\+R\+P\+RT &0x02 &Write Protected \\\cline{1-3}
+R\+E\+S\+\_\+\+N\+O\+T\+R\+DY &0x03 &Not Ready \\\cline{1-3}
+R\+E\+S\+\_\+\+P\+A\+R\+E\+RR &0x04 &Invalid Parameter \\\cline{1-3}
+\end{longtabu}
+
+\begin{DoxyParams}{Parameters}
+{\em drv} & (only drive 0 is supported) \\
+\hline
+{\em buff} & pointer to R\+AM buffer with data \\
+\hline
+{\em sector} & sector number of SD card to write\+: 0,1,2,... \\
+\hline
+{\em count} & number of sectors to write \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+result (0 means OK) 
+\end{DoxyReturn}
+\index{e\+Disk.\+h@{e\+Disk.\+h}!e\+Disk\+\_\+\+Write\+Block@{e\+Disk\+\_\+\+Write\+Block}}
+\index{e\+Disk\+\_\+\+Write\+Block@{e\+Disk\+\_\+\+Write\+Block}!e\+Disk.\+h@{e\+Disk.\+h}}
+\subsubsection[{\texorpdfstring{e\+Disk\+\_\+\+Write\+Block(const B\+Y\+T\+E $\ast$buff, D\+W\+O\+R\+D sector)}{eDisk_WriteBlock(const BYTE *buff, DWORD sector)}}]{\setlength{\rightskip}{0pt plus 5cm}D\+R\+E\+S\+U\+LT e\+Disk\+\_\+\+Write\+Block (
+\begin{DoxyParamCaption}
+\item[{const B\+Y\+TE $\ast$}]{buff, }
+\item[{D\+W\+O\+RD}]{sector}
+\end{DoxyParamCaption}
+)}\hypertarget{eDisk_8h_afefd560492e5613d2ddcff84e1449dc3}{}\label{eDisk_8h_afefd560492e5613d2ddcff84e1449dc3}
+
+
+Write 512-\/byte block from SD card. 
+
+Write one block to the SD card (read to R\+AM) \hypertarget{eDisk_8h_writeBlock}{}
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*3{|X[-1]}|}
+\caption{Return parameter}\label{eDisk_8h_writeBlock}\\
+\hline
+\rowcolor{\tableheadbgcolor}{\bf Return }&{\bf Value }&{\bf Meaning }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}{\bf Return }&{\bf Value }&{\bf Meaning }\\\cline{1-3}
+\endhead
+R\+E\+S\+\_\+\+OK &0x00 &Successful \\\cline{1-3}
+R\+E\+S\+\_\+\+E\+R\+R\+OR &0x01 &R/W Error \\\cline{1-3}
+R\+E\+S\+\_\+\+W\+R\+P\+RT &0x02 &Write Protected \\\cline{1-3}
+R\+E\+S\+\_\+\+N\+O\+T\+R\+DY &0x03 &Not Ready \\\cline{1-3}
+R\+E\+S\+\_\+\+P\+A\+R\+E\+RR &0x04 &Invalid Parameter \\\cline{1-3}
+\end{longtabu}
+
+\begin{DoxyParams}{Parameters}
+{\em buff} & pointer to R\+AM buffer with 512 bytes of data \\
+\hline
+{\em sector} & sector number of SD card to write\+: 0,1,2,... \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+result (0 means OK) 
+\end{DoxyReturn}

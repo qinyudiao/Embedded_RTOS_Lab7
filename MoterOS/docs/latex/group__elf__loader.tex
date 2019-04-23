@@ -1,0 +1,69 @@
+\hypertarget{group__elf__loader}{}\section{E\+LF Loader}
+\label{group__elf__loader}\index{E\+L\+F Loader@{E\+L\+F Loader}}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structELFSymbol__t}{E\+L\+F\+Symbol\+\_\+t}
+\item 
+struct \hyperlink{structELFEnv__t}{E\+L\+F\+Env\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{group__elf__loader_ga9bec475ce684483bfe2b60164d65841b}{E\+L\+F\+Sec\+Perm\+\_\+t} \{ \hyperlink{group__elf__loader_gga9bec475ce684483bfe2b60164d65841ba9637ca527cb9efa81de0a9dd689c5aec}{E\+L\+F\+\_\+\+S\+E\+C\+\_\+\+W\+R\+I\+TE} = 0x1, 
+\hyperlink{group__elf__loader_gga9bec475ce684483bfe2b60164d65841ba375943d76c76954351ca62462e213dc6}{E\+L\+F\+\_\+\+S\+E\+C\+\_\+\+R\+E\+AD} = 0x2, 
+\hyperlink{group__elf__loader_gga9bec475ce684483bfe2b60164d65841ba3f3ea7773c3231ffc68025b9eb9e4701}{E\+L\+F\+\_\+\+S\+E\+C\+\_\+\+E\+X\+EC} = 0x4
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{group__elf__loader_ga1de52b2875f44a9365a1b8e266eb6e73}{exec\+\_\+elf} (const char $\ast$path, const \hyperlink{structELFEnv__t}{E\+L\+F\+Env\+\_\+t} $\ast$env)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Enumeration Type Documentation}
+\index{E\+L\+F Loader@{E\+L\+F Loader}!E\+L\+F\+Sec\+Perm\+\_\+t@{E\+L\+F\+Sec\+Perm\+\_\+t}}
+\index{E\+L\+F\+Sec\+Perm\+\_\+t@{E\+L\+F\+Sec\+Perm\+\_\+t}!E\+L\+F Loader@{E\+L\+F Loader}}
+\subsubsection[{\texorpdfstring{E\+L\+F\+Sec\+Perm\+\_\+t}{ELFSecPerm_t}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf E\+L\+F\+Sec\+Perm\+\_\+t}}\hypertarget{group__elf__loader_ga9bec475ce684483bfe2b60164d65841b}{}\label{group__elf__loader_ga9bec475ce684483bfe2b60164d65841b}
+Protection flags of memory \begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{E\+L\+F\+\_\+\+S\+E\+C\+\_\+\+W\+R\+I\+TE@{E\+L\+F\+\_\+\+S\+E\+C\+\_\+\+W\+R\+I\+TE}!E\+L\+F Loader@{E\+L\+F Loader}}\index{E\+L\+F Loader@{E\+L\+F Loader}!E\+L\+F\+\_\+\+S\+E\+C\+\_\+\+W\+R\+I\+TE@{E\+L\+F\+\_\+\+S\+E\+C\+\_\+\+W\+R\+I\+TE}}\item[{\em 
+E\+L\+F\+\_\+\+S\+E\+C\+\_\+\+W\+R\+I\+TE\hypertarget{group__elf__loader_gga9bec475ce684483bfe2b60164d65841ba9637ca527cb9efa81de0a9dd689c5aec}{}\label{group__elf__loader_gga9bec475ce684483bfe2b60164d65841ba9637ca527cb9efa81de0a9dd689c5aec}
+}]Enable for write \index{E\+L\+F\+\_\+\+S\+E\+C\+\_\+\+R\+E\+AD@{E\+L\+F\+\_\+\+S\+E\+C\+\_\+\+R\+E\+AD}!E\+L\+F Loader@{E\+L\+F Loader}}\index{E\+L\+F Loader@{E\+L\+F Loader}!E\+L\+F\+\_\+\+S\+E\+C\+\_\+\+R\+E\+AD@{E\+L\+F\+\_\+\+S\+E\+C\+\_\+\+R\+E\+AD}}\item[{\em 
+E\+L\+F\+\_\+\+S\+E\+C\+\_\+\+R\+E\+AD\hypertarget{group__elf__loader_gga9bec475ce684483bfe2b60164d65841ba375943d76c76954351ca62462e213dc6}{}\label{group__elf__loader_gga9bec475ce684483bfe2b60164d65841ba375943d76c76954351ca62462e213dc6}
+}]Enable for read \index{E\+L\+F\+\_\+\+S\+E\+C\+\_\+\+E\+X\+EC@{E\+L\+F\+\_\+\+S\+E\+C\+\_\+\+E\+X\+EC}!E\+L\+F Loader@{E\+L\+F Loader}}\index{E\+L\+F Loader@{E\+L\+F Loader}!E\+L\+F\+\_\+\+S\+E\+C\+\_\+\+E\+X\+EC@{E\+L\+F\+\_\+\+S\+E\+C\+\_\+\+E\+X\+EC}}\item[{\em 
+E\+L\+F\+\_\+\+S\+E\+C\+\_\+\+E\+X\+EC\hypertarget{group__elf__loader_gga9bec475ce684483bfe2b60164d65841ba3f3ea7773c3231ffc68025b9eb9e4701}{}\label{group__elf__loader_gga9bec475ce684483bfe2b60164d65841ba3f3ea7773c3231ffc68025b9eb9e4701}
+}]Enable for execution (instruction fetch) \end{description}
+\end{Desc}
+
+
+\subsection{Function Documentation}
+\index{E\+L\+F Loader@{E\+L\+F Loader}!exec\+\_\+elf@{exec\+\_\+elf}}
+\index{exec\+\_\+elf@{exec\+\_\+elf}!E\+L\+F Loader@{E\+L\+F Loader}}
+\subsubsection[{\texorpdfstring{exec\+\_\+elf(const char $\ast$path, const E\+L\+F\+Env\+\_\+t $\ast$env)}{exec_elf(const char *path, const ELFEnv_t *env)}}]{\setlength{\rightskip}{0pt plus 5cm}int exec\+\_\+elf (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{path, }
+\item[{const {\bf E\+L\+F\+Env\+\_\+t} $\ast$}]{env}
+\end{DoxyParamCaption}
+)}\hypertarget{group__elf__loader_ga1de52b2875f44a9365a1b8e266eb6e73}{}\label{group__elf__loader_ga1de52b2875f44a9365a1b8e266eb6e73}
+Execute E\+LF file from \char`\"{}path\char`\"{} with environment \char`\"{}env\char`\"{} 
+\begin{DoxyParams}{Parameters}
+{\em path} & Path to file to load \\
+\hline
+{\em env} & Pointer to environment struct \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & On successful \\
+\hline
+{\em -\/1} & On fail \\
+\hline
+\end{DoxyRetVals}
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000001}{Todo}]Error information \end{DoxyRefDesc}

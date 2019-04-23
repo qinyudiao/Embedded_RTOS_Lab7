@@ -1,0 +1,195 @@
+\hypertarget{heap_8h}{}\section{inc/heap.h File Reference}
+\label{heap_8h}\index{inc/heap.\+h@{inc/heap.\+h}}
+
+
+Implements memory heap for dynamic memory allocation. Follows standard malloc/calloc/realloc/free interface for allocating/unallocating memory. modified 8/31/08 Jonathan Valvano for style modified 12/16/11 Jonathan Valvano for 32-\/bit machine modified August 10, 2014 for C99 syntax This example accompanies the book \char`\"{}\+Embedded Systems\+: Real Time Operating Systems for A\+R\+M Cortex M Microcontrollers\char`\"{}, I\+S\+BN\+: 978-\/1466468863, Jonathan Valvano, copyright (c) 2014 Implementation Notes\+: This is a Knuth Heap. Each block has a header and a trailer, which I shall call the meta-\/sections. The meta-\/sections are each a single int32\+\_\+t that tells how many int32\+\_\+ts/words can be stored between the header and trailer. If the block is used, the meta-\/sections record the room as a positive number. If the block is unused, the meta-\/sections record the room as a negative number. Copyright 2014 by Jonathan W. Valvano, \href{mailto:valvano@mail.utexas.edu}{\tt valvano@mail.\+utexas.\+edu} You may use, edit, run or distribute this file as long as the above copyright notice remains T\+H\+IS S\+O\+F\+T\+W\+A\+RE IS P\+R\+O\+V\+I\+D\+ED \char`\"{}\+A\+S I\+S\char`\"{}. NO W\+A\+R\+R\+A\+N\+T\+I\+ES, W\+H\+E\+T\+H\+ER E\+X\+P\+R\+E\+SS, I\+M\+P\+L\+I\+ED OR S\+T\+A\+T\+U\+T\+O\+RY, I\+N\+C\+L\+U\+D\+I\+NG, B\+UT N\+OT L\+I\+M\+I\+T\+ED TO, I\+M\+P\+L\+I\+ED W\+A\+R\+R\+A\+N\+T\+I\+ES OF M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY A\+ND F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE A\+P\+P\+LY TO T\+H\+IS S\+O\+F\+T\+W\+A\+RE. V\+A\+L\+V\+A\+NO S\+H\+A\+LL N\+OT, IN A\+NY C\+I\+R\+C\+U\+M\+S\+T\+A\+N\+C\+ES, BE L\+I\+A\+B\+LE F\+OR S\+P\+E\+C\+I\+AL, I\+N\+C\+I\+D\+E\+N\+T\+AL, OR C\+O\+N\+S\+E\+Q\+U\+E\+N\+T\+I\+AL D\+A\+M\+A\+G\+ES, F\+OR A\+NY R\+E\+A\+S\+ON W\+H\+A\+T\+S\+O\+E\+V\+ER. For more information about my classes, my research, and my books, see \href{http://users.ece.utexas.edu/~valvano/}{\tt http\+://users.\+ece.\+utexas.\+edu/$\sim$valvano/}.  
+
+
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=178pt]{heap_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structheap__stats}{heap\+\_\+stats}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries H\+E\+A\+P\+\_\+\+S\+I\+Z\+E\+\_\+\+B\+Y\+T\+ES}~(2048)\hypertarget{heap_8h_af2910747af799b24cfaa2ab32861f592}{}\label{heap_8h_af2910747af799b24cfaa2ab32861f592}
+
+\item 
+\#define {\bfseries H\+E\+A\+P\+\_\+\+S\+I\+Z\+E\+\_\+\+W\+O\+R\+DS}~(H\+E\+A\+P\+\_\+\+S\+I\+Z\+E\+\_\+\+B\+Y\+T\+ES / sizeof(int32\+\_\+t))\hypertarget{heap_8h_a08198ef17b67d091f9eb38c544cb4680}{}\label{heap_8h_a08198ef17b67d091f9eb38c544cb4680}
+
+\item 
+\#define {\bfseries H\+E\+A\+P\+\_\+\+OK}~0\hypertarget{heap_8h_aa57d61dd0e8d07dce08f6be38001a5ff}{}\label{heap_8h_aa57d61dd0e8d07dce08f6be38001a5ff}
+
+\item 
+\#define {\bfseries H\+E\+A\+P\+\_\+\+E\+R\+R\+O\+R\+\_\+\+C\+O\+R\+R\+U\+P\+T\+E\+D\+\_\+\+H\+E\+AP}~1\hypertarget{heap_8h_a4741d1e0f188dbcd4fe46ec0038c59c7}{}\label{heap_8h_a4741d1e0f188dbcd4fe46ec0038c59c7}
+
+\item 
+\#define {\bfseries H\+E\+A\+P\+\_\+\+E\+R\+R\+O\+R\+\_\+\+P\+O\+I\+N\+T\+E\+R\+\_\+\+O\+U\+T\+\_\+\+O\+F\+\_\+\+R\+A\+N\+GE}~2\hypertarget{heap_8h_a5400f746fb9c8efb71156c51f766b22e}{}\label{heap_8h_a5400f746fb9c8efb71156c51f766b22e}
+
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structheap__stats}{heap\+\_\+stats} {\bfseries heap\+\_\+stats\+\_\+t}\hypertarget{heap_8h_a286400a036f6f2dc8a3ddca156720932}{}\label{heap_8h_a286400a036f6f2dc8a3ddca156720932}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int32\+\_\+t \hyperlink{heap_8h_a927f9f9522b87a3ccaee6c68efbf2081}{Heap\+\_\+\+Init} (void)
+\begin{DoxyCompactList}\small\item\em Initialize the Heap notes\+: Initializes/resets the heap to a clean state where no memory is allocated. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{heap_8h_a178556e87b1f3e4c72b419d2c02cd1d4}{Heap\+\_\+\+Malloc} (int32\+\_\+t desired\+Bytes)
+\begin{DoxyCompactList}\small\item\em Allocate memory, data not initialized. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{heap_8h_a2844e924abca6846ed9407e57ed828ab}{Heap\+\_\+\+Calloc} (int32\+\_\+t desired\+Bytes)
+\begin{DoxyCompactList}\small\item\em Allocate memory, data are initialized to 0 notes\+: the allocated memory block will be zeroed out. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{heap_8h_af02282279b1745e0e1485c5bc7d19098}{Heap\+\_\+\+Realloc} (void $\ast$old\+Block, int32\+\_\+t desired\+Bytes)
+\begin{DoxyCompactList}\small\item\em Reallocate buffer to a new size notes\+: the given block will be unallocated after its contents are copied to the new block. \end{DoxyCompactList}\item 
+int32\+\_\+t \hyperlink{heap_8h_a0c2946e20398909f89ebf1bc344b9f60}{Heap\+\_\+\+Free} (void $\ast$pointer)
+\begin{DoxyCompactList}\small\item\em return a block to the heap \end{DoxyCompactList}\item 
+int32\+\_\+t \hyperlink{heap_8h_a5c8d75b021d5e6edab5c8e0164224e3e}{Heap\+\_\+\+Test} (void)
+\begin{DoxyCompactList}\small\item\em Test the heap. \end{DoxyCompactList}\item 
+\hyperlink{structheap__stats}{heap\+\_\+stats\+\_\+t} \hyperlink{heap_8h_a21054e474258ea882ed5765cabaa7c3b}{Heap\+\_\+\+Stats} (void)
+\begin{DoxyCompactList}\small\item\em return the current status of the heap \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implements memory heap for dynamic memory allocation. Follows standard malloc/calloc/realloc/free interface for allocating/unallocating memory. modified 8/31/08 Jonathan Valvano for style modified 12/16/11 Jonathan Valvano for 32-\/bit machine modified August 10, 2014 for C99 syntax This example accompanies the book \char`\"{}\+Embedded Systems\+: Real Time Operating Systems for A\+R\+M Cortex M Microcontrollers\char`\"{}, I\+S\+BN\+: 978-\/1466468863, Jonathan Valvano, copyright (c) 2014 Implementation Notes\+: This is a Knuth Heap. Each block has a header and a trailer, which I shall call the meta-\/sections. The meta-\/sections are each a single int32\+\_\+t that tells how many int32\+\_\+ts/words can be stored between the header and trailer. If the block is used, the meta-\/sections record the room as a positive number. If the block is unused, the meta-\/sections record the room as a negative number. Copyright 2014 by Jonathan W. Valvano, \href{mailto:valvano@mail.utexas.edu}{\tt valvano@mail.\+utexas.\+edu} You may use, edit, run or distribute this file as long as the above copyright notice remains T\+H\+IS S\+O\+F\+T\+W\+A\+RE IS P\+R\+O\+V\+I\+D\+ED \char`\"{}\+A\+S I\+S\char`\"{}. NO W\+A\+R\+R\+A\+N\+T\+I\+ES, W\+H\+E\+T\+H\+ER E\+X\+P\+R\+E\+SS, I\+M\+P\+L\+I\+ED OR S\+T\+A\+T\+U\+T\+O\+RY, I\+N\+C\+L\+U\+D\+I\+NG, B\+UT N\+OT L\+I\+M\+I\+T\+ED TO, I\+M\+P\+L\+I\+ED W\+A\+R\+R\+A\+N\+T\+I\+ES OF M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY A\+ND F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE A\+P\+P\+LY TO T\+H\+IS S\+O\+F\+T\+W\+A\+RE. V\+A\+L\+V\+A\+NO S\+H\+A\+LL N\+OT, IN A\+NY C\+I\+R\+C\+U\+M\+S\+T\+A\+N\+C\+ES, BE L\+I\+A\+B\+LE F\+OR S\+P\+E\+C\+I\+AL, I\+N\+C\+I\+D\+E\+N\+T\+AL, OR C\+O\+N\+S\+E\+Q\+U\+E\+N\+T\+I\+AL D\+A\+M\+A\+G\+ES, F\+OR A\+NY R\+E\+A\+S\+ON W\+H\+A\+T\+S\+O\+E\+V\+ER. For more information about my classes, my research, and my books, see \href{http://users.ece.utexas.edu/~valvano/}{\tt http\+://users.\+ece.\+utexas.\+edu/$\sim$valvano/}. 
+
+\begin{DoxyAuthor}{Author}
+Jacob Egner 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2008-\/07-\/31 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\index{heap.\+h@{heap.\+h}!Heap\+\_\+\+Calloc@{Heap\+\_\+\+Calloc}}
+\index{Heap\+\_\+\+Calloc@{Heap\+\_\+\+Calloc}!heap.\+h@{heap.\+h}}
+\subsubsection[{\texorpdfstring{Heap\+\_\+\+Calloc(int32\+\_\+t desired\+Bytes)}{Heap_Calloc(int32_t desiredBytes)}}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ Heap\+\_\+\+Calloc (
+\begin{DoxyParamCaption}
+\item[{int32\+\_\+t}]{desired\+Bytes}
+\end{DoxyParamCaption}
+)}\hypertarget{heap_8h_a2844e924abca6846ed9407e57ed828ab}{}\label{heap_8h_a2844e924abca6846ed9407e57ed828ab}
+
+
+Allocate memory, data are initialized to 0 notes\+: the allocated memory block will be zeroed out. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em desired\+Bytes} & desired number of bytes to allocate\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void$\ast$ pointing to the allocated memory block or will return N\+U\+LL if there isn\textquotesingle{}t sufficient space to satisfy allocation request 
+\end{DoxyReturn}
+\index{heap.\+h@{heap.\+h}!Heap\+\_\+\+Free@{Heap\+\_\+\+Free}}
+\index{Heap\+\_\+\+Free@{Heap\+\_\+\+Free}!heap.\+h@{heap.\+h}}
+\subsubsection[{\texorpdfstring{Heap\+\_\+\+Free(void $\ast$pointer)}{Heap_Free(void *pointer)}}]{\setlength{\rightskip}{0pt plus 5cm}int32\+\_\+t Heap\+\_\+\+Free (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{pointer}
+\end{DoxyParamCaption}
+)}\hypertarget{heap_8h_a0c2946e20398909f89ebf1bc344b9f60}{}\label{heap_8h_a0c2946e20398909f89ebf1bc344b9f60}
+
+
+return a block to the heap 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pointer} & the pointer to memory to unallocate\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+H\+E\+A\+P\+\_\+\+OK if everything is ok; H\+E\+A\+P\+\_\+\+E\+R\+R\+O\+R\+\_\+\+P\+O\+I\+N\+T\+E\+R\+\_\+\+O\+U\+T\+\_\+\+O\+F\+\_\+\+R\+A\+N\+GE if pointer points outside the heap; H\+E\+A\+P\+\_\+\+E\+R\+R\+O\+R\+\_\+\+C\+O\+R\+R\+U\+P\+T\+E\+D\+\_\+\+H\+E\+AP if heap has been corrupted or trying to unallocate memory that has already been unallocated; 
+\end{DoxyReturn}
+\index{heap.\+h@{heap.\+h}!Heap\+\_\+\+Init@{Heap\+\_\+\+Init}}
+\index{Heap\+\_\+\+Init@{Heap\+\_\+\+Init}!heap.\+h@{heap.\+h}}
+\subsubsection[{\texorpdfstring{Heap\+\_\+\+Init(void)}{Heap_Init(void)}}]{\setlength{\rightskip}{0pt plus 5cm}int32\+\_\+t Heap\+\_\+\+Init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{heap_8h_a927f9f9522b87a3ccaee6c68efbf2081}{}\label{heap_8h_a927f9f9522b87a3ccaee6c68efbf2081}
+
+
+Initialize the Heap notes\+: Initializes/resets the heap to a clean state where no memory is allocated. 
+
+\begin{DoxyReturn}{Returns}
+always H\+E\+A\+P\+\_\+\+OK 
+\end{DoxyReturn}
+\index{heap.\+h@{heap.\+h}!Heap\+\_\+\+Malloc@{Heap\+\_\+\+Malloc}}
+\index{Heap\+\_\+\+Malloc@{Heap\+\_\+\+Malloc}!heap.\+h@{heap.\+h}}
+\subsubsection[{\texorpdfstring{Heap\+\_\+\+Malloc(int32\+\_\+t desired\+Bytes)}{Heap_Malloc(int32_t desiredBytes)}}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ Heap\+\_\+\+Malloc (
+\begin{DoxyParamCaption}
+\item[{int32\+\_\+t}]{desired\+Bytes}
+\end{DoxyParamCaption}
+)}\hypertarget{heap_8h_a178556e87b1f3e4c72b419d2c02cd1d4}{}\label{heap_8h_a178556e87b1f3e4c72b419d2c02cd1d4}
+
+
+Allocate memory, data not initialized. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em desired\+Bytes} & desired number of bytes to allocate\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void$\ast$ pointing to the allocated memory or will return N\+U\+LL if there isn\textquotesingle{}t sufficient space to satisfy allocation request 
+\end{DoxyReturn}
+\index{heap.\+h@{heap.\+h}!Heap\+\_\+\+Realloc@{Heap\+\_\+\+Realloc}}
+\index{Heap\+\_\+\+Realloc@{Heap\+\_\+\+Realloc}!heap.\+h@{heap.\+h}}
+\subsubsection[{\texorpdfstring{Heap\+\_\+\+Realloc(void $\ast$old\+Block, int32\+\_\+t desired\+Bytes)}{Heap_Realloc(void *oldBlock, int32_t desiredBytes)}}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ Heap\+\_\+\+Realloc (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{old\+Block, }
+\item[{int32\+\_\+t}]{desired\+Bytes}
+\end{DoxyParamCaption}
+)}\hypertarget{heap_8h_af02282279b1745e0e1485c5bc7d19098}{}\label{heap_8h_af02282279b1745e0e1485c5bc7d19098}
+
+
+Reallocate buffer to a new size notes\+: the given block will be unallocated after its contents are copied to the new block. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em old\+Block} & pointer to a block\\
+\hline
+{\em desired\+Bytes} & a desired number of bytes for a new block where the contents of the old block will be copied to\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void$\ast$ pointing to the new block or will return N\+U\+LL if there is any reason the reallocation can\textquotesingle{}t be completed 
+\end{DoxyReturn}
+\index{heap.\+h@{heap.\+h}!Heap\+\_\+\+Stats@{Heap\+\_\+\+Stats}}
+\index{Heap\+\_\+\+Stats@{Heap\+\_\+\+Stats}!heap.\+h@{heap.\+h}}
+\subsubsection[{\texorpdfstring{Heap\+\_\+\+Stats(void)}{Heap_Stats(void)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf heap\+\_\+stats\+\_\+t} Heap\+\_\+\+Stats (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{heap_8h_a21054e474258ea882ed5765cabaa7c3b}{}\label{heap_8h_a21054e474258ea882ed5765cabaa7c3b}
+
+
+return the current status of the heap 
+
+\begin{DoxyReturn}{Returns}
+a heap\+\_\+stats\+\_\+t that describes the current usage of the heap 
+\end{DoxyReturn}
+\index{heap.\+h@{heap.\+h}!Heap\+\_\+\+Test@{Heap\+\_\+\+Test}}
+\index{Heap\+\_\+\+Test@{Heap\+\_\+\+Test}!heap.\+h@{heap.\+h}}
+\subsubsection[{\texorpdfstring{Heap\+\_\+\+Test(void)}{Heap_Test(void)}}]{\setlength{\rightskip}{0pt plus 5cm}int32\+\_\+t Heap\+\_\+\+Test (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{heap_8h_a5c8d75b021d5e6edab5c8e0164224e3e}{}\label{heap_8h_a5c8d75b021d5e6edab5c8e0164224e3e}
+
+
+Test the heap. 
+
+\begin{DoxyReturn}{Returns}
+validity of the heap -\/ either H\+E\+A\+P\+\_\+\+OK or H\+E\+A\+P\+\_\+\+E\+R\+R\+O\+R\+\_\+\+H\+E\+A\+P\+\_\+\+C\+O\+R\+R\+U\+P\+T\+ED 
+\end{DoxyReturn}

@@ -1,0 +1,497 @@
+\hypertarget{ff_8h}{}\section{inc/ff.h File Reference}
+\label{ff_8h}\index{inc/ff.\+h@{inc/ff.\+h}}
+
+
+Fat\+Fs -\/ F\+AT file system module include file R0.\+10c (C)ChaN, 2014 Fat\+Fs module is a generic F\+AT file system module for small embedded systems. This is a free software that opened for education, research and commercial developments under license policy of following terms. Copyright (C) 2014, , all right reserved. The Fat\+Fs module is a free software and there is NO W\+A\+R\+R\+A\+N\+TY. No restriction on use. You can use, modify and redistribute it for personal, non-\/profit or commercial product U\+N\+D\+ER Y\+O\+UR R\+E\+S\+P\+O\+N\+S\+I\+B\+I\+L\+I\+TY. Redistributions of source code must retain the above copyright notice.  
+
+
+{\ttfamily \#include \char`\"{}integer.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}ffconf.\+h\char`\"{}}\\*
+Include dependency graph for ff.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{ff_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=178pt]{ff_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structFATFS}{F\+A\+T\+FS}
+\begin{DoxyCompactList}\small\item\em File system object structure (\hyperlink{structFATFS}{F\+A\+T\+FS}) \end{DoxyCompactList}\item 
+struct \hyperlink{structFIL}{F\+IL}
+\begin{DoxyCompactList}\small\item\em File object structure (\hyperlink{structFIL}{F\+IL}) \end{DoxyCompactList}\item 
+struct \hyperlink{structDIR}{D\+IR}
+\begin{DoxyCompactList}\small\item\em Directory object structure (\hyperlink{structDIR}{D\+IR}) \end{DoxyCompactList}\item 
+struct \hyperlink{structFILINFO}{F\+I\+L\+I\+N\+FO}
+\begin{DoxyCompactList}\small\item\em File status structure (\hyperlink{structFILINFO}{F\+I\+L\+I\+N\+FO}) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries \+\_\+\+F\+A\+T\+FS}~80376  /$\ast$ Revision ID $\ast$/\hypertarget{ff_8h_a749228947bc890224b8bd5de6e11faa3}{}\label{ff_8h_a749228947bc890224b8bd5de6e11faa3}
+
+\item 
+\#define {\bfseries L\+D2\+PD}(vol)~(B\+Y\+TE)(vol)  /$\ast$ Each logical drive is bound to the same physical drive number $\ast$/\hypertarget{ff_8h_a6577ed2f95527745bf4d27c53488b9a7}{}\label{ff_8h_a6577ed2f95527745bf4d27c53488b9a7}
+
+\item 
+\#define {\bfseries L\+D2\+PT}(vol)~0      /$\ast$ Find first valid partition or in S\+FD $\ast$/\hypertarget{ff_8h_aadc4a9aefaf2588bdd7565549f5d91e7}{}\label{ff_8h_aadc4a9aefaf2588bdd7565549f5d91e7}
+
+\item 
+\#define {\bfseries \+\_\+T}(x)~x\hypertarget{ff_8h_ae936e4c15227768f7da4e0951def89c8}{}\label{ff_8h_ae936e4c15227768f7da4e0951def89c8}
+
+\item 
+\#define {\bfseries \+\_\+\+T\+E\+XT}(x)~x\hypertarget{ff_8h_a3232964568d17bb4a1af30f9db826ce2}{}\label{ff_8h_a3232964568d17bb4a1af30f9db826ce2}
+
+\item 
+\#define {\bfseries f\+\_\+eof}(fp)~((int)((fp)-\/$>$fptr == (fp)-\/$>$fsize))\hypertarget{ff_8h_a970cdd8970a3a94967ad64cfc5d4c161}{}\label{ff_8h_a970cdd8970a3a94967ad64cfc5d4c161}
+
+\item 
+\#define {\bfseries f\+\_\+error}(fp)~((fp)-\/$>$err)\hypertarget{ff_8h_a25cbdabeed318802cf0e9db6671a33b7}{}\label{ff_8h_a25cbdabeed318802cf0e9db6671a33b7}
+
+\item 
+\#define {\bfseries f\+\_\+tell}(fp)~((fp)-\/$>$fptr)\hypertarget{ff_8h_a5e1daca7ce13cdc277e42185f7f9124f}{}\label{ff_8h_a5e1daca7ce13cdc277e42185f7f9124f}
+
+\item 
+\#define {\bfseries f\+\_\+size}(fp)~((fp)-\/$>$fsize)\hypertarget{ff_8h_a26f33722c5bf1aa3cd6f0290a83eb2bc}{}\label{ff_8h_a26f33722c5bf1aa3cd6f0290a83eb2bc}
+
+\item 
+\#define {\bfseries E\+OF}~(-\/1)\hypertarget{ff_8h_a59adc4c82490d23754cd39c2fb99b0da}{}\label{ff_8h_a59adc4c82490d23754cd39c2fb99b0da}
+
+\item 
+\#define {\bfseries F\+A\+\_\+\+R\+E\+AD}~0x01\hypertarget{ff_8h_a1f4f3530ff03abbd979b072536e72290}{}\label{ff_8h_a1f4f3530ff03abbd979b072536e72290}
+
+\item 
+\#define {\bfseries F\+A\+\_\+\+O\+P\+E\+N\+\_\+\+E\+X\+I\+S\+T\+I\+NG}~0x00\hypertarget{ff_8h_a0c5dd686b10f84c2a2b3954957a5979a}{}\label{ff_8h_a0c5dd686b10f84c2a2b3954957a5979a}
+
+\item 
+\#define {\bfseries F\+A\+\_\+\+W\+R\+I\+TE}~0x02\hypertarget{ff_8h_afa366963220c89b882c0361794020c14}{}\label{ff_8h_afa366963220c89b882c0361794020c14}
+
+\item 
+\#define {\bfseries F\+A\+\_\+\+C\+R\+E\+A\+T\+E\+\_\+\+N\+EW}~0x04\hypertarget{ff_8h_a417bb1babd1785fd181a806b5613eba3}{}\label{ff_8h_a417bb1babd1785fd181a806b5613eba3}
+
+\item 
+\#define {\bfseries F\+A\+\_\+\+C\+R\+E\+A\+T\+E\+\_\+\+A\+L\+W\+A\+YS}~0x08\hypertarget{ff_8h_afba4546b131dea4b24727fa20a80e29f}{}\label{ff_8h_afba4546b131dea4b24727fa20a80e29f}
+
+\item 
+\#define {\bfseries F\+A\+\_\+\+O\+P\+E\+N\+\_\+\+A\+L\+W\+A\+YS}~0x10\hypertarget{ff_8h_a17b01553029920ac0468912b4bcb16c7}{}\label{ff_8h_a17b01553029920ac0468912b4bcb16c7}
+
+\item 
+\#define {\bfseries F\+A\+\_\+\+\_\+\+W\+R\+I\+T\+T\+EN}~0x20\hypertarget{ff_8h_ac4b7d5223f84df91c306ffbff536fae4}{}\label{ff_8h_ac4b7d5223f84df91c306ffbff536fae4}
+
+\item 
+\#define {\bfseries F\+A\+\_\+\+\_\+\+D\+I\+R\+TY}~0x40\hypertarget{ff_8h_a5b2962e3616a1e9eb709d95f4c75c67c}{}\label{ff_8h_a5b2962e3616a1e9eb709d95f4c75c67c}
+
+\item 
+\#define {\bfseries F\+S\+\_\+\+F\+A\+T12}~1\hypertarget{ff_8h_aab755aa1b4f81f4aabee4a5d4738cfb0}{}\label{ff_8h_aab755aa1b4f81f4aabee4a5d4738cfb0}
+
+\item 
+\#define {\bfseries F\+S\+\_\+\+F\+A\+T16}~2\hypertarget{ff_8h_a7ef90a36d99edfc0138a2155a17a79b9}{}\label{ff_8h_a7ef90a36d99edfc0138a2155a17a79b9}
+
+\item 
+\#define {\bfseries F\+S\+\_\+\+F\+A\+T32}~3\hypertarget{ff_8h_ac63e0796095a789cefdbc3c3c676c9ce}{}\label{ff_8h_ac63e0796095a789cefdbc3c3c676c9ce}
+
+\item 
+\#define {\bfseries A\+M\+\_\+\+R\+DO}~0x01  /$\ast$ Read only $\ast$/\hypertarget{ff_8h_add6d85d1e7a02b4f6188783ef91a5f1e}{}\label{ff_8h_add6d85d1e7a02b4f6188783ef91a5f1e}
+
+\item 
+\#define {\bfseries A\+M\+\_\+\+H\+ID}~0x02  /$\ast$ Hidden $\ast$/\hypertarget{ff_8h_aa90c4c921c1955fd407d8bbf17f1674e}{}\label{ff_8h_aa90c4c921c1955fd407d8bbf17f1674e}
+
+\item 
+\#define {\bfseries A\+M\+\_\+\+S\+YS}~0x04  /$\ast$ System $\ast$/\hypertarget{ff_8h_a1f25d5c17b5a3a6397b3398add8cdc15}{}\label{ff_8h_a1f25d5c17b5a3a6397b3398add8cdc15}
+
+\item 
+\#define {\bfseries A\+M\+\_\+\+V\+OL}~0x08  /$\ast$ Volume label $\ast$/\hypertarget{ff_8h_a5cfae62dabae0a54809e43b36685ce7c}{}\label{ff_8h_a5cfae62dabae0a54809e43b36685ce7c}
+
+\item 
+\#define {\bfseries A\+M\+\_\+\+L\+FN}~0x0\+F  /$\ast$ L\+F\+N entry $\ast$/\hypertarget{ff_8h_a91161ef62e0e85ba3c2876d3d339473d}{}\label{ff_8h_a91161ef62e0e85ba3c2876d3d339473d}
+
+\item 
+\#define {\bfseries A\+M\+\_\+\+D\+IR}~0x10  /$\ast$ Directory $\ast$/\hypertarget{ff_8h_a3a9db44e978ed6c13b641e092d4cd7d3}{}\label{ff_8h_a3a9db44e978ed6c13b641e092d4cd7d3}
+
+\item 
+\#define {\bfseries A\+M\+\_\+\+A\+RC}~0x20  /$\ast$ Archive $\ast$/\hypertarget{ff_8h_ae8174d00798e34e7c9e95898cb9e1a09}{}\label{ff_8h_ae8174d00798e34e7c9e95898cb9e1a09}
+
+\item 
+\#define {\bfseries A\+M\+\_\+\+M\+A\+SK}~0x3\+F  /$\ast$ Mask of defined bits $\ast$/\hypertarget{ff_8h_aefa78fd6b130faaca4e115602869b57c}{}\label{ff_8h_aefa78fd6b130faaca4e115602869b57c}
+
+\item 
+\#define {\bfseries C\+R\+E\+A\+T\+E\+\_\+\+L\+I\+N\+K\+M\+AP}~0x\+F\+F\+F\+F\+F\+F\+FF\hypertarget{ff_8h_aee297a9011164cf485a4df2a72758b08}{}\label{ff_8h_aee297a9011164cf485a4df2a72758b08}
+
+\item 
+\#define {\bfseries L\+D\+\_\+\+W\+O\+RD}(ptr)~(W\+O\+RD)(((W\+O\+RD)$\ast$((B\+Y\+TE$\ast$)(ptr)+1)$<$$<$8)$\vert$(W\+O\+RD)$\ast$(B\+Y\+TE$\ast$)(ptr))\hypertarget{ff_8h_a398519bb08da6457e62567d1f0b567e3}{}\label{ff_8h_a398519bb08da6457e62567d1f0b567e3}
+
+\item 
+\#define {\bfseries L\+D\+\_\+\+D\+W\+O\+RD}(ptr)~(D\+W\+O\+RD)(((D\+W\+O\+RD)$\ast$((B\+Y\+TE$\ast$)(ptr)+3)$<$$<$24)$\vert$((D\+W\+O\+RD)$\ast$((B\+Y\+TE$\ast$)(ptr)+2)$<$$<$16)$\vert$((W\+O\+RD)$\ast$((B\+Y\+TE$\ast$)(ptr)+1)$<$$<$8)$\vert$$\ast$(B\+Y\+TE$\ast$)(ptr))\hypertarget{ff_8h_a4690304ddc975516f7dc02575c96e34e}{}\label{ff_8h_a4690304ddc975516f7dc02575c96e34e}
+
+\item 
+\#define {\bfseries S\+T\+\_\+\+W\+O\+RD}(ptr,  val)~$\ast$(B\+Y\+TE$\ast$)(ptr)=(B\+Y\+TE)(val); $\ast$((B\+Y\+TE$\ast$)(ptr)+1)=(B\+Y\+TE)((W\+O\+RD)(val)$>$$>$8)\hypertarget{ff_8h_a95ceb4c25b216e71baa7102939edfd0d}{}\label{ff_8h_a95ceb4c25b216e71baa7102939edfd0d}
+
+\item 
+\#define {\bfseries S\+T\+\_\+\+D\+W\+O\+RD}(ptr,  val)~$\ast$(B\+Y\+TE$\ast$)(ptr)=(B\+Y\+TE)(val); $\ast$((B\+Y\+TE$\ast$)(ptr)+1)=(B\+Y\+TE)((W\+O\+RD)(val)$>$$>$8); $\ast$((B\+Y\+TE$\ast$)(ptr)+2)=(B\+Y\+TE)((D\+W\+O\+RD)(val)$>$$>$16); $\ast$((B\+Y\+TE$\ast$)(ptr)+3)=(B\+Y\+TE)((D\+W\+O\+RD)(val)$>$$>$24)\hypertarget{ff_8h_abf5aba973d95ac5843b80aa7379cdd66}{}\label{ff_8h_abf5aba973d95ac5843b80aa7379cdd66}
+
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef char {\bfseries T\+C\+H\+AR}\hypertarget{ff_8h_a03bdb8ce5895c7e261aadc2529637546}{}\label{ff_8h_a03bdb8ce5895c7e261aadc2529637546}
+
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT} \{ \\*
+{\bfseries F\+R\+\_\+\+OK} = 0, 
+{\bfseries F\+R\+\_\+\+D\+I\+S\+K\+\_\+\+E\+RR}, 
+{\bfseries F\+R\+\_\+\+I\+N\+T\+\_\+\+E\+RR}, 
+{\bfseries F\+R\+\_\+\+N\+O\+T\+\_\+\+R\+E\+A\+DY}, 
+\\*
+{\bfseries F\+R\+\_\+\+N\+O\+\_\+\+F\+I\+LE}, 
+{\bfseries F\+R\+\_\+\+N\+O\+\_\+\+P\+A\+TH}, 
+{\bfseries F\+R\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+N\+A\+ME}, 
+{\bfseries F\+R\+\_\+\+D\+E\+N\+I\+ED}, 
+\\*
+{\bfseries F\+R\+\_\+\+E\+X\+I\+ST}, 
+{\bfseries F\+R\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+O\+B\+J\+E\+CT}, 
+{\bfseries F\+R\+\_\+\+W\+R\+I\+T\+E\+\_\+\+P\+R\+O\+T\+E\+C\+T\+ED}, 
+{\bfseries F\+R\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+D\+R\+I\+VE}, 
+\\*
+{\bfseries F\+R\+\_\+\+N\+O\+T\+\_\+\+E\+N\+A\+B\+L\+ED}, 
+{\bfseries F\+R\+\_\+\+N\+O\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+EM}, 
+{\bfseries F\+R\+\_\+\+M\+K\+F\+S\+\_\+\+A\+B\+O\+R\+T\+ED}, 
+{\bfseries F\+R\+\_\+\+T\+I\+M\+E\+O\+UT}, 
+\\*
+{\bfseries F\+R\+\_\+\+L\+O\+C\+K\+ED}, 
+{\bfseries F\+R\+\_\+\+N\+O\+T\+\_\+\+E\+N\+O\+U\+G\+H\+\_\+\+C\+O\+RE}, 
+{\bfseries F\+R\+\_\+\+T\+O\+O\+\_\+\+M\+A\+N\+Y\+\_\+\+O\+P\+E\+N\+\_\+\+F\+I\+L\+ES}, 
+{\bfseries F\+R\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+A\+R\+A\+M\+E\+T\+ER}
+ \}\hypertarget{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{}\label{ff_8h_a49d0171ecbd362cda5680a0d360db44c}
+\begin{DoxyCompactList}\small\item\em File function return code (F\+R\+E\+S\+U\+LT) \end{DoxyCompactList}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT} \hyperlink{ff_8h_aefdef7126128d99d0b3bd82c28e54d80}{f\+\_\+open} (\hyperlink{structFIL}{F\+IL} $\ast$fp, const T\+C\+H\+AR $\ast$path, B\+Y\+TE mode)
+\item 
+\hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT} \hyperlink{ff_8h_a53882db20ef4323dcfd1874d7733ffc3}{f\+\_\+close} (\hyperlink{structFIL}{F\+IL} $\ast$fp)
+\item 
+\hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT} \hyperlink{ff_8h_ac4c3dcb6869ca252888eebabe39727b3}{f\+\_\+read} (\hyperlink{structFIL}{F\+IL} $\ast$fp, void $\ast$buff, U\+I\+NT btr, U\+I\+NT $\ast$br)
+\item 
+\hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT} \hyperlink{ff_8h_ae6a4dfae8a9e308bdb2283a37ef680f2}{f\+\_\+write} (\hyperlink{structFIL}{F\+IL} $\ast$fp, const void $\ast$buff, U\+I\+NT btw, U\+I\+NT $\ast$bw)
+\item 
+\hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT} \hyperlink{ff_8h_a6c0c4cd695704aa6d952c90be81d9849}{f\+\_\+forward} (\hyperlink{structFIL}{F\+IL} $\ast$fp, U\+I\+NT($\ast$func)(const B\+Y\+TE $\ast$, U\+I\+NT), U\+I\+NT btf, U\+I\+NT $\ast$bf)
+\item 
+\hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT} \hyperlink{ff_8h_a5df0ac672ada972e89ef4b003e57f964}{f\+\_\+lseek} (\hyperlink{structFIL}{F\+IL} $\ast$fp, D\+W\+O\+RD ofs)
+\item 
+\hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT} \hyperlink{ff_8h_a691a27b40c348f7c84b42e911636f38a}{f\+\_\+truncate} (\hyperlink{structFIL}{F\+IL} $\ast$fp)
+\item 
+\hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT} \hyperlink{ff_8h_ad69c7246b122ba56a134939ee0eaf847}{f\+\_\+sync} (\hyperlink{structFIL}{F\+IL} $\ast$fp)
+\item 
+\hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT} \hyperlink{ff_8h_ab63b213c75f7335fbb63a1f3f70e5fc7}{f\+\_\+opendir} (\hyperlink{structDIR}{D\+IR} $\ast$dp, const T\+C\+H\+AR $\ast$path)
+\item 
+\hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT} \hyperlink{ff_8h_ab5f7376b6f3e3bcc7f5ff5497c8b7364}{f\+\_\+closedir} (\hyperlink{structDIR}{D\+IR} $\ast$dp)
+\item 
+\hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT} \hyperlink{ff_8h_ab39e82a110695de45f416f3149358012}{f\+\_\+readdir} (\hyperlink{structDIR}{D\+IR} $\ast$dp, \hyperlink{structFILINFO}{F\+I\+L\+I\+N\+FO} $\ast$fno)
+\item 
+\hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT} \hyperlink{ff_8h_a4b4d38db58e89c526cfcf53200d719d0}{f\+\_\+mkdir} (const T\+C\+H\+AR $\ast$path)
+\item 
+\hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT} \hyperlink{ff_8h_a2858167fcd0bced48e9be434b3895efe}{f\+\_\+unlink} (const T\+C\+H\+AR $\ast$path)
+\item 
+\hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT} \hyperlink{ff_8h_aa775b9b024acfeb3a66523cab497d142}{f\+\_\+rename} (const T\+C\+H\+AR $\ast$path\+\_\+old, const T\+C\+H\+AR $\ast$path\+\_\+new)
+\item 
+\hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT} \hyperlink{ff_8h_abe1f60daab5c7d11170c334fb832c798}{f\+\_\+stat} (const T\+C\+H\+AR $\ast$path, \hyperlink{structFILINFO}{F\+I\+L\+I\+N\+FO} $\ast$fno)
+\item 
+\hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT} \hyperlink{ff_8h_ab60b118acf7efa6ea19abb5db05ecccb}{f\+\_\+chmod} (const T\+C\+H\+AR $\ast$path, B\+Y\+TE value, B\+Y\+TE mask)
+\item 
+\hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT} \hyperlink{ff_8h_aafaa718d1a487e12a8f0087173dba0b9}{f\+\_\+utime} (const T\+C\+H\+AR $\ast$path, const \hyperlink{structFILINFO}{F\+I\+L\+I\+N\+FO} $\ast$fno)
+\item 
+\hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT} \hyperlink{ff_8h_a53c7e9a7fb3c279254cd2d0445667e2f}{f\+\_\+chdir} (const T\+C\+H\+AR $\ast$path)
+\item 
+\hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT} \hyperlink{ff_8h_a13e5933f851b436890361189f64261cd}{f\+\_\+chdrive} (const T\+C\+H\+AR $\ast$path)
+\item 
+\hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT} \hyperlink{ff_8h_acb865a03dbac0031ac5cb8a031f7b71c}{f\+\_\+getcwd} (T\+C\+H\+AR $\ast$buff, U\+I\+NT len)
+\item 
+\hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT} \hyperlink{ff_8h_a0ff39f75a87cbda9cd6ea65d83f16cec}{f\+\_\+getfree} (const T\+C\+H\+AR $\ast$path, D\+W\+O\+RD $\ast$nclst, \hyperlink{structFATFS}{F\+A\+T\+FS} $\ast$$\ast$fatfs)
+\item 
+\hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT} \hyperlink{ff_8h_ac4ff40a674bcbfe40d81b1e8e54befc6}{f\+\_\+getlabel} (const T\+C\+H\+AR $\ast$path, T\+C\+H\+AR $\ast$label, D\+W\+O\+RD $\ast$vsn)
+\item 
+\hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT} \hyperlink{ff_8h_aa82bca64e28bc0d656a7999dd0eadec7}{f\+\_\+setlabel} (const T\+C\+H\+AR $\ast$label)
+\item 
+\hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT} \hyperlink{ff_8h_a16a934c2bbfa2160295810adc49d5509}{f\+\_\+mount} (\hyperlink{structFATFS}{F\+A\+T\+FS} $\ast$fs, const T\+C\+H\+AR $\ast$path, B\+Y\+TE opt)
+\item 
+\hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT} \hyperlink{ff_8h_a799aff9594e708c8be357281cf85428b}{f\+\_\+mkfs} (const T\+C\+H\+AR $\ast$path, B\+Y\+TE sfd, U\+I\+NT au)
+\item 
+\hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT} \hyperlink{ff_8h_ae89e589480ab573ce19d22dcd022efe0}{f\+\_\+fdisk} (B\+Y\+TE pdrv, const D\+W\+O\+RD szt\mbox{[}$\,$\mbox{]}, void $\ast$work)
+\item 
+int \hyperlink{ff_8h_ad1d73b8d01c2ef89eddf920b7fcc6beb}{f\+\_\+putc} (T\+C\+H\+AR c, \hyperlink{structFIL}{F\+IL} $\ast$fp)
+\item 
+int \hyperlink{ff_8h_a699fc03ffa785ceab8812a7f204421f3}{f\+\_\+puts} (const T\+C\+H\+AR $\ast$str, \hyperlink{structFIL}{F\+IL} $\ast$cp)
+\item 
+int \hyperlink{ff_8h_a4ce26253177c167df849e76f69b5c66c}{f\+\_\+printf} (\hyperlink{structFIL}{F\+IL} $\ast$fp, const T\+C\+H\+AR $\ast$str,...)
+\item 
+T\+C\+H\+AR $\ast$ \hyperlink{ff_8h_a0fa54bd310785ecdaed19dda8f60dac5}{f\+\_\+gets} (T\+C\+H\+AR $\ast$buff, int len, \hyperlink{structFIL}{F\+IL} $\ast$fp)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Fat\+Fs -\/ F\+AT file system module include file R0.\+10c (C)ChaN, 2014 Fat\+Fs module is a generic F\+AT file system module for small embedded systems. This is a free software that opened for education, research and commercial developments under license policy of following terms. Copyright (C) 2014, , all right reserved. The Fat\+Fs module is a free software and there is NO W\+A\+R\+R\+A\+N\+TY. No restriction on use. You can use, modify and redistribute it for personal, non-\/profit or commercial product U\+N\+D\+ER Y\+O\+UR R\+E\+S\+P\+O\+N\+S\+I\+B\+I\+L\+I\+TY. Redistributions of source code must retain the above copyright notice. 
+
+\begin{DoxyAuthor}{Author}
+ChaN 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\index{ff.\+h@{ff.\+h}!f\+\_\+chdir@{f\+\_\+chdir}}
+\index{f\+\_\+chdir@{f\+\_\+chdir}!ff.\+h@{ff.\+h}}
+\subsubsection[{\texorpdfstring{f\+\_\+chdir(const T\+C\+H\+A\+R $\ast$path)}{f_chdir(const TCHAR *path)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+R\+E\+S\+U\+LT} f\+\_\+chdir (
+\begin{DoxyParamCaption}
+\item[{const T\+C\+H\+AR $\ast$}]{path}
+\end{DoxyParamCaption}
+)}\hypertarget{ff_8h_a53c7e9a7fb3c279254cd2d0445667e2f}{}\label{ff_8h_a53c7e9a7fb3c279254cd2d0445667e2f}
+Change current directory \index{ff.\+h@{ff.\+h}!f\+\_\+chdrive@{f\+\_\+chdrive}}
+\index{f\+\_\+chdrive@{f\+\_\+chdrive}!ff.\+h@{ff.\+h}}
+\subsubsection[{\texorpdfstring{f\+\_\+chdrive(const T\+C\+H\+A\+R $\ast$path)}{f_chdrive(const TCHAR *path)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+R\+E\+S\+U\+LT} f\+\_\+chdrive (
+\begin{DoxyParamCaption}
+\item[{const T\+C\+H\+AR $\ast$}]{path}
+\end{DoxyParamCaption}
+)}\hypertarget{ff_8h_a13e5933f851b436890361189f64261cd}{}\label{ff_8h_a13e5933f851b436890361189f64261cd}
+Change current drive \index{ff.\+h@{ff.\+h}!f\+\_\+chmod@{f\+\_\+chmod}}
+\index{f\+\_\+chmod@{f\+\_\+chmod}!ff.\+h@{ff.\+h}}
+\subsubsection[{\texorpdfstring{f\+\_\+chmod(const T\+C\+H\+A\+R $\ast$path, B\+Y\+T\+E value, B\+Y\+T\+E mask)}{f_chmod(const TCHAR *path, BYTE value, BYTE mask)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+R\+E\+S\+U\+LT} f\+\_\+chmod (
+\begin{DoxyParamCaption}
+\item[{const T\+C\+H\+AR $\ast$}]{path, }
+\item[{B\+Y\+TE}]{value, }
+\item[{B\+Y\+TE}]{mask}
+\end{DoxyParamCaption}
+)}\hypertarget{ff_8h_ab60b118acf7efa6ea19abb5db05ecccb}{}\label{ff_8h_ab60b118acf7efa6ea19abb5db05ecccb}
+Change attribute of the file/dir \index{ff.\+h@{ff.\+h}!f\+\_\+close@{f\+\_\+close}}
+\index{f\+\_\+close@{f\+\_\+close}!ff.\+h@{ff.\+h}}
+\subsubsection[{\texorpdfstring{f\+\_\+close(\+F\+I\+L $\ast$fp)}{f_close(FIL *fp)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+R\+E\+S\+U\+LT} f\+\_\+close (
+\begin{DoxyParamCaption}
+\item[{{\bf F\+IL} $\ast$}]{fp}
+\end{DoxyParamCaption}
+)}\hypertarget{ff_8h_a53882db20ef4323dcfd1874d7733ffc3}{}\label{ff_8h_a53882db20ef4323dcfd1874d7733ffc3}
+Close an open file object \index{ff.\+h@{ff.\+h}!f\+\_\+closedir@{f\+\_\+closedir}}
+\index{f\+\_\+closedir@{f\+\_\+closedir}!ff.\+h@{ff.\+h}}
+\subsubsection[{\texorpdfstring{f\+\_\+closedir(\+D\+I\+R $\ast$dp)}{f_closedir(DIR *dp)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+R\+E\+S\+U\+LT} f\+\_\+closedir (
+\begin{DoxyParamCaption}
+\item[{{\bf D\+IR} $\ast$}]{dp}
+\end{DoxyParamCaption}
+)}\hypertarget{ff_8h_ab5f7376b6f3e3bcc7f5ff5497c8b7364}{}\label{ff_8h_ab5f7376b6f3e3bcc7f5ff5497c8b7364}
+Close an open directory \index{ff.\+h@{ff.\+h}!f\+\_\+fdisk@{f\+\_\+fdisk}}
+\index{f\+\_\+fdisk@{f\+\_\+fdisk}!ff.\+h@{ff.\+h}}
+\subsubsection[{\texorpdfstring{f\+\_\+fdisk(\+B\+Y\+T\+E pdrv, const D\+W\+O\+R\+D szt[], void $\ast$work)}{f_fdisk(BYTE pdrv, const DWORD szt[], void *work)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+R\+E\+S\+U\+LT} f\+\_\+fdisk (
+\begin{DoxyParamCaption}
+\item[{B\+Y\+TE}]{pdrv, }
+\item[{const D\+W\+O\+RD}]{szt\mbox{[}$\,$\mbox{]}, }
+\item[{void $\ast$}]{work}
+\end{DoxyParamCaption}
+)}\hypertarget{ff_8h_ae89e589480ab573ce19d22dcd022efe0}{}\label{ff_8h_ae89e589480ab573ce19d22dcd022efe0}
+Divide a physical drive into some partitions \index{ff.\+h@{ff.\+h}!f\+\_\+forward@{f\+\_\+forward}}
+\index{f\+\_\+forward@{f\+\_\+forward}!ff.\+h@{ff.\+h}}
+\subsubsection[{\texorpdfstring{f\+\_\+forward(\+F\+I\+L $\ast$fp, U\+I\+N\+T($\ast$func)(const B\+Y\+T\+E $\ast$, U\+I\+N\+T), U\+I\+N\+T btf, U\+I\+N\+T $\ast$bf)}{f_forward(FIL *fp, UINT(*func)(const BYTE *, UINT), UINT btf, UINT *bf)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+R\+E\+S\+U\+LT} f\+\_\+forward (
+\begin{DoxyParamCaption}
+\item[{{\bf F\+IL} $\ast$}]{fp, }
+\item[{U\+I\+NT($\ast$)(const B\+Y\+TE $\ast$, U\+I\+NT)}]{func, }
+\item[{U\+I\+NT}]{btf, }
+\item[{U\+I\+NT $\ast$}]{bf}
+\end{DoxyParamCaption}
+)}\hypertarget{ff_8h_a6c0c4cd695704aa6d952c90be81d9849}{}\label{ff_8h_a6c0c4cd695704aa6d952c90be81d9849}
+Forward data to the stream \index{ff.\+h@{ff.\+h}!f\+\_\+getcwd@{f\+\_\+getcwd}}
+\index{f\+\_\+getcwd@{f\+\_\+getcwd}!ff.\+h@{ff.\+h}}
+\subsubsection[{\texorpdfstring{f\+\_\+getcwd(\+T\+C\+H\+A\+R $\ast$buff, U\+I\+N\+T len)}{f_getcwd(TCHAR *buff, UINT len)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+R\+E\+S\+U\+LT} f\+\_\+getcwd (
+\begin{DoxyParamCaption}
+\item[{T\+C\+H\+AR $\ast$}]{buff, }
+\item[{U\+I\+NT}]{len}
+\end{DoxyParamCaption}
+)}\hypertarget{ff_8h_acb865a03dbac0031ac5cb8a031f7b71c}{}\label{ff_8h_acb865a03dbac0031ac5cb8a031f7b71c}
+Get current directory \index{ff.\+h@{ff.\+h}!f\+\_\+getfree@{f\+\_\+getfree}}
+\index{f\+\_\+getfree@{f\+\_\+getfree}!ff.\+h@{ff.\+h}}
+\subsubsection[{\texorpdfstring{f\+\_\+getfree(const T\+C\+H\+A\+R $\ast$path, D\+W\+O\+R\+D $\ast$nclst, F\+A\+T\+F\+S $\ast$$\ast$fatfs)}{f_getfree(const TCHAR *path, DWORD *nclst, FATFS **fatfs)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+R\+E\+S\+U\+LT} f\+\_\+getfree (
+\begin{DoxyParamCaption}
+\item[{const T\+C\+H\+AR $\ast$}]{path, }
+\item[{D\+W\+O\+RD $\ast$}]{nclst, }
+\item[{{\bf F\+A\+T\+FS} $\ast$$\ast$}]{fatfs}
+\end{DoxyParamCaption}
+)}\hypertarget{ff_8h_a0ff39f75a87cbda9cd6ea65d83f16cec}{}\label{ff_8h_a0ff39f75a87cbda9cd6ea65d83f16cec}
+Get number of free clusters on the drive \index{ff.\+h@{ff.\+h}!f\+\_\+getlabel@{f\+\_\+getlabel}}
+\index{f\+\_\+getlabel@{f\+\_\+getlabel}!ff.\+h@{ff.\+h}}
+\subsubsection[{\texorpdfstring{f\+\_\+getlabel(const T\+C\+H\+A\+R $\ast$path, T\+C\+H\+A\+R $\ast$label, D\+W\+O\+R\+D $\ast$vsn)}{f_getlabel(const TCHAR *path, TCHAR *label, DWORD *vsn)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+R\+E\+S\+U\+LT} f\+\_\+getlabel (
+\begin{DoxyParamCaption}
+\item[{const T\+C\+H\+AR $\ast$}]{path, }
+\item[{T\+C\+H\+AR $\ast$}]{label, }
+\item[{D\+W\+O\+RD $\ast$}]{vsn}
+\end{DoxyParamCaption}
+)}\hypertarget{ff_8h_ac4ff40a674bcbfe40d81b1e8e54befc6}{}\label{ff_8h_ac4ff40a674bcbfe40d81b1e8e54befc6}
+Get volume label \index{ff.\+h@{ff.\+h}!f\+\_\+gets@{f\+\_\+gets}}
+\index{f\+\_\+gets@{f\+\_\+gets}!ff.\+h@{ff.\+h}}
+\subsubsection[{\texorpdfstring{f\+\_\+gets(\+T\+C\+H\+A\+R $\ast$buff, int len, F\+I\+L $\ast$fp)}{f_gets(TCHAR *buff, int len, FIL *fp)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+H\+AR$\ast$ f\+\_\+gets (
+\begin{DoxyParamCaption}
+\item[{T\+C\+H\+AR $\ast$}]{buff, }
+\item[{int}]{len, }
+\item[{{\bf F\+IL} $\ast$}]{fp}
+\end{DoxyParamCaption}
+)}\hypertarget{ff_8h_a0fa54bd310785ecdaed19dda8f60dac5}{}\label{ff_8h_a0fa54bd310785ecdaed19dda8f60dac5}
+Get a string from the file \index{ff.\+h@{ff.\+h}!f\+\_\+lseek@{f\+\_\+lseek}}
+\index{f\+\_\+lseek@{f\+\_\+lseek}!ff.\+h@{ff.\+h}}
+\subsubsection[{\texorpdfstring{f\+\_\+lseek(\+F\+I\+L $\ast$fp, D\+W\+O\+R\+D ofs)}{f_lseek(FIL *fp, DWORD ofs)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+R\+E\+S\+U\+LT} f\+\_\+lseek (
+\begin{DoxyParamCaption}
+\item[{{\bf F\+IL} $\ast$}]{fp, }
+\item[{D\+W\+O\+RD}]{ofs}
+\end{DoxyParamCaption}
+)}\hypertarget{ff_8h_a5df0ac672ada972e89ef4b003e57f964}{}\label{ff_8h_a5df0ac672ada972e89ef4b003e57f964}
+Move file pointer of a file object \index{ff.\+h@{ff.\+h}!f\+\_\+mkdir@{f\+\_\+mkdir}}
+\index{f\+\_\+mkdir@{f\+\_\+mkdir}!ff.\+h@{ff.\+h}}
+\subsubsection[{\texorpdfstring{f\+\_\+mkdir(const T\+C\+H\+A\+R $\ast$path)}{f_mkdir(const TCHAR *path)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+R\+E\+S\+U\+LT} f\+\_\+mkdir (
+\begin{DoxyParamCaption}
+\item[{const T\+C\+H\+AR $\ast$}]{path}
+\end{DoxyParamCaption}
+)}\hypertarget{ff_8h_a4b4d38db58e89c526cfcf53200d719d0}{}\label{ff_8h_a4b4d38db58e89c526cfcf53200d719d0}
+Create a sub directory \index{ff.\+h@{ff.\+h}!f\+\_\+mkfs@{f\+\_\+mkfs}}
+\index{f\+\_\+mkfs@{f\+\_\+mkfs}!ff.\+h@{ff.\+h}}
+\subsubsection[{\texorpdfstring{f\+\_\+mkfs(const T\+C\+H\+A\+R $\ast$path, B\+Y\+T\+E sfd, U\+I\+N\+T au)}{f_mkfs(const TCHAR *path, BYTE sfd, UINT au)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+R\+E\+S\+U\+LT} f\+\_\+mkfs (
+\begin{DoxyParamCaption}
+\item[{const T\+C\+H\+AR $\ast$}]{path, }
+\item[{B\+Y\+TE}]{sfd, }
+\item[{U\+I\+NT}]{au}
+\end{DoxyParamCaption}
+)}\hypertarget{ff_8h_a799aff9594e708c8be357281cf85428b}{}\label{ff_8h_a799aff9594e708c8be357281cf85428b}
+Create a file system on the volume \index{ff.\+h@{ff.\+h}!f\+\_\+mount@{f\+\_\+mount}}
+\index{f\+\_\+mount@{f\+\_\+mount}!ff.\+h@{ff.\+h}}
+\subsubsection[{\texorpdfstring{f\+\_\+mount(\+F\+A\+T\+F\+S $\ast$fs, const T\+C\+H\+A\+R $\ast$path, B\+Y\+T\+E opt)}{f_mount(FATFS *fs, const TCHAR *path, BYTE opt)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+R\+E\+S\+U\+LT} f\+\_\+mount (
+\begin{DoxyParamCaption}
+\item[{{\bf F\+A\+T\+FS} $\ast$}]{fs, }
+\item[{const T\+C\+H\+AR $\ast$}]{path, }
+\item[{B\+Y\+TE}]{opt}
+\end{DoxyParamCaption}
+)}\hypertarget{ff_8h_a16a934c2bbfa2160295810adc49d5509}{}\label{ff_8h_a16a934c2bbfa2160295810adc49d5509}
+Mount/\+Unmount a logical drive \index{ff.\+h@{ff.\+h}!f\+\_\+open@{f\+\_\+open}}
+\index{f\+\_\+open@{f\+\_\+open}!ff.\+h@{ff.\+h}}
+\subsubsection[{\texorpdfstring{f\+\_\+open(\+F\+I\+L $\ast$fp, const T\+C\+H\+A\+R $\ast$path, B\+Y\+T\+E mode)}{f_open(FIL *fp, const TCHAR *path, BYTE mode)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+R\+E\+S\+U\+LT} f\+\_\+open (
+\begin{DoxyParamCaption}
+\item[{{\bf F\+IL} $\ast$}]{fp, }
+\item[{const T\+C\+H\+AR $\ast$}]{path, }
+\item[{B\+Y\+TE}]{mode}
+\end{DoxyParamCaption}
+)}\hypertarget{ff_8h_aefdef7126128d99d0b3bd82c28e54d80}{}\label{ff_8h_aefdef7126128d99d0b3bd82c28e54d80}
+Open or create a file \index{ff.\+h@{ff.\+h}!f\+\_\+opendir@{f\+\_\+opendir}}
+\index{f\+\_\+opendir@{f\+\_\+opendir}!ff.\+h@{ff.\+h}}
+\subsubsection[{\texorpdfstring{f\+\_\+opendir(\+D\+I\+R $\ast$dp, const T\+C\+H\+A\+R $\ast$path)}{f_opendir(DIR *dp, const TCHAR *path)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+R\+E\+S\+U\+LT} f\+\_\+opendir (
+\begin{DoxyParamCaption}
+\item[{{\bf D\+IR} $\ast$}]{dp, }
+\item[{const T\+C\+H\+AR $\ast$}]{path}
+\end{DoxyParamCaption}
+)}\hypertarget{ff_8h_ab63b213c75f7335fbb63a1f3f70e5fc7}{}\label{ff_8h_ab63b213c75f7335fbb63a1f3f70e5fc7}
+Open a directory \index{ff.\+h@{ff.\+h}!f\+\_\+printf@{f\+\_\+printf}}
+\index{f\+\_\+printf@{f\+\_\+printf}!ff.\+h@{ff.\+h}}
+\subsubsection[{\texorpdfstring{f\+\_\+printf(\+F\+I\+L $\ast$fp, const T\+C\+H\+A\+R $\ast$str,...)}{f_printf(FIL *fp, const TCHAR *str,...)}}]{\setlength{\rightskip}{0pt plus 5cm}int f\+\_\+printf (
+\begin{DoxyParamCaption}
+\item[{{\bf F\+IL} $\ast$}]{fp, }
+\item[{const T\+C\+H\+AR $\ast$}]{str, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}\hypertarget{ff_8h_a4ce26253177c167df849e76f69b5c66c}{}\label{ff_8h_a4ce26253177c167df849e76f69b5c66c}
+Put a formatted string to the file \index{ff.\+h@{ff.\+h}!f\+\_\+putc@{f\+\_\+putc}}
+\index{f\+\_\+putc@{f\+\_\+putc}!ff.\+h@{ff.\+h}}
+\subsubsection[{\texorpdfstring{f\+\_\+putc(\+T\+C\+H\+A\+R c, F\+I\+L $\ast$fp)}{f_putc(TCHAR c, FIL *fp)}}]{\setlength{\rightskip}{0pt plus 5cm}int f\+\_\+putc (
+\begin{DoxyParamCaption}
+\item[{T\+C\+H\+AR}]{c, }
+\item[{{\bf F\+IL} $\ast$}]{fp}
+\end{DoxyParamCaption}
+)}\hypertarget{ff_8h_ad1d73b8d01c2ef89eddf920b7fcc6beb}{}\label{ff_8h_ad1d73b8d01c2ef89eddf920b7fcc6beb}
+Put a character to the file \index{ff.\+h@{ff.\+h}!f\+\_\+puts@{f\+\_\+puts}}
+\index{f\+\_\+puts@{f\+\_\+puts}!ff.\+h@{ff.\+h}}
+\subsubsection[{\texorpdfstring{f\+\_\+puts(const T\+C\+H\+A\+R $\ast$str, F\+I\+L $\ast$cp)}{f_puts(const TCHAR *str, FIL *cp)}}]{\setlength{\rightskip}{0pt plus 5cm}int f\+\_\+puts (
+\begin{DoxyParamCaption}
+\item[{const T\+C\+H\+AR $\ast$}]{str, }
+\item[{{\bf F\+IL} $\ast$}]{cp}
+\end{DoxyParamCaption}
+)}\hypertarget{ff_8h_a699fc03ffa785ceab8812a7f204421f3}{}\label{ff_8h_a699fc03ffa785ceab8812a7f204421f3}
+Put a string to the file \index{ff.\+h@{ff.\+h}!f\+\_\+read@{f\+\_\+read}}
+\index{f\+\_\+read@{f\+\_\+read}!ff.\+h@{ff.\+h}}
+\subsubsection[{\texorpdfstring{f\+\_\+read(\+F\+I\+L $\ast$fp, void $\ast$buff, U\+I\+N\+T btr, U\+I\+N\+T $\ast$br)}{f_read(FIL *fp, void *buff, UINT btr, UINT *br)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+R\+E\+S\+U\+LT} f\+\_\+read (
+\begin{DoxyParamCaption}
+\item[{{\bf F\+IL} $\ast$}]{fp, }
+\item[{void $\ast$}]{buff, }
+\item[{U\+I\+NT}]{btr, }
+\item[{U\+I\+NT $\ast$}]{br}
+\end{DoxyParamCaption}
+)}\hypertarget{ff_8h_ac4c3dcb6869ca252888eebabe39727b3}{}\label{ff_8h_ac4c3dcb6869ca252888eebabe39727b3}
+Read data from a file \index{ff.\+h@{ff.\+h}!f\+\_\+readdir@{f\+\_\+readdir}}
+\index{f\+\_\+readdir@{f\+\_\+readdir}!ff.\+h@{ff.\+h}}
+\subsubsection[{\texorpdfstring{f\+\_\+readdir(\+D\+I\+R $\ast$dp, F\+I\+L\+I\+N\+F\+O $\ast$fno)}{f_readdir(DIR *dp, FILINFO *fno)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+R\+E\+S\+U\+LT} f\+\_\+readdir (
+\begin{DoxyParamCaption}
+\item[{{\bf D\+IR} $\ast$}]{dp, }
+\item[{{\bf F\+I\+L\+I\+N\+FO} $\ast$}]{fno}
+\end{DoxyParamCaption}
+)}\hypertarget{ff_8h_ab39e82a110695de45f416f3149358012}{}\label{ff_8h_ab39e82a110695de45f416f3149358012}
+Read a directory item \index{ff.\+h@{ff.\+h}!f\+\_\+rename@{f\+\_\+rename}}
+\index{f\+\_\+rename@{f\+\_\+rename}!ff.\+h@{ff.\+h}}
+\subsubsection[{\texorpdfstring{f\+\_\+rename(const T\+C\+H\+A\+R $\ast$path\+\_\+old, const T\+C\+H\+A\+R $\ast$path\+\_\+new)}{f_rename(const TCHAR *path_old, const TCHAR *path_new)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+R\+E\+S\+U\+LT} f\+\_\+rename (
+\begin{DoxyParamCaption}
+\item[{const T\+C\+H\+AR $\ast$}]{path\+\_\+old, }
+\item[{const T\+C\+H\+AR $\ast$}]{path\+\_\+new}
+\end{DoxyParamCaption}
+)}\hypertarget{ff_8h_aa775b9b024acfeb3a66523cab497d142}{}\label{ff_8h_aa775b9b024acfeb3a66523cab497d142}
+Rename/\+Move a file or directory \index{ff.\+h@{ff.\+h}!f\+\_\+setlabel@{f\+\_\+setlabel}}
+\index{f\+\_\+setlabel@{f\+\_\+setlabel}!ff.\+h@{ff.\+h}}
+\subsubsection[{\texorpdfstring{f\+\_\+setlabel(const T\+C\+H\+A\+R $\ast$label)}{f_setlabel(const TCHAR *label)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+R\+E\+S\+U\+LT} f\+\_\+setlabel (
+\begin{DoxyParamCaption}
+\item[{const T\+C\+H\+AR $\ast$}]{label}
+\end{DoxyParamCaption}
+)}\hypertarget{ff_8h_aa82bca64e28bc0d656a7999dd0eadec7}{}\label{ff_8h_aa82bca64e28bc0d656a7999dd0eadec7}
+Set volume label \index{ff.\+h@{ff.\+h}!f\+\_\+stat@{f\+\_\+stat}}
+\index{f\+\_\+stat@{f\+\_\+stat}!ff.\+h@{ff.\+h}}
+\subsubsection[{\texorpdfstring{f\+\_\+stat(const T\+C\+H\+A\+R $\ast$path, F\+I\+L\+I\+N\+F\+O $\ast$fno)}{f_stat(const TCHAR *path, FILINFO *fno)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+R\+E\+S\+U\+LT} f\+\_\+stat (
+\begin{DoxyParamCaption}
+\item[{const T\+C\+H\+AR $\ast$}]{path, }
+\item[{{\bf F\+I\+L\+I\+N\+FO} $\ast$}]{fno}
+\end{DoxyParamCaption}
+)}\hypertarget{ff_8h_abe1f60daab5c7d11170c334fb832c798}{}\label{ff_8h_abe1f60daab5c7d11170c334fb832c798}
+Get file status \index{ff.\+h@{ff.\+h}!f\+\_\+sync@{f\+\_\+sync}}
+\index{f\+\_\+sync@{f\+\_\+sync}!ff.\+h@{ff.\+h}}
+\subsubsection[{\texorpdfstring{f\+\_\+sync(\+F\+I\+L $\ast$fp)}{f_sync(FIL *fp)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+R\+E\+S\+U\+LT} f\+\_\+sync (
+\begin{DoxyParamCaption}
+\item[{{\bf F\+IL} $\ast$}]{fp}
+\end{DoxyParamCaption}
+)}\hypertarget{ff_8h_ad69c7246b122ba56a134939ee0eaf847}{}\label{ff_8h_ad69c7246b122ba56a134939ee0eaf847}
+Flush cached data of a writing file \index{ff.\+h@{ff.\+h}!f\+\_\+truncate@{f\+\_\+truncate}}
+\index{f\+\_\+truncate@{f\+\_\+truncate}!ff.\+h@{ff.\+h}}
+\subsubsection[{\texorpdfstring{f\+\_\+truncate(\+F\+I\+L $\ast$fp)}{f_truncate(FIL *fp)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+R\+E\+S\+U\+LT} f\+\_\+truncate (
+\begin{DoxyParamCaption}
+\item[{{\bf F\+IL} $\ast$}]{fp}
+\end{DoxyParamCaption}
+)}\hypertarget{ff_8h_a691a27b40c348f7c84b42e911636f38a}{}\label{ff_8h_a691a27b40c348f7c84b42e911636f38a}
+Truncate file \index{ff.\+h@{ff.\+h}!f\+\_\+unlink@{f\+\_\+unlink}}
+\index{f\+\_\+unlink@{f\+\_\+unlink}!ff.\+h@{ff.\+h}}
+\subsubsection[{\texorpdfstring{f\+\_\+unlink(const T\+C\+H\+A\+R $\ast$path)}{f_unlink(const TCHAR *path)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+R\+E\+S\+U\+LT} f\+\_\+unlink (
+\begin{DoxyParamCaption}
+\item[{const T\+C\+H\+AR $\ast$}]{path}
+\end{DoxyParamCaption}
+)}\hypertarget{ff_8h_a2858167fcd0bced48e9be434b3895efe}{}\label{ff_8h_a2858167fcd0bced48e9be434b3895efe}
+Delete an existing file or directory \index{ff.\+h@{ff.\+h}!f\+\_\+utime@{f\+\_\+utime}}
+\index{f\+\_\+utime@{f\+\_\+utime}!ff.\+h@{ff.\+h}}
+\subsubsection[{\texorpdfstring{f\+\_\+utime(const T\+C\+H\+A\+R $\ast$path, const F\+I\+L\+I\+N\+F\+O $\ast$fno)}{f_utime(const TCHAR *path, const FILINFO *fno)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+R\+E\+S\+U\+LT} f\+\_\+utime (
+\begin{DoxyParamCaption}
+\item[{const T\+C\+H\+AR $\ast$}]{path, }
+\item[{const {\bf F\+I\+L\+I\+N\+FO} $\ast$}]{fno}
+\end{DoxyParamCaption}
+)}\hypertarget{ff_8h_aafaa718d1a487e12a8f0087173dba0b9}{}\label{ff_8h_aafaa718d1a487e12a8f0087173dba0b9}
+Change times-\/tamp of the file/dir \index{ff.\+h@{ff.\+h}!f\+\_\+write@{f\+\_\+write}}
+\index{f\+\_\+write@{f\+\_\+write}!ff.\+h@{ff.\+h}}
+\subsubsection[{\texorpdfstring{f\+\_\+write(\+F\+I\+L $\ast$fp, const void $\ast$buff, U\+I\+N\+T btw, U\+I\+N\+T $\ast$bw)}{f_write(FIL *fp, const void *buff, UINT btw, UINT *bw)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+R\+E\+S\+U\+LT} f\+\_\+write (
+\begin{DoxyParamCaption}
+\item[{{\bf F\+IL} $\ast$}]{fp, }
+\item[{const void $\ast$}]{buff, }
+\item[{U\+I\+NT}]{btw, }
+\item[{U\+I\+NT $\ast$}]{bw}
+\end{DoxyParamCaption}
+)}\hypertarget{ff_8h_ae6a4dfae8a9e308bdb2283a37ef680f2}{}\label{ff_8h_ae6a4dfae8a9e308bdb2283a37ef680f2}
+Write data to a file 

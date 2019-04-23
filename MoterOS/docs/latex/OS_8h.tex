@@ -1,0 +1,535 @@
+\hypertarget{OS_8h}{}\section{inc/\+OS.h File Reference}
+\label{OS_8h}\index{inc/\+O\+S.\+h@{inc/\+O\+S.\+h}}
+
+
+Real Time Operating System for Labs 2 and 3 E\+E445\+M/\+E\+E380\+L.\+12.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\\*
+Include dependency graph for O\+S.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=135pt]{OS_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=176pt]{OS_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct__pcb__s}{\+\_\+pcb\+\_\+s}
+\item 
+struct \hyperlink{struct__tcb__s}{\+\_\+tcb\+\_\+s}
+\item 
+struct \hyperlink{structSema4}{Sema4}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries T\+I\+M\+E\+\_\+1\+MS}~80000\hypertarget{OS_8h_ad6445469b3084b0c8a8ea272e8a40a17}{}\label{OS_8h_ad6445469b3084b0c8a8ea272e8a40a17}
+
+\item 
+\#define {\bfseries T\+I\+M\+E\+\_\+2\+MS}~(2 $\ast$ T\+I\+M\+E\+\_\+1\+MS)\hypertarget{OS_8h_a601fb0d91385070bae69c2b1c4e63162}{}\label{OS_8h_a601fb0d91385070bae69c2b1c4e63162}
+
+\item 
+\#define {\bfseries T\+I\+M\+E\+\_\+500\+US}~(T\+I\+M\+E\+\_\+1\+MS / 2)\hypertarget{OS_8h_a5bd8a6024a3e7cd43b7fe30988ca81e8}{}\label{OS_8h_a5bd8a6024a3e7cd43b7fe30988ca81e8}
+
+\item 
+\#define {\bfseries T\+I\+M\+E\+\_\+250\+US}~(T\+I\+M\+E\+\_\+1\+MS / 4)\hypertarget{OS_8h_aae4936d8a1bad649da44cacada40b157}{}\label{OS_8h_aae4936d8a1bad649da44cacada40b157}
+
+\item 
+\#define {\bfseries T\+A\+S\+K\+\_\+\+S\+T\+A\+C\+K\+\_\+\+S\+I\+ZE}~128\hypertarget{OS_8h_a5486258f1f34d3baeda92a74b63c27c3}{}\label{OS_8h_a5486258f1f34d3baeda92a74b63c27c3}
+
+\item 
+\#define {\bfseries T\+C\+B\+\_\+\+M\+A\+G\+IC}~(0x900d900d)\hypertarget{OS_8h_a0fb8aa2f0ea0a6494f1639dd97087013}{}\label{OS_8h_a0fb8aa2f0ea0a6494f1639dd97087013}
+
+\item 
+\#define \hyperlink{OS_8h_accb79b9446dd2b953a1fb8437c5f6e15}{O\+S\+\_\+\+Add\+Thread}(task,  stack\+Size,  priority)
+\item 
+\#define \hyperlink{OS_8h_adf56561acbee98b34e8c42ff6b147255}{O\+S\+\_\+\+Add\+Periodic\+Thread}(task,  period,  priority)~O\+S\+\_\+\+Add\+Periodic\+Thread\+\_\+priv(task, period, priority, \#task)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{struct__pcb__s}{\+\_\+pcb\+\_\+s} {\bfseries pcb\+\_\+t}\hypertarget{OS_8h_add17966847109f7551977a87ddfcd8aa}{}\label{OS_8h_add17966847109f7551977a87ddfcd8aa}
+
+\item 
+typedef struct \hyperlink{struct__tcb__s}{\+\_\+tcb\+\_\+s} {\bfseries tcb\+\_\+t}\hypertarget{OS_8h_a5f5b511a2a589828581399459da62c6a}{}\label{OS_8h_a5f5b511a2a589828581399459da62c6a}
+
+\item 
+typedef struct \hyperlink{structSema4}{Sema4} {\bfseries Sema4\+Type}\hypertarget{OS_8h_a798fbe37dbc49a5ff9af51bf7de1ee8e}{}\label{OS_8h_a798fbe37dbc49a5ff9af51bf7de1ee8e}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{OS_8h_acb6df8f47f418aad9c9a9e045d7d1e6d}{O\+S\+\_\+\+Init} (void)
+\item 
+void \hyperlink{OS_8h_af580c6222330cc3d214763ddac7800b9}{O\+S\+\_\+\+Init\+Semaphore} (\hyperlink{structSema4}{Sema4\+Type} $\ast$sema\+Pt, long value)
+\item 
+void \hyperlink{OS_8h_aad29612829941c857ed685f40e193cd0}{O\+S\+\_\+\+Wait} (\hyperlink{structSema4}{Sema4\+Type} $\ast$sema\+Pt)
+\item 
+void \hyperlink{OS_8h_a0c4d587c411a23652529110910261fde}{O\+S\+\_\+\+Signal} (\hyperlink{structSema4}{Sema4\+Type} $\ast$sema\+Pt)
+\item 
+void \hyperlink{OS_8h_a3f127f7a40ffd3e43b7b0f4c8b7f30ff}{O\+S\+\_\+b\+Wait} (\hyperlink{structSema4}{Sema4\+Type} $\ast$sema\+Pt)
+\item 
+void \hyperlink{OS_8h_aacf0c377b570fc63b103c57e0fbc7acd}{O\+S\+\_\+b\+Signal} (\hyperlink{structSema4}{Sema4\+Type} $\ast$sema\+Pt)
+\item 
+void \hyperlink{OS_8h_a075cf7301361417f66be1d5c22e36b0f}{Jitter} (void)\hypertarget{OS_8h_a075cf7301361417f66be1d5c22e36b0f}{}\label{OS_8h_a075cf7301361417f66be1d5c22e36b0f}
+
+\begin{DoxyCompactList}\small\item\em Print the max periodic task jitter measured thus far to the S\+T7735 display. \end{DoxyCompactList}\item 
+int {\bfseries \+\_\+\+\_\+\+O\+S\+\_\+\+Add\+Thread} (void($\ast$task)(void), unsigned long stack\+Size, unsigned long priority, char $\ast$task\+\_\+name, \hyperlink{struct__pcb__s}{pcb\+\_\+t} $\ast$parent\+\_\+process)\hypertarget{OS_8h_a3e5c42edf8d08a40ccdee09e200d84b6}{}\label{OS_8h_a3e5c42edf8d08a40ccdee09e200d84b6}
+
+\item 
+unsigned long \hyperlink{OS_8h_adc21b8aab03cbb1611186ca3ac9123d8}{O\+S\+\_\+\+Id} (void)
+\item 
+int {\bfseries O\+S\+\_\+\+Add\+Periodic\+Thread\+\_\+priv} (void($\ast$task)(void), unsigned long period, unsigned long priority, char $\ast$task\+\_\+name)\hypertarget{OS_8h_a21ee017683a4a2b593d5497a27addac0}{}\label{OS_8h_a21ee017683a4a2b593d5497a27addac0}
+
+\item 
+int \hyperlink{OS_8h_a5c387e683842fc4f9f846729a60186da}{O\+S\+\_\+\+Add\+S\+W1\+Task} (void($\ast$task)(void), unsigned long priority)
+\item 
+int \hyperlink{OS_8h_a508ed7f6202df8a9e500994ad4399784}{O\+S\+\_\+\+Add\+S\+W2\+Task} (void($\ast$task)(void), unsigned long priority)
+\item 
+void \hyperlink{OS_8h_aeeb2aca9e1a16738a5d82353b2d497ac}{O\+S\+\_\+\+Sleep} (unsigned long sleep\+Time)
+\item 
+void \hyperlink{OS_8h_a8e991f4f2576c5cfec04ef5f37aabea5}{O\+S\+\_\+\+Kill} (void)
+\item 
+void \hyperlink{OS_8h_a4e71587568a2a48931a35615cad1b5db}{O\+S\+\_\+\+Suspend} (void)
+\item 
+void \hyperlink{OS_8h_a361ff1137f5dad8e0a74631be6fb12b6}{O\+S\+\_\+\+Fifo\+\_\+\+Init} (unsigned long size)
+\item 
+int \hyperlink{OS_8h_adf231073602c9328f6248f6272d63e7f}{O\+S\+\_\+\+Fifo\+\_\+\+Put} (unsigned long data)
+\item 
+unsigned long \hyperlink{OS_8h_af899a42296039e22ffdd8bf6e1ca208e}{O\+S\+\_\+\+Fifo\+\_\+\+Get} (void)
+\item 
+long \hyperlink{OS_8h_a9ff4cb899801f20ff90cbf2717c154c7}{O\+S\+\_\+\+Fifo\+\_\+\+Size} (void)
+\item 
+void \hyperlink{OS_8h_a84e1a933dd73e319fdd5649c2270281b}{O\+S\+\_\+\+Mail\+Box\+\_\+\+Init} (void)
+\item 
+void \hyperlink{OS_8h_ac4c3ebdb61c0c11195d6fcafeb0d4c99}{O\+S\+\_\+\+Mail\+Box\+\_\+\+Send} (unsigned long data)
+\item 
+unsigned long \hyperlink{OS_8h_ace71083584f0f1e5e2f081f1e4a1394a}{O\+S\+\_\+\+Mail\+Box\+\_\+\+Recv} (void)
+\item 
+unsigned long long \hyperlink{OS_8h_a5798d7fa05a4c3a523efe1b5651c5318}{O\+S\+\_\+\+Time} (void)
+\item 
+unsigned long long \hyperlink{OS_8h_af4b27f93116607bd3986125cb1c9edcf}{O\+S\+\_\+\+Time\+Difference} (unsigned long long start, unsigned long long stop)
+\item 
+void \hyperlink{OS_8h_ace6ec4b7947542f7d7ff3104d8c759bd}{O\+S\+\_\+\+Clear\+Ms\+Time} (void)
+\item 
+unsigned long \hyperlink{OS_8h_a251073790d2782617fd7474625761573}{O\+S\+\_\+\+Ms\+Time} (void)
+\item 
+void \hyperlink{OS_8h_a18553a7e1d82dcaaeb80a5524bd01cf2}{O\+S\+\_\+\+Launch} (unsigned long the\+Time\+Slice)
+\item 
+int \hyperlink{OS_8h_a3271236396a143a19c9650377e0f32ee}{O\+S\+\_\+\+Add\+Process} (void($\ast$entry)(void), void $\ast$text, void $\ast$data, unsigned long stack\+Size, unsigned long priority)
+\begin{DoxyCompactList}\small\item\em Launch a process in the OS. \end{DoxyCompactList}\item 
+long {\bfseries Start\+Critical} (void)\hypertarget{OS_8h_a6e7e2088607214bc15b17ac57b57df1b}{}\label{OS_8h_a6e7e2088607214bc15b17ac57b57df1b}
+
+\item 
+void {\bfseries End\+Critical} (long sr)\hypertarget{OS_8h_a670da3ff1aea0c7d54c40e9e40b5eeed}{}\label{OS_8h_a670da3ff1aea0c7d54c40e9e40b5eeed}
+
+\item 
+void {\bfseries Disable\+Interrupts} (void)\hypertarget{OS_8h_ac866dbaf7b167e5c46bb33de42eee84d}{}\label{OS_8h_ac866dbaf7b167e5c46bb33de42eee84d}
+
+\item 
+void {\bfseries Enable\+Interrupts} (void)\hypertarget{OS_8h_ab712356331a62b04aebcb373865e68c4}{}\label{OS_8h_ab712356331a62b04aebcb373865e68c4}
+
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct__tcb__s}{tcb\+\_\+t} $\ast$ {\bfseries cur\+\_\+tcb}\hypertarget{OS_8h_aa1c72d659051f84119a2c6373fe43bee}{}\label{OS_8h_aa1c72d659051f84119a2c6373fe43bee}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Real Time Operating System for Labs 2 and 3 E\+E445\+M/\+E\+E380\+L.\+12. 
+
+R\+T\+OS kernel capable of round-\/robin scheduling, up to 2 low-\/jitter periodic tasks.
+
+Reserves W\+T\+I\+M\+E\+R1A and B for periodic task scheduling. Reserves Sys\+Tick timer for round-\/robin scheduling. Reserves W\+T\+I\+M\+E\+R0 as a 64-\/bit time source.
+
+Interface by Jonathan W. Valvano 2/20/17, \href{mailto:valvano@mail.utexas.edu}{\tt valvano@mail.\+utexas.\+edu} Implementation by Riley Wood and Jeageun Jung \begin{DoxyAuthor}{Author}
+Riley Wood and Jeageun Jung 
+\end{DoxyAuthor}
+
+
+\subsection{Macro Definition Documentation}
+\index{O\+S.\+h@{O\+S.\+h}!O\+S\+\_\+\+Add\+Periodic\+Thread@{O\+S\+\_\+\+Add\+Periodic\+Thread}}
+\index{O\+S\+\_\+\+Add\+Periodic\+Thread@{O\+S\+\_\+\+Add\+Periodic\+Thread}!O\+S.\+h@{O\+S.\+h}}
+\subsubsection[{\texorpdfstring{O\+S\+\_\+\+Add\+Periodic\+Thread}{OS_AddPeriodicThread}}]{\setlength{\rightskip}{0pt plus 5cm}\#define O\+S\+\_\+\+Add\+Periodic\+Thread(
+\begin{DoxyParamCaption}
+\item[{}]{task, }
+\item[{}]{period, }
+\item[{}]{priority}
+\end{DoxyParamCaption}
+)~O\+S\+\_\+\+Add\+Periodic\+Thread\+\_\+priv(task, period, priority, \#task)}\hypertarget{OS_8h_adf56561acbee98b34e8c42ff6b147255}{}\label{OS_8h_adf56561acbee98b34e8c42ff6b147255}
+Add a background periodic task. Typically this function receives the highest priority You are free to select the time resolution for this function It is assumed that the user task will run to completion and return This task can not spin, block, loop, sleep, or kill This task can call O\+S\+\_\+\+Signal O\+S\+\_\+b\+Signal O\+S\+\_\+\+Add\+Thread This task does not have a Thread ID In lab 2, this command will be called 0 or 1 times In lab 2, the priority field can be ignored In lab 3, this command will be called 0 1 or 2 times In lab 3, there will be up to four background threads, and this priority field determines the relative priority of these four threads 
+\begin{DoxyParams}{Parameters}
+{\em task} & pointer to a void/void background function \\
+\hline
+{\em period} & given in system time units (12.\+5ns) \\
+\hline
+{\em priority} & 0 is the highest, 5 is the lowest \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if successful, 0 if this thread can not be added 
+\end{DoxyReturn}
+\index{O\+S.\+h@{O\+S.\+h}!O\+S\+\_\+\+Add\+Thread@{O\+S\+\_\+\+Add\+Thread}}
+\index{O\+S\+\_\+\+Add\+Thread@{O\+S\+\_\+\+Add\+Thread}!O\+S.\+h@{O\+S.\+h}}
+\subsubsection[{\texorpdfstring{O\+S\+\_\+\+Add\+Thread}{OS_AddThread}}]{\setlength{\rightskip}{0pt plus 5cm}\#define O\+S\+\_\+\+Add\+Thread(
+\begin{DoxyParamCaption}
+\item[{}]{task, }
+\item[{}]{stack\+Size, }
+\item[{}]{priority}
+\end{DoxyParamCaption}
+)}\hypertarget{OS_8h_accb79b9446dd2b953a1fb8437c5f6e15}{}\label{OS_8h_accb79b9446dd2b953a1fb8437c5f6e15}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\_\_OS\_AddThread(task,\(\backslash\)
+                                                               stackSize,\(\backslash\)
+                                                               priority,\(\backslash\)
+                                                               #task,\(\backslash\)
+                                                               cur\_tcb ? cur\_tcb->parent\_process : 0)
+\end{DoxyCode}
+add a foregound thread to the scheduler stack size must be divisable by 8 (aligned to double word boundary) In Lab 2, you can ignore both the stack\+Size and priority fields In Lab 3, you can ignore the stack\+Size fields 
+\begin{DoxyParams}{Parameters}
+{\em task} & Task function \\
+\hline
+{\em stack\+Size} & Size of the stack in bytes. Should be divisible by 8 \\
+\hline
+{\em priority} & Priority of the task. 0 is highest, 5 is lowest. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if successful, 0 if this thread can not be added 
+\end{DoxyReturn}
+
+
+\subsection{Function Documentation}
+\index{O\+S.\+h@{O\+S.\+h}!O\+S\+\_\+\+Add\+Process@{O\+S\+\_\+\+Add\+Process}}
+\index{O\+S\+\_\+\+Add\+Process@{O\+S\+\_\+\+Add\+Process}!O\+S.\+h@{O\+S.\+h}}
+\subsubsection[{\texorpdfstring{O\+S\+\_\+\+Add\+Process(void($\ast$entry)(void), void $\ast$text, void $\ast$data, unsigned long stack\+Size, unsigned long priority)}{OS_AddProcess(void(*entry)(void), void *text, void *data, unsigned long stackSize, unsigned long priority)}}]{\setlength{\rightskip}{0pt plus 5cm}int O\+S\+\_\+\+Add\+Process (
+\begin{DoxyParamCaption}
+\item[{void($\ast$)(void)}]{entry, }
+\item[{void $\ast$}]{text, }
+\item[{void $\ast$}]{data, }
+\item[{unsigned long}]{stack\+Size, }
+\item[{unsigned long}]{priority}
+\end{DoxyParamCaption}
+)}\hypertarget{OS_8h_a3271236396a143a19c9650377e0f32ee}{}\label{OS_8h_a3271236396a143a19c9650377e0f32ee}
+
+
+Launch a process in the OS. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entry} & Entry point, usually main() of the process \\
+\hline
+{\em text} & Text (code) section start address \\
+\hline
+{\em data} & Data section start address \\
+\hline
+{\em stack\+Size} & Size of the stack for the first thread \\
+\hline
+{\em priority} & Priority for the first thread \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 on success, -\/1 on failure. 
+\end{DoxyReturn}
+\index{O\+S.\+h@{O\+S.\+h}!O\+S\+\_\+\+Add\+S\+W1\+Task@{O\+S\+\_\+\+Add\+S\+W1\+Task}}
+\index{O\+S\+\_\+\+Add\+S\+W1\+Task@{O\+S\+\_\+\+Add\+S\+W1\+Task}!O\+S.\+h@{O\+S.\+h}}
+\subsubsection[{\texorpdfstring{O\+S\+\_\+\+Add\+S\+W1\+Task(void($\ast$task)(void), unsigned long priority)}{OS_AddSW1Task(void(*task)(void), unsigned long priority)}}]{\setlength{\rightskip}{0pt plus 5cm}int O\+S\+\_\+\+Add\+S\+W1\+Task (
+\begin{DoxyParamCaption}
+\item[{void($\ast$)(void)}]{task, }
+\item[{unsigned long}]{priority}
+\end{DoxyParamCaption}
+)}\hypertarget{OS_8h_a5c387e683842fc4f9f846729a60186da}{}\label{OS_8h_a5c387e683842fc4f9f846729a60186da}
+add a background task to run whenever the S\+W1 (P\+F4) button is pushed 
+\begin{DoxyParams}{Parameters}
+{\em pointer} & to a void/void background function \\
+\hline
+{\em priority} & 0 is the highest, 5 is the lowest \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if successful, 0 if this thread can not be added It is assumed that the user task will run to completion and return This task can not spin, block, loop, sleep, or kill This task can call O\+S\+\_\+\+Signal O\+S\+\_\+b\+Signal O\+S\+\_\+\+Add\+Thread This task does not have a Thread ID In labs 2 and 3, this command will be called 0 or 1 times In lab 2, the priority field can be ignored In lab 3, there will be up to four background threads, and this priority field determines the relative priority of these four threads 
+\end{DoxyReturn}
+\index{O\+S.\+h@{O\+S.\+h}!O\+S\+\_\+\+Add\+S\+W2\+Task@{O\+S\+\_\+\+Add\+S\+W2\+Task}}
+\index{O\+S\+\_\+\+Add\+S\+W2\+Task@{O\+S\+\_\+\+Add\+S\+W2\+Task}!O\+S.\+h@{O\+S.\+h}}
+\subsubsection[{\texorpdfstring{O\+S\+\_\+\+Add\+S\+W2\+Task(void($\ast$task)(void), unsigned long priority)}{OS_AddSW2Task(void(*task)(void), unsigned long priority)}}]{\setlength{\rightskip}{0pt plus 5cm}int O\+S\+\_\+\+Add\+S\+W2\+Task (
+\begin{DoxyParamCaption}
+\item[{void($\ast$)(void)}]{task, }
+\item[{unsigned long}]{priority}
+\end{DoxyParamCaption}
+)}\hypertarget{OS_8h_a508ed7f6202df8a9e500994ad4399784}{}\label{OS_8h_a508ed7f6202df8a9e500994ad4399784}
+add a background task to run whenever the S\+W2 (P\+F0) button is pushed 
+\begin{DoxyParams}{Parameters}
+{\em pointer} & to a void/void background function \\
+\hline
+{\em priority} & 0 is highest, 5 is lowest \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if successful, 0 if this thread can not be added It is assumed user task will run to completion and return This task can not spin block loop sleep or kill This task can call issue O\+S\+\_\+\+Signal, it can call O\+S\+\_\+\+Add\+Thread This task does not have a Thread ID In lab 2, this function can be ignored In lab 3, this command will be called will be called 0 or 1 times In lab 3, there will be up to four background threads, and this priority field determines the relative priority of these four threads 
+\end{DoxyReturn}
+\index{O\+S.\+h@{O\+S.\+h}!O\+S\+\_\+b\+Signal@{O\+S\+\_\+b\+Signal}}
+\index{O\+S\+\_\+b\+Signal@{O\+S\+\_\+b\+Signal}!O\+S.\+h@{O\+S.\+h}}
+\subsubsection[{\texorpdfstring{O\+S\+\_\+b\+Signal(\+Sema4\+Type $\ast$sema\+Pt)}{OS_bSignal(Sema4Type *semaPt)}}]{\setlength{\rightskip}{0pt plus 5cm}void O\+S\+\_\+b\+Signal (
+\begin{DoxyParamCaption}
+\item[{{\bf Sema4\+Type} $\ast$}]{sema\+Pt}
+\end{DoxyParamCaption}
+)}\hypertarget{OS_8h_aacf0c377b570fc63b103c57e0fbc7acd}{}\label{OS_8h_aacf0c377b570fc63b103c57e0fbc7acd}
+Lab2 spinlock, set to 1 Lab3 wakeup blocked thread if appropriate 
+\begin{DoxyParams}{Parameters}
+{\em sema\+Pt} & pointer to a binary semaphore \\
+\hline
+\end{DoxyParams}
+\index{O\+S.\+h@{O\+S.\+h}!O\+S\+\_\+b\+Wait@{O\+S\+\_\+b\+Wait}}
+\index{O\+S\+\_\+b\+Wait@{O\+S\+\_\+b\+Wait}!O\+S.\+h@{O\+S.\+h}}
+\subsubsection[{\texorpdfstring{O\+S\+\_\+b\+Wait(\+Sema4\+Type $\ast$sema\+Pt)}{OS_bWait(Sema4Type *semaPt)}}]{\setlength{\rightskip}{0pt plus 5cm}void O\+S\+\_\+b\+Wait (
+\begin{DoxyParamCaption}
+\item[{{\bf Sema4\+Type} $\ast$}]{sema\+Pt}
+\end{DoxyParamCaption}
+)}\hypertarget{OS_8h_a3f127f7a40ffd3e43b7b0f4c8b7f30ff}{}\label{OS_8h_a3f127f7a40ffd3e43b7b0f4c8b7f30ff}
+Lab2 spinlock, set to 0 Lab3 block if less than zero 
+\begin{DoxyParams}{Parameters}
+{\em sema\+Pt} & pointer to a binary semaphore \\
+\hline
+\end{DoxyParams}
+\index{O\+S.\+h@{O\+S.\+h}!O\+S\+\_\+\+Clear\+Ms\+Time@{O\+S\+\_\+\+Clear\+Ms\+Time}}
+\index{O\+S\+\_\+\+Clear\+Ms\+Time@{O\+S\+\_\+\+Clear\+Ms\+Time}!O\+S.\+h@{O\+S.\+h}}
+\subsubsection[{\texorpdfstring{O\+S\+\_\+\+Clear\+Ms\+Time(void)}{OS_ClearMsTime(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void O\+S\+\_\+\+Clear\+Ms\+Time (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{OS_8h_ace6ec4b7947542f7d7ff3104d8c759bd}{}\label{OS_8h_ace6ec4b7947542f7d7ff3104d8c759bd}
+Sets the system time to zero (from Lab 1). You are free to change how this works. \begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\index{O\+S.\+h@{O\+S.\+h}!O\+S\+\_\+\+Fifo\+\_\+\+Get@{O\+S\+\_\+\+Fifo\+\_\+\+Get}}
+\index{O\+S\+\_\+\+Fifo\+\_\+\+Get@{O\+S\+\_\+\+Fifo\+\_\+\+Get}!O\+S.\+h@{O\+S.\+h}}
+\subsubsection[{\texorpdfstring{O\+S\+\_\+\+Fifo\+\_\+\+Get(void)}{OS_Fifo_Get(void)}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long O\+S\+\_\+\+Fifo\+\_\+\+Get (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{OS_8h_af899a42296039e22ffdd8bf6e1ca208e}{}\label{OS_8h_af899a42296039e22ffdd8bf6e1ca208e}
+Remove one data sample from the Fifo. Called in foreground, will spin/block if empty \begin{DoxyReturn}{Returns}
+data 
+\end{DoxyReturn}
+\index{O\+S.\+h@{O\+S.\+h}!O\+S\+\_\+\+Fifo\+\_\+\+Init@{O\+S\+\_\+\+Fifo\+\_\+\+Init}}
+\index{O\+S\+\_\+\+Fifo\+\_\+\+Init@{O\+S\+\_\+\+Fifo\+\_\+\+Init}!O\+S.\+h@{O\+S.\+h}}
+\subsubsection[{\texorpdfstring{O\+S\+\_\+\+Fifo\+\_\+\+Init(unsigned long size)}{OS_Fifo_Init(unsigned long size)}}]{\setlength{\rightskip}{0pt plus 5cm}void O\+S\+\_\+\+Fifo\+\_\+\+Init (
+\begin{DoxyParamCaption}
+\item[{unsigned long}]{size}
+\end{DoxyParamCaption}
+)}\hypertarget{OS_8h_a361ff1137f5dad8e0a74631be6fb12b6}{}\label{OS_8h_a361ff1137f5dad8e0a74631be6fb12b6}
+Initialize the Fifo to be empty. In Lab 2, you can ignore the size field. In Lab 3, you should implement the user-\/defined fifo size. In Lab 3, you can put whatever restrictions you want on size e.\+g., 4 to 64 elements e.\+g., must be a power of 2,4,8,16,32,64,128 
+\begin{DoxyParams}{Parameters}
+{\em size} & Size of the fifo \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\index{O\+S.\+h@{O\+S.\+h}!O\+S\+\_\+\+Fifo\+\_\+\+Put@{O\+S\+\_\+\+Fifo\+\_\+\+Put}}
+\index{O\+S\+\_\+\+Fifo\+\_\+\+Put@{O\+S\+\_\+\+Fifo\+\_\+\+Put}!O\+S.\+h@{O\+S.\+h}}
+\subsubsection[{\texorpdfstring{O\+S\+\_\+\+Fifo\+\_\+\+Put(unsigned long data)}{OS_Fifo_Put(unsigned long data)}}]{\setlength{\rightskip}{0pt plus 5cm}int O\+S\+\_\+\+Fifo\+\_\+\+Put (
+\begin{DoxyParamCaption}
+\item[{unsigned long}]{data}
+\end{DoxyParamCaption}
+)}\hypertarget{OS_8h_adf231073602c9328f6248f6272d63e7f}{}\label{OS_8h_adf231073602c9328f6248f6272d63e7f}
+Enter one data sample into the Fifo. Called from the background, so no waiting. Since this is called by interrupt handlers this function can not disable or enable interrupts. 
+\begin{DoxyParams}{Parameters}
+{\em data} & Data to put in the F\+I\+FO \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if data is properly saved, false if data not saved, because it was full 
+\end{DoxyReturn}
+\index{O\+S.\+h@{O\+S.\+h}!O\+S\+\_\+\+Fifo\+\_\+\+Size@{O\+S\+\_\+\+Fifo\+\_\+\+Size}}
+\index{O\+S\+\_\+\+Fifo\+\_\+\+Size@{O\+S\+\_\+\+Fifo\+\_\+\+Size}!O\+S.\+h@{O\+S.\+h}}
+\subsubsection[{\texorpdfstring{O\+S\+\_\+\+Fifo\+\_\+\+Size(void)}{OS_Fifo_Size(void)}}]{\setlength{\rightskip}{0pt plus 5cm}long O\+S\+\_\+\+Fifo\+\_\+\+Size (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{OS_8h_a9ff4cb899801f20ff90cbf2717c154c7}{}\label{OS_8h_a9ff4cb899801f20ff90cbf2717c154c7}
+Check the status of the Fifo. \begin{DoxyReturn}{Returns}
+returns the number of elements in the Fifo. Greater than zero if a call to O\+S\+\_\+\+Fifo\+\_\+\+Get will return right away, zero or less than zero if the Fifo is empty, zero or less than zero if a call to O\+S\+\_\+\+Fifo\+\_\+\+Get will spin or block 
+\end{DoxyReturn}
+\index{O\+S.\+h@{O\+S.\+h}!O\+S\+\_\+\+Id@{O\+S\+\_\+\+Id}}
+\index{O\+S\+\_\+\+Id@{O\+S\+\_\+\+Id}!O\+S.\+h@{O\+S.\+h}}
+\subsubsection[{\texorpdfstring{O\+S\+\_\+\+Id(void)}{OS_Id(void)}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long O\+S\+\_\+\+Id (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{OS_8h_adc21b8aab03cbb1611186ca3ac9123d8}{}\label{OS_8h_adc21b8aab03cbb1611186ca3ac9123d8}
+returns the thread ID for the currently running thread \begin{DoxyReturn}{Returns}
+Thread ID, number greater than zero 
+\end{DoxyReturn}
+\index{O\+S.\+h@{O\+S.\+h}!O\+S\+\_\+\+Init@{O\+S\+\_\+\+Init}}
+\index{O\+S\+\_\+\+Init@{O\+S\+\_\+\+Init}!O\+S.\+h@{O\+S.\+h}}
+\subsubsection[{\texorpdfstring{O\+S\+\_\+\+Init(void)}{OS_Init(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void O\+S\+\_\+\+Init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{OS_8h_acb6df8f47f418aad9c9a9e045d7d1e6d}{}\label{OS_8h_acb6df8f47f418aad9c9a9e045d7d1e6d}
+initialize operating system, disable interrupts until O\+S\+\_\+\+Launch initialize OS controlled I/O\+: serial, A\+DC, systick, Launch\+Pad I/O and timers \index{O\+S.\+h@{O\+S.\+h}!O\+S\+\_\+\+Init\+Semaphore@{O\+S\+\_\+\+Init\+Semaphore}}
+\index{O\+S\+\_\+\+Init\+Semaphore@{O\+S\+\_\+\+Init\+Semaphore}!O\+S.\+h@{O\+S.\+h}}
+\subsubsection[{\texorpdfstring{O\+S\+\_\+\+Init\+Semaphore(\+Sema4\+Type $\ast$sema\+Pt, long value)}{OS_InitSemaphore(Sema4Type *semaPt, long value)}}]{\setlength{\rightskip}{0pt plus 5cm}void O\+S\+\_\+\+Init\+Semaphore (
+\begin{DoxyParamCaption}
+\item[{{\bf Sema4\+Type} $\ast$}]{sema\+Pt, }
+\item[{long}]{value}
+\end{DoxyParamCaption}
+)}\hypertarget{OS_8h_af580c6222330cc3d214763ddac7800b9}{}\label{OS_8h_af580c6222330cc3d214763ddac7800b9}
+initialize semaphore 
+\begin{DoxyParams}{Parameters}
+{\em sema\+Pt} & pointer to a semaphore \\
+\hline
+\end{DoxyParams}
+\index{O\+S.\+h@{O\+S.\+h}!O\+S\+\_\+\+Kill@{O\+S\+\_\+\+Kill}}
+\index{O\+S\+\_\+\+Kill@{O\+S\+\_\+\+Kill}!O\+S.\+h@{O\+S.\+h}}
+\subsubsection[{\texorpdfstring{O\+S\+\_\+\+Kill(void)}{OS_Kill(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void O\+S\+\_\+\+Kill (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{OS_8h_a8e991f4f2576c5cfec04ef5f37aabea5}{}\label{OS_8h_a8e991f4f2576c5cfec04ef5f37aabea5}
+kill the currently running thread, release its T\+CB and stack \index{O\+S.\+h@{O\+S.\+h}!O\+S\+\_\+\+Launch@{O\+S\+\_\+\+Launch}}
+\index{O\+S\+\_\+\+Launch@{O\+S\+\_\+\+Launch}!O\+S.\+h@{O\+S.\+h}}
+\subsubsection[{\texorpdfstring{O\+S\+\_\+\+Launch(unsigned long the\+Time\+Slice)}{OS_Launch(unsigned long theTimeSlice)}}]{\setlength{\rightskip}{0pt plus 5cm}void O\+S\+\_\+\+Launch (
+\begin{DoxyParamCaption}
+\item[{unsigned long}]{the\+Time\+Slice}
+\end{DoxyParamCaption}
+)}\hypertarget{OS_8h_a18553a7e1d82dcaaeb80a5524bd01cf2}{}\label{OS_8h_a18553a7e1d82dcaaeb80a5524bd01cf2}
+Start the scheduler, enable interrupts. In Lab 2, you can ignore the the\+Time\+Slice field. In Lab 3, you should implement the user-\/defined Time\+Slice field. It is ok to limit the range of the\+Time\+Slice to match the 24-\/bit Sys\+Tick. 
+\begin{DoxyParams}{Parameters}
+{\em the\+Time\+Slice} & number of 12.\+5ns clock cycles for each time slice \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none (does not return) 
+\end{DoxyReturn}
+\index{O\+S.\+h@{O\+S.\+h}!O\+S\+\_\+\+Mail\+Box\+\_\+\+Init@{O\+S\+\_\+\+Mail\+Box\+\_\+\+Init}}
+\index{O\+S\+\_\+\+Mail\+Box\+\_\+\+Init@{O\+S\+\_\+\+Mail\+Box\+\_\+\+Init}!O\+S.\+h@{O\+S.\+h}}
+\subsubsection[{\texorpdfstring{O\+S\+\_\+\+Mail\+Box\+\_\+\+Init(void)}{OS_MailBox_Init(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void O\+S\+\_\+\+Mail\+Box\+\_\+\+Init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{OS_8h_a84e1a933dd73e319fdd5649c2270281b}{}\label{OS_8h_a84e1a933dd73e319fdd5649c2270281b}
+Initialize communication channel \begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\index{O\+S.\+h@{O\+S.\+h}!O\+S\+\_\+\+Mail\+Box\+\_\+\+Recv@{O\+S\+\_\+\+Mail\+Box\+\_\+\+Recv}}
+\index{O\+S\+\_\+\+Mail\+Box\+\_\+\+Recv@{O\+S\+\_\+\+Mail\+Box\+\_\+\+Recv}!O\+S.\+h@{O\+S.\+h}}
+\subsubsection[{\texorpdfstring{O\+S\+\_\+\+Mail\+Box\+\_\+\+Recv(void)}{OS_MailBox_Recv(void)}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long O\+S\+\_\+\+Mail\+Box\+\_\+\+Recv (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{OS_8h_ace71083584f0f1e5e2f081f1e4a1394a}{}\label{OS_8h_ace71083584f0f1e5e2f081f1e4a1394a}
+Remove mail from the Mail\+Box. This function will be called from a foreground thread. It will spin/block if the Mail\+Box is empty. \begin{DoxyReturn}{Returns}
+data received 
+\end{DoxyReturn}
+\index{O\+S.\+h@{O\+S.\+h}!O\+S\+\_\+\+Mail\+Box\+\_\+\+Send@{O\+S\+\_\+\+Mail\+Box\+\_\+\+Send}}
+\index{O\+S\+\_\+\+Mail\+Box\+\_\+\+Send@{O\+S\+\_\+\+Mail\+Box\+\_\+\+Send}!O\+S.\+h@{O\+S.\+h}}
+\subsubsection[{\texorpdfstring{O\+S\+\_\+\+Mail\+Box\+\_\+\+Send(unsigned long data)}{OS_MailBox_Send(unsigned long data)}}]{\setlength{\rightskip}{0pt plus 5cm}void O\+S\+\_\+\+Mail\+Box\+\_\+\+Send (
+\begin{DoxyParamCaption}
+\item[{unsigned long}]{data}
+\end{DoxyParamCaption}
+)}\hypertarget{OS_8h_ac4c3ebdb61c0c11195d6fcafeb0d4c99}{}\label{OS_8h_ac4c3ebdb61c0c11195d6fcafeb0d4c99}
+Enter mail into the Mail\+Box. This function will be called from a foreground thread. It will spin/block if the Mail\+Box contains data not yet received 
+\begin{DoxyParams}{Parameters}
+{\em data} & to be sent \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\index{O\+S.\+h@{O\+S.\+h}!O\+S\+\_\+\+Ms\+Time@{O\+S\+\_\+\+Ms\+Time}}
+\index{O\+S\+\_\+\+Ms\+Time@{O\+S\+\_\+\+Ms\+Time}!O\+S.\+h@{O\+S.\+h}}
+\subsubsection[{\texorpdfstring{O\+S\+\_\+\+Ms\+Time(void)}{OS_MsTime(void)}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long O\+S\+\_\+\+Ms\+Time (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{OS_8h_a251073790d2782617fd7474625761573}{}\label{OS_8h_a251073790d2782617fd7474625761573}
+Reads the current time in msec (from Lab 1). You are free to select the time resolution for this function. It is ok to make the resolution to match the first call to O\+S\+\_\+\+Add\+Periodic\+Thread. \begin{DoxyReturn}{Returns}
+time in ms units 
+\end{DoxyReturn}
+\index{O\+S.\+h@{O\+S.\+h}!O\+S\+\_\+\+Signal@{O\+S\+\_\+\+Signal}}
+\index{O\+S\+\_\+\+Signal@{O\+S\+\_\+\+Signal}!O\+S.\+h@{O\+S.\+h}}
+\subsubsection[{\texorpdfstring{O\+S\+\_\+\+Signal(\+Sema4\+Type $\ast$sema\+Pt)}{OS_Signal(Sema4Type *semaPt)}}]{\setlength{\rightskip}{0pt plus 5cm}void O\+S\+\_\+\+Signal (
+\begin{DoxyParamCaption}
+\item[{{\bf Sema4\+Type} $\ast$}]{sema\+Pt}
+\end{DoxyParamCaption}
+)}\hypertarget{OS_8h_a0c4d587c411a23652529110910261fde}{}\label{OS_8h_a0c4d587c411a23652529110910261fde}
+increment semaphore Lab2 spinlock Lab3 wakeup blocked thread if appropriate 
+\begin{DoxyParams}{Parameters}
+{\em sema\+Pt} & pointer to a counting semaphore \\
+\hline
+\end{DoxyParams}
+\index{O\+S.\+h@{O\+S.\+h}!O\+S\+\_\+\+Sleep@{O\+S\+\_\+\+Sleep}}
+\index{O\+S\+\_\+\+Sleep@{O\+S\+\_\+\+Sleep}!O\+S.\+h@{O\+S.\+h}}
+\subsubsection[{\texorpdfstring{O\+S\+\_\+\+Sleep(unsigned long sleep\+Time)}{OS_Sleep(unsigned long sleepTime)}}]{\setlength{\rightskip}{0pt plus 5cm}void O\+S\+\_\+\+Sleep (
+\begin{DoxyParamCaption}
+\item[{unsigned long}]{sleep\+Time}
+\end{DoxyParamCaption}
+)}\hypertarget{OS_8h_aeeb2aca9e1a16738a5d82353b2d497ac}{}\label{OS_8h_aeeb2aca9e1a16738a5d82353b2d497ac}
+Place this thread into a dormant state. You are free to select the time resolution for this function. O\+S\+\_\+\+Sleep(0) implements cooperative multitasking. 
+\begin{DoxyParams}{Parameters}
+{\em sleep\+Time} & number of msec to sleep \\
+\hline
+\end{DoxyParams}
+\index{O\+S.\+h@{O\+S.\+h}!O\+S\+\_\+\+Suspend@{O\+S\+\_\+\+Suspend}}
+\index{O\+S\+\_\+\+Suspend@{O\+S\+\_\+\+Suspend}!O\+S.\+h@{O\+S.\+h}}
+\subsubsection[{\texorpdfstring{O\+S\+\_\+\+Suspend(void)}{OS_Suspend(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void O\+S\+\_\+\+Suspend (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{OS_8h_a4e71587568a2a48931a35615cad1b5db}{}\label{OS_8h_a4e71587568a2a48931a35615cad1b5db}
+suspend execution of currently running thread. scheduler will choose another thread to execute. Can be used to implement cooperative multitasking. Same function as O\+S\+\_\+\+Sleep(0). \index{O\+S.\+h@{O\+S.\+h}!O\+S\+\_\+\+Time@{O\+S\+\_\+\+Time}}
+\index{O\+S\+\_\+\+Time@{O\+S\+\_\+\+Time}!O\+S.\+h@{O\+S.\+h}}
+\subsubsection[{\texorpdfstring{O\+S\+\_\+\+Time(void)}{OS_Time(void)}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long long O\+S\+\_\+\+Time (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{OS_8h_a5798d7fa05a4c3a523efe1b5651c5318}{}\label{OS_8h_a5798d7fa05a4c3a523efe1b5651c5318}
+Return the system time in system time units (12.\+5ns) \begin{DoxyReturn}{Returns}
+time in 12.\+5ns units, 0 to 4294967295 
+\end{DoxyReturn}
+\index{O\+S.\+h@{O\+S.\+h}!O\+S\+\_\+\+Time\+Difference@{O\+S\+\_\+\+Time\+Difference}}
+\index{O\+S\+\_\+\+Time\+Difference@{O\+S\+\_\+\+Time\+Difference}!O\+S.\+h@{O\+S.\+h}}
+\subsubsection[{\texorpdfstring{O\+S\+\_\+\+Time\+Difference(unsigned long long start, unsigned long long stop)}{OS_TimeDifference(unsigned long long start, unsigned long long stop)}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long long O\+S\+\_\+\+Time\+Difference (
+\begin{DoxyParamCaption}
+\item[{unsigned long long}]{start, }
+\item[{unsigned long long}]{stop}
+\end{DoxyParamCaption}
+)}\hypertarget{OS_8h_af4b27f93116607bd3986125cb1c9edcf}{}\label{OS_8h_af4b27f93116607bd3986125cb1c9edcf}
+Calculates difference between two times. The time resolution should be less than or equal to 1us, and the precision at least 12 bits. It is ok to change the resolution and precision of this function as long as this function and O\+S\+\_\+\+Time have the same resolution and precision. 
+\begin{DoxyParams}{Parameters}
+{\em start} & Start time measured with O\+S\+\_\+\+Time \\
+\hline
+{\em stop} & Stop time measured with O\+S\+\_\+\+Time \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+time difference in 12.\+5ns units 
+\end{DoxyReturn}
+\index{O\+S.\+h@{O\+S.\+h}!O\+S\+\_\+\+Wait@{O\+S\+\_\+\+Wait}}
+\index{O\+S\+\_\+\+Wait@{O\+S\+\_\+\+Wait}!O\+S.\+h@{O\+S.\+h}}
+\subsubsection[{\texorpdfstring{O\+S\+\_\+\+Wait(\+Sema4\+Type $\ast$sema\+Pt)}{OS_Wait(Sema4Type *semaPt)}}]{\setlength{\rightskip}{0pt plus 5cm}void O\+S\+\_\+\+Wait (
+\begin{DoxyParamCaption}
+\item[{{\bf Sema4\+Type} $\ast$}]{sema\+Pt}
+\end{DoxyParamCaption}
+)}\hypertarget{OS_8h_aad29612829941c857ed685f40e193cd0}{}\label{OS_8h_aad29612829941c857ed685f40e193cd0}
+decrement semaphore Lab2 spinlock Lab3 block if less than zero 
+\begin{DoxyParams}{Parameters}
+{\em sema\+Pt} & pointer to a counting semaphore \\
+\hline
+\end{DoxyParams}

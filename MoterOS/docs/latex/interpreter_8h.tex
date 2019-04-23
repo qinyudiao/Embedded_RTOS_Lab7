@@ -1,0 +1,90 @@
+\hypertarget{interpreter_8h}{}\section{inc/interpreter.h File Reference}
+\label{interpreter_8h}\index{inc/interpreter.\+h@{inc/interpreter.\+h}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{interpreter_8h_a0cf6f7b20306bd53e7f61b3ead179154}{interpreter\+\_\+task} (void)\hypertarget{interpreter_8h_a0cf6f7b20306bd53e7f61b3ead179154}{}\label{interpreter_8h_a0cf6f7b20306bd53e7f61b3ead179154}
+
+\begin{DoxyCompactList}\small\item\em OS Task that sends characters to the interpreter. \end{DoxyCompactList}\item 
+void \hyperlink{interpreter_8h_ad36afca5c99ec60b995fae704d95d014}{interpreter\+\_\+cmd} (char $\ast$cmd\+\_\+str)
+\begin{DoxyCompactList}\small\item\em Pass user input to the interpreter and act on their command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+List of commands
+\begin{DoxyItemize}
+\item adc
+\begin{DoxyItemize}
+\item Prints 2 consecutive A\+DC samples of channel 0 to the L\+CD and U\+A\+R\+T0
+\end{DoxyItemize}
+\item lcd
+\begin{DoxyItemize}
+\item Prints strings on each line of each logical display on the L\+CD.
+\end{DoxyItemize}
+\item critical
+\begin{DoxyItemize}
+\item Prints the percentage of C\+PU time spent with interrupts disabled.
+\end{DoxyItemize}
+\item log
+\begin{DoxyItemize}
+\item Prints profiler events logged
+\end{DoxyItemize}
+\item clear
+\begin{DoxyItemize}
+\item Clears the profiler event log and restarts the profiler
+\end{DoxyItemize}
+\item format
+\begin{DoxyItemize}
+\item Formats the filesystem on the SD card
+\end{DoxyItemize}
+\item ls
+\begin{DoxyItemize}
+\item List all files in the filesystem
+\end{DoxyItemize}
+\item cat
+\begin{DoxyItemize}
+\item Print out file in the filesystem.
+\item Takes one argument\+: the name of the file to print
+\end{DoxyItemize}
+\item rm
+\begin{DoxyItemize}
+\item Remove file in the filesystem.
+\item Takes one argument\+: the name of the file to remove
+\end{DoxyItemize}
+\item touch
+\begin{DoxyItemize}
+\item Create a file in the filesystem.
+\item Takes one argument\+: the name of the file to create
+\end{DoxyItemize}
+\item echo
+\begin{DoxyItemize}
+\item Append characters to a file
+\item Takes two arguments in this order\+:
+\begin{DoxyItemize}
+\item The name of the file to append to
+\item Remaining characters are written to the file
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item increase
+\begin{DoxyItemize}
+\item Artificially increase the time spent in critical sections to test the \char`\"{}critical\char`\"{} command. 
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection{Function Documentation}
+\index{interpreter.\+h@{interpreter.\+h}!interpreter\+\_\+cmd@{interpreter\+\_\+cmd}}
+\index{interpreter\+\_\+cmd@{interpreter\+\_\+cmd}!interpreter.\+h@{interpreter.\+h}}
+\subsubsection[{\texorpdfstring{interpreter\+\_\+cmd(char $\ast$cmd\+\_\+str)}{interpreter_cmd(char *cmd_str)}}]{\setlength{\rightskip}{0pt plus 5cm}void interpreter\+\_\+cmd (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{cmd\+\_\+str}
+\end{DoxyParamCaption}
+)}\hypertarget{interpreter_8h_ad36afca5c99ec60b995fae704d95d014}{}\label{interpreter_8h_ad36afca5c99ec60b995fae704d95d014}
+
+
+Pass user input to the interpreter and act on their command. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cmd\+\_\+str} & String containing the entire user command. \\
+\hline
+\end{DoxyParams}
