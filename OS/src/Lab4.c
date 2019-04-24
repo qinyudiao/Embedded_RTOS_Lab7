@@ -88,6 +88,7 @@
 #include "motorcan.h"
 #include "can0.h"
 #include "IR.h"
+#include "DirectionCtrl.h"
 
 
 //*********Prototype for FFT in cr4_fft_64_stm32.s, STMicroelectronics
@@ -108,10 +109,10 @@ void cr4_fft_64_stm32(void *pssOUT, void *pssIN, unsigned short Nbin);
 #define ANGELRIGHT_OFFSET 200
 #define LEFT_OFFSET  105
 #define RIGHT_OFFSET 105
-#define cosTHETA (5255)
+#define cosTHETA (525)
 // cosTHETA * 1000 value
 #define KP 1
-#define KD 1
+#define KD 1000
 #define KI 1
 
 static FATFS g_sFatFs;
@@ -425,7 +426,7 @@ void sensor_task(void)
     
     prevtime = curtime;
     curtime = OS_Time();
-    for(int i =0;i<4;i++)
+    for(int i =0;i<3;i++)
     {
       Error[3-i] = Error[3-i-1];
     }
@@ -452,37 +453,51 @@ void sensor_task(void)
          Error[i] = 0xEFDFF1FF; // magic number
         Ui = 0;
       }
-      Error[0] = (1000*Left/Front_Left_angle - (cosTHETA))/10;
+      Error[0] = ((1000*Left)/Front_Left_angle - (cosTHETA))/10;
     }
     
     if(prevtime ==0 || Error[3] == 0xEFDFF1FF)
       continue;
-    delta10us = OS_TimeDifference(prevtime,curtime)/800;
-    
+    delta10us = OS_TimeDifference(prevtime,curtime)/80000;
+ 
     Up = KP*Error[0];
     Ui = Ui+ KI*Error[0]*delta10us; // 10us 
     Ud = KD*(Error[0]+3*Error[1]-3*Error[2]-Error[3])/(6*delta10us);
     
     U = Up + Ui + Ud;
+    int TH90 = 10000;
+    int TH60 = 1000;
+    
     if(Front_Right_angle+Right < Front_Left_angle+Left)
     { 
-      ControlFollow(U,0); // 0 is right following
+      if(U>TH90)
+        TurnLeft90();
+      else if(U>TH60)
+        TurnLeft60();
+      else
+        SlightLeft(U/100);
     }
     else
     {
-      ControlFollow(U,1); //  is left following
+      if(U>TH90)
+        TurnRight90();
+      else if(U>TH60)
+        TurnRight60();
+      else
+        SlightRight(U/100);
     }
     
     sprintf(adc_string, "Up Ui Ud U %d %d %d %d:  ",  Up,Ui,Ud,U);
     UART_OutString(adc_string);
     UART_OutString("\r\n");
-    
+    OS_Sleep(5);
   }
 }
 int Sensor_main(void)
 {
   OS_Init(); // initialize, disable interrupts
   CAN0_Open();
+  IR_Init();
   NumCreated = 0;
   NumCreated += OS_AddThread(&Interpreter,128,1);
   NumCreated += OS_AddThread(&sensor_task, 128, 2);

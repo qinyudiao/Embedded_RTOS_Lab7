@@ -540,6 +540,11 @@
               <FileType>1</FileType>
               <FilePath>.\src\motorcan.c</FilePath>
             </File>
+            <File>
+              <FileName>DirectionCtrl.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\DirectionCtrl.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
