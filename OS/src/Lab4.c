@@ -541,8 +541,26 @@ int can0_testmain()
   return 0;
 }
 
+void lcd_task(void)
+{
+    static int count = 0;
+    ST7735_Message(0, 1, "Hello world", count++);
+}
+
+int lcd_testmain(void)
+{
+  OS_Init();
+  ST7735_InitR(INITR_REDTAB);
+  ST7735_FillScreen(0xFFFF);
+  NumCreated = 0;
+  // create initial foreground threads
+  NumCreated += OS_AddPeriodicThread(&lcd_task, 1000 * TIME_1MS, 1);
+  OS_Launch(TIMESLICE); // doesn't return, interrupts enabled in here
+  return 0;
+}
+
 // Main stub
 int main(void)
 {
-  return Sensor_main();
+  return lcd_testmain();
 }
