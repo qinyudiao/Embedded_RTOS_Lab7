@@ -392,6 +392,20 @@ void ControlFollow(int U, int pos)
   int dir =0;
 }
 
+int Up=0;
+int Ui = 0;
+int Ud = 0;
+int U=0;
+
+void sensor_debug_task(void)
+{
+  static int i=0;
+  while(1)
+  {
+    ST7735_Message(0, 1, "Hello world ", i++);
+  }
+}
+
 void sensor_task(void)
 {
   int i = 0;
@@ -405,10 +419,7 @@ void sensor_task(void)
   for(int i =0;i<4;i++)
     Error[i] = 0xEFDFF1FF; // magic number
   
-  int Up=0;
-  int Ui = 0;
-  int Ud = 0;
-  int U=0;
+
   unsigned long long curtime = 0;;
   unsigned long long prevtime = 0;
   int delta10us = 0;
@@ -501,6 +512,7 @@ int Sensor_main(void)
   NumCreated = 0;
   NumCreated += OS_AddThread(&Interpreter,128,1);
   NumCreated += OS_AddThread(&sensor_task, 128, 2);
+  NumCreated += OS_AddThread(&sensor_debug_task, 128, 2);
   OS_Launch(TIMESLICE); // doesn't return, interrupts enabled in here
   return 0;             // this never executes
 }
@@ -562,5 +574,5 @@ int lcd_testmain(void)
 // Main stub
 int main(void)
 {
-  return lcd_testmain();
+  return Sensor_main();
 }

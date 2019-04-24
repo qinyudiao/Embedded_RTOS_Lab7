@@ -545,6 +545,11 @@
               <FileType>1</FileType>
               <FilePath>.\src\motorcan.c</FilePath>
             </File>
+            <File>
+              <FileName>DirectionCtrl.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\DirectionCtrl.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -864,6 +869,11 @@
               <FileName>motorcan.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\inc\motorcan.h</FilePath>
+            </File>
+            <File>
+              <FileName>DirectionCtrl.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\inc\DirectionCtrl.h</FilePath>
             </File>
           </Files>
         </Group>
