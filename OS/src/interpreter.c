@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdint.h>
 #include <stdio.h>
+
 #include "interpreter.h"
 #include "ADC.h"
 #include "UART.h"
@@ -14,6 +15,15 @@
 #include "timeMeasure.h"
 #include "loader.h"
 #include "can0.h"
+
+#include <stdint.h>
+#include "hw_can.h"
+#include "hw_ints.h"
+#include "hw_memmap.h"
+#include "hw_types.h"
+#include "can.h"
+#include "debug.h"
+#include "interrupt.h"
 
 #define MAX_LINE_LENGTH (128)
 
@@ -257,5 +267,16 @@ void interpreter_cmd(char *cmd_str)
     UART_OutString("KD is ");
     UART_OutUDec(KD);
     UART_OutString("\r\n");
+  }
+  else if(strcmp(cmd, "stop") == 0)
+  {
+    long sr = StartCritical();
+    CAN_MotorTorch(0,0);
+    CANDisable(CAN0_BASE);
+    EndCritical(sr);
+  }
+  else if(strcmp(cmd, "start") == 0)
+  {
+    CANEnable(CAN0_BASE);    
   }
 }

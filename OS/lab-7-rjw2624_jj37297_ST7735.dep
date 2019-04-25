@@ -22,7 +22,7 @@ I (./lib/tm4c123gh6pm.h)(0x5CBB7CB6)
 I (./inc/FIFO.h)(0x5CBB7CB5)
 I (./inc/UART.h)(0x5CBB7CB5)
 I (./inc/OS.h)(0x5CBB7CB5)
-F (.\src\interpreter.c)(0x5CC100BC)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --signed_chars -I./inc/ -I./lib/VL53L0X/VL53L0X/inc -I./lib/VL53L0X/core/inc -I./lib/VL53L0X/platform/inc -I./lib --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\TI\TM4C123-Drvmdk -DPART_LM4F120H5QR -DTM4C123GH6PM-o .\obj\interpreter.o --omf_browse .\obj\interpreter.crf --depend .\obj\interpreter.d)
+F (.\src\interpreter.c)(0x5CC1061A)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --signed_chars -I./inc/ -I./lib/VL53L0X/VL53L0X/inc -I./lib/VL53L0X/core/inc -I./lib/VL53L0X/platform/inc -I./lib --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\TI\TM4C123-Drvmdk -DPART_LM4F120H5QR -DTM4C123GH6PM-o .\obj\interpreter.o --omf_browse .\obj\interpreter.crf --depend .\obj\interpreter.d)
 I (C:\Keil\ARM\ARMCC\include\string.h)(0x51C88A34)
 I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C88A34)
 I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x51C88A34)
@@ -40,6 +40,14 @@ I (./inc/profiler.h)(0x5CBB7CB5)
 I (./inc/timeMeasure.h)(0x5CBB7CB5)
 I (./inc/loader.h)(0x5CBB7CB5)
 I (./inc/can0.h)(0x5CBB7CB5)
+I (./lib/hw_can.h)(0x5CBB7CB6)
+I (./lib/hw_ints.h)(0x5CBB7CB6)
+I (./lib/hw_memmap.h)(0x5CBB7CB6)
+I (./lib/hw_types.h)(0x5CBB7CB6)
+I (./inc/can.h)(0x5CBB7CB5)
+I (./lib/debug.h)(0x5CBB7CB6)
+I (./inc/interrupt.h)(0x5CBB7CB5)
+I (C:\Keil\ARM\ARMCC\include\stdbool.h)(0x51C88A34)
 F (.\src\OS.c)(0x5CBB7CB6)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --signed_chars -I./inc/ -I./lib/VL53L0X/VL53L0X/inc -I./lib/VL53L0X/core/inc -I./lib/VL53L0X/platform/inc -I./lib --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\TI\TM4C123-Drvmdk -DPART_LM4F120H5QR -DTM4C123GH6PM-o .\obj\os.o --omf_browse .\obj\os.crf --depend .\obj\os.d)
 I (C:\Keil\ARM\ARMCC\include\string.h)(0x51C88A34)
 I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C88A34)
