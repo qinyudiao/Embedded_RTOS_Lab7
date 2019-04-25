@@ -1,5 +1,5 @@
 /*******************************************************************************
- Copyright © 2016, STMicroelectronics International N.V.
+ Copyright ï¿½ 2016, STMicroelectronics International N.V.
  All rights reserved.
 
  Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,8 @@
 #include "vl53l0x_api.h"
 #include "vl53l0x_api_core.h"
 #include "vl53l0x_api_calibration.h"
-
+#include "OS.h"
+#include "LED.h"
 
 #ifndef __KERNEL__
 #include <stdlib.h>
@@ -81,8 +82,7 @@ VL53L0X_Error VL53L0X_measurement_poll_for_completion(VL53L0X_DEV Dev)
 			Status = VL53L0X_ERROR_TIME_OUT;
 			break;
 		}
-
-		VL53L0X_PollingDelay(Dev);
+	    VL53L0X_PollingDelay(Dev);
 	} while (1);
 
 	LOG_FUNCTION_END(Status);
@@ -2254,4 +2254,37 @@ VL53L0X_Error VL53L0X_get_pal_range_status(VL53L0X_DEV Dev,
 	LOG_FUNCTION_END(Status);
 	return Status;
 
+}
+
+
+VL53L0X_Error VL53L0X_measurement_poll_for_completion_sleep(VL53L0X_DEV Dev)
+{
+	VL53L0X_Error Status = VL53L0X_ERROR_NONE;
+	uint8_t NewDataReady = 0;
+	uint32_t LoopNb;
+
+	LOG_FUNCTION_START("");
+
+	// LoopNb = 0;
+	OS_Sleep(33);
+
+	do {
+		Status = VL53L0X_GetMeasurementDataReady(Dev, &NewDataReady);
+		if (Status != 0)
+			break; /* the error is set */
+
+		if (NewDataReady == 1)
+			break; /* done note that status == 0 */
+
+		// LoopNb++;
+		// if (LoopNb >= VL53L0X_DEFAULT_MAX_LOOP) {
+		// 	Status = VL53L0X_ERROR_TIME_OUT;
+		// 	break;
+		// }
+		// LED_GREEN_TOGGLE();
+	} while (1);
+
+	LOG_FUNCTION_END(Status);
+
+	return Status;
 }

@@ -8,13 +8,13 @@
  * 
  * @return 0 for success, -1 for failure
  */
-int LiDAR_Init(void);
+int lidar_Init(void);
 
 /**
  * @brief get distance measurement from LiDAR
  * 
  * @return distance in millimeter; -1 if failed
  */
-int LiDAR_GetMeasurement(void);
+int lidar_GetMeasurement(void);
 
 #endif

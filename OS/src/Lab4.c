@@ -88,7 +88,8 @@
 #include "motorcan.h"
 #include "can0.h"
 #include "IR.h"
-
+#include "lidar.h"
+#include "LED.h"
 
 //*********Prototype for FFT in cr4_fft_64_stm32.s, STMicroelectronics
 void cr4_fft_64_stm32(void *pssOUT, void *pssIN, unsigned short Nbin);
@@ -544,8 +545,18 @@ int lcd_testmain(void)
   return 0;
 }
 
+int lidar_testmain(void) {
+  OS_Init();
+  LED_Init();
+  lidar_Init();
+
+	OS_AddThread(&Interpreter, 128, 2);
+  OS_Launch(TIMESLICE); // doesn't return, interrupts enabled in here
+  return 0;
+}
+
 // Main stub
 int main(void)
 {
-  return lcd_testmain();
+  return lidar_testmain();
 }

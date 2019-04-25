@@ -24,7 +24,7 @@
 #include "UART.h"
 #include "PLL.h"
 #include "heap.h"
-
+#include "LED.h"
 
 #define PRIORITY_SCHED 1 // 0 for round robin, 1 for priority scheduler
 #define JITTERSIZE 64
@@ -86,6 +86,7 @@ static void IdleTask(void)
 {
   while (1)
   {
+		LED_RED_TOGGLE();
     // Do maintenance
       //NVIC_ST_CURRENT_R = 0;
       //ContextSwitch(true);
