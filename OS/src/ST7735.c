@@ -2248,8 +2248,9 @@ void ST7735_OutUDec2(unsigned long n, unsigned long l)
 void ST7735_Message(unsigned long d, unsigned long l, char *pt, long value)
 {
   unsigned long sl = 8 * d + l;
-  ST7735_OutString(0, sl, pt, ST7735_YELLOW);
-  ST7735_OutUDec2(value, sl);
+  char buffer[32];
+  sprintf(buffer, "%s %d         ", pt, value);
+  ST7735_OutString(0, sl, buffer, ST7735_YELLOW);
 }
 
 #define MADCTL_MY 0x80
