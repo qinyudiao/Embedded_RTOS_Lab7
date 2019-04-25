@@ -360,29 +360,56 @@ int realmain(void)
 
 #define PROG_STEPS (20)
 
+//void motor_left_turn(void)
+//{
+//	static int step = 1;
+//	static int left_torque = 50;
+//	static int right_torque = 50;
+//	Motors_SetTorque(left_torque, right_torque);
+////	if(step < 25){
+////		left_torque = 15;
+////	  right_torque = 18;
+////		step ++;
+////	}
+////	else if(step == 25)
+////		step = 51;
+//	else if(step == 26)
+//		step = 1;
+//	else if (step > 26){ 
+//		left_torque = 15;
+//		right_torque = 18;
+//		step --;
+//	}
+		
+//}
+
 void motor_task(void)
 {
-  static int step = 1;
-  static int torque = -50;
-  // Motors_SetTorque(torque, torque);
-  Motors_SetTorque(torque, torque);
-  torque += step;
-  if((torque > 50) || (torque < -50))
-  {
-    step = -step;
-    torque += step;
-  }
+	static int step = 1;
+	static int torque = 35;
+	// Motors_SetTorque(torque, torque);
+	Motors_SetTorque(torque, torque);
+	torque += step;
+	if((torque > 15) || (torque < -15))
+	{
+		step = -step;
+		torque += step;
+	}
+	
+	//PWM0_0_CMPA_R = 50;
+	//PWM0_1_CMPA_R = 50;
+	//motor_left_turn();
 }
 
 void servo_task(void)
 {
-  static int angle = 0;
-  CAN_Servo(angle);
-  angle += 18;
-  if(angle > 180)
-  {
-    angle = 0;
-  }
+  //static int angle = 0;
+  Servo_SetAngle(90);
+//  angle += 18;
+//  if(angle > 180)
+//  {
+//    angle = 0;
+//  }
 
 }
 
@@ -418,10 +445,10 @@ void sensor_task(void)
   while(1){
 
     
-    Front_Left_angle = IR_GetData(2) + ANGLELEFT_OFFSET;
+    Front_Left_angle = IR_GetData(0) + ANGLELEFT_OFFSET;
     Front_Right_angle = IR_GetData(1) + ANGELRIGHT_OFFSET;
     Left = IR_GetData(3) + LEFT_OFFSET;
-    Right = IR_GetData(0) + RIGHT_OFFSET;
+    Right = IR_GetData(2) + RIGHT_OFFSET;
    // Front = getdata(Front);
     
     prevtime = curtime;
@@ -490,7 +517,7 @@ void sensor_task(void)
     sprintf(adc_string, "Up Ui Ud U %d %d %d %d:  ",  Up,Ui,Ud,U);
     UART_OutString(adc_string);
     UART_OutString("\r\n");
-    OS_Sleep(5);
+    OS_Sleep(10);
   }
 }
 int Sensor_main(void)
