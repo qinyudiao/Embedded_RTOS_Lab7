@@ -452,8 +452,8 @@ void sensor_task(void)
   int idx = 0;
   int Error[4];
   for(int i =0;i<4;i++)
-    Error[i] = 0xEFDFF1FF; // magic number
-
+    Error[i] = 0; // magic number
+  int period = 50;
   unsigned long long curtime = 0;;
   unsigned long long prevtime = 0;
   int delta10us = 0;
@@ -485,9 +485,9 @@ void sensor_task(void)
       Error[0] = ((1000*Left)/Front_Left_angle - (cosTHETA))/10;
     }
     
-    if(prevtime ==0 || Error[3] == 0xEFDFF1FF)
-      continue;
-    delta10us = OS_TimeDifference(prevtime,curtime)/80000;
+    //if(prevtime ==0 || Error[3] == 0xEFDFF1FF)
+    //  continue;
+    delta10us = period;
  
     Up = KP*Error[0];
     Ui = Ui+ KI*Error[0]*delta10us; // 10us 
@@ -511,7 +511,7 @@ void sensor_task(void)
     sprintf(adc_string, "Up Ui Ud U %d %d %d %d:  ",  Up,Ui,Ud,U);
     UART_OutString(adc_string);
     UART_OutString("\r\n");
-    OS_Sleep(10);
+    OS_Sleep(period);
   }
 }
 int Sensor_main(void)
