@@ -72,7 +72,7 @@ int lidar_Init(void)
 			OS_AddThread(&lidar_task1, 128, 1);
 	}
 	else
-	{   
+	{
 		  LED_GREEN_TOGGLE();
 			return -1;
 	}

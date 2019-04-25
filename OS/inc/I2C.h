@@ -23,12 +23,12 @@
  */
 
 #define LIDAR0_I2C         I2C0
-#define LIDAR1_I2C         I2C2
+#define LIDAR1_I2C         I2C3
 
 #define I2C0    0xabcc
 #define I2C1    0xabcd
 #define I2C2    0xabce
-#define I2C3    0xabcc
+#define I2C3    0xabcf
 
 /****************************************************
  *                                                  *

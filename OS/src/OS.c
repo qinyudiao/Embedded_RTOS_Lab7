@@ -86,7 +86,6 @@ static void IdleTask(void)
 {
   while (1)
   {
-		LED_RED_TOGGLE();
     // Do maintenance
       //NVIC_ST_CURRENT_R = 0;
       //ContextSwitch(true);
