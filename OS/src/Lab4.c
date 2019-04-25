@@ -404,7 +404,6 @@ void sensor_task(void)
   int Error[4];
   for(int i =0;i<4;i++)
     Error[i] = 0xEFDFF1FF; // magic number
-  
   int Up=0;
   int Ui = 0;
   int Ud = 0;
@@ -433,26 +432,10 @@ void sensor_task(void)
     
     if(Front_Right_angle+Right < Front_Left_angle+Left)
     {
-      if(FlagR ==1)
-      {
-        FlagL = 1;
-        FlagR = 0;
-        for(int i =0;i<4;i++)
-         Error[i] = 0xEFDFF1FF; // magic number
-        Ui = 0;
-      }
       Error[0] = (1000*Right/Front_Right_angle - (cosTHETA))/10;
     }
     else
     {
-      if(FlagL ==1)
-      {
-        FlagL = 0;
-        FlagR = 1;
-        for(int i =0;i<4;i++)
-         Error[i] = 0xEFDFF1FF; // magic number
-        Ui = 0;
-      }
       Error[0] = ((1000*Left)/Front_Left_angle - (cosTHETA))/10;
     }
     
@@ -468,29 +451,21 @@ void sensor_task(void)
     int TH90 = 10000;
     int TH60 = 1000;
     
+    
+    
     if(Front_Right_angle+Right < Front_Left_angle+Left)
     { 
-      if(U>TH90)
-        TurnLeft90();
-      else if(U>TH60)
-        TurnLeft60();
-      else
-        SlightLeft(U/100);
+        SlightLeft(U/10);
     }
     else
     {
-      if(U>TH90)
-        TurnRight90();
-      else if(U>TH60)
-        TurnRight60();
-      else
-        SlightRight(U/100);
+        SlightRight(U/10);
     }
     
     sprintf(adc_string, "Up Ui Ud U %d %d %d %d:  ",  Up,Ui,Ud,U);
     UART_OutString(adc_string);
     UART_OutString("\r\n");
-    OS_Sleep(5);
+    OS_Sleep(10);
   }
 }
 int Sensor_main(void)
@@ -562,5 +537,5 @@ int lcd_testmain(void)
 // Main stub
 int main(void)
 {
-  return lcd_testmain();
+  return Sensor_main();
 }
