@@ -73,6 +73,11 @@ static void print_event(const event_t *event)
   UART_OutString(event_str);
 }
 
+
+extern int KP;
+extern int KD;
+extern int KI;
+
 void interpreter_cmd(char *cmd_str)
 {
   char *cmd, *arg1, *arg2, *arg3, *arg4, *arg5, *arg6;
@@ -228,5 +233,29 @@ void interpreter_cmd(char *cmd_str)
   {
     arg1 = strtok(NULL, strtok_delim);
     TEST_OS_AddThread(&TEST_OS, 128, 1);
+  }
+  else if(strcmp(cmd, "kp") == 0)
+  {
+    arg1 = strtok(NULL, strtok_delim);
+    KP = atoi(arg1);
+    UART_OutString("KP is ");
+    UART_OutUDec(KP);
+    UART_OutString("\r\n");
+  }
+  else if(strcmp(cmd, "ki") == 0)
+  {
+    arg1 = strtok(NULL, strtok_delim);
+    KI = atoi(arg1);
+    UART_OutString("KI is ");
+    UART_OutUDec(KI);
+    UART_OutString("\r\n");
+  }
+  else if(strcmp(cmd, "kd") == 0)
+  {
+    arg1 = strtok(NULL, strtok_delim);
+    KD = atoi(arg1);
+    UART_OutString("KD is ");
+    UART_OutUDec(KD);
+    UART_OutString("\r\n");
   }
 }

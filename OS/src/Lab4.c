@@ -111,9 +111,11 @@ void cr4_fft_64_stm32(void *pssOUT, void *pssIN, unsigned short Nbin);
 #define RIGHT_OFFSET 105
 #define cosTHETA (525)
 // cosTHETA * 1000 value
-#define KP 1
-#define KD 1000
-#define KI 1
+
+// Configurable via interpreter
+int KP = 1;
+int KD = 1000;
+int KI = 1;
 
 static FATFS g_sFatFs;
 
@@ -443,6 +445,7 @@ void sensor_debug_task(void)
     ST7735_Message(1, 1, "FR Angle: ", Front_Right_angle);
     ST7735_Message(1, 2, "Left: ", Left);
     ST7735_Message(1, 3, "Right: ", Right);
+    OS_Sleep(10);
   }
 }
 
@@ -508,9 +511,9 @@ void sensor_task(void)
         SlightRight(U/10);
     }
     
-    //sprintf(adc_string, "Up Ui Ud U %d %d %d %d:  ",  Up,Ui,Ud,U);
-    //UART_OutString(adc_string);
-    //UART_OutString("\r\n");
+    // sprintf(adc_string, "Up Ui Ud U %d %d %d %d:  ",  Up,Ui,Ud,U);
+    // UART_OutString(adc_string);
+    // UART_OutString("\r\n");
     OS_Sleep(period);
   }
 }
