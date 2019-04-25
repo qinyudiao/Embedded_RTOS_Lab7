@@ -430,6 +430,7 @@ int Front_Right_angle;
 int Left;
 int Right;
 int Front;
+int Error[4];
 
 void sensor_debug_task(void)
 {
@@ -453,7 +454,7 @@ void sensor_task(void)
 {
   int i = 0;
   int idx = 0;
-  int Error[4];
+
   for(int i =0;i<4;i++)
     Error[i] = 0; // magic number
   int period = 50;
@@ -493,7 +494,7 @@ void sensor_task(void)
     delta10us = period;
  
     Up = KP*Error[0];
-    Ui = Ui+ KI*Error[0]*delta10us; // 10us 
+    Ui = Ui+ Error[0]*delta10us/KI; // 10us 
     Ud = KD*(Error[0]+3*Error[1]-3*Error[2]-Error[3])/(6*delta10us);
     
     U = Up + Ui + Ud;

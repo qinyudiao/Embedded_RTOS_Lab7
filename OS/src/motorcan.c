@@ -20,4 +20,14 @@ void CAN_Servo(int value){
   CAN0_SendDatawithIdx((uint8_t *)&value,2);
 }
 
+void CAN_Motorstop()
+{
+  int value = 2;
+  CAN0_SendDatawithIdx((uint8_t *)&value,4);
+}
 
+void CAN_Motorstart()
+{
+  int value = 1;
+  CAN0_SendDatawithIdx((uint8_t *)&value,4);
+}

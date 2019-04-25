@@ -87,6 +87,8 @@ static void print_event(const event_t *event)
 extern int KP;
 extern int KD;
 extern int KI;
+extern int Ui, Ud,Up,U;
+extern int Error[4];
 
 void interpreter_cmd(char *cmd_str)
 {
@@ -137,6 +139,11 @@ void interpreter_cmd(char *cmd_str)
     Profiler_Clear();
     timeMeasureInit();
     timeMeasurestart();
+    Error[0] = 0;
+    Ui = 0;
+    Up = 0;
+    Ud = 0;
+    U = 0;
   }
   else if(strcmp(cmd, "cat") == 0)
   {
@@ -270,13 +277,11 @@ void interpreter_cmd(char *cmd_str)
   }
   else if(strcmp(cmd, "stop") == 0)
   {
-    long sr = StartCritical();
-    CAN_MotorTorch(0,0);
-    CANDisable(CAN0_BASE);
-    EndCritical(sr);
+    CAN_Motorstop();
   }
   else if(strcmp(cmd, "start") == 0)
   {
-    CANEnable(CAN0_BASE);    
+    CAN_Motorstart();  
   }
+  
 }
