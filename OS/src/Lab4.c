@@ -601,5 +601,7 @@ int lidar_testmain(void) {
 // Main stub
 int main(void)
 {
+  //return lidar_testmain();
+
   return Sensor_main();
 }
