@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdint.h>
 #include <stdio.h>
+
 #include "interpreter.h"
 #include "ADC.h"
 #include "UART.h"
@@ -14,6 +15,15 @@
 #include "timeMeasure.h"
 #include "loader.h"
 #include "can0.h"
+
+#include <stdint.h>
+#include "hw_can.h"
+#include "hw_ints.h"
+#include "hw_memmap.h"
+#include "hw_types.h"
+#include "can.h"
+#include "debug.h"
+#include "interrupt.h"
 
 #define MAX_LINE_LENGTH (128)
 
@@ -73,6 +83,13 @@ static void print_event(const event_t *event)
   UART_OutString(event_str);
 }
 
+
+extern int KP;
+extern int KD;
+extern int KI;
+extern int Ui, Ud,Up,U;
+extern int Error[4];
+
 void interpreter_cmd(char *cmd_str)
 {
   char *cmd, *arg1, *arg2, *arg3, *arg4, *arg5, *arg6;
@@ -122,6 +139,11 @@ void interpreter_cmd(char *cmd_str)
     Profiler_Clear();
     timeMeasureInit();
     timeMeasurestart();
+    Error[0] = 0;
+    Ui = 0;
+    Up = 0;
+    Ud = 0;
+    U = 0;
   }
   else if(strcmp(cmd, "cat") == 0)
   {
@@ -229,4 +251,37 @@ void interpreter_cmd(char *cmd_str)
     arg1 = strtok(NULL, strtok_delim);
     TEST_OS_AddThread(&TEST_OS, 128, 1);
   }
+  else if(strcmp(cmd, "kp") == 0)
+  {
+    arg1 = strtok(NULL, strtok_delim);
+    KP = atoi(arg1);
+    UART_OutString("KP is ");
+    UART_OutUDec(KP);
+    UART_OutString("\r\n");
+  }
+  else if(strcmp(cmd, "ki") == 0)
+  {
+    arg1 = strtok(NULL, strtok_delim);
+    KI = atoi(arg1);
+    UART_OutString("KI is ");
+    UART_OutUDec(KI);
+    UART_OutString("\r\n");
+  }
+  else if(strcmp(cmd, "kd") == 0)
+  {
+    arg1 = strtok(NULL, strtok_delim);
+    KD = atoi(arg1);
+    UART_OutString("KD is ");
+    UART_OutUDec(KD);
+    UART_OutString("\r\n");
+  }
+  else if(strcmp(cmd, "stop") == 0)
+  {
+    CAN_Motorstop();
+  }
+  else if(strcmp(cmd, "start") == 0)
+  {
+    CAN_Motorstart();  
+  }
+  
 }

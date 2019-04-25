@@ -17,4 +17,10 @@ void CAN_MotorTorch(int left, int right);
 
 void CAN_Servo(int value);
 
+
+void CAN_Motorstart();
+  
+
+void CAN_Motorstop();
+
 #endif // _MOTORCAN_H_

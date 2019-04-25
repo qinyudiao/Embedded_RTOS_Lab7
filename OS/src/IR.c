@@ -169,7 +169,7 @@ void IR_Init(void) {
 			//LED_Init();
 	    //Fifo_Init();
 			uint32_t channels[4] = {0,1,2,3};
-		  ADC_Collect4Chan(channels, 10, IR_handler);
+		  ADC_Collect4Chan(channels, 200, IR_handler);
 	    // OS_AddThread(&ADC_test, 128, 4);
 }
 

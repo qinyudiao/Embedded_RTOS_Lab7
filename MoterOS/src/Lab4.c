@@ -104,7 +104,7 @@ void cr4_fft_64_stm32(void *pssOUT, void *pssIN, unsigned short Nbin);
 #define TIMESLICE 2 * TIME_1MS // thread switch time in system time units
 
 int NumCreated = 0;
-
+int flag = 1;
 
 //*******************lab 4 main **********
 int realmain(void)
@@ -162,6 +162,8 @@ void Right_motor_task(void)
   while(1)
   {
     CAN0_GetMailwithIdx((uint8_t *)&data,0);
+    if(flag == 0)
+      continue;
     Motors_SetTorque_Right(data);
   }
 }
@@ -172,6 +174,8 @@ void Left_motor_task(void)
   while(1)
   {
     CAN0_GetMailwithIdx((uint8_t *)&data,1);
+    if(flag == 0)
+      continue;
     Motors_SetTorque_Left(data);
   }
 }
@@ -182,6 +186,8 @@ void Servo_motor_task(void)
   while(1)
   {
     CAN0_GetMailwithIdx((uint8_t *)&data,2);
+    if(flag == 0)
+      continue;
     Servo_SetAngle(data);
   }  
 }
@@ -194,11 +200,41 @@ void Left_Right_motor_task(void)
   while(1)
   {
     CAN0_GetMailwithIdx((uint8_t *)&data,3);
+    if(flag == 0)
+      continue;
     Left = (data & (0xFFFF0000)) >> 16;
     Right = (data &(0xFFFF));
     Motors_SetTorque(Left,Right);
   }  
 }
+
+void stop(void)
+{
+  while(flag == 0)
+  {
+    Motors_SetTorque(0,0);
+  }
+}
+
+
+void startstop(void)
+{
+  int data;
+  while(1)
+  {
+    CAN0_GetMailwithIdx((uint8_t *)&data,4);
+    if(data ==1)
+      flag = 1;
+    else if(data ==2)
+      flag = 0;
+    if(flag == 1)
+      continue;
+    OS_AddThread(&stop,128,1);
+  }  
+}
+
+
+
 
 int motor_main(void)
 {
@@ -210,6 +246,7 @@ int motor_main(void)
   CAN0_SetRecv(1); // 1 : Left control
   CAN0_SetRecv(2); // 2 : Servo control
   CAN0_SetRecv(3); // 3 : Left and Right control, First two byte for Left, second for Right
+  CAN0_SetRecv(4); // 4 : Start or Stop 
   NumCreated = 0;
   
   // create initial foreground threads
@@ -219,7 +256,7 @@ int motor_main(void)
   NumCreated += OS_AddThread(&Left_motor_task,128,1);
   NumCreated += OS_AddThread(&Servo_motor_task,128,1);
   NumCreated += OS_AddThread(&Left_Right_motor_task,128,1);
-  
+  NumCreated += OS_AddThread(&startstop,128,1);
 
   OS_Launch(TIMESLICE); // doesn't return, interrupts enabled in here
   return 0;             // this never executes
