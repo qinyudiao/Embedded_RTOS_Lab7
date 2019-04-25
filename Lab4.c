@@ -419,42 +419,23 @@ void ControlFollow(int U, int pos)
   int dir =0;
 }
 
-int Up=0;
-int Ui = 0;
-int Ud = 0;
-int U=0;
-int Front_Left_angle;
-int Front_Right_angle;
-int Left;
-int Right;
-int Front;
-
-void sensor_debug_task(void)
-{
-  static int i=0;
-  while(1)
-  {
-    ST7735_Message(0, 0, "Up: ", Up);
-    ST7735_Message(0, 1, "Ui: ", Ui);
-    ST7735_Message(0, 2, "Ud: ", Ud);
-    ST7735_Message(0, 3, "U: ", U);
-    ST7735_Message(0, 7, "Front: ", Front);
-    ST7735_Message(1, 0, "FL Angle: ", Front_Left_angle);
-    ST7735_Message(1, 1, "FR Angle: ", Front_Right_angle);
-    ST7735_Message(1, 2, "Left: ", Left);
-    ST7735_Message(1, 3, "Right: ", Right);
-  }
-}
-
 void sensor_task(void)
 {
   int i = 0;
   int idx = 0;
+  int Front_Left_angle;
+  int Front_Right_angle;
+  int Left;
+  int Right;
+  int Front;
   int Error[4];
   for(int i =0;i<4;i++)
     Error[i] = 0xEFDFF1FF; // magic number
   
-
+  int Up=0;
+  int Ui = 0;
+  int Ud = 0;
+  int U=0;
   unsigned long long curtime = 0;;
   unsigned long long prevtime = 0;
   int delta10us = 0;
@@ -543,13 +524,10 @@ int Sensor_main(void)
 {
   OS_Init(); // initialize, disable interrupts
   CAN0_Open();
-  ST7735_InitR(INITR_REDTAB);
-  ST7735_FillScreen(0xFFFF);
   IR_Init();
   NumCreated = 0;
-  NumCreated += OS_AddThread(&Interpreter,128, 5);
+  NumCreated += OS_AddThread(&Interpreter,128,1);
   NumCreated += OS_AddThread(&sensor_task, 128, 2);
-  NumCreated += OS_AddThread(&sensor_debug_task, 128, 4);
   OS_Launch(TIMESLICE); // doesn't return, interrupts enabled in here
   return 0;             // this never executes
 }
@@ -611,5 +589,5 @@ int lcd_testmain(void)
 // Main stub
 int main(void)
 {
-  return Sensor_main();
+  return lcd_testmain();
 }
