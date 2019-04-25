@@ -2232,7 +2232,7 @@ void ST7735_OutUDec2(unsigned long n, unsigned long l)
 {
   Messageindex = 0;
   fillmessage(n);
-  while (Messageindex < 5)
+  while (Messageindex < 7)
   {
     Message[Messageindex++] = 32; // fill space
   }

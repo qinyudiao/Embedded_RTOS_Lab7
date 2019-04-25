@@ -396,13 +396,26 @@ int Up=0;
 int Ui = 0;
 int Ud = 0;
 int U=0;
+int Front_Left_angle;
+int Front_Right_angle;
+int Left;
+int Right;
+int Front;
 
 void sensor_debug_task(void)
 {
   static int i=0;
   while(1)
   {
-    ST7735_Message(0, 1, "Hello world ", i++);
+    ST7735_Message(0, 0, "Up: ", Up);
+    ST7735_Message(0, 1, "Ui: ", Ui);
+    ST7735_Message(0, 2, "Ud: ", Ud);
+    ST7735_Message(0, 3, "U: ", U);
+    ST7735_Message(0, 7, "Front: ", Front);
+    ST7735_Message(1, 0, "FL Angle: ", Front_Left_angle);
+    ST7735_Message(1, 1, "FR Angle: ", Front_Right_angle);
+    ST7735_Message(1, 2, "Left: ", Left);
+    ST7735_Message(1, 3, "Right: ", Right);
   }
 }
 
@@ -410,11 +423,6 @@ void sensor_task(void)
 {
   int i = 0;
   int idx = 0;
-  int Front_Left_angle;
-  int Front_Right_angle;
-  int Left;
-  int Right;
-  int Front;
   int Error[4];
   for(int i =0;i<4;i++)
     Error[i] = 0xEFDFF1FF; // magic number
@@ -508,6 +516,8 @@ int Sensor_main(void)
 {
   OS_Init(); // initialize, disable interrupts
   CAN0_Open();
+  ST7735_InitR(INITR_REDTAB);
+  ST7735_FillScreen(0xFFFF);
   IR_Init();
   NumCreated = 0;
   NumCreated += OS_AddThread(&Interpreter,128,1);
