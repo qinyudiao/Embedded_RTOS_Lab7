@@ -592,7 +592,7 @@ int lidar_testmain(void) {
   OS_Init();
   LED_Init();
   lidar_Init();
-
+	
 	OS_AddThread(&Interpreter, 128, 2);
   OS_Launch(TIMESLICE); // doesn't return, interrupts enabled in here
   return 0;
@@ -601,9 +601,5 @@ int lidar_testmain(void) {
 // Main stub
 int main(void)
 {
-<<<<<<< HEAD
-  return lidar_testmain();
-=======
   return Sensor_main();
->>>>>>> 4de6fdd183e8560062422f90c363578a10e2b2aa
 }
