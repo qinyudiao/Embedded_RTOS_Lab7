@@ -508,9 +508,9 @@ void sensor_task(void)
         SlightRight(U/10);
     }
     
-    sprintf(adc_string, "Up Ui Ud U %d %d %d %d:  ",  Up,Ui,Ud,U);
-    UART_OutString(adc_string);
-    UART_OutString("\r\n");
+    //sprintf(adc_string, "Up Ui Ud U %d %d %d %d:  ",  Up,Ui,Ud,U);
+    //UART_OutString(adc_string);
+    //UART_OutString("\r\n");
     OS_Sleep(period);
   }
 }
