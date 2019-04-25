@@ -520,9 +520,9 @@ int Sensor_main(void)
   ST7735_FillScreen(0xFFFF);
   IR_Init();
   NumCreated = 0;
-  NumCreated += OS_AddThread(&Interpreter,128,1);
+  NumCreated += OS_AddThread(&Interpreter,128, 5);
   NumCreated += OS_AddThread(&sensor_task, 128, 2);
-  NumCreated += OS_AddThread(&sensor_debug_task, 128, 2);
+  NumCreated += OS_AddThread(&sensor_debug_task, 128, 4);
   OS_Launch(TIMESLICE); // doesn't return, interrupts enabled in here
   return 0;             // this never executes
 }
