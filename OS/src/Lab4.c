@@ -248,23 +248,23 @@ void Robot(void)
   OS_Kill();
 }
 
-//************SW1Push*************
-// Called when SW1 Button pushed
-// background threads execute once and return
-void SW1Push(void)
-{
-  if (Running == 0)
-  {
-    Running = 1;                                // prevents you from starting two robot threads
-    NumCreated += OS_AddThread(&Robot, 128, 1); // start a 2 second run
-  }
-}
-//************SW2Push*************
-// Called when SW2 Button pushed
-// background threads execute once and return
-void SW2Push(void)
-{
-}
+////************SW1Push*************
+//// Called when SW1 Button pushed
+//// background threads execute once and return
+//void SW1Push(void)
+//{
+//  if (Running == 0)
+//  {
+//    Running = 1;                                // prevents you from starting two robot threads
+//    NumCreated += OS_AddThread(&Robot, 128, 1); // start a 2 second run
+//  }
+//}
+////************SW2Push*************
+//// Called when SW2 Button pushed
+//// background threads execute once and return
+//void SW2Push(void)
+//{
+//}
 
 //******** Producer ***************
 // The Producer in this lab will be called from your ADC ISR
@@ -340,8 +340,8 @@ int realmain(void)
   OS_AddPeriodicThread(&DAS, 10 * TIME_1MS, 1); // 100Hz real time sampling of PE0
 
   //*******attach background tasks***********
-  OS_AddSW1Task(&SW1Push, 2); // PF4, SW1
-  OS_AddSW2Task(&SW2Push, 3); // PF0
+//  OS_AddSW1Task(&SW1Push, 2); // PF4, SW1
+//  OS_AddSW2Task(&SW2Push, 3); // PF0
   OS_InitSemaphore(&doFFT, 0);
 
   NumCreated = 0;
@@ -451,6 +451,18 @@ void sensor_debug_task(void)
   }
 }
 
+//************SW1Push*************
+// Called when SW1 Button pushed
+// background threads execute once and return
+void SW1Push(void)
+{
+    Error[0] = 0;
+    Ui = 0;
+    Up = 0;
+    Ud = 0;
+    U = 0;
+}
+
 void sensor_task(void)
 {
   int i = 0;
@@ -530,6 +542,8 @@ int Sensor_main(void)
   NumCreated += OS_AddThread(&Interpreter,128, 5);
   NumCreated += OS_AddThread(&sensor_task, 128, 2);
   NumCreated += OS_AddThread(&sensor_debug_task, 128, 4);
+	
+	OS_AddSW1Task(&SW1Push, 0);
   OS_Launch(TIMESLICE); // doesn't return, interrupts enabled in here
   return 0;             // this never executes
 }
@@ -604,7 +618,7 @@ void lcd_testtask(void)
 
 int sensor_testmain(void) {
   OS_Init();
-	  ST7735_InitR(INITR_REDTAB);
+	ST7735_InitR(INITR_REDTAB);
   ST7735_FillScreen(0xFFFF);
   LED_Init();
   lidar_Init();
