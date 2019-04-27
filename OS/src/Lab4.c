@@ -91,6 +91,7 @@
 #include "lidar.h"
 #include "LED.h"
 #include "DirectionCtrl.h"
+#include "bumperSwitch.h"
 
 //*********Prototype for FFT in cr4_fft_64_stm32.s, STMicroelectronics
 void cr4_fft_64_stm32(void *pssOUT, void *pssIN, unsigned short Nbin);
