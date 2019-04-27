@@ -145,18 +145,18 @@ long IR_getmm(void)
     return dis_copy;
 }
 
-static long x1, x2, x3;
+
 static void IR_handler(unsigned long data) {
+	static long x1[4], x2[4], x3[4];
 	  static int curSensorIndex = 0; 
-    //x3 = x2;
-    //x2 = x1;       // MACQ
-    //x1 = data; // channel set when calling ADC_Init
-    //long output = median(x1, x2, x3); // 3-wide median filter
-    dis = ADC2millimeter(data);
+    x3[curSensorIndex] = x2[curSensorIndex];
+    x2[curSensorIndex] = x1[curSensorIndex];       // MACQ
+    x1[curSensorIndex] = data; // channel set when calling ADC_Init
+    long output = median(x1[curSensorIndex], x2[curSensorIndex], x3[curSensorIndex]); // 3-wide median filter
+    dis = ADC2millimeter(output);
 	  //Fifo_Put(dis);
 		channelData[curSensorIndex++] = dis;
 		if (curSensorIndex >= 4) curSensorIndex = 0;
-	  // dis = data;
 }
 
 /**
