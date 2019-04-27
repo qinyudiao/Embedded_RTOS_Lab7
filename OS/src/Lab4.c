@@ -248,24 +248,6 @@ void Robot(void)
   OS_Kill();
 }
 
-////************SW1Push*************
-//// Called when SW1 Button pushed
-//// background threads execute once and return
-//void SW1Push(void)
-//{
-//  if (Running == 0)
-//  {
-//    Running = 1;                                // prevents you from starting two robot threads
-//    NumCreated += OS_AddThread(&Robot, 128, 1); // start a 2 second run
-//  }
-//}
-////************SW2Push*************
-//// Called when SW2 Button pushed
-//// background threads execute once and return
-//void SW2Push(void)
-//{
-//}
-
 //******** Producer ***************
 // The Producer in this lab will be called from your ADC ISR
 // A timer runs at 1 kHz, started by your ADC_Collect
@@ -433,12 +415,14 @@ int Right;
 int Front;
 int Error[4];
 int state;
+int LCD_state;  // 0: debug; 1: KP; 2: KD: 3: KI
 
 void sensor_debug_task(void)
 {
-  static int i=0;
-  while(1)
+	while (1) {
+  switch (LCD_state)
   {
+  case 0:
     ST7735_Message(0, 0, "Up: ", Up);
     ST7735_Message(0, 1, "Ui: ", Ui);
     ST7735_Message(0, 2, "Ud: ", Ud);
@@ -448,21 +432,74 @@ void sensor_debug_task(void)
     ST7735_Message(1, 1, "FR Angle: ", Front_Right_angle);
     ST7735_Message(1, 2, "Left: ", Left);
     ST7735_Message(1, 3, "Right: ", Right);
-    ST7735_Message(1,4,"State: ",state);
-    OS_Sleep(10);
+    ST7735_Message(1, 4, "State: ", state);
+    break;
+
+  case 1:
+    ST7735_Message(0, 0, "KP: ", KP);
+    break;
+  case 2:
+    ST7735_Message(0, 0, "KD: ", KD);
+    break;
+    case 3:
+    ST7735_Message(0, 0, "KI: ", KI);;
+    break;
   }
+  OS_Sleep(10);
+	}
 }
+
 
 //************SW1Push*************
 // Called when SW1 Button pushed
 // background threads execute once and return
 void SW1Push(void)
 {
-    Error[0] = 0;
+  switch (LCD_state)
+  {
+  case 0:
+	  Error[0] = 0;
     Ui = 0;
     Up = 0;
     Ud = 0;
     U = 0;
+    break;
+  case 1:
+	  KP = (KP >= 20) ? 1 : (KP+1);
+    break;
+  case 2:
+	  KD = (KD >= 20) ? 1 : (KD+1);  
+    break;
+  case 3:
+    KI  = (KI >= 250) ? 50 : (KI+10);
+    break;
+  }
+}
+
+//************SW2Push*************
+// Called when SW2 Button pushed
+// background threads execute once and return
+void SW2Push(void)
+{
+  switch (LCD_state)
+  {
+  case 0:
+    LCD_state = 1;
+	 // ST7735_FillScreen(0xFFFF);
+    break;
+  case 1:
+    LCD_state = 2;
+	  //ST7735_FillScreen(0xFFFF);
+    break;
+    case 2:
+    LCD_state = 3;
+		//ST7735_FillScreen(0xFFFF);
+    break;
+    case 3:
+    LCD_state = 0; 
+	  //ST7735_FillScreen(0xFFFF);
+    break;
+  }
 }
 
 void sensor_task(void)
@@ -603,6 +640,9 @@ int Sensor_main(void)
   NumCreated += OS_AddThread(&sensor_debug_task, 128, 4);
 	
 	OS_AddSW1Task(&SW1Push, 0);
+  OS_AddSW2Task(&SW2Push, 0);
+  LCD_state = 0;
+
   OS_Launch(TIMESLICE); // doesn't return, interrupts enabled in here
   return 0;             // this never executes
 }
