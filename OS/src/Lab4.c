@@ -439,6 +439,7 @@ void sensor_debug_task(void)
   static int i=0;
   while(1)
   {
+    ST7735_Message(1,4,"State: ",state);
     ST7735_Message(0, 0, "Up: ", Up);
     ST7735_Message(0, 1, "Ui: ", Ui);
     ST7735_Message(0, 2, "Ud: ", Ud);
@@ -448,7 +449,7 @@ void sensor_debug_task(void)
     ST7735_Message(1, 1, "FR Angle: ", Front_Right_angle);
     ST7735_Message(1, 2, "Left: ", Left);
     ST7735_Message(1, 3, "Right: ", Right);
-    ST7735_Message(1,4,"State: ",state);
+    
     OS_Sleep(10);
   }
 }
@@ -523,9 +524,9 @@ void sensor_task(void)
       {
         if(((100*Front_Right_angle*cosTHETA)/Right)/100>1010) // >90 degree
         {
-          if(U>0) {
-            tmp = U/10;
-            SlightLeft(tmp);
+          if(U<0) {
+            tmp = -U/10;
+            SlightRight(tmp);
             state = 0;
           }
             
@@ -533,9 +534,9 @@ void sensor_task(void)
         }        
         else if(((100*Front_Right_angle*cosTHETA)/Right)/100<990) // <90 degree
         {
-          if(U<0) {
-            tmp = -U/10;
-            SlightRight(tmp);
+          if(U>0) {
+            tmp = U/10;
+            SlightLeft(tmp);
             state = 1;
           }
         }
