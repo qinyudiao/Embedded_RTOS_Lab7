@@ -1,5 +1,5 @@
 /*******************************************************************************
-Copyright © 2016, STMicroelectronics International N.V.
+Copyright ï¿½ 2016, STMicroelectronics International N.V.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -101,6 +101,10 @@ uint32_t VL53L0X_calc_timeout_mclks(VL53L0X_DEV Dev,
 
 uint16_t VL53L0X_encode_timeout(uint32_t timeout_macro_clks);
 
+VL53L0X_Error VL53L0X_PerformSingleRangingMeasurementSleep(VL53L0X_DEV Dev,
+	VL53L0X_RangingMeasurementData_t *pRangingMeasurementData);
+
+VL53L0X_Error VL53L0X_measurement_poll_for_completion_sleep(VL53L0X_DEV Dev);
 #ifdef __cplusplus
 }
 #endif

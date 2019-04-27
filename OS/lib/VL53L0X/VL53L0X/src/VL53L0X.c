@@ -19,6 +19,7 @@
 
 #include "VL53L0X.h"
 #include "VL53L0X_I2C.h"
+#include "LED.h"
 
 #define VERSION_REQUIRED_MAJOR  1   // Required sensor major version
 #define VERSION_REQUIRED_MINOR  0   // Required sensor minor version
@@ -38,17 +39,15 @@ VL53L0X_Error status = VL53L0X_ERROR_NONE; // indicates whether or not the senso
  * @brief  Initialize VL53L0X.
  */
 int VL53L0X_Init (uint8_t I2C_address, int index) {
-    
-    VL53L0X_I2C_Init();                                         // must initialize I2C before initialize VL53L0X
-    // set device address to default
+        // set device address to default
     deviceList[index].device.I2cDevAddr = I2C_address;  // default
-    
+    deviceList[index].device.deviceIndex = index;
     // variable needed for some function calls
     uint32_t  refSpadCount;
     uint8_t   isApertureSpads;
     uint8_t   VhvSettings;
     uint8_t   PhaseCal;
-    
+
     // unclear if this is even needed:
     if( VL53L0X_IMPLEMENTATION_VER_MAJOR != VERSION_REQUIRED_MAJOR ||
        VL53L0X_IMPLEMENTATION_VER_MINOR != VERSION_REQUIRED_MINOR ||
@@ -56,17 +55,17 @@ int VL53L0X_Init (uint8_t I2C_address, int index) {
         status = VL53L0X_ERROR_NOT_SUPPORTED;
         return FAIL;
     }
-    
+
     // data initialization
     status = VL53L0X_DataInit(&deviceList[index].device);
-    
+
     // set device address if not using default
     if (!(I2C_address == VL53L0X_I2C_ADDR)) {
         if (!VL53L0X_setAddress(I2C_address, index)) {
             return FAIL;
         }
     }
-    
+
     // reads the device information for given device
     status = VL53L0X_GetDeviceInfo( &deviceList[index].device, &deviceList[index].deviceInfo );
     if( status == VL53L0X_ERROR_NONE )  {
@@ -74,50 +73,51 @@ int VL53L0X_Init (uint8_t I2C_address, int index) {
             status = VL53L0X_ERROR_NOT_SUPPORTED;
         }
     }
-    
+
     if( status == VL53L0X_ERROR_NONE ) {
         // device initialization
         status = VL53L0X_StaticInit( &deviceList[index].device );
     }
-    
+
     if( status == VL53L0X_ERROR_NONE ) {
         // performs reference spad Management
         status = VL53L0X_PerformRefSpadManagement( &deviceList[index].device, &refSpadCount, &isApertureSpads );
     }
-    
+
     if( status == VL53L0X_ERROR_NONE ) {
         // perform reference calibration
         status = VL53L0X_PerformRefCalibration( &deviceList[index].device, &VhvSettings, &PhaseCal );
     }
-    
+
     if( status == VL53L0X_ERROR_NONE ) {
         // setup in single ranging mode
         status = VL53L0X_SetDeviceMode( &deviceList[index].device, VL53L0X_DEVICEMODE_SINGLE_RANGING );
     }
-    
+
     if( status == VL53L0X_ERROR_NONE ) {
         // enable sigma check
         status = VL53L0X_SetLimitCheckEnable( &deviceList[index].device, VL53L0X_CHECKENABLE_SIGMA_FINAL_RANGE, 1 );
     }
-    
+
     if( status == VL53L0X_ERROR_NONE ) {
         // enable signal check
         status = VL53L0X_SetLimitCheckEnable( &deviceList[index].device, VL53L0X_CHECKENABLE_SIGNAL_RATE_FINAL_RANGE, 1 );
     }
-    
+
     if( status == VL53L0X_ERROR_NONE ) {
         // enable range check
         status = VL53L0X_SetLimitCheckEnable( &deviceList[index].device, VL53L0X_CHECKENABLE_RANGE_IGNORE_THRESHOLD, 1 );
     }
-    
+
     if( status == VL53L0X_ERROR_NONE ) {
         // set limit check value
-        status = VL53L0X_SetLimitCheckValue( &deviceList[index].device,
+        status = VL53L0X_SetLimitCheckValue(
+                                            &deviceList[index].device,
                                             VL53L0X_CHECKENABLE_RANGE_IGNORE_THRESHOLD,
                                             (FixPoint1616_t)( 1.5 * 0.023 * 65536 )
                                             );
     }
-    
+
     // return initialization status
     return (status == VL53L0X_ERROR_NONE) ? SUCCESS : FAIL;
 }
@@ -134,16 +134,16 @@ int VL53L0X_Init (uint8_t I2C_address, int index) {
 int VL53L0X_setAddress(uint8_t newAddress, int index) {
     // trim the new address
     newAddress &= 0x7F;
-    
+
     status = VL53L0X_SetDeviceAddress(&deviceList[index].device, newAddress * 2);  // [7:2] is address
-    
+
     delay(10);
-    
+
     if( status == VL53L0X_ERROR_NONE ) {
         deviceList[index].device.I2cDevAddr = newAddress;  // 7 bit addr
         return SUCCESS;
     }
-    
+    LED_RED_TOGGLE();
     return FAIL;
 }
 
@@ -157,6 +157,6 @@ int VL53L0X_setAddress(uint8_t newAddress, int index) {
  * @brief  Get a ranging measurement from VL53L0X.
  */
 VL53L0X_Error VL53L0X_getSingleRangingMeasurement (VL53L0X_RangingMeasurementData_t* RangingMeasurementData, int index) {
-    return VL53L0X_PerformSingleRangingMeasurement( &deviceList[index].device, RangingMeasurementData );
+    // return VL53L0X_PerformSingleRangingMeasurement( &deviceList[index].device, RangingMeasurementData );
+    return VL53L0X_PerformSingleRangingMeasurementSleep( &deviceList[index].device, RangingMeasurementData );
 }
-

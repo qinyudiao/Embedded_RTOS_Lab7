@@ -85,7 +85,7 @@ VL53L0X_Error VL53L0X_getSingleRangingMeasurement (VL53L0X_RangingMeasurementDat
  * ----------
  * Description: delay N time unit
  */
-inline static void delay(uint32_t N) {
+static void delay(uint32_t N) {
     for(int n = 0; n < N; n++)                         // N time unitss
         for(int msec = 10000; msec > 0; msec--);       // 1 time unit
 }
