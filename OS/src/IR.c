@@ -148,10 +148,10 @@ long IR_getmm(void)
 static long x1, x2, x3;
 static void IR_handler(unsigned long data) {
 	  static int curSensorIndex = 0; 
-    // x3 = x2;
-    // x2 = x1;       // MACQ
-    // x1 = data; // channel set when calling ADC_Init
-    // long output = median(x1, x2, x3); // 3-wide median filter
+    //x3 = x2;
+    //x2 = x1;       // MACQ
+    //x1 = data; // channel set when calling ADC_Init
+    //long output = median(x1, x2, x3); // 3-wide median filter
     dis = ADC2millimeter(data);
 	  //Fifo_Put(dis);
 		channelData[curSensorIndex++] = dis;

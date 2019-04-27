@@ -27,17 +27,30 @@ void TurnRight60(void)
 }
 void SlightLeft(int n)
 {
-  if(n>220)
-    n=220;
-  CAN_MotorTorch(200-n,200);
-  CAN_Servo(90);
+  if(n>300)
+    n=300;
+  if(n>150){
+    int i = n/10;
+    CAN_Servo(90+i);
+  }
+  else
+    CAN_Servo(90);
+  CAN_MotorTorch(250-n,250);
+  
 }
 void SlightRight(int n)
 {
-  if(n>220)
-    n=220;
-  CAN_MotorTorch(200,200-n);
-  CAN_Servo(90);
+  if(n>300)
+    n=300;
+  
+  if(n>150){
+    int i = n/10;
+    CAN_Servo(90-i);
+  }
+  else
+    CAN_Servo(90);
+  CAN_MotorTorch(250,250-n);
+
 }
 
 void Straight(void)
