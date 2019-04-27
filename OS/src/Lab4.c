@@ -474,7 +474,7 @@ void sensor_task(void)
     Front_Right_angle = lidar_GetData(0) + ANGELRIGHT_OFFSET;
     Left = IR_GetData(3) + LEFT_OFFSET;
     Right = IR_GetData(2) + RIGHT_OFFSET;
-   // Front = getdata(Front);
+    Front = IR_GetData(0);
     
     prevtime = curtime;
     curtime = OS_Time();
