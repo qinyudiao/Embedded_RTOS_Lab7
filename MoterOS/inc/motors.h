@@ -48,10 +48,10 @@ void Motors_Init(void);
 /**
  * @brief Set the torque for each of the two motors atomically
  * 
- * @param left_trq   Torque for left motor. Between -50 and 50.
+ * @param left_trq   Torque for left motor. Between -250 and 250.
  *                   Positive argument indicates forward motion of robot, negative indicates backward.
  *                   Zero indicates no rotation.
- * @param right_trq   Torque for right motor. Between -50 and 50.
+ * @param right_trq   Torque for right motor. Between -250 and 250.
  *                    Positive argument indicates forward motion of robot, negative indicates backward.
  *                    Zero indicates no rotation.
  */
@@ -61,7 +61,7 @@ void Motors_SetTorque(int16_t left_trq, int16_t right_trq);
 /**
  * @brief Set the torque of the left motor individually
  * 
- * @param left_trq   Torque for left motor. Between -50 and 50.
+ * @param left_trq   Torque for left motor. Between -250 and 250.
  *                   Positive argument indicates forward motion of robot, negative indicates backward.
  *                   Zero indicates no rotation.
  */
@@ -71,7 +71,7 @@ void Motors_SetTorque_Left(int16_t left_trq);
 /**
  * @brief Set the torque of the left motor individually
  * 
- * @param right_trq   Torque for right motor. Between -50 and 50.
+ * @param right_trq   Torque for right motor. Between -250 and 250.
  *                    Positive argument indicates forward motion of robot, negative indicates backward.
  *                    Zero indicates no rotation.
  */
