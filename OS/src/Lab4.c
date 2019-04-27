@@ -91,6 +91,7 @@
 #include "lidar.h"
 #include "LED.h"
 #include "DirectionCtrl.h"
+#include "bumperSwitch.h"
 
 //*********Prototype for FFT in cr4_fft_64_stm32.s, STMicroelectronics
 void cr4_fft_64_stm32(void *pssOUT, void *pssIN, unsigned short Nbin);
@@ -502,23 +503,21 @@ void SW2Push(void)
   }
 }
 
+#define SENSOR_TASK_PERIOD (50)
+
 void sensor_task(void)
 {
-  int i = 0;
-  int idx = 0;
+  static int i = 0;
+  static int idx = 0;
 
-  for(int i =0;i<4;i++)
-    Error[i] = 0; // magic number
-  int period = 50;
-  unsigned long long curtime = 0;;
-  unsigned long long prevtime = 0;
-  int delta10us = 0;
-  int FlagL = 0;
-  int FlagR = 0;
-  char adc_string[64];
-  while(1){
+  static unsigned long long curtime = 0;
+  static unsigned long long prevtime = 0;
+  static int delta10us = 0;
+  static int FlagL = 0;
+  static int FlagR = 0;
+  static char adc_string[64];
 
-    
+  {    
     Front_Left_angle = lidar_GetData(1) + ANGLELEFT_OFFSET;
     Front_Right_angle = lidar_GetData(0) + ANGELRIGHT_OFFSET;
     Left = IR_GetData(3) + LEFT_OFFSET;
@@ -543,7 +542,7 @@ void sensor_task(void)
     
     //if(prevtime ==0 || Error[3] == 0xEFDFF1FF)
     //  continue;
-    delta10us = period;
+    delta10us = SENSOR_TASK_PERIOD;
  
     Up = KP*Error[0];
     Ui = Ui+ Error[0]*delta10us/KI; // 10us 
@@ -576,14 +575,14 @@ void sensor_task(void)
             state = 1;
           }
         }
+        else
+        {
+          Straight();
+          state = 2;
+        }
+      }
       else
       {
-        Straight();
-        state = 2;
-      }
-    }
-    else
-    {
         if(((100*Front_Left_angle*cosTHETA)/Left)/100<990) // <90 degree
         {
           if(U>0) {
@@ -600,29 +599,24 @@ void sensor_task(void)
             state = 4;
           }
         }
-      else
-      {
-        Straight();
-        state = 5;
+        else
+        {
+            Straight();
+            state = 5;
+        }
       }
-    }  
-  }
-    
-  if(Front_Left_angle<ANGLELEFT_OFFSET+15 || LEFT_OFFSET+Left<15)
-  {
-    SlightRight(5);
-    state = 6;
-  }
-  else if(Front_Right_angle<ANGLELEFT_OFFSET+15||Right<LEFT_OFFSET+15)
-  {
-    SlightLeft(5);
-    state = 7;
-  }
-    
-    // sprintf(adc_string, "Up Ui Ud U %d %d %d %d:  ",  Up,Ui,Ud,U);
-    // UART_OutString(adc_string);
-    // UART_OutString("\r\n");
-    OS_Sleep(period);
+    }
+        
+    if(Front_Left_angle<ANGLELEFT_OFFSET+15 || LEFT_OFFSET+Left<15)
+    {
+        SlightRight(5);
+        state = 6;
+    }
+    else if(Front_Right_angle<ANGLELEFT_OFFSET+15||Right<LEFT_OFFSET+15)
+    {
+        SlightLeft(5);
+        state = 7;
+    }
   }
 }
     
@@ -636,7 +630,7 @@ int Sensor_main(void)
   lidar_Init();
   NumCreated = 0;
   NumCreated += OS_AddThread(&Interpreter,128, 5);
-  NumCreated += OS_AddThread(&sensor_task, 128, 2);
+  NumCreated += OS_AddPeriodicThread(&sensor_task, SENSOR_TASK_PERIOD * TIME_1MS, 2);
   NumCreated += OS_AddThread(&sensor_debug_task, 128, 4);
 	
 	OS_AddSW1Task(&SW1Push, 0);
