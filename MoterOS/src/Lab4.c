@@ -104,7 +104,7 @@ void cr4_fft_64_stm32(void *pssOUT, void *pssIN, unsigned short Nbin);
 #define TIMESLICE 2 * TIME_1MS // thread switch time in system time units
 
 int NumCreated = 0;
-int flag = 1;
+volatile int flag = 1;
 
 //*******************lab 4 main **********
 int realmain(void)
@@ -204,6 +204,8 @@ void Left_Right_motor_task(void)
       continue;
     Left = (data & (0xFFFF0000)) >> 16;
     Right = (data &(0xFFFF));
+    Right = Right <<16;
+    Right = Right >>16;
     Motors_SetTorque(Left,Right);
   }  
 }

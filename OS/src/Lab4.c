@@ -114,9 +114,9 @@ void cr4_fft_64_stm32(void *pssOUT, void *pssIN, unsigned short Nbin);
 // cosTHETA * 1000 value
 
 // Configurable via interpreter
-int KP = 1;
-int KD = 1000;
-int KI = 1;
+int KP = 3;
+int KD = 10;
+int KI = 120;
 
 static FATFS g_sFatFs;
 
@@ -432,6 +432,7 @@ int Left;
 int Right;
 int Front;
 int Error[4];
+int state;
 
 void sensor_debug_task(void)
 {
@@ -447,6 +448,7 @@ void sensor_debug_task(void)
     ST7735_Message(1, 1, "FR Angle: ", Front_Right_angle);
     ST7735_Message(1, 2, "Left: ", Left);
     ST7735_Message(1, 3, "Right: ", Right);
+    ST7735_Message(1,4,"State: ",state);
     OS_Sleep(10);
   }
 }
@@ -480,11 +482,11 @@ void sensor_task(void)
   while(1){
 
     
-    Front_Left_angle = IR_GetData(0) + ANGLELEFT_OFFSET;
-    Front_Right_angle = IR_GetData(1) + ANGELRIGHT_OFFSET;
+    Front_Left_angle = lidar_GetData(1) + ANGLELEFT_OFFSET;
+    Front_Right_angle = lidar_GetData(0) + ANGELRIGHT_OFFSET;
     Left = IR_GetData(3) + LEFT_OFFSET;
     Right = IR_GetData(2) + RIGHT_OFFSET;
-   // Front = getdata(Front);
+    Front = IR_GetData(0);
     
     prevtime = curtime;
     curtime = OS_Time();
@@ -513,17 +515,72 @@ void sensor_task(void)
     U = Up + Ui + Ud;
     int TH90 = 10000;
     int TH60 = 1000;
+    int tmp = 0;
     
     
-    
-    if(Front_Right_angle+Right < Front_Left_angle+Left)
-    { 
-        SlightLeft(U/10);
+    if(U>30 || U<-30){
+      if(Front_Right_angle+Right < Front_Left_angle+Left)
+      {
+        if(((100*Front_Right_angle*cosTHETA)/Right)/100>1010) // >90 degree
+        {
+          if(U>0) {
+            tmp = U/10;
+            SlightLeft(tmp);
+            state = 0;
+          }
+            
+            
+        }        
+        else if(((100*Front_Right_angle*cosTHETA)/Right)/100<990) // <90 degree
+        {
+          if(U<0) {
+            tmp = -U/10;
+            SlightRight(tmp);
+            state = 1;
+          }
+        }
+      else
+      {
+        Straight();
+        state = 2;
+      }
     }
     else
     {
-        SlightRight(U/10);
-    }
+        if(((100*Front_Left_angle*cosTHETA)/Left)/100<990) // <90 degree
+        {
+          if(U>0) {
+            tmp = U/10;
+            SlightRight(tmp);
+            state = 3;
+          }          
+        }        
+        else if(((100*Front_Left_angle*cosTHETA)/Left)/100>1010) // >90 degree
+        {
+          if(U<0) {
+            tmp = -U/10;
+            SlightLeft(tmp);
+            state = 4;
+          }
+        }
+      else
+      {
+        Straight();
+        state = 5;
+      }
+    }  
+  }
+    
+  if(Front_Left_angle<ANGLELEFT_OFFSET+15 || LEFT_OFFSET+Left<15)
+  {
+    SlightRight(5);
+    state = 6;
+  }
+  else if(Front_Right_angle<ANGLELEFT_OFFSET+15||Right<LEFT_OFFSET+15)
+  {
+    SlightLeft(5);
+    state = 7;
+  }
     
     // sprintf(adc_string, "Up Ui Ud U %d %d %d %d:  ",  Up,Ui,Ud,U);
     // UART_OutString(adc_string);
@@ -531,6 +588,7 @@ void sensor_task(void)
     OS_Sleep(period);
   }
 }
+    
 int Sensor_main(void)
 {
   OS_Init(); // initialize, disable interrupts
@@ -538,6 +596,7 @@ int Sensor_main(void)
   ST7735_InitR(INITR_REDTAB);
   ST7735_FillScreen(0xFFFF);
   IR_Init();
+  lidar_Init();
   NumCreated = 0;
   NumCreated += OS_AddThread(&Interpreter,128, 5);
   NumCreated += OS_AddThread(&sensor_task, 128, 2);
@@ -632,5 +691,5 @@ int sensor_testmain(void) {
 // Main stub
 int main(void)
 {
-  return sensor_testmain();
+  return Sensor_main();
 }

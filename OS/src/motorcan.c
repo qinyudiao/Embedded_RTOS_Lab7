@@ -11,7 +11,7 @@ void CAN_LeftMotorTorch(int left){
 }
 
 void CAN_MotorTorch(int left, int right){
-  int data = (left<<16) + right;
+  int data = (left<<16) + (right&0xFFFF);
   CAN0_SendDatawithIdx((uint8_t *)&data,3);
 }
 

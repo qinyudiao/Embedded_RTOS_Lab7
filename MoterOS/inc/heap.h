@@ -36,7 +36,7 @@
 
 // feel free to change HEAP_SIZE_BYTES to however
 // big you want the heap to be
-#define HEAP_SIZE_BYTES (2048)
+#define HEAP_SIZE_BYTES (8)
 #define HEAP_SIZE_WORDS (HEAP_SIZE_BYTES / sizeof(int32_t))
 
 #define HEAP_OK 0
