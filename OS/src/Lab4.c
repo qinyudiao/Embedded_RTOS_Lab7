@@ -466,13 +466,13 @@ void SW1Push(void)
     U = 0;
     break;
   case 1:
-	  KP = (KP >= 20) ? 1 : (KP+1);
+	  KP = (KP >= 30) ? 1 : (KP+1);
     break;
   case 2:
-	  KD = (KD >= 20) ? 1 : (KD+1);  
+	  KD = (KD >= 30) ? 1 : (KD+1);  
     break;
   case 3:
-    KI  = (KI >= 250) ? 50 : (KI+10);
+    KI  = (KI >= 300) ? 40 : (KI+10);
     break;
   }
 }
@@ -532,22 +532,22 @@ void sensor_task(void)
     }
     
     if(FlagR == 1){
-      if(Right>500){
+      if(Right>300){
         if(Front_Right_angle+Right > Front_Left_angle+Left)
         {
           FlagL =1;
           FlagR=0;
-          Ui = Ui/100;
+          Ui = Ui/50;
         }
       }
     }else{
-      if(Left>500)
+      if(Left>300)
       {
         if(Front_Right_angle+Right < Front_Left_angle+Left)
         {
           FlagL = 0;
           FlagR = 1;
-          Ui = Ui/100;
+          Ui = Ui/50;
         }
       }
     }
