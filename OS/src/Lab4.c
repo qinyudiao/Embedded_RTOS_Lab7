@@ -113,9 +113,9 @@ void cr4_fft_64_stm32(void *pssOUT, void *pssIN, unsigned short Nbin);
 // cosTHETA * 1000 value
 
 // Configurable via interpreter
-int KP = 1;
-int KD = 1000;
-int KI = 1;
+int KP = 3;
+int KD = 10;
+int KI = 120;
 
 static FATFS g_sFatFs;
 
@@ -500,17 +500,64 @@ void sensor_task(void)
     U = Up + Ui + Ud;
     int TH90 = 10000;
     int TH60 = 1000;
+    int tmp = 0;
     
     
-    
-    if(Front_Right_angle+Right < Front_Left_angle+Left)
-    { 
-        SlightLeft(U/10);
+    if(U>30 || U<-30){
+      if(Front_Right_angle+Right < Front_Left_angle+Left)
+      {
+        if(((100*Front_Right_angle*cosTHETA)/Right)/100>1010) // >90 degree
+        {
+          if(U>0) {
+            tmp = U/10;
+            SlightLeft(tmp);
+          }
+            
+            
+        }        
+        else if(((100*Front_Right_angle*cosTHETA)/Right)/100<990) // <90 degree
+        {
+          if(U<0) {
+            tmp = -U/10;
+            SlightRight(tmp);
+          }
+        }
+      else
+      {
+        Straight();
+      }
     }
     else
     {
-        SlightRight(U/10);
-    }
+        if(((100*Front_Left_angle*cosTHETA)/Left)/100<990) // <90 degree
+        {
+          if(U>0) {
+            tmp = U/10;
+            SlightRight(tmp);
+          }          
+        }        
+        else if(((100*Front_Left_angle*cosTHETA)/Left)/100>1010) // >90 degree
+        {
+          if(U<0) {
+            tmp = -U/10;
+            SlightLeft(tmp);
+          }
+        }
+      else
+      {
+        Straight();
+      }
+    }  
+  }
+    
+  if(Front_Left_angle<15 || Left<15)
+  {
+    SlightRight(5);
+  }
+  else if(Front_Right_angle<15||Right<15)
+  {
+    SlightLeft(5);
+  }
     
     // sprintf(adc_string, "Up Ui Ud U %d %d %d %d:  ",  Up,Ui,Ud,U);
     // UART_OutString(adc_string);
@@ -518,6 +565,7 @@ void sensor_task(void)
     OS_Sleep(period);
   }
 }
+    
 int Sensor_main(void)
 {
   OS_Init(); // initialize, disable interrupts
