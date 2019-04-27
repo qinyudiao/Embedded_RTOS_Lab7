@@ -1,5 +1,5 @@
 /*******************************************************************************
- Copyright © 2016, STMicroelectronics International N.V.
+ Copyright ï¿½ 2016, STMicroelectronics International N.V.
  All rights reserved.
 
  Redistribution and use in source and binary forms, with or without
@@ -3032,4 +3032,63 @@ VL53L0X_Error VL53L0X_PerformRefSpadManagement(VL53L0X_DEV Dev,
 	LOG_FUNCTION_END(Status);
 
 	return Status;
+}
+
+VL53L0X_Error VL53L0X_PerformSingleMeasurementSleep(VL53L0X_DEV Dev)
+{
+	VL53L0X_Error Status = VL53L0X_ERROR_NONE;
+	VL53L0X_DeviceModes DeviceMode;
+
+	LOG_FUNCTION_START("");
+
+	/* Get Current DeviceMode */
+	Status = VL53L0X_GetDeviceMode(Dev, &DeviceMode);
+
+	/* Start immediately to run a single ranging measurement in case of
+	 * single ranging or single histogram */
+	if (Status == VL53L0X_ERROR_NONE
+		&& DeviceMode == VL53L0X_DEVICEMODE_SINGLE_RANGING)
+		Status = VL53L0X_StartMeasurement(Dev);
+
+
+	if (Status == VL53L0X_ERROR_NONE)
+		// Status = VL53L0X_measurement_poll_for_completion(Dev);
+		Status = VL53L0X_measurement_poll_for_completion_sleep(Dev);
+
+	/* Change PAL State in case of single ranging or single histogram */
+	if (Status == VL53L0X_ERROR_NONE
+		&& DeviceMode == VL53L0X_DEVICEMODE_SINGLE_RANGING)
+		PALDevDataSet(Dev, PalState, VL53L0X_STATE_IDLE);
+
+
+	LOG_FUNCTION_END(Status);
+	return Status;
+}
+
+VL53L0X_Error VL53L0X_PerformSingleRangingMeasurementSleep(VL53L0X_DEV Dev,
+	VL53L0X_RangingMeasurementData_t *pRangingMeasurementData)
+{
+	VL53L0X_Error Status = VL53L0X_ERROR_NONE;
+
+	LOG_FUNCTION_START("");
+
+	/* This function will do a complete single ranging
+	 * Here we fix the mode! */
+	Status = VL53L0X_SetDeviceMode(Dev, VL53L0X_DEVICEMODE_SINGLE_RANGING);
+
+	if (Status == VL53L0X_ERROR_NONE)
+		Status = VL53L0X_PerformSingleMeasurementSleep(Dev);
+
+	if (Status == VL53L0X_ERROR_NONE)
+		Status = VL53L0X_GetRangingMeasurementData(Dev,
+			pRangingMeasurementData);
+
+
+	if (Status == VL53L0X_ERROR_NONE)
+		Status = VL53L0X_ClearInterruptMask(Dev, 0);
+
+
+	LOG_FUNCTION_END(Status);
+	return Status;
+
 }

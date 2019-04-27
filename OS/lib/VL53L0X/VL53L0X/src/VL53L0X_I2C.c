@@ -31,7 +31,7 @@
  * ----------
  * @brief initialize I2C with corresponding setting parameters.
  */
-void VL53L0X_I2C_Init(void) {
+void VL53L0X_I2C_Init() {
     I2C_Init();
 }
 
@@ -51,8 +51,8 @@ void VL53L0X_I2C_Init(void) {
  * ----------
  * @brief read 1 or more bytes from VL53L0X.
  */
-int VL53L0X_read_multi(uint8_t deviceAddress, uint8_t index, uint8_t* pdata, uint32_t count) {
-    return I2C_read(deviceAddress, index, pdata, count);
+int VL53L0X_read_multi(uint8_t deviceAddress, uint8_t index, uint8_t* pdata, uint32_t count, int deviceIndex) {
+    return I2C_read(deviceAddress, index, pdata, count, deviceIndex);
 }
 
 /**
@@ -65,8 +65,8 @@ int VL53L0X_read_multi(uint8_t deviceAddress, uint8_t index, uint8_t* pdata, uin
  * ----------
  * @brief write 1 or more bytes to VL53L0X.
  */
-int VL53L0X_write_multi(uint8_t deviceAddress, uint8_t index, uint8_t* pdata, uint32_t count) {
-    return I2C_write(deviceAddress, index, pdata, count);
+int VL53L0X_write_multi(uint8_t deviceAddress, uint8_t index, uint8_t* pdata, uint32_t count, int deviceIndex) {
+    return I2C_write(deviceAddress, index, pdata, count, deviceIndex);
 }
 
 /**
@@ -78,9 +78,9 @@ int VL53L0X_write_multi(uint8_t deviceAddress, uint8_t index, uint8_t* pdata, ui
  * ----------
  * @brief read 1 byte from VL53L0X.
  */
-int VL53L0X_read_byte(uint8_t deviceAddress, uint8_t index, uint8_t *data) {
+int VL53L0X_read_byte(uint8_t deviceAddress, uint8_t index, uint8_t *data, int deviceIndex) {
     // read 1 byte
-    return I2C_read_byte(deviceAddress, index, data);
+    return I2C_read_byte(deviceAddress, index, data, deviceIndex);
 }
 
 
@@ -93,9 +93,9 @@ int VL53L0X_read_byte(uint8_t deviceAddress, uint8_t index, uint8_t *data) {
  * ----------
  * @brief write 1 byte to VL53L0X.
  */
-int VL53L0X_write_byte(uint8_t deviceAddress, uint8_t index, uint8_t data) {
+int VL53L0X_write_byte(uint8_t deviceAddress, uint8_t index, uint8_t data, int deviceIndex) {
     // write 1 byte
-    return I2C_write_byte(deviceAddress, index, data);
+    return I2C_write_byte(deviceAddress, index, data, deviceIndex);
 }
 
 /**
@@ -107,14 +107,14 @@ int VL53L0X_write_byte(uint8_t deviceAddress, uint8_t index, uint8_t data) {
  * ----------
  * @brief read 2 bytes from VL53L0X.
  */
-int VL53L0X_read_word(uint8_t deviceAddress, uint8_t index, uint16_t *data) {
+int VL53L0X_read_word(uint8_t deviceAddress, uint8_t index, uint16_t *data, int deviceIndex) {
     // buffer to hold read data
     uint8_t buffer[2];
     // read 2 bytes
-    int result = I2C_read_2_bytes(deviceAddress, index, buffer);
+    int result = I2C_read_2_bytes(deviceAddress, index, buffer, deviceIndex);
     // store read data
     *data = (buffer[0] << 8) + buffer[1];
-    
+
     return result;
 }
 
@@ -127,14 +127,14 @@ int VL53L0X_read_word(uint8_t deviceAddress, uint8_t index, uint16_t *data) {
  * ----------
  * @brief write 2 bytes to VL53L0X.
  */
-int VL53L0X_write_word(uint8_t deviceAddress, uint8_t index, uint16_t data) {
+int VL53L0X_write_word(uint8_t deviceAddress, uint8_t index, uint16_t data, int deviceIndex) {
     // buffer to hold read data
     uint8_t buffer[2];
     // put data into buffer
     buffer[1] = data & 0xFF;
     buffer[0] = data >> 8;
     // write 2 bytes
-    return I2C_write_2_bytes(deviceAddress, index, buffer);
+    return I2C_write_2_bytes(deviceAddress, index, buffer, deviceIndex);
 }
 
 /**
@@ -146,14 +146,14 @@ int VL53L0X_write_word(uint8_t deviceAddress, uint8_t index, uint16_t data) {
  * ----------
  * @brief read 4 bytes from VL53L0X.
  */
-int VL53L0X_read_dword(uint8_t deviceAddress, uint8_t index, uint32_t *data) {
+int VL53L0X_read_dword(uint8_t deviceAddress, uint8_t index, uint32_t *data, int deviceIndex) {
     // buffer to hold read data
     uint8_t buffer[4];
     // read 4 bytes
-    int result = I2C_read_4_bytes(deviceAddress, index, buffer);
+    int result = I2C_read_4_bytes(deviceAddress, index, buffer, deviceIndex);
     // srore read data
     *data = (buffer[0] << 24) + (buffer[1] << 16) + (buffer[2] << 8) + buffer[3];
-    
+
     return result;
 }
 
@@ -166,7 +166,7 @@ int VL53L0X_read_dword(uint8_t deviceAddress, uint8_t index, uint32_t *data) {
  * ----------
  * @brief write 4 bytes to VL53L0X.
  */
-int VL53L0X_write_dword(uint8_t deviceAddress, uint8_t index, uint32_t data) {
+int VL53L0X_write_dword(uint8_t deviceAddress, uint8_t index, uint32_t data, int deviceIndex) {
     // buffer to hold read data
     uint8_t buffer[4];
     // put data into buffer
@@ -175,6 +175,5 @@ int VL53L0X_write_dword(uint8_t deviceAddress, uint8_t index, uint32_t data) {
     buffer[2] = data >> 8;
     buffer[3] = data & 0xFF;
     // write 4 bytes
-    return I2C_write_4_bytes(deviceAddress, index, buffer);
+    return I2C_write_4_bytes(deviceAddress, index, buffer, deviceIndex);
 }
-
