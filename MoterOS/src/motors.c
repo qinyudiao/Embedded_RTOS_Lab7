@@ -7,7 +7,7 @@
 #define PB7 (*((volatile unsigned long *)0x40005200))
 #define PB4_PB7 (*((volatile unsigned long *)0x40005240))
 
-#define MOTOR_PWM_PERIOD (2500000 / 25000) // 100 ticks for 25Khz PWM period
+#define MOTOR_PWM_PERIOD (2500000 / 5000) //500 ticks for 5Khz PWM period
 
 static int16_t constrain_duty(int16_t user_input)
 {
