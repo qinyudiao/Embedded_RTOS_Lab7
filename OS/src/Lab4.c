@@ -115,9 +115,9 @@ void cr4_fft_64_stm32(void *pssOUT, void *pssIN, unsigned short Nbin);
 // cosTHETA * 1000 value
 
 // Configurable via interpreter
-int KP = 3;
-int KD = 10;
-int KI = 120;
+int KP = 4;
+int KD = 5;
+int KI = 90;
 
 static FATFS g_sFatFs;
 
@@ -466,13 +466,13 @@ void SW1Push(void)
     U = 0;
     break;
   case 1:
-	  KP = (KP >= 20) ? 1 : (KP+1);
+	  KP = (KP >= 30) ? 1 : (KP+1);
     break;
   case 2:
-	  KD = (KD >= 20) ? 1 : (KD+1);  
+	  KD = (KD >= 30) ? 1 : (KD+1);  
     break;
   case 3:
-    KI  = (KI >= 250) ? 50 : (KI+10);
+    KI  = (KI >= 300) ? 40 : (KI+10);
     break;
   }
 }
@@ -514,7 +514,7 @@ void sensor_task(void)
   static unsigned long long prevtime = 0;
   static int delta10us = 0;
   static int FlagL = 0;
-  static int FlagR = 0;
+  static int FlagR = 1;
   static char adc_string[64];
 
   {    
@@ -531,7 +531,29 @@ void sensor_task(void)
       Error[3-i] = Error[3-i-1];
     }
     
-    if(Front_Right_angle+Right < Front_Left_angle+Left)
+    if(FlagR == 1){
+      if(Right>300){
+        if(Front_Right_angle+Right > Front_Left_angle+Left)
+        {
+          FlagL =1;
+          FlagR=0;
+          Ui = Ui/50;
+        }
+      }
+    }else{
+      if(Left>300)
+      {
+        if(Front_Right_angle+Right < Front_Left_angle+Left)
+        {
+          FlagL = 0;
+          FlagR = 1;
+          Ui = Ui/50;
+        }
+      }
+    }
+        
+    
+    if(FlagR == 1)
     {
       Error[0] = (1000*Right/Front_Right_angle - (cosTHETA))/10;
     }
@@ -555,13 +577,14 @@ void sensor_task(void)
     
     
     if(U>30 || U<-30){
-      if(Front_Right_angle+Right < Front_Left_angle+Left)
+      if(FlagR == 1)
       {
+         
         if(((100*Front_Right_angle*cosTHETA)/Right)/100>1010) // >90 degree
         {
-          if(U>0) {
-            tmp = U/10;
-            SlightLeft(tmp);
+          if(U<0) {
+            tmp = -U/10;
+            SlightRight(tmp);
             state = 0;
           }
             
@@ -569,9 +592,9 @@ void sensor_task(void)
         }        
         else if(((100*Front_Right_angle*cosTHETA)/Right)/100<990) // <90 degree
         {
-          if(U<0) {
-            tmp = -U/10;
-            SlightRight(tmp);
+          if(U>0) {
+            tmp = U/10;
+            SlightLeft(tmp);
             state = 1;
           }
         }
@@ -607,14 +630,14 @@ void sensor_task(void)
       }
     }
         
-    if(Front_Left_angle<ANGLELEFT_OFFSET+15 || LEFT_OFFSET+Left<15)
+    if(Front_Left_angle<ANGLELEFT_OFFSET+40 || LEFT_OFFSET+Left<40)
     {
-        SlightRight(5);
+        SlightRight(140);
         state = 6;
     }
-    else if(Front_Right_angle<ANGLELEFT_OFFSET+15||Right<LEFT_OFFSET+15)
+    else if(Front_Right_angle<ANGLELEFT_OFFSET+40||Right<LEFT_OFFSET+40)
     {
-        SlightLeft(5);
+        SlightLeft(140);
         state = 7;
     }
   }
