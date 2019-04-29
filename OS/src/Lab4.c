@@ -701,10 +701,11 @@ void lcd_testtask(void)
   static int i=0;
   while(1)
   {
-    ST7735_Message(0, 0, "Right: ", IR_GetData(2));
-    ST7735_Message(0, 1, "Left : ", IR_GetData(3));
-    ST7735_Message(0, 2, "Right Angled 0: ", lidar_GetData(0));
-    ST7735_Message(0, 3, "Left Angled 1:", lidar_GetData(1));
+    ST7735_Message(0, 0, "lidar 0: ", lidar_GetData(0));
+    ST7735_Message(0, 1, "lidar 1:", lidar_GetData(1));
+    ST7735_Message(0, 2, "lidar 2:", lidar_GetData(2));
+    ST7735_Message(0, 3, "lidar 3:", lidar_GetData(3));
+
     OS_Sleep(5);
   }
 }
@@ -715,7 +716,6 @@ int sensor_testmain(void) {
   ST7735_FillScreen(0xFFFF);
   LED_Init();
   lidar_Init();
-	IR_Init();
 	OS_AddThread(&Interpreter, 128, 2);
 	OS_AddThread(&lcd_testtask, 128, 3);
   OS_Launch(TIMESLICE); // doesn't return, interrupts enabled in here
@@ -725,5 +725,6 @@ int sensor_testmain(void) {
 // Main stub
 int main(void)
 {
-  return Sensor_main();
+	return sensor_testmain();
+ // return Sensor_main();
 }

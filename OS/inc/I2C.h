@@ -22,8 +22,8 @@
  *  SDA -------- PB3 | SDA -------- PA7 | SDA -------- PE5 | SDA -------- PD1
  */
 
-#define LIDAR0_I2C         I2C0
-#define LIDAR1_I2C         I2C3
+#define I2C_BUS1         I2C0
+#define I2C_BUS2         I2C3
 
 #define I2C0    0xabcc
 #define I2C1    0xabcd
