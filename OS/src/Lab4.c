@@ -115,9 +115,9 @@ void cr4_fft_64_stm32(void *pssOUT, void *pssIN, unsigned short Nbin);
 // cosTHETA * 1000 value
 
 // Configurable via interpreter
-int KP = 4;
-int KD = 5;
-int KI = 90;
+int KP = 80;
+int KD = 30;
+int KI = 23;
 
 static FATFS g_sFatFs;
 
@@ -466,13 +466,13 @@ void SW1Push(void)
     U = 0;
     break;
   case 1:
-	  KP = (KP >= 30) ? 1 : (KP+1);
+	  KP = (KP >= 80) ? 1 : (KP+2);
     break;
   case 2:
 	  KD = (KD >= 30) ? 1 : (KD+1);  
     break;
   case 3:
-    KI  = (KI >= 300) ? 40 : (KI+10);
+    KI  = (KI >= 80) ? 5 : (KI+2);
     break;
   }
 }
@@ -503,7 +503,7 @@ void SW2Push(void)
   }
 }
 
-#define SENSOR_TASK_PERIOD (50)
+#define SENSOR_TASK_PERIOD (20)
 
 void sensor_task(void)
 {
@@ -516,20 +516,32 @@ void sensor_task(void)
   static int FlagL = 0;
   static int FlagR = 1;
   static char adc_string[64];
+  static int Rightstack[4];
+  static int Leftstack[4];
+  static int openspaceLeft = 0;
+  static int openspaceRight = 0;
 
-  {    
+  while(1){    
     Front_Left_angle = lidar_GetData(1) + ANGLELEFT_OFFSET;
     Front_Right_angle = lidar_GetData(0) + ANGELRIGHT_OFFSET;
     Left = IR_GetData(3) + LEFT_OFFSET;
     Right = IR_GetData(2) + RIGHT_OFFSET;
     Front = IR_GetData(0);
+    Rightstack[0] = Front_Right_angle;
+    Leftstack[0] = Front_Left_angle;
     
     prevtime = curtime;
     curtime = OS_Time();
     for(int i =0;i<3;i++)
     {
       Error[3-i] = Error[3-i-1];
+      Leftstack[3-i] = Leftstack[3-i-1];
+      Rightstack [3-i]=Rightstack[3-i-1];
     }
+    if(Leftstack[3]-Leftstack[2]>800)
+      openspaceLeft = 10;
+    if(Rightstack[3]-Rightstack[2]>800)
+      openspaceRight = 10;
     
     if(FlagR == 1){
       if(Right>300){
@@ -576,6 +588,24 @@ void sensor_task(void)
     int tmp = 0;
     
     
+    if(openspaceLeft>0){
+      openspaceLeft--;
+      SlightLeft(10);
+      state = 8;
+      OS_Sleep(SENSOR_TASK_PERIOD);
+      continue;
+    }
+    
+    if(openspaceRight>0){
+      openspaceRight--;
+      SlightRight(10);
+      state = 9;
+      OS_Sleep(SENSOR_TASK_PERIOD);
+      continue;
+    }
+    
+    
+    
     if(U>30 || U<-30){
       if(FlagR == 1)
       {
@@ -584,6 +614,8 @@ void sensor_task(void)
         {
           if(U<0) {
             tmp = -U/10;
+            if(Front_Left_angle > 600)
+              tmp = tmp/100;
             SlightRight(tmp);
             state = 0;
           }
@@ -594,6 +626,8 @@ void sensor_task(void)
         {
           if(U>0) {
             tmp = U/10;
+            if(Front_Right_angle > 600)
+              tmp = tmp/100;
             SlightLeft(tmp);
             state = 1;
           }
@@ -610,6 +644,8 @@ void sensor_task(void)
         {
           if(U>0) {
             tmp = U/10;
+            if(Front_Left_angle > 800)
+              tmp = tmp/50;
             SlightRight(tmp);
             state = 3;
           }          
@@ -618,6 +654,8 @@ void sensor_task(void)
         {
           if(U<0) {
             tmp = -U/10;
+            if(Front_Right_angle > 800)
+              tmp = tmp/50;
             SlightLeft(tmp);
             state = 4;
           }
@@ -632,15 +670,23 @@ void sensor_task(void)
         
     if(Front_Left_angle<ANGLELEFT_OFFSET+40 || LEFT_OFFSET+Left<40)
     {
-        SlightRight(140);
+        SlightRight(80);
         state = 6;
     }
     else if(Front_Right_angle<ANGLELEFT_OFFSET+40||Right<LEFT_OFFSET+40)
     {
-        SlightLeft(140);
+        SlightLeft(80);
         state = 7;
     }
+    
+    OS_Sleep(SENSOR_TASK_PERIOD);
+    
   }
+  
+  
+   
+    
+    
 }
     
 int Sensor_main(void)
@@ -653,7 +699,7 @@ int Sensor_main(void)
   lidar_Init();
   NumCreated = 0;
   NumCreated += OS_AddThread(&Interpreter,128, 5);
-  NumCreated += OS_AddPeriodicThread(&sensor_task, SENSOR_TASK_PERIOD * TIME_1MS, 2);
+  NumCreated += OS_AddThread(&sensor_task, 128, 2);
   NumCreated += OS_AddThread(&sensor_debug_task, 128, 4);
 	
 	OS_AddSW1Task(&SW1Push, 0);
