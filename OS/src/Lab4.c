@@ -91,7 +91,6 @@
 #include "lidar.h"
 #include "LED.h"
 #include "DirectionCtrl.h"
-#include "bumperSwitch.h"
 #include "PLL.h"
 
 //*********Prototype for FFT in cr4_fft_64_stm32.s, STMicroelectronics
@@ -701,6 +700,22 @@ int can0_testmain()
   return 0;
 }
 
+unsigned long in, delay, dataRegIn;
+
+void PortC_Init(void)
+{
+	//SYSCTL_RCGCGPIO_R SYSCTL_RCGC2_R
+	SYSCTL_RCGCGPIO_R |= 0x04;           // Port C clock
+  delay = SYSCTL_RCGCGPIO_R ;           // wait 3-5 bus cycles
+  GPIO_PORTC_DIR_R &= ~0xC0;        // PC6-7 input 
+  GPIO_PORTC_AFSEL_R &= ~0xC0;      // not alternative
+  GPIO_PORTC_AMSEL_R &= ~0xC0;      // no analog
+  GPIO_PORTC_PCTL_R &= ~0xFF000000; // bits for PE1, PE0
+  GPIO_PORTC_DEN_R |= 0xC0;         // enable PC6, PC7
+	
+	//GPIO_PORTC_DATA_R |= 0x20; //start with LED on (PE1 = 1)
+}
+
 void lcd_task(void)
 {
     static int count = 0;
@@ -712,13 +727,17 @@ int lcd_testmain(void)
   OS_Init();
   ST7735_InitR(INITR_REDTAB);
   ST7735_FillScreen(0xFFFF);
+	
+	EnableInterrupts();
+	LED_Init();
+	PortC_Init();
+	
   NumCreated = 0;
   // create initial foreground threads
   NumCreated += OS_AddPeriodicThread(&lcd_task, 1000 * TIME_1MS, 1);
   OS_Launch(TIMESLICE); // doesn't return, interrupts enabled in here
   return 0;
 }
-
 
 void lcd_testtask(void)
 {
@@ -746,32 +765,16 @@ int sensor_testmain(void) {
   return 0;
 }
 
-void PortC_Init(void)
-{
-	//SYSCTL_RCGC2_R SYSCTL_RCGCGPIO_R
-	//LED_GREEN_TOGGLE();
-  SYSCTL_RCGC2_R |= 0x04; // activate port C
-  while ((SYSCTL_RCGC2_R & 0x04) == 0){};
-		
-  GPIO_PORTC_DIR_R |= 0xC0;    // make PC6-7 output heartbeats
-  GPIO_PORTC_AFSEL_R &= ~0xC0; // disable alt funct on PC6-7
-  GPIO_PORTC_DEN_R |= 0x0F;    // enable digital I/O on PC6-7
-  GPIO_PORTC_PCTL_R = ~0xFF000000;
-  GPIO_PORTC_AMSEL_R &= ~0xC0; // disable analog functionality on PC6-7
-}
-
 int pc6,pc7 =0;
-
+static int count = 0;
 void portc_task(void)
 {
-  while(1)
-  {
-		pc6 = (GPIO_PORTC_DATA_R & 0x40) >> 6;
-		pc7 = (GPIO_PORTC_DATA_R & 0x80) >> 7;
-    ST7735_Message(0, 0, "PC6: ", pc6);
-    ST7735_Message(0, 1, "PC7 : ", pc7);
+		//pc6 = (GPIO_PORTC_DATA_R & 0x40) >> 6;
+		//pc7 = (GPIO_PORTC_DATA_R & 0x80) >> 7;
+    //ST7735_Message(0, 0, "PC6: ", 0);
+    //ST7735_Message(0, 1, "PC7 : ", 0);
+    ST7735_Message(0, 1, "Hello world", count++);
     //OS_Sleep(5);
-  }
 }
 
 void delay100ms(unsigned long numOf100msDelays)
@@ -789,29 +792,10 @@ void delay100ms(unsigned long numOf100msDelays)
 	}
 }
 
-unsigned long in, delay, dataRegIn;
-
-int sensor_back_main(void) {
-  OS_Init();
-	//PLL_Init(Bus80MHz);
-	ST7735_InitR(INITR_REDTAB);
-  ST7735_FillScreen(0xFFFF);
-	EnableInterrupts();
-  //LED_Init();
-  //PortC_Init();
-		SYSCTL_RCGC2_R |= 0x04;           // Port C clock
-  delay = SYSCTL_RCGC2_R;           // wait 3-5 bus cycles
-  GPIO_PORTC_DIR_R |= 0x40;         // PC6 output
-  GPIO_PORTC_DIR_R &= ~0x80;        // PC7 input 
-  GPIO_PORTC_AFSEL_R &= ~0xC0;      // not alternative
-  GPIO_PORTC_AMSEL_R &= ~0xC0;      // no analog
-  GPIO_PORTC_PCTL_R &= ~0xFF000000; // bits for PE1, PE0
-  GPIO_PORTC_DEN_R |= 0xC0;         // enable PE1, PE0
-	
-	GPIO_PORTC_DATA_R |= 0x40; //start with LED on (PE1 = 1)
-	while(1){
+void led_flash_task(void){
     delay100ms(1); //delay for (1) 100 ms interval
-    in = (GPIO_PORTC_DATA_R&0x80); // in 0 if not pressed, 1 if pressed
+    in = (GPIO_PORTC_DATA_R&0x80)|(GPIO_PORTC_DATA_R&0x40); // in 0 if not pressed, 1 if pressed
+		in = (GPIO_PORTC_DATA_R&0x80); // in 0 if not pressed, 1 if pressed
 		//If switch pressed (PE0=1), toggle LED once, else turn LED ON
     //out = (in xor 0x01) << 1 (shift to PE1 LED output)
 		//so out = 1 if switch NOT pressed (0 xor 1 = 1 = LED ON)
@@ -821,30 +805,49 @@ int sensor_back_main(void) {
 		//to toggle it off when switch pressed
 		//did NOT work!  LED did not toggle
     //out = (in^0x01)<<1;   // out 2 if not pressed, 0 if switch pressed
-    if (in == 0x80) //PE0 = switch = pressed
+	  if (in == 0x80) //PE0 = switch = pressed
+    //if ((in == 0xC0)|(in == 0x40)|(in == 0x80)) //PE0 = switch = pressed
 		{
-			dataRegIn = GPIO_PORTC_DATA_R & 0x40;
-			if (dataRegIn == 0) //PF2 = 0 = LED off
-				{ //LED off, toggle LED once (turn it on)
-					GPIO_PORTC_DATA_R |= 0x40; //turn LED on
-				}
-				else //LED on already
-				{ //LED on, toggle LED once (turn off)
-					GPIO_PORTC_DATA_R &= ~(0x40); //turn LED off
-				}
+				LED_RED_TOGGLE();
 		}
-	else
-			GPIO_PORTC_DATA_R |= 0x40; //turn LED on
-	}
+}
+
+void left_bumper_push(void){
+count+=10;
+}
+
+void right_bumper_push(void){
+count+=10;
+
+}
+int sensor_back_main(void) {
+  OS_Init();
+	//PLL_Init(Bus80MHz);
+	ST7735_InitR(INITR_REDTAB);
+  ST7735_FillScreen(0xFFFF);
+	EnableInterrupts();
+  LED_Init();
+  //PortC_Init();
+	NumCreated = 0;
+	NumCreated += OS_AddPeriodicThread(&portc_task, 1000 * TIME_1MS, 2);
+	OS_AddSW2Task(&right_bumper_push, 1);
+	OS_AddSW1Task(&left_bumper_push, 1);
+	OS_AddRightBumperTask(&right_bumper_push, 0);
+	OS_AddLeftBumperTask(&left_bumper_push, 0);
+	NumCreated += OS_AddPeriodicThread(&led_flash_task, 1000 * TIME_1MS, 2);
+  
+
+	
 	//LED_RED_TOGGLE();
 	
 	//OS_AddThread(&portc_task, 128, 2);
 	//OS_AddThread(&lcd_testtask, 128, 3);
-  //OS_Launch(TIMESLICE); // doesn't return, interrupts enabled in here
+  OS_Launch(TIMESLICE); // doesn't return, interrupts enabled in here
   return 0;
 }
 // Main stub
 int main(void)
 {
   return sensor_back_main();
+	//return lcd_testmain();
 }

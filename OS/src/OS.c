@@ -669,6 +669,19 @@ int OS_AddSW2Task(void (*task)(void), unsigned long priority)
   return 0;
 }
 
+int OS_AddLeftBumperTask(void (*task)(void), unsigned long priority)
+{
+  Left_Bumper_Init(task, 0);
+
+  return 0;
+}
+
+int OS_AddRightBumperTask(void (*task)(void), unsigned long priority)
+{
+  Right_Bumper_Init(task, 0);
+  return 0;
+}
+
 void OS_Sleep(unsigned long sleepTime)
 {
   long sr = StartCritical();

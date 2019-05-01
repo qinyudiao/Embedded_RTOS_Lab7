@@ -201,6 +201,10 @@ int OS_AddSW1Task(void (*task)(void), unsigned long priority);
  */
 int OS_AddSW2Task(void (*task)(void), unsigned long priority);
 
+int OS_AddLeftBumperTask(void (*task)(void), unsigned long priority);
+int OS_AddRightBumperTask(void (*task)(void), unsigned long priority);
+
+
 /**
  * Place this thread into a dormant state.
  * You are free to select the time resolution for this function.
