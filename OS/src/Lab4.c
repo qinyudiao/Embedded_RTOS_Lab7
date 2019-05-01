@@ -522,6 +522,13 @@ void sensor_task(void)
   static int openspaceRight = 0;
 
   while(1){    
+		if(((OS_Time() / TIME_1MS) / 1000) > 180){
+			while(1){
+				CAN_MotorTorch(1,1);
+				OS_Sleep(SENSOR_TASK_PERIOD);
+			}
+		}
+			
     Front_Left_angle = lidar_GetData(1) + ANGLELEFT_OFFSET;
     Front_Right_angle = lidar_GetData(0) + ANGELRIGHT_OFFSET;
     Left = IR_GetData(3) + LEFT_OFFSET;
