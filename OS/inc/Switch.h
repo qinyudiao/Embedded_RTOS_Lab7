@@ -37,6 +37,9 @@ void Switch_Init(void(*touchtask)(void), void(*releasetask)(void));
 */
 void Switch2_Init(void(*touchtask)(void), void(*releasetask)(void));
 
+void Left_Bumper_Init(void(*touchtask)(void), void(*releasetask)(void)); //PC7
+void Right_Bumper_Init(void(*touchtask)(void), void(*releasetask)(void)); //PC6
+
 /**
  *  Wait for switch to be pressed 
  *  There will be minimum time delay from touch to when this function returns
