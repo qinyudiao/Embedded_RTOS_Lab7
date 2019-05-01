@@ -671,14 +671,14 @@ int OS_AddSW2Task(void (*task)(void), unsigned long priority)
 
 int OS_AddLeftBumperTask(void (*task)(void), unsigned long priority)
 {
-  Left_Bumper_Init(task, 0);
+  Left_Bumper_Init(task, task);
 
   return 0;
 }
 
 int OS_AddRightBumperTask(void (*task)(void), unsigned long priority)
 {
-  Right_Bumper_Init(task, 0);
+  Right_Bumper_Init(task, task);
   return 0;
 }
 

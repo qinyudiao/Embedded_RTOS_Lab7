@@ -26,7 +26,6 @@
 // PF4 connected to a negative logic switch using internal pull-up (trigger on both edges)
 #include <stdint.h>
 #include "tm4c123gh6pm.h"
-#include "ST7735.h"
 
 #define PF0 (*((volatile unsigned long *)0x40025004))
 #define PF1 (*((volatile unsigned long *)0x40025008))
@@ -160,7 +159,7 @@ void Right_Bumper_Init(void (*touchtask)(void), void (*releasetask)(void))
   ReleaseTask6 = releasetask;  // user function
   Touch6 = 0;                  // allow time to finish activating
   Release6 = 0;
-  LastPC6 = PC7; // initial switch state
+  LastPC6 = PC6; // initial switch state
 }
 
 void Switch2_Init(void (*touchtask)(void), void (*releasetask)(void))
@@ -180,7 +179,7 @@ void Left_Bumper_Init(void (*touchtask)(void), void (*releasetask)(void))
   ReleaseTask7 = releasetask; // user function
   Touch7 = 0;                 // allow time to finish activating
   Release7 = 0;
-  LastPC7 = PC6; // initial switch state
+  LastPC7 = PC7; // initial switch state
 }
 
 // Interrupt on rising or falling edge of PF4 (CCP0)
@@ -236,22 +235,16 @@ void GPIOPortC_Handler(void)
 {
   GPIO_PORTC_IM_R &= ~0xC0; // disarm interrupt on PC6-7
 	
-	ST7735_Message(0, 2, "LastPC6:", LastPC6);
-	ST7735_Message(0, 3, "LastPC7:", LastPC7);
-	int in_data_r = GPIO_PORTC_DATA_R;
-	ST7735_Message(0, 4, "PORTC_DATA_R:", in_data_r);
-	in_data_r = GPIO_PORTC_DATA_R;
-	ST7735_Message(0, 4, "PORTC_DATA_R:", in_data_r);
   if ((LastPC7&0x80) == 0x80)
   { // 0x10 means it was previously released
 
-    //if ((GPIO_PORTC_DATA_R&0x40) ==0x40){
+    if ((GPIO_PORTC_DATA_R&0x80) ==0x80){
       Touch7 = 1; // touch occurred
       if (TouchTask7)
       {
         TouchTask7(); // execute user task
       }
-    //}
+    }
   }
   else
   {
@@ -264,7 +257,7 @@ void GPIOPortC_Handler(void)
 
   if ((LastPC6&0x40) == 0x40)
   { // 0x10 means it was previously released
-    if (GPIO_PORTC_DATA_R == 0x80)
+    if ((GPIO_PORTC_DATA_R)&0x40 == 0x40)
     {
       Touch6 = 1; // touch occurred
       if (TouchTask6)
