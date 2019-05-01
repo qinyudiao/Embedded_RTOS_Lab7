@@ -726,8 +726,8 @@ void lcd_testtask(void)
   {
     ST7735_Message(0, 0, "lidar 0: ", lidar_GetData(0));
     ST7735_Message(0, 1, "lidar 1:", lidar_GetData(1));
-    ST7735_Message(0, 2, "lidar 2:", lidar_GetData(2));
-    ST7735_Message(0, 3, "lidar 3:", lidar_GetData(3));
+//    ST7735_Message(0, 2, "lidar 2:", lidar_GetData(2));
+//    ST7735_Message(0, 3, "lidar 3:", lidar_GetData(3));
 
     OS_Sleep(5);
   }

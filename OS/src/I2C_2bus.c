@@ -232,8 +232,8 @@ void I2C_Init()
 int I2C_read(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint32_t count, int deviceIndex)
 {
 
-    //    long sr = StartCritical();
-    if (deviceIndex == 0)
+        long sr = StartCritical();
+    if (deviceIndex == 0 || deviceIndex == 1)
     {
         int retryCounter = 1;
 
@@ -254,7 +254,7 @@ int I2C_read(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint3
         // check error bits
         if ((I2C0_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR)) != 0)
         {
-            // EndCritical(sr);
+            EndCritical(sr);
             return (I2C0_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
 
@@ -349,7 +349,7 @@ int I2C_read(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint3
 
             break;
         }
-        // EndCritical(sr);
+        EndCritical(sr);
         return (I2C0_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
 #elif I2C_BUS1 == I2C1
         while (I2C1_MCS_R & I2C_MCS_BUSY)
@@ -368,7 +368,7 @@ int I2C_read(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint3
         // check error bits
         if ((I2C1_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR)) != 0)
         {
-            // EndCritical(sr);
+            EndCritical(sr);
             return (I2C1_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
 
@@ -463,7 +463,7 @@ int I2C_read(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint3
 
             break;
         }
-        // EndCritical(sr);
+        EndCritical(sr);
         return (I2C1_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
 #elif I2C_BUS1 == I2C2
         while (I2C2_MCS_R & I2C_MCS_BUSY)
@@ -482,7 +482,7 @@ int I2C_read(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint3
         // check error bits
         if ((I2C2_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR)) != 0)
         {
-            // EndCritical(sr);
+            EndCritical(sr);
             return (I2C2_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
 
@@ -577,7 +577,7 @@ int I2C_read(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint3
 
             break;
         }
-        // EndCritical(sr);
+        EndCritical(sr);
         return (I2C2_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
 #elif I2C_BUS1 == I2C3
         while (I2C3_MCS_R & I2C_MCS_BUSY)
@@ -596,7 +596,7 @@ int I2C_read(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint3
         // check error bits
         if ((I2C3_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR)) != 0)
         {
-            // EndCritical(sr);
+            EndCritical(sr);
             return (I2C3_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
 
@@ -691,11 +691,11 @@ int I2C_read(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint3
 
             break;
         }
-        // EndCritical(sr);
+        EndCritical(sr);
         return (I2C3_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
 #endif
     }
-    else if (deviceIndex == 1) {
+    else if (deviceIndex == 2 || deviceIndex == 3) {
                 int retryCounter = 1;
 
 #if I2C_BUS2 == I2C0
@@ -715,7 +715,7 @@ int I2C_read(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint3
         // check error bits
         if ((I2C0_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR)) != 0)
         {
-            // EndCritical(sr);
+            EndCritical(sr);
             return (I2C0_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
 
@@ -810,7 +810,7 @@ int I2C_read(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint3
 
             break;
         }
-        // EndCritical(sr);
+        EndCritical(sr);
         return (I2C0_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
 #elif I2C_BUS2 == I2C1
         while (I2C1_MCS_R & I2C_MCS_BUSY)
@@ -829,7 +829,7 @@ int I2C_read(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint3
         // check error bits
         if ((I2C1_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR)) != 0)
         {
-            // EndCritical(sr);
+            EndCritical(sr);
             return (I2C1_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
 
@@ -924,7 +924,7 @@ int I2C_read(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint3
 
             break;
         }
-        // EndCritical(sr);
+        EndCritical(sr);
         return (I2C1_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
 #elif I2C_BUS2 == I2C2
         while (I2C2_MCS_R & I2C_MCS_BUSY)
@@ -943,7 +943,7 @@ int I2C_read(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint3
         // check error bits
         if ((I2C2_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR)) != 0)
         {
-            // EndCritical(sr);
+            EndCritical(sr);
             return (I2C2_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
 
@@ -1038,7 +1038,7 @@ int I2C_read(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint3
 
             break;
         }
-        // EndCritical(sr);
+        EndCritical(sr);
         return (I2C2_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
 #elif I2C_BUS2 == I2C3
         while (I2C3_MCS_R & I2C_MCS_BUSY)
@@ -1057,7 +1057,7 @@ int I2C_read(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint3
         // check error bits
         if ((I2C3_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR)) != 0)
         {
-            // EndCritical(sr);
+            EndCritical(sr);
             return (I2C3_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
 
@@ -1152,11 +1152,11 @@ int I2C_read(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint3
 
             break;
         }
-        // EndCritical(sr);   
+        EndCritical(sr);   
         return (I2C3_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
 #endif
     }
-    // EndCritical(sr);
+    EndCritical(sr);
 }
 
 /**
@@ -1171,8 +1171,8 @@ int I2C_read(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint3
  */
 int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint32_t count, int deviceIndex)
 {
-//    long sr = StartCritical();
-    if (deviceIndex == 0) {
+    long sr = StartCritical();
+    if (deviceIndex == 0 || deviceIndex == 1) {
 
 #if I2C_BUS1 == I2C0
         while (I2C0_MCS_R & I2C_MCS_BUSY)
@@ -1192,7 +1192,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
         {
             I2C0_MCS_R = I2C_MCS_STOP; // stop transmission
             // return error bits if nonzero
-            // EndCritical(sr);
+            EndCritical(sr);
             return (I2C0_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
 
@@ -1205,7 +1205,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
             {
             }; // wait for transmission done
             // return error bits
-            // EndCritical(sr);
+            EndCritical(sr);
             return (I2C0_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
         else
@@ -1222,7 +1222,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
                 {
                     I2C0_MCS_R = I2C_MCS_STOP; // stop transmission
                     // return error bits if nonzero
-                    // EndCritical(sr);
+                    EndCritical(sr);
                     return (I2C0_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
                 }
             }
@@ -1234,7 +1234,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
             {
             }; // wait for transmission done
             // return error bits
-            // EndCritical(sr);
+            EndCritical(sr);
             return (I2C0_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
 #elif I2C_BUS1 == I2C1
@@ -1255,7 +1255,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
         {
             I2C1_MCS_R = I2C_MCS_STOP; // stop transmission
             // return error bits if nonzero
-            // EndCritical(sr);
+            EndCritical(sr);
             return (I2C1_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
 
@@ -1268,7 +1268,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
             {
             }; // wait for transmission done
             // return error bits
-            // EndCritical(sr);
+            EndCritical(sr);
             return (I2C1_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
         else
@@ -1285,7 +1285,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
                 {
                     I2C1_MCS_R = I2C_MCS_STOP; // stop transmission
                     // return error bits if nonzero
-                    // EndCritical(sr);
+                    EndCritical(sr);
                     return (I2C1_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
                 }
             }
@@ -1297,7 +1297,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
             {
             }; // wait for transmission done
             // return error bits
-            // EndCritical(sr);
+            EndCritical(sr);
             return (I2C1_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
 #elif I2C_BUS1 == I2C2
@@ -1318,7 +1318,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
         {
             I2C2_MCS_R = I2C_MCS_STOP; // stop transmission
             // return error bits if nonzero
-            // EndCritical(sr);
+            EndCritical(sr);
             return (I2C2_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
 
@@ -1331,7 +1331,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
             {
             }; // wait for transmission done
             // return error bits
-            // EndCritical(sr);
+            EndCritical(sr);
             return (I2C2_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
         else
@@ -1348,7 +1348,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
                 {
                     I2C2_MCS_R = I2C_MCS_STOP; // stop transmission
                     // return error bits if nonzero
-                    // EndCritical(sr);
+                    EndCritical(sr);
                     return (I2C2_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
                 }
             }
@@ -1360,7 +1360,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
             {
             }; // wait for transmission done
             // return error bits
-            // EndCritical(sr);
+            EndCritical(sr);
             return (I2C2_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
 #elif I2C_BUS1 == I2C3
@@ -1381,7 +1381,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
         {
             I2C3_MCS_R = I2C_MCS_STOP; // stop transmission
             // return error bits if nonzero
-            // EndCritical(sr);
+            EndCritical(sr);
             return (I2C3_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
 
@@ -1394,7 +1394,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
             {
             }; // wait for transmission done
             // return error bits
-            // EndCritical(sr);
+            EndCritical(sr);
             return (I2C3_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
         else
@@ -1411,7 +1411,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
                 {
                     I2C3_MCS_R = I2C_MCS_STOP; // stop transmission
                     // return error bits if nonzero
-                    // EndCritical(sr);
+                    EndCritical(sr);
                     return (I2C3_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
                 }
             }
@@ -1423,12 +1423,12 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
             {
             }; // wait for transmission done
             // return error bits
-            // EndCritical(sr);
+            EndCritical(sr);
             return (I2C3_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
 #endif
     }
-    else if (deviceIndex == 1) {
+    else if (deviceIndex == 2 || deviceIndex == 3) {
 #if I2C_BUS2 == I2C0
         while (I2C0_MCS_R & I2C_MCS_BUSY)
         {
@@ -1447,7 +1447,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
         {
             I2C0_MCS_R = I2C_MCS_STOP; // stop transmission
             // return error bits if nonzero
-            // EndCritical(sr);
+            EndCritical(sr);
             return (I2C0_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
 
@@ -1460,7 +1460,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
             {
             }; // wait for transmission done
             // return error bits
-            // EndCritical(sr);
+            EndCritical(sr);
             return (I2C0_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
         else
@@ -1477,7 +1477,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
                 {
                     I2C0_MCS_R = I2C_MCS_STOP; // stop transmission
                     // return error bits if nonzero
-                    // EndCritical(sr);
+                    EndCritical(sr);
                     return (I2C0_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
                 }
             }
@@ -1489,7 +1489,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
             {
             }; // wait for transmission done
             // return error bits
-            // EndCritical(sr);
+            EndCritical(sr);
             return (I2C0_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
 #elif I2C_BUS2 == I2C1
@@ -1510,7 +1510,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
         {
             I2C1_MCS_R = I2C_MCS_STOP; // stop transmission
             // return error bits if nonzero
-            // EndCritical(sr);
+            EndCritical(sr);
             return (I2C1_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
 
@@ -1523,7 +1523,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
             {
             }; // wait for transmission done
             // return error bits
-            // EndCritical(sr);
+            EndCritical(sr);
             return (I2C1_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
         else
@@ -1540,7 +1540,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
                 {
                     I2C1_MCS_R = I2C_MCS_STOP; // stop transmission
                     // return error bits if nonzero
-                        // EndCritical(sr);
+                        EndCritical(sr);
                     return (I2C1_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
                 }
             }
@@ -1552,7 +1552,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
             {
             }; // wait for transmission done
             // return error bits
-                // EndCritical(sr);
+                EndCritical(sr);
 
             return (I2C1_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
@@ -1574,7 +1574,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
         {
             I2C2_MCS_R = I2C_MCS_STOP; // stop transmission
             // return error bits if nonzero
-                // EndCritical(sr);
+                EndCritical(sr);
 
             return (I2C2_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
@@ -1588,7 +1588,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
             {
             }; // wait for transmission done
             // return error bits
-                // EndCritical(sr);
+                EndCritical(sr);
 
             return (I2C2_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
@@ -1606,7 +1606,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
                 {
                     I2C2_MCS_R = I2C_MCS_STOP; // stop transmission
                     // return error bits if nonzero
-                        // EndCritical(sr);
+                        EndCritical(sr);
 
                     return (I2C2_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
                 }
@@ -1619,7 +1619,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
             {
             }; // wait for transmission done
             // return error bits
-                // EndCritical(sr);
+                EndCritical(sr);
 
             return (I2C2_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
@@ -1641,7 +1641,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
         {
             I2C3_MCS_R = I2C_MCS_STOP; // stop transmission
             // return error bits if nonzero
-                // EndCritical(sr);
+                EndCritical(sr);
 
             return (I2C3_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
@@ -1655,7 +1655,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
             {
             }; // wait for transmission done
             // return error bits
-                // EndCritical(sr);
+                EndCritical(sr);
 
             return (I2C3_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
@@ -1673,7 +1673,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
                 {
                     I2C3_MCS_R = I2C_MCS_STOP; // stop transmission
                     // return error bits if nonzero
-                        // EndCritical(sr);
+                        EndCritical(sr);
 
                     return (I2C3_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
                 }
@@ -1686,13 +1686,13 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
             {
             }; // wait for transmission done
             // return error bits
-                // EndCritical(sr);
+                EndCritical(sr);
 
             return (I2C3_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
 #endif
     }
-    // EndCritical(sr);
+    EndCritical(sr);
 }
 
 /**

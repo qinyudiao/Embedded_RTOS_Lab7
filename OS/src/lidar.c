@@ -42,9 +42,9 @@ void lidar_task0(void)
 {
 
 		while(1) {
-		  LED_BLUE_ON();
+//		  LED_BLUE_ON();
 			lidar_data[0] = lidar_GetMeasurement(0);
-			LED_BLUE_OFF();
+//			LED_BLUE_OFF();
 			OS_bWait(&serial);
 			printf("lidar 0: %d mm\n\r", lidar_data[0]);
 			OS_bSignal(&serial);
@@ -54,9 +54,9 @@ void lidar_task0(void)
 void lidar_task1(void)
 {
 			while(1) {
-			LED_GREEN_ON();
+//			LED_GREEN_ON();
 			lidar_data[1] = lidar_GetMeasurement(1);
-			LED_GREEN_OFF();
+//			LED_GREEN_OFF();
 			OS_bWait(&serial);
 			printf("lidar 1: %d mm\n\r", lidar_data[1]);
 			OS_bSignal(&serial);
@@ -89,16 +89,16 @@ void lidar_task3(void)
 int lidar_Init(void)
 {
 	I2C_Init(); // must initialize I2C before initialize VL53L0X
-	xshut_Init();
+	// xshut_Init();
 
 	// PD2
 	if (VL53L0X_Init(VL53L0X_I2C_ADDR, 0))
 	{		
-		if (!VL53L0X_setAddress(VL53L0X_I2C_ADDR + 1, 0))
-		{ // can change address after initialization
-			LED_BLUE_TOGGLE();
-			return -1;
-		}
+//		if (!VL53L0X_setAddress(VL53L0X_I2C_ADDR + 1, 0))
+//		{ // can change address after initialization
+//			LED_BLUE_TOGGLE();
+//			return -1;
+//		}
 		OS_AddThread(&lidar_task0, 128, 1);
 	}
 	else
@@ -107,20 +107,20 @@ int lidar_Init(void)
 		return -1;
 	}
 
-	if (VL53L0X_Init(VL53L0X_I2C_ADDR, 2))
-	{
-		if (!VL53L0X_setAddress(VL53L0X_I2C_ADDR + 2, 2))	{ // can change address after initialization
-			LED_GREEN_TOGGLE();
-			return -1;
-		}
-		OS_AddThread(&lidar_task2, 128, 1);
-	}
-	else
-	{
-		LED_GREEN_TOGGLE();
-		return -1;
-	}
-	xshut_Switch();
+//	if (VL53L0X_Init(VL53L0X_I2C_ADDR, 2))
+//	{
+//		if (!VL53L0X_setAddress(VL53L0X_I2C_ADDR + 2, 2))	{ // can change address after initialization
+//			LED_GREEN_TOGGLE();
+//			return -1;
+//		}
+//		OS_AddThread(&lidar_task2, 128, 1);
+//	}
+//	else
+//	{
+//		LED_GREEN_TOGGLE();
+//		return -1;
+//	}
+//	xshut_Switch();
 
 	if (VL53L0X_Init(VL53L0X_I2C_ADDR, 1))
 	{
@@ -132,16 +132,15 @@ int lidar_Init(void)
 		return -1;
 	}
 
-
-	if (VL53L0X_Init(VL53L0X_I2C_ADDR, 3))
-	{
-		OS_AddThread(&lidar_task3, 128, 1);
-	}
-	else
-	{
-		LED_GREEN_TOGGLE();
-		return -1;
-	}
+//	if (VL53L0X_Init(VL53L0X_I2C_ADDR, 3))
+//	{
+//		OS_AddThread(&lidar_task3, 128, 1);
+//	}
+//	else
+//	{
+//		LED_GREEN_TOGGLE();
+//		return -1;
+//	}
 	OS_InitSemaphore(&serial, 1);
 	return 0;
 }
