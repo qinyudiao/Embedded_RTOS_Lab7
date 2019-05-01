@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>EE445M/EE380L Lab 6 Documentation: inc/ADC.h File Reference</title>
+<title>EE445M/EE380L Lab 7 Documentation: inc/ADC.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">EE445M/EE380L Lab 6 Documentation
+   <div id="projectname">EE445M/EE380L Lab 7 Documentation
    </div>
   </td>
  </tr>
@@ -115,6 +115,8 @@ Functions</h2></td></tr>
 <tr class="memitem:a262f417393c62f81b4a37b3019b32095"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ADC_8h.html#a262f417393c62f81b4a37b3019b32095">ADC_Collect</a> (uint32_t channelNum, uint32_t fs, void(*handler)(unsigned long))</td></tr>
 <tr class="memdesc:a262f417393c62f81b4a37b3019b32095"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kick off collection of a sequence of samples to be passed to a user-provided handler. The ADC and Timer will be configured to collect samples at frequency fs.  <a href="#a262f417393c62f81b4a37b3019b32095">More...</a><br /></td></tr>
 <tr class="separator:a262f417393c62f81b4a37b3019b32095"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b480ef1a1b6e416cec239c43fb7d7ba"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ADC_8h.html#a2b480ef1a1b6e416cec239c43fb7d7ba">ADC_Collect4Chan</a> (uint32_t channels[], uint32_t fs, void(*handler)(unsigned long))</td></tr>
+<tr class="separator:a2b480ef1a1b6e416cec239c43fb7d7ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>ADC driver for the TM4C123G. Provides interfaces for collecting single samples or a series at a given sampling frequency. Does not allow for sampling of more than one channel at any given time. Timer 2 is reserved for this driver. </p>
@@ -160,6 +162,39 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>int 0 on success, -1 on failure. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a2b480ef1a1b6e416cec239c43fb7d7ba"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ADC_Collect4Chan </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>channels</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>fs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void(*)(unsigned long)&#160;</td>
+          <td class="paramname"><em>handler</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>channels: 4 element array with each element indiciating one channel to open </p>
 
 </div>
 </div>

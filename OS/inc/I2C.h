@@ -1,13 +1,10 @@
-/*!
- * @file  I2C.h
+/**
+ * @file
  * @brief TM4C123G I2C APIs and some settings.
- * ----------
  * For future development and updates, please follow this repository:
- * ----------
  * If you find any bug or problem, please create new issue or a pull request with a fix in the repository.
  * Or you can simply email me about the problem or bug at zeelivermorium@gmail.com
  * Much Appreciated!
- * ----------
  * @author Zee Livermorium
  * @date   Aug 4, 2018
  */

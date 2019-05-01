@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>EE445M/EE380L Lab 6 Documentation: inc/I2C.h File Reference</title>
+<title>EE445M/EE380L Lab 7 Documentation: inc/I2C.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">EE445M/EE380L Lab 6 Documentation
+   <div id="projectname">EE445M/EE380L Lab 7 Documentation
    </div>
   </td>
  </tr>
@@ -97,6 +97,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>TM4C123G I2C APIs and some settings. For future development and updates, please follow this repository: If you find any bug or problem, please create new issue or a pull request with a fix in the repository. Or you can simply email me about the problem or bug at <a href="#" onclick="location.href='mai'+'lto:'+'zee'+'li'+'ver'+'mo'+'riu'+'m@'+'gma'+'il'+'.co'+'m'; return false;">zeeli<span style="display: none;">.nosp@m.</span>verm<span style="display: none;">.nosp@m.</span>orium<span style="display: none;">.nosp@m.</span>@gma<span style="display: none;">.nosp@m.</span>il.co<span style="display: none;">.nosp@m.</span>m</a> Much Appreciated!  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &quot;VL53L0X.h&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for I2C.h:</div>
 <div class="dyncontent">
@@ -105,43 +106,82 @@ Include dependency graph for I2C.h:</div>
 </div>
 <p><a href="I2C_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:afd22ae9e638c5d0767f8a33c3e4e7a26"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afd22ae9e638c5d0767f8a33c3e4e7a26"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>I2C_BUS1</b>&#160;&#160;&#160;I2C0</td></tr>
+<tr class="separator:afd22ae9e638c5d0767f8a33c3e4e7a26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac977296f9dad0d22ae727851c5e8ba94"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac977296f9dad0d22ae727851c5e8ba94"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>I2C_BUS2</b>&#160;&#160;&#160;I2C3</td></tr>
+<tr class="separator:ac977296f9dad0d22ae727851c5e8ba94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86abb2e8858d177c04e60c41e9242045"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a86abb2e8858d177c04e60c41e9242045"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>I2C0</b>&#160;&#160;&#160;0xabcc</td></tr>
+<tr class="separator:a86abb2e8858d177c04e60c41e9242045"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab45d257574da6fe1f091cc45b7eda6cc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab45d257574da6fe1f091cc45b7eda6cc"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>I2C1</b>&#160;&#160;&#160;0xabcd</td></tr>
+<tr class="separator:ab45d257574da6fe1f091cc45b7eda6cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa60ac20c1921ef1002083bb3e1f5d16"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afa60ac20c1921ef1002083bb3e1f5d16"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>I2C2</b>&#160;&#160;&#160;0xabce</td></tr>
+<tr class="separator:afa60ac20c1921ef1002083bb3e1f5d16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1489b37ed2bca9d9c659119590583bda"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1489b37ed2bca9d9c659119590583bda"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>I2C3</b>&#160;&#160;&#160;0xabcf</td></tr>
+<tr class="separator:a1489b37ed2bca9d9c659119590583bda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a84df9a5887b8b8230cfe85d18e53900e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a84df9a5887b8b8230cfe85d18e53900e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="I2C_8h.html#a84df9a5887b8b8230cfe85d18e53900e">I2C_Init</a> (void)</td></tr>
-<tr class="memdesc:a84df9a5887b8b8230cfe85d18e53900e"><td class="mdescLeft">&#160;</td><td class="mdescRight">initialize a I2C module with corresponding setting parameters. <br /></td></tr>
+<tr class="memitem:a84df9a5887b8b8230cfe85d18e53900e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="I2C_8h.html#a84df9a5887b8b8230cfe85d18e53900e">I2C_Init</a> (void)</td></tr>
+<tr class="memdesc:a84df9a5887b8b8230cfe85d18e53900e"><td class="mdescLeft">&#160;</td><td class="mdescRight">initialize a I2C module with corresponding setting parameters.  <a href="#a84df9a5887b8b8230cfe85d18e53900e">More...</a><br /></td></tr>
 <tr class="separator:a84df9a5887b8b8230cfe85d18e53900e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa2eca5eb27ebd77458e7584703467dde"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="I2C_8h.html#aa2eca5eb27ebd77458e7584703467dde">I2C_read</a> (uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint32_t count)</td></tr>
-<tr class="memdesc:aa2eca5eb27ebd77458e7584703467dde"><td class="mdescLeft">&#160;</td><td class="mdescRight">read 1 or more bytes from slave device.  <a href="#aa2eca5eb27ebd77458e7584703467dde">More...</a><br /></td></tr>
-<tr class="separator:aa2eca5eb27ebd77458e7584703467dde"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45152120709fb4ad8a0d0f2f81f5f489"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="I2C_8h.html#a45152120709fb4ad8a0d0f2f81f5f489">I2C_write</a> (uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint32_t count)</td></tr>
-<tr class="memdesc:a45152120709fb4ad8a0d0f2f81f5f489"><td class="mdescLeft">&#160;</td><td class="mdescRight">write 1 or more bytes to slave device.  <a href="#a45152120709fb4ad8a0d0f2f81f5f489">More...</a><br /></td></tr>
-<tr class="separator:a45152120709fb4ad8a0d0f2f81f5f489"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8596118ce5d9e43a3cde3bb9997bdb60"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="I2C_8h.html#a8596118ce5d9e43a3cde3bb9997bdb60">I2C_read_byte</a> (uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data)</td></tr>
-<tr class="memdesc:a8596118ce5d9e43a3cde3bb9997bdb60"><td class="mdescLeft">&#160;</td><td class="mdescRight">read 1 byte from slave device.  <a href="#a8596118ce5d9e43a3cde3bb9997bdb60">More...</a><br /></td></tr>
-<tr class="separator:a8596118ce5d9e43a3cde3bb9997bdb60"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad48380f04cae816c568f7ace0f39ccd6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="I2C_8h.html#ad48380f04cae816c568f7ace0f39ccd6">I2C_write_byte</a> (uint8_t deviceAddress, uint8_t targetRegister, uint8_t data)</td></tr>
-<tr class="memdesc:ad48380f04cae816c568f7ace0f39ccd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">write 1 byte to slave device.  <a href="#ad48380f04cae816c568f7ace0f39ccd6">More...</a><br /></td></tr>
-<tr class="separator:ad48380f04cae816c568f7ace0f39ccd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af86edfe5e765d79f017440af3e22209d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="I2C_8h.html#af86edfe5e765d79f017440af3e22209d">I2C_read_2_bytes</a> (uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data)</td></tr>
-<tr class="memdesc:af86edfe5e765d79f017440af3e22209d"><td class="mdescLeft">&#160;</td><td class="mdescRight">read 2 bytes from slave device.  <a href="#af86edfe5e765d79f017440af3e22209d">More...</a><br /></td></tr>
-<tr class="separator:af86edfe5e765d79f017440af3e22209d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5ea573eeb06a0314a5e36fdbe01303e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="I2C_8h.html#ad5ea573eeb06a0314a5e36fdbe01303e">I2C_write_2_bytes</a> (uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data)</td></tr>
-<tr class="memdesc:ad5ea573eeb06a0314a5e36fdbe01303e"><td class="mdescLeft">&#160;</td><td class="mdescRight">write 2 bytes to slave device.  <a href="#ad5ea573eeb06a0314a5e36fdbe01303e">More...</a><br /></td></tr>
-<tr class="separator:ad5ea573eeb06a0314a5e36fdbe01303e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5fbda826f261d78150bb95b9bcf5064"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="I2C_8h.html#ad5fbda826f261d78150bb95b9bcf5064">I2C_read_4_bytes</a> (uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data)</td></tr>
-<tr class="memdesc:ad5fbda826f261d78150bb95b9bcf5064"><td class="mdescLeft">&#160;</td><td class="mdescRight">read 4 bytes from slave device.  <a href="#ad5fbda826f261d78150bb95b9bcf5064">More...</a><br /></td></tr>
-<tr class="separator:ad5fbda826f261d78150bb95b9bcf5064"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a69bb29f4b4fd19ba304887847a945521"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="I2C_8h.html#a69bb29f4b4fd19ba304887847a945521">I2C_write_4_bytes</a> (uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data)</td></tr>
-<tr class="memdesc:a69bb29f4b4fd19ba304887847a945521"><td class="mdescLeft">&#160;</td><td class="mdescRight">write 4 bytes to slave device.  <a href="#a69bb29f4b4fd19ba304887847a945521">More...</a><br /></td></tr>
-<tr class="separator:a69bb29f4b4fd19ba304887847a945521"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6311dca0adcbf0893be589af720ef8fe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="I2C_8h.html#a6311dca0adcbf0893be589af720ef8fe">I2C_read</a> (uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint32_t count, int deviceIndex)</td></tr>
+<tr class="memdesc:a6311dca0adcbf0893be589af720ef8fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">read 1 or more bytes from slave device.  <a href="#a6311dca0adcbf0893be589af720ef8fe">More...</a><br /></td></tr>
+<tr class="separator:a6311dca0adcbf0893be589af720ef8fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe4296bb30536589b4fd578dca610657"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="I2C_8h.html#afe4296bb30536589b4fd578dca610657">I2C_write</a> (uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint32_t count, int deviceIndex)</td></tr>
+<tr class="memdesc:afe4296bb30536589b4fd578dca610657"><td class="mdescLeft">&#160;</td><td class="mdescRight">write 1 or more bytes to slave device.  <a href="#afe4296bb30536589b4fd578dca610657">More...</a><br /></td></tr>
+<tr class="separator:afe4296bb30536589b4fd578dca610657"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab715ca8117bb8bf533a95669b35f9d40"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="I2C_8h.html#ab715ca8117bb8bf533a95669b35f9d40">I2C_read_byte</a> (uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, int deviceIndex)</td></tr>
+<tr class="memdesc:ab715ca8117bb8bf533a95669b35f9d40"><td class="mdescLeft">&#160;</td><td class="mdescRight">read 1 byte from slave device.  <a href="#ab715ca8117bb8bf533a95669b35f9d40">More...</a><br /></td></tr>
+<tr class="separator:ab715ca8117bb8bf533a95669b35f9d40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28a07d78adf4635be2310d5297ad831e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="I2C_8h.html#a28a07d78adf4635be2310d5297ad831e">I2C_write_byte</a> (uint8_t deviceAddress, uint8_t targetRegister, uint8_t data, int deviceIndex)</td></tr>
+<tr class="memdesc:a28a07d78adf4635be2310d5297ad831e"><td class="mdescLeft">&#160;</td><td class="mdescRight">write 1 byte to slave device.  <a href="#a28a07d78adf4635be2310d5297ad831e">More...</a><br /></td></tr>
+<tr class="separator:a28a07d78adf4635be2310d5297ad831e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af12d6d347c6133d5249d58d34bce83cc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="I2C_8h.html#af12d6d347c6133d5249d58d34bce83cc">I2C_read_2_bytes</a> (uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, int deviceIndex)</td></tr>
+<tr class="memdesc:af12d6d347c6133d5249d58d34bce83cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">read 2 bytes from slave device.  <a href="#af12d6d347c6133d5249d58d34bce83cc">More...</a><br /></td></tr>
+<tr class="separator:af12d6d347c6133d5249d58d34bce83cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa062f0aa9778b0f040edbc2f52230cc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="I2C_8h.html#aaa062f0aa9778b0f040edbc2f52230cc">I2C_write_2_bytes</a> (uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, int deviceIndex)</td></tr>
+<tr class="memdesc:aaa062f0aa9778b0f040edbc2f52230cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">write 2 bytes to slave device.  <a href="#aaa062f0aa9778b0f040edbc2f52230cc">More...</a><br /></td></tr>
+<tr class="separator:aaa062f0aa9778b0f040edbc2f52230cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69aaba9d80a1f7aabefa2d3a20151b10"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="I2C_8h.html#a69aaba9d80a1f7aabefa2d3a20151b10">I2C_read_4_bytes</a> (uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, int deviceIndex)</td></tr>
+<tr class="memdesc:a69aaba9d80a1f7aabefa2d3a20151b10"><td class="mdescLeft">&#160;</td><td class="mdescRight">read 4 bytes from slave device.  <a href="#a69aaba9d80a1f7aabefa2d3a20151b10">More...</a><br /></td></tr>
+<tr class="separator:a69aaba9d80a1f7aabefa2d3a20151b10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef9b769664090ca77a3cc2196cb68d85"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="I2C_8h.html#aef9b769664090ca77a3cc2196cb68d85">I2C_write_4_bytes</a> (uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, int deviceIndex)</td></tr>
+<tr class="memdesc:aef9b769664090ca77a3cc2196cb68d85"><td class="mdescLeft">&#160;</td><td class="mdescRight">write 4 bytes to slave device.  <a href="#aef9b769664090ca77a3cc2196cb68d85">More...</a><br /></td></tr>
+<tr class="separator:aef9b769664090ca77a3cc2196cb68d85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>TM4C123G I2C APIs and some settings. For future development and updates, please follow this repository: If you find any bug or problem, please create new issue or a pull request with a fix in the repository. Or you can simply email me about the problem or bug at <a href="#" onclick="location.href='mai'+'lto:'+'zee'+'li'+'ver'+'mo'+'riu'+'m@'+'gma'+'il'+'.co'+'m'; return false;">zeeli<span style="display: none;">.nosp@m.</span>verm<span style="display: none;">.nosp@m.</span>orium<span style="display: none;">.nosp@m.</span>@gma<span style="display: none;">.nosp@m.</span>il.co<span style="display: none;">.nosp@m.</span>m</a> Much Appreciated! </p>
 <dl class="section author"><dt>Author</dt><dd>Zee Livermorium </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>Aug 4, 2018 </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="aa2eca5eb27ebd77458e7584703467dde"></a>
+<a class="anchor" id="a84df9a5887b8b8230cfe85d18e53900e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void I2C_Init </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>initialize a I2C module with corresponding setting parameters. </p>
+<h2>I2C_Init </h2>
+
+</div>
+</div>
+<a class="anchor" id="a6311dca0adcbf0893be589af720ef8fe"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -167,7 +207,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="I2C_
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>count</em>&#160;</td>
+          <td class="paramname"><em>count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>deviceIndex</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -178,19 +224,20 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="I2C_
 </div><div class="memdoc">
 
 <p>read 1 or more bytes from slave device. </p>
+<h2>I2C_read </h2>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">deviceAddress</td><td>address of slave device. </td></tr>
     <tr><td class="paramname">targetRegister</td><td>target register of slave device. </td></tr>
-    <tr><td class="paramname">data</td><td>data address to store read data. </td></tr>
-    <tr><td class="paramname">count</td><td>number of bytes to be read. </td></tr>
+    <tr><td class="paramname">data</td><td>data address to store read data. <h2>count number of bytes to be read. </h2>
+</td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a class="anchor" id="af86edfe5e765d79f017440af3e22209d"></a>
+<a class="anchor" id="af12d6d347c6133d5249d58d34bce83cc"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -210,7 +257,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="I2C_
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint8_t *&#160;</td>
-          <td class="paramname"><em>data</em>&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>deviceIndex</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -221,18 +274,19 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="I2C_
 </div><div class="memdoc">
 
 <p>read 2 bytes from slave device. </p>
+<h2>I2C_read_2_bytes </h2>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">deviceAddress</td><td>address of slave device. </td></tr>
-    <tr><td class="paramname">targetRegister</td><td>target register of slave device. </td></tr>
-    <tr><td class="paramname">data</td><td>data address to store read data. </td></tr>
+    <tr><td class="paramname">targetRegister</td><td>target register of slave device. <h2>data data address to store read data. </h2>
+</td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a class="anchor" id="ad5fbda826f261d78150bb95b9bcf5064"></a>
+<a class="anchor" id="a69aaba9d80a1f7aabefa2d3a20151b10"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -252,7 +306,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="I2C_
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint8_t *&#160;</td>
-          <td class="paramname"><em>data</em>&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>deviceIndex</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -263,18 +323,19 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="I2C_
 </div><div class="memdoc">
 
 <p>read 4 bytes from slave device. </p>
+<h2>I2C_read_4_bytes </h2>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">deviceAddress</td><td>address of slave device. </td></tr>
-    <tr><td class="paramname">targetRegister</td><td>target register of slave device. </td></tr>
-    <tr><td class="paramname">data</td><td>data address to store read data. </td></tr>
+    <tr><td class="paramname">targetRegister</td><td>target register of slave device. <h2>data data address to store read data. </h2>
+</td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a class="anchor" id="a8596118ce5d9e43a3cde3bb9997bdb60"></a>
+<a class="anchor" id="ab715ca8117bb8bf533a95669b35f9d40"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -294,7 +355,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="I2C_
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint8_t *&#160;</td>
-          <td class="paramname"><em>data</em>&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>deviceIndex</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -305,18 +372,19 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="I2C_
 </div><div class="memdoc">
 
 <p>read 1 byte from slave device. </p>
+<h2>I2C_read_byte </h2>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">deviceAddress</td><td>address of slave device. </td></tr>
-    <tr><td class="paramname">targetRegister</td><td>target register of slave device. </td></tr>
-    <tr><td class="paramname">data</td><td>data address to store read data. </td></tr>
+    <tr><td class="paramname">targetRegister</td><td>target register of slave device. <h2>data data address to store read data. </h2>
+</td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a class="anchor" id="a45152120709fb4ad8a0d0f2f81f5f489"></a>
+<a class="anchor" id="afe4296bb30536589b4fd578dca610657"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -342,7 +410,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="I2C_
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>count</em>&#160;</td>
+          <td class="paramname"><em>count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>deviceIndex</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -353,19 +427,20 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="I2C_
 </div><div class="memdoc">
 
 <p>write 1 or more bytes to slave device. </p>
+<h2>I2C_write </h2>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">deviceAddress</td><td>address of slave device. </td></tr>
     <tr><td class="paramname">targetRegister</td><td>target register of slave device. </td></tr>
-    <tr><td class="paramname">data</td><td>data address of data to be writen. </td></tr>
-    <tr><td class="paramname">count</td><td>number of bytes to be writen. </td></tr>
+    <tr><td class="paramname">data</td><td>data address of data to be writen. <h2>count number of bytes to be writen. </h2>
+</td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a class="anchor" id="ad5ea573eeb06a0314a5e36fdbe01303e"></a>
+<a class="anchor" id="aaa062f0aa9778b0f040edbc2f52230cc"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -385,7 +460,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="I2C_
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint8_t *&#160;</td>
-          <td class="paramname"><em>data</em>&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>deviceIndex</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -396,18 +477,19 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="I2C_
 </div><div class="memdoc">
 
 <p>write 2 bytes to slave device. </p>
+<h2>I2C_write_2_bytes </h2>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">deviceAddress</td><td>address of slave device. </td></tr>
-    <tr><td class="paramname">targetRegister</td><td>target register of slave device. </td></tr>
-    <tr><td class="paramname">data</td><td>data to be writen. </td></tr>
+    <tr><td class="paramname">targetRegister</td><td>target register of slave device. <h2>data data to be writen. </h2>
+</td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a class="anchor" id="a69bb29f4b4fd19ba304887847a945521"></a>
+<a class="anchor" id="aef9b769664090ca77a3cc2196cb68d85"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -427,7 +509,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="I2C_
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint8_t *&#160;</td>
-          <td class="paramname"><em>data</em>&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>deviceIndex</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -438,18 +526,19 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="I2C_
 </div><div class="memdoc">
 
 <p>write 4 bytes to slave device. </p>
+<h2>I2C_write_4_bytes </h2>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">deviceAddress</td><td>address of slave device. </td></tr>
-    <tr><td class="paramname">targetRegister</td><td>target register of slave device. </td></tr>
-    <tr><td class="paramname">data</td><td>data to be writen. </td></tr>
+    <tr><td class="paramname">targetRegister</td><td>target register of slave device. <h2>data data to be writen. </h2>
+</td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a class="anchor" id="ad48380f04cae816c568f7ace0f39ccd6"></a>
+<a class="anchor" id="a28a07d78adf4635be2310d5297ad831e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -469,7 +558,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="I2C_
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>data</em>&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>deviceIndex</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -480,11 +575,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="I2C_
 </div><div class="memdoc">
 
 <p>write 1 byte to slave device. </p>
+<h2>I2C_write_byte </h2>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">deviceAddress</td><td>address of slave device. </td></tr>
-    <tr><td class="paramname">targetRegister</td><td>target register of slave device. </td></tr>
-    <tr><td class="paramname">data</td><td>data to be writen. </td></tr>
+    <tr><td class="paramname">targetRegister</td><td>target register of slave device. <h2>data data to be writen. </h2>
+</td></tr>
   </table>
   </dd>
 </dl>
