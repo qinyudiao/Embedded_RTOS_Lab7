@@ -831,7 +831,7 @@ int sensor_back_main(void) {
 	NumCreated = 0;
 	NumCreated += OS_AddPeriodicThread(&portc_task, 1000 * TIME_1MS, 2);
 	NumCreated += OS_AddPeriodicThread(&led_flash_task, 1000 * TIME_1MS, 2);
-	OS_AddSW2Task(&right_bumper_push, 1);
+	//OS_AddSW2Task(&right_bumper_push, 1);
 	OS_AddSW1Task(&left_bumper_push, 1);
 	OS_AddRightBumperTask(&right_bumper_push, 0);
 	OS_AddLeftBumperTask(&left_bumper_push, 0);
