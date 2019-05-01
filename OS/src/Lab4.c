@@ -793,9 +793,9 @@ void delay100ms(unsigned long numOf100msDelays)
 }
 
 void led_flash_task(void){
-    delay100ms(1); //delay for (1) 100 ms interval
+    //delay100ms(1); //delay for (1) 100 ms interval
     in = (GPIO_PORTC_DATA_R&0x80)|(GPIO_PORTC_DATA_R&0x40); // in 0 if not pressed, 1 if pressed
-		in = (GPIO_PORTC_DATA_R&0x80); // in 0 if not pressed, 1 if pressed
+		//in = (GPIO_PORTC_DATA_R&0x80); // in 0 if not pressed, 1 if pressed
 		//If switch pressed (PE0=1), toggle LED once, else turn LED ON
     //out = (in xor 0x01) << 1 (shift to PE1 LED output)
 		//so out = 1 if switch NOT pressed (0 xor 1 = 1 = LED ON)
@@ -805,8 +805,8 @@ void led_flash_task(void){
 		//to toggle it off when switch pressed
 		//did NOT work!  LED did not toggle
     //out = (in^0x01)<<1;   // out 2 if not pressed, 0 if switch pressed
-	  if (in == 0x80) //PE0 = switch = pressed
-    //if ((in == 0xC0)|(in == 0x40)|(in == 0x80)) //PE0 = switch = pressed
+	  //if (in == 0x80) //PE0 = switch = pressed
+    if ((in == 0xC0)|(in == 0x40)|(in == 0x80)) //PE0 = switch = pressed
 		{
 				LED_RED_TOGGLE();
 		}
@@ -830,11 +830,12 @@ int sensor_back_main(void) {
   //PortC_Init();
 	NumCreated = 0;
 	NumCreated += OS_AddPeriodicThread(&portc_task, 1000 * TIME_1MS, 2);
+	NumCreated += OS_AddPeriodicThread(&led_flash_task, 1000 * TIME_1MS, 2);
 	OS_AddSW2Task(&right_bumper_push, 1);
 	OS_AddSW1Task(&left_bumper_push, 1);
 	OS_AddRightBumperTask(&right_bumper_push, 0);
 	OS_AddLeftBumperTask(&left_bumper_push, 0);
-	NumCreated += OS_AddPeriodicThread(&led_flash_task, 1000 * TIME_1MS, 2);
+	//NumCreated += OS_AddPeriodicThread(&led_flash_task, 1000 * TIME_1MS, 2);
   
 
 	
