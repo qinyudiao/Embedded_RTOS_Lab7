@@ -6,34 +6,55 @@ T\+M4\+C123G I2C A\+P\+Is and some settings. For future development and updates,
 
 
 {\ttfamily \#include $<$stdint.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}V\+L53\+L0\+X.\+h\char`\"{}}\\*
 Include dependency graph for I2\+C.\+h\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=136pt]{I2C_8h__incl}
+\includegraphics[width=212pt]{I2C_8h__incl}
 \end{center}
 \end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries I2\+C\+\_\+\+B\+U\+S1}~I2\+C0\hypertarget{I2C_8h_afd22ae9e638c5d0767f8a33c3e4e7a26}{}\label{I2C_8h_afd22ae9e638c5d0767f8a33c3e4e7a26}
+
+\item 
+\#define {\bfseries I2\+C\+\_\+\+B\+U\+S2}~I2\+C3\hypertarget{I2C_8h_ac977296f9dad0d22ae727851c5e8ba94}{}\label{I2C_8h_ac977296f9dad0d22ae727851c5e8ba94}
+
+\item 
+\#define {\bfseries I2\+C0}~0xabcc\hypertarget{I2C_8h_a86abb2e8858d177c04e60c41e9242045}{}\label{I2C_8h_a86abb2e8858d177c04e60c41e9242045}
+
+\item 
+\#define {\bfseries I2\+C1}~0xabcd\hypertarget{I2C_8h_ab45d257574da6fe1f091cc45b7eda6cc}{}\label{I2C_8h_ab45d257574da6fe1f091cc45b7eda6cc}
+
+\item 
+\#define {\bfseries I2\+C2}~0xabce\hypertarget{I2C_8h_afa60ac20c1921ef1002083bb3e1f5d16}{}\label{I2C_8h_afa60ac20c1921ef1002083bb3e1f5d16}
+
+\item 
+\#define {\bfseries I2\+C3}~0xabcf\hypertarget{I2C_8h_a1489b37ed2bca9d9c659119590583bda}{}\label{I2C_8h_a1489b37ed2bca9d9c659119590583bda}
+
+\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{I2C_8h_a84df9a5887b8b8230cfe85d18e53900e}{I2\+C\+\_\+\+Init} (void)\hypertarget{I2C_8h_a84df9a5887b8b8230cfe85d18e53900e}{}\label{I2C_8h_a84df9a5887b8b8230cfe85d18e53900e}
-
+void \hyperlink{I2C_8h_a84df9a5887b8b8230cfe85d18e53900e}{I2\+C\+\_\+\+Init} (void)
 \begin{DoxyCompactList}\small\item\em initialize a I2C module with corresponding setting parameters. \end{DoxyCompactList}\item 
-int \hyperlink{I2C_8h_aa2eca5eb27ebd77458e7584703467dde}{I2\+C\+\_\+read} (uint8\+\_\+t device\+Address, uint8\+\_\+t target\+Register, uint8\+\_\+t $\ast$data, uint32\+\_\+t count)
+int \hyperlink{I2C_8h_a6311dca0adcbf0893be589af720ef8fe}{I2\+C\+\_\+read} (uint8\+\_\+t device\+Address, uint8\+\_\+t target\+Register, uint8\+\_\+t $\ast$data, uint32\+\_\+t count, int device\+Index)
 \begin{DoxyCompactList}\small\item\em read 1 or more bytes from slave device. \end{DoxyCompactList}\item 
-int \hyperlink{I2C_8h_a45152120709fb4ad8a0d0f2f81f5f489}{I2\+C\+\_\+write} (uint8\+\_\+t device\+Address, uint8\+\_\+t target\+Register, uint8\+\_\+t $\ast$data, uint32\+\_\+t count)
+int \hyperlink{I2C_8h_afe4296bb30536589b4fd578dca610657}{I2\+C\+\_\+write} (uint8\+\_\+t device\+Address, uint8\+\_\+t target\+Register, uint8\+\_\+t $\ast$data, uint32\+\_\+t count, int device\+Index)
 \begin{DoxyCompactList}\small\item\em write 1 or more bytes to slave device. \end{DoxyCompactList}\item 
-int \hyperlink{I2C_8h_a8596118ce5d9e43a3cde3bb9997bdb60}{I2\+C\+\_\+read\+\_\+byte} (uint8\+\_\+t device\+Address, uint8\+\_\+t target\+Register, uint8\+\_\+t $\ast$data)
+int \hyperlink{I2C_8h_ab715ca8117bb8bf533a95669b35f9d40}{I2\+C\+\_\+read\+\_\+byte} (uint8\+\_\+t device\+Address, uint8\+\_\+t target\+Register, uint8\+\_\+t $\ast$data, int device\+Index)
 \begin{DoxyCompactList}\small\item\em read 1 byte from slave device. \end{DoxyCompactList}\item 
-int \hyperlink{I2C_8h_ad48380f04cae816c568f7ace0f39ccd6}{I2\+C\+\_\+write\+\_\+byte} (uint8\+\_\+t device\+Address, uint8\+\_\+t target\+Register, uint8\+\_\+t data)
+int \hyperlink{I2C_8h_a28a07d78adf4635be2310d5297ad831e}{I2\+C\+\_\+write\+\_\+byte} (uint8\+\_\+t device\+Address, uint8\+\_\+t target\+Register, uint8\+\_\+t data, int device\+Index)
 \begin{DoxyCompactList}\small\item\em write 1 byte to slave device. \end{DoxyCompactList}\item 
-int \hyperlink{I2C_8h_af86edfe5e765d79f017440af3e22209d}{I2\+C\+\_\+read\+\_\+2\+\_\+bytes} (uint8\+\_\+t device\+Address, uint8\+\_\+t target\+Register, uint8\+\_\+t $\ast$data)
+int \hyperlink{I2C_8h_af12d6d347c6133d5249d58d34bce83cc}{I2\+C\+\_\+read\+\_\+2\+\_\+bytes} (uint8\+\_\+t device\+Address, uint8\+\_\+t target\+Register, uint8\+\_\+t $\ast$data, int device\+Index)
 \begin{DoxyCompactList}\small\item\em read 2 bytes from slave device. \end{DoxyCompactList}\item 
-int \hyperlink{I2C_8h_ad5ea573eeb06a0314a5e36fdbe01303e}{I2\+C\+\_\+write\+\_\+2\+\_\+bytes} (uint8\+\_\+t device\+Address, uint8\+\_\+t target\+Register, uint8\+\_\+t $\ast$data)
+int \hyperlink{I2C_8h_aaa062f0aa9778b0f040edbc2f52230cc}{I2\+C\+\_\+write\+\_\+2\+\_\+bytes} (uint8\+\_\+t device\+Address, uint8\+\_\+t target\+Register, uint8\+\_\+t $\ast$data, int device\+Index)
 \begin{DoxyCompactList}\small\item\em write 2 bytes to slave device. \end{DoxyCompactList}\item 
-int \hyperlink{I2C_8h_ad5fbda826f261d78150bb95b9bcf5064}{I2\+C\+\_\+read\+\_\+4\+\_\+bytes} (uint8\+\_\+t device\+Address, uint8\+\_\+t target\+Register, uint8\+\_\+t $\ast$data)
+int \hyperlink{I2C_8h_a69aaba9d80a1f7aabefa2d3a20151b10}{I2\+C\+\_\+read\+\_\+4\+\_\+bytes} (uint8\+\_\+t device\+Address, uint8\+\_\+t target\+Register, uint8\+\_\+t $\ast$data, int device\+Index)
 \begin{DoxyCompactList}\small\item\em read 4 bytes from slave device. \end{DoxyCompactList}\item 
-int \hyperlink{I2C_8h_a69bb29f4b4fd19ba304887847a945521}{I2\+C\+\_\+write\+\_\+4\+\_\+bytes} (uint8\+\_\+t device\+Address, uint8\+\_\+t target\+Register, uint8\+\_\+t $\ast$data)
+int \hyperlink{I2C_8h_aef9b769664090ca77a3cc2196cb68d85}{I2\+C\+\_\+write\+\_\+4\+\_\+bytes} (uint8\+\_\+t device\+Address, uint8\+\_\+t target\+Register, uint8\+\_\+t $\ast$data, int device\+Index)
 \begin{DoxyCompactList}\small\item\em write 4 bytes to slave device. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -49,185 +70,204 @@ Aug 4, 2018
 
 
 \subsection{Function Documentation}
-\index{I2\+C.\+h@{I2\+C.\+h}!I2\+C\+\_\+read@{I2\+C\+\_\+read}}
+\index{I2\+C.\+h@{I2\+C.\+h}!I2\+C\+\_\+\+Init@{I2\+C\+\_\+\+Init}}
+\index{I2\+C\+\_\+\+Init@{I2\+C\+\_\+\+Init}!I2\+C.\+h@{I2\+C.\+h}}
+\subsubsection[{\texorpdfstring{I2\+C\+\_\+\+Init(void)}{I2C_Init(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void I2\+C\+\_\+\+Init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{I2C_8h_a84df9a5887b8b8230cfe85d18e53900e}{}\label{I2C_8h_a84df9a5887b8b8230cfe85d18e53900e}
+
+
+initialize a I2C module with corresponding setting parameters. 
+
+\subsubsection*{I2\+C\+\_\+\+Init }\index{I2\+C.\+h@{I2\+C.\+h}!I2\+C\+\_\+read@{I2\+C\+\_\+read}}
 \index{I2\+C\+\_\+read@{I2\+C\+\_\+read}!I2\+C.\+h@{I2\+C.\+h}}
-\subsubsection[{\texorpdfstring{I2\+C\+\_\+read(uint8\+\_\+t device\+Address, uint8\+\_\+t target\+Register, uint8\+\_\+t $\ast$data, uint32\+\_\+t count)}{I2C_read(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint32_t count)}}]{\setlength{\rightskip}{0pt plus 5cm}int I2\+C\+\_\+read (
+\subsubsection[{\texorpdfstring{I2\+C\+\_\+read(uint8\+\_\+t device\+Address, uint8\+\_\+t target\+Register, uint8\+\_\+t $\ast$data, uint32\+\_\+t count, int device\+Index)}{I2C_read(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint32_t count, int deviceIndex)}}]{\setlength{\rightskip}{0pt plus 5cm}int I2\+C\+\_\+read (
 \begin{DoxyParamCaption}
 \item[{uint8\+\_\+t}]{device\+Address, }
 \item[{uint8\+\_\+t}]{target\+Register, }
 \item[{uint8\+\_\+t $\ast$}]{data, }
-\item[{uint32\+\_\+t}]{count}
+\item[{uint32\+\_\+t}]{count, }
+\item[{int}]{device\+Index}
 \end{DoxyParamCaption}
-)}\hypertarget{I2C_8h_aa2eca5eb27ebd77458e7584703467dde}{}\label{I2C_8h_aa2eca5eb27ebd77458e7584703467dde}
+)}\hypertarget{I2C_8h_a6311dca0adcbf0893be589af720ef8fe}{}\label{I2C_8h_a6311dca0adcbf0893be589af720ef8fe}
 
 
 read 1 or more bytes from slave device. 
 
+\subsubsection*{I2\+C\+\_\+read }
+
 
 \begin{DoxyParams}{Parameters}
 {\em device\+Address} & address of slave device. \\
 \hline
 {\em target\+Register} & target register of slave device. \\
 \hline
-{\em data} & data address to store read data. \\
-\hline
-{\em count} & number of bytes to be read. \\
+{\em data} & data address to store read data. \subsubsection*{count number of bytes to be read. }\\
 \hline
 \end{DoxyParams}
 \index{I2\+C.\+h@{I2\+C.\+h}!I2\+C\+\_\+read\+\_\+2\+\_\+bytes@{I2\+C\+\_\+read\+\_\+2\+\_\+bytes}}
 \index{I2\+C\+\_\+read\+\_\+2\+\_\+bytes@{I2\+C\+\_\+read\+\_\+2\+\_\+bytes}!I2\+C.\+h@{I2\+C.\+h}}
-\subsubsection[{\texorpdfstring{I2\+C\+\_\+read\+\_\+2\+\_\+bytes(uint8\+\_\+t device\+Address, uint8\+\_\+t target\+Register, uint8\+\_\+t $\ast$data)}{I2C_read_2_bytes(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data)}}]{\setlength{\rightskip}{0pt plus 5cm}int I2\+C\+\_\+read\+\_\+2\+\_\+bytes (
-\begin{DoxyParamCaption}
-\item[{uint8\+\_\+t}]{device\+Address, }
-\item[{uint8\+\_\+t}]{target\+Register, }
-\item[{uint8\+\_\+t $\ast$}]{data}
-\end{DoxyParamCaption}
-)}\hypertarget{I2C_8h_af86edfe5e765d79f017440af3e22209d}{}\label{I2C_8h_af86edfe5e765d79f017440af3e22209d}
-
-
-read 2 bytes from slave device. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em device\+Address} & address of slave device. \\
-\hline
-{\em target\+Register} & target register of slave device. \\
-\hline
-{\em data} & data address to store read data. \\
-\hline
-\end{DoxyParams}
-\index{I2\+C.\+h@{I2\+C.\+h}!I2\+C\+\_\+read\+\_\+4\+\_\+bytes@{I2\+C\+\_\+read\+\_\+4\+\_\+bytes}}
-\index{I2\+C\+\_\+read\+\_\+4\+\_\+bytes@{I2\+C\+\_\+read\+\_\+4\+\_\+bytes}!I2\+C.\+h@{I2\+C.\+h}}
-\subsubsection[{\texorpdfstring{I2\+C\+\_\+read\+\_\+4\+\_\+bytes(uint8\+\_\+t device\+Address, uint8\+\_\+t target\+Register, uint8\+\_\+t $\ast$data)}{I2C_read_4_bytes(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data)}}]{\setlength{\rightskip}{0pt plus 5cm}int I2\+C\+\_\+read\+\_\+4\+\_\+bytes (
-\begin{DoxyParamCaption}
-\item[{uint8\+\_\+t}]{device\+Address, }
-\item[{uint8\+\_\+t}]{target\+Register, }
-\item[{uint8\+\_\+t $\ast$}]{data}
-\end{DoxyParamCaption}
-)}\hypertarget{I2C_8h_ad5fbda826f261d78150bb95b9bcf5064}{}\label{I2C_8h_ad5fbda826f261d78150bb95b9bcf5064}
-
-
-read 4 bytes from slave device. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em device\+Address} & address of slave device. \\
-\hline
-{\em target\+Register} & target register of slave device. \\
-\hline
-{\em data} & data address to store read data. \\
-\hline
-\end{DoxyParams}
-\index{I2\+C.\+h@{I2\+C.\+h}!I2\+C\+\_\+read\+\_\+byte@{I2\+C\+\_\+read\+\_\+byte}}
-\index{I2\+C\+\_\+read\+\_\+byte@{I2\+C\+\_\+read\+\_\+byte}!I2\+C.\+h@{I2\+C.\+h}}
-\subsubsection[{\texorpdfstring{I2\+C\+\_\+read\+\_\+byte(uint8\+\_\+t device\+Address, uint8\+\_\+t target\+Register, uint8\+\_\+t $\ast$data)}{I2C_read_byte(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data)}}]{\setlength{\rightskip}{0pt plus 5cm}int I2\+C\+\_\+read\+\_\+byte (
-\begin{DoxyParamCaption}
-\item[{uint8\+\_\+t}]{device\+Address, }
-\item[{uint8\+\_\+t}]{target\+Register, }
-\item[{uint8\+\_\+t $\ast$}]{data}
-\end{DoxyParamCaption}
-)}\hypertarget{I2C_8h_a8596118ce5d9e43a3cde3bb9997bdb60}{}\label{I2C_8h_a8596118ce5d9e43a3cde3bb9997bdb60}
-
-
-read 1 byte from slave device. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em device\+Address} & address of slave device. \\
-\hline
-{\em target\+Register} & target register of slave device. \\
-\hline
-{\em data} & data address to store read data. \\
-\hline
-\end{DoxyParams}
-\index{I2\+C.\+h@{I2\+C.\+h}!I2\+C\+\_\+write@{I2\+C\+\_\+write}}
-\index{I2\+C\+\_\+write@{I2\+C\+\_\+write}!I2\+C.\+h@{I2\+C.\+h}}
-\subsubsection[{\texorpdfstring{I2\+C\+\_\+write(uint8\+\_\+t device\+Address, uint8\+\_\+t target\+Register, uint8\+\_\+t $\ast$data, uint32\+\_\+t count)}{I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint32_t count)}}]{\setlength{\rightskip}{0pt plus 5cm}int I2\+C\+\_\+write (
+\subsubsection[{\texorpdfstring{I2\+C\+\_\+read\+\_\+2\+\_\+bytes(uint8\+\_\+t device\+Address, uint8\+\_\+t target\+Register, uint8\+\_\+t $\ast$data, int device\+Index)}{I2C_read_2_bytes(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, int deviceIndex)}}]{\setlength{\rightskip}{0pt plus 5cm}int I2\+C\+\_\+read\+\_\+2\+\_\+bytes (
 \begin{DoxyParamCaption}
 \item[{uint8\+\_\+t}]{device\+Address, }
 \item[{uint8\+\_\+t}]{target\+Register, }
 \item[{uint8\+\_\+t $\ast$}]{data, }
-\item[{uint32\+\_\+t}]{count}
+\item[{int}]{device\+Index}
 \end{DoxyParamCaption}
-)}\hypertarget{I2C_8h_a45152120709fb4ad8a0d0f2f81f5f489}{}\label{I2C_8h_a45152120709fb4ad8a0d0f2f81f5f489}
+)}\hypertarget{I2C_8h_af12d6d347c6133d5249d58d34bce83cc}{}\label{I2C_8h_af12d6d347c6133d5249d58d34bce83cc}
+
+
+read 2 bytes from slave device. 
+
+\subsubsection*{I2\+C\+\_\+read\+\_\+2\+\_\+bytes }
+
+
+\begin{DoxyParams}{Parameters}
+{\em device\+Address} & address of slave device. \\
+\hline
+{\em target\+Register} & target register of slave device. \subsubsection*{data data address to store read data. }\\
+\hline
+\end{DoxyParams}
+\index{I2\+C.\+h@{I2\+C.\+h}!I2\+C\+\_\+read\+\_\+4\+\_\+bytes@{I2\+C\+\_\+read\+\_\+4\+\_\+bytes}}
+\index{I2\+C\+\_\+read\+\_\+4\+\_\+bytes@{I2\+C\+\_\+read\+\_\+4\+\_\+bytes}!I2\+C.\+h@{I2\+C.\+h}}
+\subsubsection[{\texorpdfstring{I2\+C\+\_\+read\+\_\+4\+\_\+bytes(uint8\+\_\+t device\+Address, uint8\+\_\+t target\+Register, uint8\+\_\+t $\ast$data, int device\+Index)}{I2C_read_4_bytes(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, int deviceIndex)}}]{\setlength{\rightskip}{0pt plus 5cm}int I2\+C\+\_\+read\+\_\+4\+\_\+bytes (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{device\+Address, }
+\item[{uint8\+\_\+t}]{target\+Register, }
+\item[{uint8\+\_\+t $\ast$}]{data, }
+\item[{int}]{device\+Index}
+\end{DoxyParamCaption}
+)}\hypertarget{I2C_8h_a69aaba9d80a1f7aabefa2d3a20151b10}{}\label{I2C_8h_a69aaba9d80a1f7aabefa2d3a20151b10}
+
+
+read 4 bytes from slave device. 
+
+\subsubsection*{I2\+C\+\_\+read\+\_\+4\+\_\+bytes }
+
+
+\begin{DoxyParams}{Parameters}
+{\em device\+Address} & address of slave device. \\
+\hline
+{\em target\+Register} & target register of slave device. \subsubsection*{data data address to store read data. }\\
+\hline
+\end{DoxyParams}
+\index{I2\+C.\+h@{I2\+C.\+h}!I2\+C\+\_\+read\+\_\+byte@{I2\+C\+\_\+read\+\_\+byte}}
+\index{I2\+C\+\_\+read\+\_\+byte@{I2\+C\+\_\+read\+\_\+byte}!I2\+C.\+h@{I2\+C.\+h}}
+\subsubsection[{\texorpdfstring{I2\+C\+\_\+read\+\_\+byte(uint8\+\_\+t device\+Address, uint8\+\_\+t target\+Register, uint8\+\_\+t $\ast$data, int device\+Index)}{I2C_read_byte(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, int deviceIndex)}}]{\setlength{\rightskip}{0pt plus 5cm}int I2\+C\+\_\+read\+\_\+byte (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{device\+Address, }
+\item[{uint8\+\_\+t}]{target\+Register, }
+\item[{uint8\+\_\+t $\ast$}]{data, }
+\item[{int}]{device\+Index}
+\end{DoxyParamCaption}
+)}\hypertarget{I2C_8h_ab715ca8117bb8bf533a95669b35f9d40}{}\label{I2C_8h_ab715ca8117bb8bf533a95669b35f9d40}
+
+
+read 1 byte from slave device. 
+
+\subsubsection*{I2\+C\+\_\+read\+\_\+byte }
+
+
+\begin{DoxyParams}{Parameters}
+{\em device\+Address} & address of slave device. \\
+\hline
+{\em target\+Register} & target register of slave device. \subsubsection*{data data address to store read data. }\\
+\hline
+\end{DoxyParams}
+\index{I2\+C.\+h@{I2\+C.\+h}!I2\+C\+\_\+write@{I2\+C\+\_\+write}}
+\index{I2\+C\+\_\+write@{I2\+C\+\_\+write}!I2\+C.\+h@{I2\+C.\+h}}
+\subsubsection[{\texorpdfstring{I2\+C\+\_\+write(uint8\+\_\+t device\+Address, uint8\+\_\+t target\+Register, uint8\+\_\+t $\ast$data, uint32\+\_\+t count, int device\+Index)}{I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint32_t count, int deviceIndex)}}]{\setlength{\rightskip}{0pt plus 5cm}int I2\+C\+\_\+write (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{device\+Address, }
+\item[{uint8\+\_\+t}]{target\+Register, }
+\item[{uint8\+\_\+t $\ast$}]{data, }
+\item[{uint32\+\_\+t}]{count, }
+\item[{int}]{device\+Index}
+\end{DoxyParamCaption}
+)}\hypertarget{I2C_8h_afe4296bb30536589b4fd578dca610657}{}\label{I2C_8h_afe4296bb30536589b4fd578dca610657}
 
 
 write 1 or more bytes to slave device. 
 
+\subsubsection*{I2\+C\+\_\+write }
+
 
 \begin{DoxyParams}{Parameters}
 {\em device\+Address} & address of slave device. \\
 \hline
 {\em target\+Register} & target register of slave device. \\
 \hline
-{\em data} & data address of data to be writen. \\
-\hline
-{\em count} & number of bytes to be writen. \\
+{\em data} & data address of data to be writen. \subsubsection*{count number of bytes to be writen. }\\
 \hline
 \end{DoxyParams}
 \index{I2\+C.\+h@{I2\+C.\+h}!I2\+C\+\_\+write\+\_\+2\+\_\+bytes@{I2\+C\+\_\+write\+\_\+2\+\_\+bytes}}
 \index{I2\+C\+\_\+write\+\_\+2\+\_\+bytes@{I2\+C\+\_\+write\+\_\+2\+\_\+bytes}!I2\+C.\+h@{I2\+C.\+h}}
-\subsubsection[{\texorpdfstring{I2\+C\+\_\+write\+\_\+2\+\_\+bytes(uint8\+\_\+t device\+Address, uint8\+\_\+t target\+Register, uint8\+\_\+t $\ast$data)}{I2C_write_2_bytes(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data)}}]{\setlength{\rightskip}{0pt plus 5cm}int I2\+C\+\_\+write\+\_\+2\+\_\+bytes (
+\subsubsection[{\texorpdfstring{I2\+C\+\_\+write\+\_\+2\+\_\+bytes(uint8\+\_\+t device\+Address, uint8\+\_\+t target\+Register, uint8\+\_\+t $\ast$data, int device\+Index)}{I2C_write_2_bytes(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, int deviceIndex)}}]{\setlength{\rightskip}{0pt plus 5cm}int I2\+C\+\_\+write\+\_\+2\+\_\+bytes (
 \begin{DoxyParamCaption}
 \item[{uint8\+\_\+t}]{device\+Address, }
 \item[{uint8\+\_\+t}]{target\+Register, }
-\item[{uint8\+\_\+t $\ast$}]{data}
+\item[{uint8\+\_\+t $\ast$}]{data, }
+\item[{int}]{device\+Index}
 \end{DoxyParamCaption}
-)}\hypertarget{I2C_8h_ad5ea573eeb06a0314a5e36fdbe01303e}{}\label{I2C_8h_ad5ea573eeb06a0314a5e36fdbe01303e}
+)}\hypertarget{I2C_8h_aaa062f0aa9778b0f040edbc2f52230cc}{}\label{I2C_8h_aaa062f0aa9778b0f040edbc2f52230cc}
 
 
 write 2 bytes to slave device. 
 
+\subsubsection*{I2\+C\+\_\+write\+\_\+2\+\_\+bytes }
+
 
 \begin{DoxyParams}{Parameters}
 {\em device\+Address} & address of slave device. \\
 \hline
-{\em target\+Register} & target register of slave device. \\
-\hline
-{\em data} & data to be writen. \\
+{\em target\+Register} & target register of slave device. \subsubsection*{data data to be writen. }\\
 \hline
 \end{DoxyParams}
 \index{I2\+C.\+h@{I2\+C.\+h}!I2\+C\+\_\+write\+\_\+4\+\_\+bytes@{I2\+C\+\_\+write\+\_\+4\+\_\+bytes}}
 \index{I2\+C\+\_\+write\+\_\+4\+\_\+bytes@{I2\+C\+\_\+write\+\_\+4\+\_\+bytes}!I2\+C.\+h@{I2\+C.\+h}}
-\subsubsection[{\texorpdfstring{I2\+C\+\_\+write\+\_\+4\+\_\+bytes(uint8\+\_\+t device\+Address, uint8\+\_\+t target\+Register, uint8\+\_\+t $\ast$data)}{I2C_write_4_bytes(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data)}}]{\setlength{\rightskip}{0pt plus 5cm}int I2\+C\+\_\+write\+\_\+4\+\_\+bytes (
+\subsubsection[{\texorpdfstring{I2\+C\+\_\+write\+\_\+4\+\_\+bytes(uint8\+\_\+t device\+Address, uint8\+\_\+t target\+Register, uint8\+\_\+t $\ast$data, int device\+Index)}{I2C_write_4_bytes(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, int deviceIndex)}}]{\setlength{\rightskip}{0pt plus 5cm}int I2\+C\+\_\+write\+\_\+4\+\_\+bytes (
 \begin{DoxyParamCaption}
 \item[{uint8\+\_\+t}]{device\+Address, }
 \item[{uint8\+\_\+t}]{target\+Register, }
-\item[{uint8\+\_\+t $\ast$}]{data}
+\item[{uint8\+\_\+t $\ast$}]{data, }
+\item[{int}]{device\+Index}
 \end{DoxyParamCaption}
-)}\hypertarget{I2C_8h_a69bb29f4b4fd19ba304887847a945521}{}\label{I2C_8h_a69bb29f4b4fd19ba304887847a945521}
+)}\hypertarget{I2C_8h_aef9b769664090ca77a3cc2196cb68d85}{}\label{I2C_8h_aef9b769664090ca77a3cc2196cb68d85}
 
 
 write 4 bytes to slave device. 
 
+\subsubsection*{I2\+C\+\_\+write\+\_\+4\+\_\+bytes }
+
 
 \begin{DoxyParams}{Parameters}
 {\em device\+Address} & address of slave device. \\
 \hline
-{\em target\+Register} & target register of slave device. \\
-\hline
-{\em data} & data to be writen. \\
+{\em target\+Register} & target register of slave device. \subsubsection*{data data to be writen. }\\
 \hline
 \end{DoxyParams}
 \index{I2\+C.\+h@{I2\+C.\+h}!I2\+C\+\_\+write\+\_\+byte@{I2\+C\+\_\+write\+\_\+byte}}
 \index{I2\+C\+\_\+write\+\_\+byte@{I2\+C\+\_\+write\+\_\+byte}!I2\+C.\+h@{I2\+C.\+h}}
-\subsubsection[{\texorpdfstring{I2\+C\+\_\+write\+\_\+byte(uint8\+\_\+t device\+Address, uint8\+\_\+t target\+Register, uint8\+\_\+t data)}{I2C_write_byte(uint8_t deviceAddress, uint8_t targetRegister, uint8_t data)}}]{\setlength{\rightskip}{0pt plus 5cm}int I2\+C\+\_\+write\+\_\+byte (
+\subsubsection[{\texorpdfstring{I2\+C\+\_\+write\+\_\+byte(uint8\+\_\+t device\+Address, uint8\+\_\+t target\+Register, uint8\+\_\+t data, int device\+Index)}{I2C_write_byte(uint8_t deviceAddress, uint8_t targetRegister, uint8_t data, int deviceIndex)}}]{\setlength{\rightskip}{0pt plus 5cm}int I2\+C\+\_\+write\+\_\+byte (
 \begin{DoxyParamCaption}
 \item[{uint8\+\_\+t}]{device\+Address, }
 \item[{uint8\+\_\+t}]{target\+Register, }
-\item[{uint8\+\_\+t}]{data}
+\item[{uint8\+\_\+t}]{data, }
+\item[{int}]{device\+Index}
 \end{DoxyParamCaption}
-)}\hypertarget{I2C_8h_ad48380f04cae816c568f7ace0f39ccd6}{}\label{I2C_8h_ad48380f04cae816c568f7ace0f39ccd6}
+)}\hypertarget{I2C_8h_a28a07d78adf4635be2310d5297ad831e}{}\label{I2C_8h_a28a07d78adf4635be2310d5297ad831e}
 
 
 write 1 byte to slave device. 
+
+\subsubsection*{I2\+C\+\_\+write\+\_\+byte }
 
 
 \begin{DoxyParams}{Parameters}
 {\em device\+Address} & address of slave device. \\
 \hline
-{\em target\+Register} & target register of slave device. \\
-\hline
-{\em data} & data to be writen. \\
+{\em target\+Register} & target register of slave device. \subsubsection*{data data to be writen. }\\
 \hline
 \end{DoxyParams}
