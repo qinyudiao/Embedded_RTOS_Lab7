@@ -115,9 +115,9 @@ void cr4_fft_64_stm32(void *pssOUT, void *pssIN, unsigned short Nbin);
 // cosTHETA * 1000 value
 
 // Configurable via interpreter
-int KP = 80;
-int KD = 30;
-int KI = 23;
+int KP = 27;
+int KD = 9;
+int KI = 11;
 
 static FATFS g_sFatFs;
 
@@ -466,13 +466,13 @@ void SW1Push(void)
     U = 0;
     break;
   case 1:
-	  KP = (KP >= 80) ? 1 : (KP+2);
+	  KP = (KP >= 20) ? 1 : (KP+1);
     break;
   case 2:
-	  KD = (KD >= 30) ? 1 : (KD+1);  
+	  KD = (KD >= 50) ? 1 : (KD+2);  
     break;
   case 3:
-    KI  = (KI >= 80) ? 5 : (KI+2);
+    KI  = (KI >= 20) ? 1 : (KI+1);
     break;
   }
 }
@@ -520,6 +520,7 @@ void sensor_task(void)
   static int Leftstack[4];
   static int openspaceLeft = 0;
   static int openspaceRight = 0;
+  static int backTo = 0;
 
   while(1){    
     Front_Left_angle = lidar_GetData(1) + ANGLELEFT_OFFSET;
@@ -539,10 +540,11 @@ void sensor_task(void)
       Rightstack [3-i]=Rightstack[3-i-1];
     }
     if(Leftstack[3]-Leftstack[2]>800)
-      openspaceLeft = 10;
+      openspaceLeft = 1;
     if(Rightstack[3]-Rightstack[2]>800)
-      openspaceRight = 10;
-    
+      openspaceRight = 1;
+    if(Front_Left_angle + Front_Right_angle<150 + 2*ANGLELEFT_OFFSET )
+      backTo = 15;
     if(FlagR == 1){
       if(Right>300){
         if(Front_Right_angle+Right > Front_Left_angle+Left)
@@ -587,10 +589,17 @@ void sensor_task(void)
     int TH60 = 1000;
     int tmp = 0;
     
-    
+    if(backTo > 0)
+    {
+      backTo--;
+      state = 10;
+      Back();
+      OS_Sleep(SENSOR_TASK_PERIOD);
+      continue;
+    }
     if(openspaceLeft>0){
       openspaceLeft--;
-      SlightLeft(10);
+      SlightLeft(250);
       state = 8;
       OS_Sleep(SENSOR_TASK_PERIOD);
       continue;
@@ -598,7 +607,7 @@ void sensor_task(void)
     
     if(openspaceRight>0){
       openspaceRight--;
-      SlightRight(10);
+      SlightRight(250);
       state = 9;
       OS_Sleep(SENSOR_TASK_PERIOD);
       continue;
@@ -614,8 +623,8 @@ void sensor_task(void)
         {
           if(U<0) {
             tmp = -U/10;
-            if(Front_Left_angle > 600)
-              tmp = tmp/100;
+            if(Front_Left_angle > 500+ANGELRIGHT_OFFSET)
+              tmp = tmp/10;
             SlightRight(tmp);
             state = 0;
           }
@@ -626,8 +635,8 @@ void sensor_task(void)
         {
           if(U>0) {
             tmp = U/10;
-            if(Front_Right_angle > 600)
-              tmp = tmp/100;
+            if(Front_Right_angle > ANGELRIGHT_OFFSET+500)
+              tmp = tmp/10;
             SlightLeft(tmp);
             state = 1;
           }
@@ -644,8 +653,8 @@ void sensor_task(void)
         {
           if(U>0) {
             tmp = U/10;
-            if(Front_Left_angle > 800)
-              tmp = tmp/50;
+            if(Front_Left_angle > ANGELRIGHT_OFFSET+500)
+              tmp = tmp/10;
             SlightRight(tmp);
             state = 3;
           }          
@@ -654,8 +663,8 @@ void sensor_task(void)
         {
           if(U<0) {
             tmp = -U/10;
-            if(Front_Right_angle > 800)
-              tmp = tmp/50;
+            if(Front_Right_angle > ANGELRIGHT_OFFSET+500)
+              tmp = tmp/10;
             SlightLeft(tmp);
             state = 4;
           }

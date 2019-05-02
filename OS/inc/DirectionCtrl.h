@@ -9,4 +9,6 @@ void SlightLeft(int n);
 void SlightRight(int n);
 void Straight(void);
 
+void Back(void);
+
 #endif
