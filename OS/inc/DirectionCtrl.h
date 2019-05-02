@@ -8,5 +8,8 @@ void TurnRight60(void);
 void SlightLeft(int n);
 void SlightRight(int n);
 void Straight(void);
+void BackRight(void);
+void BackLeft(void);
+void Back(void);
 
 #endif

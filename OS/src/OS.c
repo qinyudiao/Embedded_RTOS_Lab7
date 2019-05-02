@@ -669,16 +669,17 @@ int OS_AddSW2Task(void (*task)(void), unsigned long priority)
   return 0;
 }
 
-int OS_AddLeftBumperTask(void (*task)(void), unsigned long priority)
+int OS_AddLeftBumperTask(void (*task_touch)(void),void (*task_release)(void), unsigned long priority)
 {
-  Left_Bumper_Init(task, task);
+  Left_Bumper_Init(task_touch, task_release);
 
   return 0;
 }
 
-int OS_AddRightBumperTask(void (*task)(void), unsigned long priority)
+int OS_AddRightBumperTask(void (*task_touch)(void),void (*task_release)(void), unsigned long priority)
 {
-  Right_Bumper_Init(task, task);
+  Left_Bumper_Init(task_touch, task_release);
+
   return 0;
 }
 

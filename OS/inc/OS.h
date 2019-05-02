@@ -201,8 +201,8 @@ int OS_AddSW1Task(void (*task)(void), unsigned long priority);
  */
 int OS_AddSW2Task(void (*task)(void), unsigned long priority);
 
-int OS_AddLeftBumperTask(void (*task)(void), unsigned long priority);
-int OS_AddRightBumperTask(void (*task)(void), unsigned long priority);
+int OS_AddLeftBumperTask(void (*task_touch)(void),void (*task_release)(void), unsigned long priority);
+int OS_AddRightBumperTask(void (*task_touch)(void),void (*task_release)(void), unsigned long priority);
 
 
 /**

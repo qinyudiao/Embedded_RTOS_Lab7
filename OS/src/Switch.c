@@ -257,7 +257,7 @@ void GPIOPortC_Handler(void)
 
   if ((LastPC6&0x40) == 0x40)
   { // 0x10 means it was previously released
-    if ((GPIO_PORTC_DATA_R)&0x40 == 0x40)
+    if ((GPIO_PORTC_DATA_R&0x40) == 0x40)
     {
       Touch6 = 1; // touch occurred
       if (TouchTask6)

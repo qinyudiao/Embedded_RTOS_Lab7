@@ -503,8 +503,10 @@ void SW2Push(void)
   }
 }
 
-#define SENSOR_TASK_PERIOD (20)
-
+#define SENSOR_TASK_PERIOD (20)  //20 = 50ms
+  static int flag_right_back = 0;
+  static int flag_left_back = 0;
+	static int backTo = 0;
 void sensor_task(void)
 {
   static int i = 0;
@@ -520,6 +522,7 @@ void sensor_task(void)
   static int Leftstack[4];
   static int openspaceLeft = 0;
   static int openspaceRight = 0;
+  
 
   while(1){    
 		if(((OS_Time() / TIME_1MS) / 1000) > 180){
@@ -546,10 +549,11 @@ void sensor_task(void)
       Rightstack [3-i]=Rightstack[3-i-1];
     }
     if(Leftstack[3]-Leftstack[2]>800)
-      openspaceLeft = 10;
+      openspaceLeft = 1;
     if(Rightstack[3]-Rightstack[2]>800)
-      openspaceRight = 10;
-    
+      openspaceRight = 1;
+    if(Front_Left_angle + Front_Right_angle<150 + 2*ANGLELEFT_OFFSET )
+      backTo = 15;
     if(FlagR == 1){
       if(Right>300){
         if(Front_Right_angle+Right > Front_Left_angle+Left)
@@ -594,10 +598,22 @@ void sensor_task(void)
     int TH60 = 1000;
     int tmp = 0;
     
-    
+    if(backTo > 0)
+    {
+      backTo--;
+      state = 10;
+			if(flag_left_back)
+				BackLeft();
+			else if(flag_right_back)
+				BackRight();
+			else 
+				Back();
+      OS_Sleep(SENSOR_TASK_PERIOD);
+      continue;
+    }
     if(openspaceLeft>0){
       openspaceLeft--;
-      SlightLeft(10);
+      SlightLeft(250);
       state = 8;
       OS_Sleep(SENSOR_TASK_PERIOD);
       continue;
@@ -605,7 +621,7 @@ void sensor_task(void)
     
     if(openspaceRight>0){
       openspaceRight--;
-      SlightRight(10);
+      SlightRight(250);
       state = 9;
       OS_Sleep(SENSOR_TASK_PERIOD);
       continue;
@@ -621,8 +637,8 @@ void sensor_task(void)
         {
           if(U<0) {
             tmp = -U/10;
-            if(Front_Left_angle > 600)
-              tmp = tmp/100;
+            if(Front_Left_angle > 500+ANGELRIGHT_OFFSET)
+              tmp = tmp/10;
             SlightRight(tmp);
             state = 0;
           }
@@ -633,8 +649,8 @@ void sensor_task(void)
         {
           if(U>0) {
             tmp = U/10;
-            if(Front_Right_angle > 600)
-              tmp = tmp/100;
+            if(Front_Right_angle > ANGELRIGHT_OFFSET+500)
+              tmp = tmp/10;
             SlightLeft(tmp);
             state = 1;
           }
@@ -651,8 +667,8 @@ void sensor_task(void)
         {
           if(U>0) {
             tmp = U/10;
-            if(Front_Left_angle > 800)
-              tmp = tmp/50;
+            if(Front_Left_angle > ANGELRIGHT_OFFSET+500)
+              tmp = tmp/10;
             SlightRight(tmp);
             state = 3;
           }          
@@ -661,8 +677,8 @@ void sensor_task(void)
         {
           if(U<0) {
             tmp = -U/10;
-            if(Front_Right_angle > 800)
-              tmp = tmp/50;
+            if(Front_Right_angle > ANGELRIGHT_OFFSET+500)
+              tmp = tmp/10;
             SlightLeft(tmp);
             state = 4;
           }
@@ -688,14 +704,32 @@ void sensor_task(void)
     
     OS_Sleep(SENSOR_TASK_PERIOD);
     
-  }
-  
-  
-   
-    
-    
+  }  
 }
-    
+
+void left_bumper_push(void){
+//back up left
+	flag_left_back = 1;
+	backTo += 5;
+}
+void left_bumper_realse(void){
+//back up left
+	flag_left_back = 0;
+	backTo += 10;
+}
+
+void right_bumper_push(void){
+//back up right
+	flag_right_back = 1;
+	backTo += 5;
+}
+
+void right_bumper_release(void){
+//back up right
+	flag_right_back = 0;
+	backTo += 10;
+}
+
 int Sensor_main(void)
 {
   OS_Init(); // initialize, disable interrupts
@@ -708,6 +742,8 @@ int Sensor_main(void)
   NumCreated += OS_AddThread(&Interpreter,128, 5);
   NumCreated += OS_AddThread(&sensor_task, 128, 2);
   NumCreated += OS_AddThread(&sensor_debug_task, 128, 4);
+	OS_AddRightBumperTask(&right_bumper_push, &right_bumper_release, 0);
+	OS_AddLeftBumperTask(&left_bumper_push, &right_bumper_release, 0);
 	
 	OS_AddSW1Task(&SW1Push, 0);
   OS_AddSW2Task(&SW2Push, 0);
@@ -865,14 +901,6 @@ void led_flash_task(void){
 		}
 }
 
-void left_bumper_push(void){
-count+=10;
-}
-
-void right_bumper_push(void){
-count+=10;
-
-}
 int sensor_back_main(void) {
   OS_Init();
 	//PLL_Init(Bus80MHz);
@@ -886,8 +914,8 @@ int sensor_back_main(void) {
 	NumCreated += OS_AddPeriodicThread(&led_flash_task, 1000 * TIME_1MS, 2);
 	//OS_AddSW2Task(&right_bumper_push, 1);
 	OS_AddSW1Task(&left_bumper_push, 1);
-	OS_AddRightBumperTask(&right_bumper_push, 0);
-	OS_AddLeftBumperTask(&left_bumper_push, 0);
+	OS_AddRightBumperTask(&right_bumper_push,&right_bumper_push, 0);
+	OS_AddLeftBumperTask(&left_bumper_push,&right_bumper_push, 0);
 	//NumCreated += OS_AddPeriodicThread(&led_flash_task, 1000 * TIME_1MS, 2);
   
 
@@ -902,6 +930,6 @@ int sensor_back_main(void) {
 // Main stub
 int main(void)
 {
-	return sensor_testmain();
+	return Sensor_main();
  // return Sensor_main();
 }
