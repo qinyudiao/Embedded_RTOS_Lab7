@@ -115,9 +115,9 @@ void cr4_fft_64_stm32(void *pssOUT, void *pssIN, unsigned short Nbin);
 // cosTHETA * 1000 value
 
 // Configurable via interpreter
-int KP = 80;
-int KD = 30;
-int KI = 23;
+int KP = 27;
+int KD = 9;
+int KI = 11;
 
 static FATFS g_sFatFs;
 
@@ -466,13 +466,13 @@ void SW1Push(void)
     U = 0;
     break;
   case 1:
-	  KP = (KP >= 80) ? 1 : (KP+2);
+	  KP = (KP >= 20) ? 1 : (KP+1);
     break;
   case 2:
-	  KD = (KD >= 30) ? 1 : (KD+1);  
+	  KD = (KD >= 50) ? 1 : (KD+2);  
     break;
   case 3:
-    KI  = (KI >= 80) ? 5 : (KI+2);
+    KI  = (KI >= 20) ? 1 : (KI+1);
     break;
   }
 }
@@ -522,7 +522,9 @@ void sensor_task(void)
   static int Leftstack[4];
   static int openspaceLeft = 0;
   static int openspaceRight = 0;
-  
+
+  static int backTo = 0;
+
 
   while(1){    
 		if(((OS_Time() / TIME_1MS) / 1000) > 180){
