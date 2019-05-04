@@ -67,12 +67,15 @@ void Straight(void)
 void BackRight(void)
 {
 	CAN_Servo(90);
+  CAN_MotorTorch(-200,-150);
 }
 void BackLeft(void)
 {
 	CAN_Servo(90);
+  CAN_MotorTorch(-150,-200);
 }
 void Back(void)
 {
 	CAN_Servo(90);
+  CAN_MotorTorch(-200,-200);
 }

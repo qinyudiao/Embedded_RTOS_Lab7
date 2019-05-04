@@ -526,7 +526,7 @@ void sensor_task(void)
   static int backTo = 0;
 
 
-  while(1){    
+  {    
 		if(((OS_Time() / TIME_1MS) / 1000) > 180){
 			while(1){
 				CAN_MotorTorch(1,1);
@@ -611,14 +611,14 @@ void sensor_task(void)
 			else 
 				Back();
       OS_Sleep(SENSOR_TASK_PERIOD);
-      continue;
+      return;
     }
     if(openspaceLeft>0){
       openspaceLeft--;
       SlightLeft(250);
       state = 8;
       OS_Sleep(SENSOR_TASK_PERIOD);
-      continue;
+      return;
     }
     
     if(openspaceRight>0){
@@ -626,7 +626,7 @@ void sensor_task(void)
       SlightRight(250);
       state = 9;
       OS_Sleep(SENSOR_TASK_PERIOD);
-      continue;
+      return;
     }
     
     
@@ -712,24 +712,24 @@ void sensor_task(void)
 void left_bumper_push(void){
 //back up left
 	flag_left_back = 1;
-	backTo += 5;
+	backTo = 5;
 }
 void left_bumper_realse(void){
 //back up left
 	flag_left_back = 0;
-	backTo += 10;
+	backTo = 10;
 }
 
 void right_bumper_push(void){
 //back up right
 	flag_right_back = 1;
-	backTo += 5;
+	backTo = 5;
 }
 
 void right_bumper_release(void){
 //back up right
 	flag_right_back = 0;
-	backTo += 10;
+	backTo = 10;
 }
 
 int Sensor_main(void)
@@ -742,7 +742,7 @@ int Sensor_main(void)
   lidar_Init();
   NumCreated = 0;
   NumCreated += OS_AddThread(&Interpreter,128, 5);
-  NumCreated += OS_AddThread(&sensor_task, 128, 2);
+  NumCreated += OS_AddPeriodicThread(&sensor_task,SENSOR_TASK_PERIOD,0);
   NumCreated += OS_AddThread(&sensor_debug_task, 128, 4);
 	OS_AddRightBumperTask(&right_bumper_push, &right_bumper_release, 0);
 	OS_AddLeftBumperTask(&left_bumper_push, &right_bumper_release, 0);
