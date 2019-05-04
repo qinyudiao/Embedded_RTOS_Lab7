@@ -38,7 +38,7 @@ void SlightLeft(int n)
     CAN_Servo(90);
   if(n>300)
     n=300;
-  CAN_MotorTorch(180-n,180);
+  CAN_MotorTorch(250-n,250);
   
 }
 void SlightRight(int n)
@@ -54,14 +54,14 @@ void SlightRight(int n)
     CAN_Servo(85);
   if(n>300)
     n = 300;
-  CAN_MotorTorch(180,180-n);
+  CAN_MotorTorch(250,250-n);
 
 }
 
 void Straight(void)
 {
   CAN_Servo(90);
-  CAN_MotorTorch(200,200);
+  CAN_MotorTorch(250,250);
 }
 
 void BackRight(void)

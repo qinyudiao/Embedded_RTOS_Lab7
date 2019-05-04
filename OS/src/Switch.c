@@ -74,7 +74,7 @@ static void Timer0Arm(void)
   NVIC_PRI4_R = (NVIC_PRI4_R & 0x00FFFFFF) | 0x80000000; // 8) priority 4
                                                          // interrupts enabled in the main program after all devices initialized
                                                          // vector number 35, interrupt number 19
-  NVIC_EN0_R = 1 << 19;                                  // 9) enable IRQ 19 in NVIC
+  NVIC_EN0_R |= 1 << 19;                                  // 9) enable IRQ 19 in NVIC
   TIMER0_CTL_R = 0x00000001;                             // 10) enable TIMER0A
 }
 static void GPIOArm(void)
@@ -90,7 +90,7 @@ static void GPIO_PORTC_Arm(void)
   GPIO_PORTC_ICR_R = 0xC0;                               // (e) clear flag 6-7
   GPIO_PORTC_IM_R |= 0xC0;                               // (f) arm interrupt on PC6-7 *** No IME bit as mentioned in Book ***
   NVIC_PRI0_R = (NVIC_PRI0_R & 0xFF00FFFF) | 0x00800000; // (g) priority 4
-  NVIC_EN0_R = 0x00000004;                               // (h) enable interrupt 2 in NVIC
+  NVIC_EN0_R |= 0x00000004;                               // (h) enable interrupt 2 in NVIC
 }
 // Initialize switch interface on PF4 and PF0. Have to use PF4 first, and PF0 otherwise can't work.
 // Inputs:  pointer to a function to call on touch (falling edge),
