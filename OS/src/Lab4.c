@@ -91,7 +91,7 @@
 #include "lidar.h"
 #include "LED.h"
 #include "DirectionCtrl.h"
-#include "bumperSwitch.h"
+#include "PLL.h"
 
 //*********Prototype for FFT in cr4_fft_64_stm32.s, STMicroelectronics
 void cr4_fft_64_stm32(void *pssOUT, void *pssIN, unsigned short Nbin);
@@ -503,8 +503,10 @@ void SW2Push(void)
   }
 }
 
-#define SENSOR_TASK_PERIOD (20)
-
+#define SENSOR_TASK_PERIOD (20)  //20 = 50ms
+  static int flag_right_back = 0;
+  static int flag_left_back = 0;
+	static int backTo = 0;
 void sensor_task(void)
 {
   static int i = 0;
@@ -520,7 +522,9 @@ void sensor_task(void)
   static int Leftstack[4];
   static int openspaceLeft = 0;
   static int openspaceRight = 0;
+
   static int backTo = 0;
+
 
   while(1){    
 		if(((OS_Time() / TIME_1MS) / 1000) > 180){
@@ -600,7 +604,12 @@ void sensor_task(void)
     {
       backTo--;
       state = 10;
-      Back();
+			if(flag_left_back)
+				BackLeft();
+			else if(flag_right_back)
+				BackRight();
+			else 
+				Back();
       OS_Sleep(SENSOR_TASK_PERIOD);
       continue;
     }
@@ -697,14 +706,32 @@ void sensor_task(void)
     
     OS_Sleep(SENSOR_TASK_PERIOD);
     
-  }
-  
-  
-   
-    
-    
+  }  
 }
-    
+
+void left_bumper_push(void){
+//back up left
+	flag_left_back = 1;
+	backTo += 5;
+}
+void left_bumper_realse(void){
+//back up left
+	flag_left_back = 0;
+	backTo += 10;
+}
+
+void right_bumper_push(void){
+//back up right
+	flag_right_back = 1;
+	backTo += 5;
+}
+
+void right_bumper_release(void){
+//back up right
+	flag_right_back = 0;
+	backTo += 10;
+}
+
 int Sensor_main(void)
 {
   OS_Init(); // initialize, disable interrupts
@@ -717,6 +744,8 @@ int Sensor_main(void)
   NumCreated += OS_AddThread(&Interpreter,128, 5);
   NumCreated += OS_AddThread(&sensor_task, 128, 2);
   NumCreated += OS_AddThread(&sensor_debug_task, 128, 4);
+	OS_AddRightBumperTask(&right_bumper_push, &right_bumper_release, 0);
+	OS_AddLeftBumperTask(&left_bumper_push, &right_bumper_release, 0);
 	
 	OS_AddSW1Task(&SW1Push, 0);
   OS_AddSW2Task(&SW2Push, 0);
@@ -762,6 +791,22 @@ int can0_testmain()
   return 0;
 }
 
+unsigned long in, delay, dataRegIn;
+
+void PortC_Init(void)
+{
+	//SYSCTL_RCGCGPIO_R SYSCTL_RCGC2_R
+	SYSCTL_RCGCGPIO_R |= 0x04;           // Port C clock
+  delay = SYSCTL_RCGCGPIO_R ;           // wait 3-5 bus cycles
+  GPIO_PORTC_DIR_R &= ~0xC0;        // PC6-7 input 
+  GPIO_PORTC_AFSEL_R &= ~0xC0;      // not alternative
+  GPIO_PORTC_AMSEL_R &= ~0xC0;      // no analog
+  GPIO_PORTC_PCTL_R &= ~0xFF000000; // bits for PE1, PE0
+  GPIO_PORTC_DEN_R |= 0xC0;         // enable PC6, PC7
+	
+	//GPIO_PORTC_DATA_R |= 0x20; //start with LED on (PE1 = 1)
+}
+
 void lcd_task(void)
 {
     static int count = 0;
@@ -773,6 +818,11 @@ int lcd_testmain(void)
   OS_Init();
   ST7735_InitR(INITR_REDTAB);
   ST7735_FillScreen(0xFFFF);
+	
+	EnableInterrupts();
+	LED_Init();
+	PortC_Init();
+	
   NumCreated = 0;
   // create initial foreground threads
   NumCreated += OS_AddPeriodicThread(&lcd_task, 1000 * TIME_1MS, 1);
@@ -780,16 +830,16 @@ int lcd_testmain(void)
   return 0;
 }
 
-
 void lcd_testtask(void)
 {
   static int i=0;
   while(1)
   {
-    ST7735_Message(0, 0, "Right: ", IR_GetData(2));
-    ST7735_Message(0, 1, "Left : ", IR_GetData(3));
-    ST7735_Message(0, 2, "Right Angled 0: ", lidar_GetData(0));
-    ST7735_Message(0, 3, "Left Angled 1:", lidar_GetData(1));
+    ST7735_Message(0, 0, "lidar 0: ", lidar_GetData(0));
+    ST7735_Message(0, 1, "lidar 1:", lidar_GetData(1));
+//    ST7735_Message(0, 2, "lidar 2:", lidar_GetData(2));
+//    ST7735_Message(0, 3, "lidar 3:", lidar_GetData(3));
+
     OS_Sleep(5);
   }
 }
@@ -800,15 +850,88 @@ int sensor_testmain(void) {
   ST7735_FillScreen(0xFFFF);
   LED_Init();
   lidar_Init();
-	IR_Init();
 	OS_AddThread(&Interpreter, 128, 2);
 	OS_AddThread(&lcd_testtask, 128, 3);
   OS_Launch(TIMESLICE); // doesn't return, interrupts enabled in here
   return 0;
 }
 
+int pc6,pc7 =0;
+static int count = 0;
+void portc_task(void)
+{
+		//pc6 = (GPIO_PORTC_DATA_R & 0x40) >> 6;
+		//pc7 = (GPIO_PORTC_DATA_R & 0x80) >> 7;
+    //ST7735_Message(0, 0, "PC6: ", 0);
+    //ST7735_Message(0, 1, "PC7 : ", 0);
+    ST7735_Message(0, 1, "Hello world", count++);
+    //OS_Sleep(5);
+}
+
+void delay100ms(unsigned long numOf100msDelays)
+{
+	unsigned long i;
+	while (numOf100msDelays > 0)
+	{
+		i = 1333333; //this number means 100ms
+		while (i > 0)
+		{
+			i = i - 1;
+		}
+		//decrements every 100ms
+		numOf100msDelays = numOf100msDelays - 1; 
+	}
+}
+
+void led_flash_task(void){
+    //delay100ms(1); //delay for (1) 100 ms interval
+    in = (GPIO_PORTC_DATA_R&0x80)|(GPIO_PORTC_DATA_R&0x40); // in 0 if not pressed, 1 if pressed
+		//in = (GPIO_PORTC_DATA_R&0x80); // in 0 if not pressed, 1 if pressed
+		//If switch pressed (PE0=1), toggle LED once, else turn LED ON
+    //out = (in xor 0x01) << 1 (shift to PE1 LED output)
+		//so out = 1 if switch NOT pressed (0 xor 1 = 1 = LED ON)
+		//and out = 0 if switch is pressed (1 xor 1 = 0)
+		//this works since you can assume LED on all the time if
+		//switch not pressed, so to toggle it, just xor it with in = 1
+		//to toggle it off when switch pressed
+		//did NOT work!  LED did not toggle
+    //out = (in^0x01)<<1;   // out 2 if not pressed, 0 if switch pressed
+	  //if (in == 0x80) //PE0 = switch = pressed
+    if ((in == 0xC0)|(in == 0x40)|(in == 0x80)) //PE0 = switch = pressed
+		{
+				LED_RED_TOGGLE();
+		}
+}
+
+int sensor_back_main(void) {
+  OS_Init();
+	//PLL_Init(Bus80MHz);
+	ST7735_InitR(INITR_REDTAB);
+  ST7735_FillScreen(0xFFFF);
+	EnableInterrupts();
+  LED_Init();
+  //PortC_Init();
+	NumCreated = 0;
+	NumCreated += OS_AddPeriodicThread(&portc_task, 1000 * TIME_1MS, 2);
+	NumCreated += OS_AddPeriodicThread(&led_flash_task, 1000 * TIME_1MS, 2);
+	//OS_AddSW2Task(&right_bumper_push, 1);
+	OS_AddSW1Task(&left_bumper_push, 1);
+	OS_AddRightBumperTask(&right_bumper_push,&right_bumper_push, 0);
+	OS_AddLeftBumperTask(&left_bumper_push,&right_bumper_push, 0);
+	//NumCreated += OS_AddPeriodicThread(&led_flash_task, 1000 * TIME_1MS, 2);
+  
+
+	
+	//LED_RED_TOGGLE();
+	
+	//OS_AddThread(&portc_task, 128, 2);
+	//OS_AddThread(&lcd_testtask, 128, 3);
+  OS_Launch(TIMESLICE); // doesn't return, interrupts enabled in here
+  return 0;
+}
 // Main stub
 int main(void)
 {
-  return Sensor_main();
+	return Sensor_main();
+ // return Sensor_main();
 }

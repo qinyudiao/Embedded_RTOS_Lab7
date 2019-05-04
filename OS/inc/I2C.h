@@ -1,13 +1,10 @@
-/*!
- * @file  I2C.h
+/**
+ * @file
  * @brief TM4C123G I2C APIs and some settings.
- * ----------
  * For future development and updates, please follow this repository:
- * ----------
  * If you find any bug or problem, please create new issue or a pull request with a fix in the repository.
  * Or you can simply email me about the problem or bug at zeelivermorium@gmail.com
  * Much Appreciated!
- * ----------
  * @author Zee Livermorium
  * @date   Aug 4, 2018
  */
@@ -22,8 +19,8 @@
  *  SDA -------- PB3 | SDA -------- PA7 | SDA -------- PE5 | SDA -------- PD1
  */
 
-#define LIDAR0_I2C         I2C0
-#define LIDAR1_I2C         I2C3
+#define I2C_BUS1         I2C0
+#define I2C_BUS2         I2C3
 
 #define I2C0    0xabcc
 #define I2C1    0xabcd

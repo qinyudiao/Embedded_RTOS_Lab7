@@ -143,7 +143,6 @@ int VL53L0X_setAddress(uint8_t newAddress, int index) {
         deviceList[index].device.I2cDevAddr = newAddress;  // 7 bit addr
         return SUCCESS;
     }
-    LED_RED_TOGGLE();
     return FAIL;
 }
 

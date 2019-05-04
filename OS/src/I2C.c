@@ -16,6 +16,7 @@
 #include "I2C.h"
 #include "tm4c123gh6pm.h"
 #include "LED.h"
+#include "OS.h"
 
 #define MAXRETRIES 5 // number of receive attempts before giving up
 
@@ -32,7 +33,7 @@
  */
 void I2C_Init()
 {
-#if LIDAR0_I2C == I2C0
+#if I2C_BUS1 == I2C0
         /*-- I2C0 and Port B Activation --*/
         SYSCTL_RCGCI2C_R |= SYSCTL_RCGCI2C_R0;   // enable I2C Module 0 clock
         SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R1; // enable GPIO Port B clock
@@ -54,7 +55,7 @@ void I2C_Init()
         I2C0_MCR_R = I2C_MCR_MFE; // master function enable
         I2C0_MTPR_R = 39;         // configure for 100 kbps clock
                                   // 20 * (TPR + 1) * 12.5ns = 10us, with TPR=24
-#elif LIDAR0_I2C == I2C1
+#elif I2C_BUS1 == I2C1
         /*-- I2C1 and Port A Activation --*/
         SYSCTL_RCGCI2C_R |= SYSCTL_RCGCI2C_R1;   // enable I2C Module 1 clock
         SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R0; // enable GPIO Port A clock
@@ -76,7 +77,7 @@ void I2C_Init()
         I2C1_MCR_R = I2C_MCR_MFE; // master function enable
         I2C1_MTPR_R = 39;         // configure for 100 kbps clock
         // 20 * (TPR + 1) * 12.5ns = 10us, with TPR=24
-#elif LIDAR0_I2C == I2C2
+#elif I2C_BUS1 == I2C2
         /*-- I2C2 and Port E Activation --*/
         SYSCTL_RCGCI2C_R |= SYSCTL_RCGCI2C_R2;   // enable I2C Module 2 clock
         SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R4; // enable GPIO Port E clock
@@ -98,7 +99,7 @@ void I2C_Init()
         I2C2_MCR_R = I2C_MCR_MFE; // master function enable
         I2C2_MTPR_R = 39;         // configure for 100 kbps clock
         // 20 * (TPR + 1) * 12.5ns = 10us, with TPR=24
-#elif LIDAR0_I2C == I2C3
+#elif I2C_BUS1 == I2C3
         /*-- I2C3 and Port D Activation --*/
         SYSCTL_RCGCI2C_R |= SYSCTL_RCGCI2C_R3;   // enable I2C Module 3 clock
         SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R3; // enable GPIO Port D clock
@@ -121,7 +122,7 @@ void I2C_Init()
         I2C3_MTPR_R = 39;         // configure for 100 kbps clock
         // 20 * (TPR + 1) * 12.5ns = 10us, with TPR=24
 #endif
-#if LIDAR1_I2C == I2C0
+#if I2C_BUS2 == I2C0
         /*-- I2C0 and Port B Activation --*/
         SYSCTL_RCGCI2C_R |= SYSCTL_RCGCI2C_R0;   // enable I2C Module 0 clock
         SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R1; // enable GPIO Port B clock
@@ -143,7 +144,7 @@ void I2C_Init()
         I2C0_MCR_R = I2C_MCR_MFE; // master function enable
         I2C0_MTPR_R = 39;         // configure for 100 kbps clock
                                   // 20 * (TPR + 1) * 12.5ns = 10us, with TPR=24
-#elif LIDAR1_I2C == I2C1
+#elif I2C_BUS2 == I2C1
         /*-- I2C1 and Port A Activation --*/
         SYSCTL_RCGCI2C_R |= SYSCTL_RCGCI2C_R1;   // enable I2C Module 1 clock
         SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R0; // enable GPIO Port A clock
@@ -165,7 +166,7 @@ void I2C_Init()
         I2C1_MCR_R = I2C_MCR_MFE; // master function enable
         I2C1_MTPR_R = 39;         // configure for 100 kbps clock
         // 20 * (TPR + 1) * 12.5ns = 10us, with TPR=24
-#elif LIDAR1_I2C == I2C2
+#elif I2C_BUS2 == I2C2
         /*-- I2C2 and Port E Activation --*/
         SYSCTL_RCGCI2C_R |= SYSCTL_RCGCI2C_R2;   // enable I2C Module 2 clock
         SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R4; // enable GPIO Port E clock
@@ -187,7 +188,7 @@ void I2C_Init()
         I2C2_MCR_R = I2C_MCR_MFE; // master function enable
         I2C2_MTPR_R = 39;         // configure for 100 kbps clock
         // 20 * (TPR + 1) * 12.5ns = 10us, with TPR=24
-#elif LIDAR1_I2C == I2C3
+#elif I2C_BUS2 == I2C3
         /*-- I2C3 and Port D Activation --*/
         SYSCTL_RCGCI2C_R |= SYSCTL_RCGCI2C_R3;   // enable I2C Module 3 clock
         SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R3; // enable GPIO Port D clock
@@ -230,11 +231,13 @@ void I2C_Init()
  */
 int I2C_read(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint32_t count, int deviceIndex)
 {
+
+    //    long sr = StartCritical();
     if (deviceIndex == 0)
     {
         int retryCounter = 1;
 
-#if LIDAR0_I2C == I2C0
+#if I2C_BUS1 == I2C0
         while (I2C0_MCS_R & I2C_MCS_BUSY)
         {
         };                                                // wait for I2C ready
@@ -251,6 +254,7 @@ int I2C_read(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint3
         // check error bits
         if ((I2C0_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR)) != 0)
         {
+            // EndCritical(sr);
             return (I2C0_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
 
@@ -345,9 +349,9 @@ int I2C_read(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint3
 
             break;
         }
-
+        // EndCritical(sr);
         return (I2C0_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
-#elif LIDAR0_I2C == I2C1
+#elif I2C_BUS1 == I2C1
         while (I2C1_MCS_R & I2C_MCS_BUSY)
         {
         };                                                // wait for I2C ready
@@ -364,6 +368,7 @@ int I2C_read(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint3
         // check error bits
         if ((I2C1_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR)) != 0)
         {
+            // EndCritical(sr);
             return (I2C1_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
 
@@ -458,9 +463,9 @@ int I2C_read(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint3
 
             break;
         }
-
+        // EndCritical(sr);
         return (I2C1_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
-#elif LIDAR0_I2C == I2C2
+#elif I2C_BUS1 == I2C2
         while (I2C2_MCS_R & I2C_MCS_BUSY)
         {
         };                                                // wait for I2C ready
@@ -477,6 +482,7 @@ int I2C_read(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint3
         // check error bits
         if ((I2C2_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR)) != 0)
         {
+            // EndCritical(sr);
             return (I2C2_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
 
@@ -571,9 +577,9 @@ int I2C_read(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint3
 
             break;
         }
-
+        // EndCritical(sr);
         return (I2C2_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
-#elif LIDAR0_I2C == I2C3
+#elif I2C_BUS1 == I2C3
         while (I2C3_MCS_R & I2C_MCS_BUSY)
         {
         };                                                // wait for I2C ready
@@ -590,6 +596,7 @@ int I2C_read(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint3
         // check error bits
         if ((I2C3_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR)) != 0)
         {
+            // EndCritical(sr);
             return (I2C3_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
 
@@ -684,14 +691,14 @@ int I2C_read(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint3
 
             break;
         }
-
+        // EndCritical(sr);
         return (I2C3_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
 #endif
     }
     else if (deviceIndex == 1) {
                 int retryCounter = 1;
 
-#if LIDAR1_I2C == I2C0
+#if I2C_BUS2 == I2C0
         while (I2C0_MCS_R & I2C_MCS_BUSY)
         {
         };                                                // wait for I2C ready
@@ -708,6 +715,7 @@ int I2C_read(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint3
         // check error bits
         if ((I2C0_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR)) != 0)
         {
+            // EndCritical(sr);
             return (I2C0_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
 
@@ -802,9 +810,9 @@ int I2C_read(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint3
 
             break;
         }
-
+        // EndCritical(sr);
         return (I2C0_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
-#elif LIDAR1_I2C == I2C1
+#elif I2C_BUS2 == I2C1
         while (I2C1_MCS_R & I2C_MCS_BUSY)
         {
         };                                                // wait for I2C ready
@@ -821,6 +829,7 @@ int I2C_read(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint3
         // check error bits
         if ((I2C1_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR)) != 0)
         {
+            // EndCritical(sr);
             return (I2C1_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
 
@@ -915,9 +924,9 @@ int I2C_read(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint3
 
             break;
         }
-
+        // EndCritical(sr);
         return (I2C1_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
-#elif LIDAR1_I2C == I2C2
+#elif I2C_BUS2 == I2C2
         while (I2C2_MCS_R & I2C_MCS_BUSY)
         {
         };                                                // wait for I2C ready
@@ -934,7 +943,7 @@ int I2C_read(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint3
         // check error bits
         if ((I2C2_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR)) != 0)
         {
-           // LED_BLUE_TOGGLE();
+            // EndCritical(sr);
             return (I2C2_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
 
@@ -1029,9 +1038,9 @@ int I2C_read(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint3
 
             break;
         }
-
+        // EndCritical(sr);
         return (I2C2_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
-#elif LIDAR1_I2C == I2C3
+#elif I2C_BUS2 == I2C3
         while (I2C3_MCS_R & I2C_MCS_BUSY)
         {
         };                                                // wait for I2C ready
@@ -1048,6 +1057,7 @@ int I2C_read(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint3
         // check error bits
         if ((I2C3_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR)) != 0)
         {
+            // EndCritical(sr);
             return (I2C3_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
 
@@ -1142,10 +1152,11 @@ int I2C_read(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint3
 
             break;
         }
-
+        // EndCritical(sr);   
         return (I2C3_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
 #endif
     }
+    // EndCritical(sr);
 }
 
 /**
@@ -1160,9 +1171,10 @@ int I2C_read(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint3
  */
 int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint32_t count, int deviceIndex)
 {
+//    long sr = StartCritical();
     if (deviceIndex == 0) {
 
-#if LIDAR0_I2C == I2C0
+#if I2C_BUS1 == I2C0
         while (I2C0_MCS_R & I2C_MCS_BUSY)
         {
         };                                                // wait for I2C ready
@@ -1180,6 +1192,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
         {
             I2C0_MCS_R = I2C_MCS_STOP; // stop transmission
             // return error bits if nonzero
+            // EndCritical(sr);
             return (I2C0_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
 
@@ -1192,6 +1205,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
             {
             }; // wait for transmission done
             // return error bits
+            // EndCritical(sr);
             return (I2C0_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
         else
@@ -1208,6 +1222,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
                 {
                     I2C0_MCS_R = I2C_MCS_STOP; // stop transmission
                     // return error bits if nonzero
+                    // EndCritical(sr);
                     return (I2C0_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
                 }
             }
@@ -1219,9 +1234,10 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
             {
             }; // wait for transmission done
             // return error bits
+            // EndCritical(sr);
             return (I2C0_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
-#elif LIDAR0_I2C == I2C1
+#elif I2C_BUS1 == I2C1
         while (I2C1_MCS_R & I2C_MCS_BUSY)
         {
         };                                                // wait for I2C ready
@@ -1239,6 +1255,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
         {
             I2C1_MCS_R = I2C_MCS_STOP; // stop transmission
             // return error bits if nonzero
+            // EndCritical(sr);
             return (I2C1_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
 
@@ -1251,6 +1268,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
             {
             }; // wait for transmission done
             // return error bits
+            // EndCritical(sr);
             return (I2C1_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
         else
@@ -1267,6 +1285,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
                 {
                     I2C1_MCS_R = I2C_MCS_STOP; // stop transmission
                     // return error bits if nonzero
+                    // EndCritical(sr);
                     return (I2C1_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
                 }
             }
@@ -1278,9 +1297,10 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
             {
             }; // wait for transmission done
             // return error bits
+            // EndCritical(sr);
             return (I2C1_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
-#elif LIDAR0_I2C == I2C2
+#elif I2C_BUS1 == I2C2
         while (I2C2_MCS_R & I2C_MCS_BUSY)
         {
         };                                                // wait for I2C ready
@@ -1298,6 +1318,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
         {
             I2C2_MCS_R = I2C_MCS_STOP; // stop transmission
             // return error bits if nonzero
+            // EndCritical(sr);
             return (I2C2_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
 
@@ -1310,6 +1331,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
             {
             }; // wait for transmission done
             // return error bits
+            // EndCritical(sr);
             return (I2C2_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
         else
@@ -1326,6 +1348,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
                 {
                     I2C2_MCS_R = I2C_MCS_STOP; // stop transmission
                     // return error bits if nonzero
+                    // EndCritical(sr);
                     return (I2C2_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
                 }
             }
@@ -1337,9 +1360,10 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
             {
             }; // wait for transmission done
             // return error bits
+            // EndCritical(sr);
             return (I2C2_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
-#elif LIDAR0_I2C == I2C3
+#elif I2C_BUS1 == I2C3
         while (I2C3_MCS_R & I2C_MCS_BUSY)
         {
         };                                                // wait for I2C ready
@@ -1357,6 +1381,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
         {
             I2C3_MCS_R = I2C_MCS_STOP; // stop transmission
             // return error bits if nonzero
+            // EndCritical(sr);
             return (I2C3_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
 
@@ -1369,6 +1394,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
             {
             }; // wait for transmission done
             // return error bits
+            // EndCritical(sr);
             return (I2C3_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
         else
@@ -1385,6 +1411,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
                 {
                     I2C3_MCS_R = I2C_MCS_STOP; // stop transmission
                     // return error bits if nonzero
+                    // EndCritical(sr);
                     return (I2C3_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
                 }
             }
@@ -1396,12 +1423,13 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
             {
             }; // wait for transmission done
             // return error bits
+            // EndCritical(sr);
             return (I2C3_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
 #endif
     }
     else if (deviceIndex == 1) {
-#if LIDAR1_I2C == I2C0
+#if I2C_BUS2 == I2C0
         while (I2C0_MCS_R & I2C_MCS_BUSY)
         {
         };                                                // wait for I2C ready
@@ -1419,6 +1447,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
         {
             I2C0_MCS_R = I2C_MCS_STOP; // stop transmission
             // return error bits if nonzero
+            // EndCritical(sr);
             return (I2C0_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
 
@@ -1431,6 +1460,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
             {
             }; // wait for transmission done
             // return error bits
+            // EndCritical(sr);
             return (I2C0_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
         else
@@ -1447,6 +1477,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
                 {
                     I2C0_MCS_R = I2C_MCS_STOP; // stop transmission
                     // return error bits if nonzero
+                    // EndCritical(sr);
                     return (I2C0_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
                 }
             }
@@ -1458,9 +1489,10 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
             {
             }; // wait for transmission done
             // return error bits
+            // EndCritical(sr);
             return (I2C0_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
-#elif LIDAR1_I2C == I2C1
+#elif I2C_BUS2 == I2C1
         while (I2C1_MCS_R & I2C_MCS_BUSY)
         {
         };                                                // wait for I2C ready
@@ -1478,6 +1510,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
         {
             I2C1_MCS_R = I2C_MCS_STOP; // stop transmission
             // return error bits if nonzero
+            // EndCritical(sr);
             return (I2C1_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
 
@@ -1490,6 +1523,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
             {
             }; // wait for transmission done
             // return error bits
+            // EndCritical(sr);
             return (I2C1_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
         else
@@ -1506,6 +1540,7 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
                 {
                     I2C1_MCS_R = I2C_MCS_STOP; // stop transmission
                     // return error bits if nonzero
+                        // EndCritical(sr);
                     return (I2C1_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
                 }
             }
@@ -1517,9 +1552,11 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
             {
             }; // wait for transmission done
             // return error bits
+                // EndCritical(sr);
+
             return (I2C1_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
-#elif LIDAR1_I2C == I2C2
+#elif I2C_BUS2 == I2C2
         while (I2C2_MCS_R & I2C_MCS_BUSY)
         {
         };                                                // wait for I2C ready
@@ -1537,6 +1574,8 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
         {
             I2C2_MCS_R = I2C_MCS_STOP; // stop transmission
             // return error bits if nonzero
+                // EndCritical(sr);
+
             return (I2C2_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
 
@@ -1549,6 +1588,8 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
             {
             }; // wait for transmission done
             // return error bits
+                // EndCritical(sr);
+
             return (I2C2_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
         else
@@ -1565,6 +1606,8 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
                 {
                     I2C2_MCS_R = I2C_MCS_STOP; // stop transmission
                     // return error bits if nonzero
+                        // EndCritical(sr);
+
                     return (I2C2_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
                 }
             }
@@ -1576,9 +1619,11 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
             {
             }; // wait for transmission done
             // return error bits
+                // EndCritical(sr);
+
             return (I2C2_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
-#elif LIDAR1_I2C == I2C3
+#elif I2C_BUS2 == I2C3
         while (I2C3_MCS_R & I2C_MCS_BUSY)
         {
         };                                                // wait for I2C ready
@@ -1596,6 +1641,8 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
         {
             I2C3_MCS_R = I2C_MCS_STOP; // stop transmission
             // return error bits if nonzero
+                // EndCritical(sr);
+
             return (I2C3_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
 
@@ -1608,6 +1655,8 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
             {
             }; // wait for transmission done
             // return error bits
+                // EndCritical(sr);
+
             return (I2C3_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
         else
@@ -1624,6 +1673,8 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
                 {
                     I2C3_MCS_R = I2C_MCS_STOP; // stop transmission
                     // return error bits if nonzero
+                        // EndCritical(sr);
+
                     return (I2C3_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
                 }
             }
@@ -1635,10 +1686,13 @@ int I2C_write(uint8_t deviceAddress, uint8_t targetRegister, uint8_t *data, uint
             {
             }; // wait for transmission done
             // return error bits
+                // EndCritical(sr);
+
             return (I2C3_MCS_R & (I2C_MCS_DATACK | I2C_MCS_ADRACK | I2C_MCS_ERROR));
         }
 #endif
     }
+    // EndCritical(sr);
 }
 
 /**
