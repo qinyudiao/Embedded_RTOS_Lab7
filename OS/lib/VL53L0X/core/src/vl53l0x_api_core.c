@@ -2265,7 +2265,7 @@ VL53L0X_Error VL53L0X_measurement_poll_for_completion_sleep(VL53L0X_DEV Dev)
 
 	LOG_FUNCTION_START("");
 
-	// LoopNb = 0;
+	LoopNb = 0;
 	OS_Sleep(33);
 
 	do {
@@ -2276,12 +2276,12 @@ VL53L0X_Error VL53L0X_measurement_poll_for_completion_sleep(VL53L0X_DEV Dev)
 		if (NewDataReady == 1)
 			break; /* done note that status == 0 */
 
-		// LoopNb++;
-		// if (LoopNb >= VL53L0X_DEFAULT_MAX_LOOP) {
-		// 	Status = VL53L0X_ERROR_TIME_OUT;
-		// 	break;
-		// }
-		// LED_GREEN_TOGGLE();
+		LoopNb++;
+		if (LoopNb >= VL53L0X_DEFAULT_MAX_LOOP) {
+			Status = VL53L0X_ERROR_TIME_OUT;
+			LED_GREEN_TOGGLE();
+			break;
+		}
 	} while (1);
 
 	LOG_FUNCTION_END(Status);
