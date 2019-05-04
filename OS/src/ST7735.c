@@ -1450,7 +1450,6 @@ static enum initRFlags TabColor;
 static short _width = ST7735_TFTWIDTH; // this could probably be a constant, except it is used in Adafruit_GFX and depends on image rotation
 static short _height = ST7735_TFTHEIGHT;
 Sema4Type draw_semaphore;
-Sema4Type spi_sema;
 
 // The Data/Command pin must be valid when the eighth bit is
 // sent.  The SSI module has hardware input and output FIFOs
@@ -1476,7 +1475,6 @@ void static writecommand(unsigned char c)
   while ((SSI0_SR_R & SSI_SR_BSY) == SSI_SR_BSY)
   {
   };
-  OS_bWait(&spi_sema);
   SDC_CS = SDC_CS_HIGH;
   TFT_CS = TFT_CS_LOW;
   DC = DC_COMMAND;
@@ -1486,7 +1484,6 @@ void static writecommand(unsigned char c)
   }; // wait until response
   TFT_CS = TFT_CS_HIGH;
   response = SSI0_DR_R; // acknowledge response
-  OS_bSignal(&spi_sema);
 }
 
 void static writedata(unsigned char c)
@@ -1497,7 +1494,6 @@ void static writedata(unsigned char c)
   while ((SSI0_SR_R & SSI_SR_BSY) == SSI_SR_BSY)
   {
   };
-  OS_bWait(&spi_sema);
   SDC_CS = SDC_CS_HIGH;
   TFT_CS = TFT_CS_LOW;
   DC = DC_DATA;
@@ -1507,7 +1503,6 @@ void static writedata(unsigned char c)
   }; // wait until response
   TFT_CS = TFT_CS_HIGH;
   response = SSI0_DR_R; // acknowledge response
-  OS_bSignal(&spi_sema);
 }
 // Subroutine to wait 1 msec
 // Inputs: None
@@ -1701,7 +1696,6 @@ void static commonInit(const unsigned char *cmdList)
   ColStart = RowStart = 0; // May be overridden in init func
   CS_Init();
   OS_InitSemaphore(&draw_semaphore, 1);
-  OS_InitSemaphore(&spi_sema, 1);
   SYSCTL_RCGCSSI_R |= 0x01;  // activate SSI0
   SYSCTL_RCGCGPIO_R |= 0x01; // activate port A
   while ((SYSCTL_PRGPIO_R & 0x01) == 0)

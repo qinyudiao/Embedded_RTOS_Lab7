@@ -21,7 +21,6 @@
 
 #define SDC_CS_PB0 1
 #define SDC_CS_PD7 0
-extern Sema4Type spi_sema;
 
 // SDC CS is PD7 or PB0 , TFT CS is PA3
 // to change CS to another GPIO, change SDC_CS and CS_Init
@@ -494,7 +493,6 @@ DSTATUS disk_status(BYTE drv){
 DRESULT disk_read(BYTE drv, BYTE *buff, DWORD sector, UINT count){
   if (drv || !count) return RES_PARERR;    /* Check parameter */
   if (Stat & STA_NOINIT) return RES_NOTRDY;  /* Check if drive is ready */
-	OS_bWait(&spi_sema);
   if (!(CardType & CT_BLOCK)) sector *= 512;  /* LBA ot BA conversion (byte addressing cards) */
 
   if (count == 1) {  /* Single sector read */
@@ -512,7 +510,6 @@ DRESULT disk_read(BYTE drv, BYTE *buff, DWORD sector, UINT count){
     }
   }
   deselect();
-  OS_bSignal(&spi_sema);
   return count ? RES_ERROR : RES_OK;  /* Return result */
 }
 
@@ -532,7 +529,6 @@ DRESULT disk_write(BYTE drv, const BYTE *buff, DWORD sector, UINT count){
   if (drv || !count) return RES_PARERR;    /* Check parameter */
   if (Stat & STA_NOINIT) return RES_NOTRDY;  /* Check drive status */
   if (Stat & STA_PROTECT) return RES_WRPRT;  /* Check write protect */
-  OS_bWait(&spi_sema);
 
   if (!(CardType & CT_BLOCK)) sector *= 512;  /* LBA ==> BA conversion (byte addressing cards) */
 
@@ -553,7 +549,6 @@ DRESULT disk_write(BYTE drv, const BYTE *buff, DWORD sector, UINT count){
     }
   }
   deselect();
-  OS_bSignal(&spi_sema);
 
   return count ? RES_ERROR : RES_OK;  /* Return result */
 }
@@ -576,7 +571,6 @@ DRESULT disk_ioctl(BYTE drv, BYTE cmd, void *buff){
 
   if (drv) return RES_PARERR;          /* Check parameter */
   if (Stat & STA_NOINIT) return RES_NOTRDY;  /* Check if drive is ready */
-  OS_bWait(&spi_sema);
 
   res = RES_ERROR;
 
@@ -638,7 +632,6 @@ DRESULT disk_ioctl(BYTE drv, BYTE cmd, void *buff){
   }
 
   deselect();
-  OS_bSignal(&spi_sema);
 
   return res;
 }
