@@ -29,37 +29,48 @@ int lidar_GetMeasurement(int index)
 {
     VL53L0X_RangingMeasurementData_t measurement;
     VL53L0X_getSingleRangingMeasurement(&measurement, index);
-    if (measurement.RangeStatus != 4)
+    if (measurement.RangeStatus != 4)  // vl53l0x_api_core.c line 2192 (phase fail)
     {
         return measurement.RangeMilliMeter;
     }
-    else // out of range
-        return 8191;		// a value that is larger than the range
+    else // phase fail
+        return -1;
 }
 
 
 void lidar_task0(void)
 {
-
+	int meas;
 		while(1) {
-//		  LED_BLUE_ON();
-			lidar_data[0] = lidar_GetMeasurement(0);
-//			LED_BLUE_OFF();
-			OS_bWait(&serial);
-			printf("lidar 0: %d mm\n\r", lidar_data[0]);
-			OS_bSignal(&serial);
+			meas = lidar_GetMeasurement(0);
+			if (meas != -1) {
+				lidar_data[0] = meas;
+			}
+			else {
+				lidar_data[0] = 8191;
+			}
+			
+//			OS_bWait(&serial);
+//			printf("lidar 0: %d mm\n\r", lidar_data[0]);
+//			OS_bSignal(&serial);
 		}
 }
 
 void lidar_task1(void)
 {
-			while(1) {
-//			LED_GREEN_ON();
-			lidar_data[1] = lidar_GetMeasurement(1);
-//			LED_GREEN_OFF();
-			OS_bWait(&serial);
-			printf("lidar 1: %d mm\n\r", lidar_data[1]);
-			OS_bSignal(&serial);
+	int meas;
+		while(1) {
+			meas = lidar_GetMeasurement(1);
+			if (meas != -1) {
+				lidar_data[1] = meas;
+			}
+					else {
+				lidar_data[1] = 8191;
+			}
+
+//			OS_bWait(&serial);
+//			printf("lidar 1: %d mm\n\r", lidar_data[1]);
+//			OS_bSignal(&serial);
 			}
 }
 
@@ -88,6 +99,7 @@ void lidar_task3(void)
 }
 int lidar_Init(void)
 {
+	LED_Init();
 	I2C_Init(); // must initialize I2C before initialize VL53L0X
 	// xshut_Init();
 

@@ -2270,8 +2270,9 @@ VL53L0X_Error VL53L0X_measurement_poll_for_completion_sleep(VL53L0X_DEV Dev)
 
 	do {
 		Status = VL53L0X_GetMeasurementDataReady(Dev, &NewDataReady);
-		if (Status != 0)
+		if (Status != 0) {
 			break; /* the error is set */
+		}
 
 		if (NewDataReady == 1)
 			break; /* done note that status == 0 */
