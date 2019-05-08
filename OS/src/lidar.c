@@ -50,9 +50,6 @@ void lidar_task0(void)
 				lidar_data[0] = 8191;
 			}
 			
-//			OS_bWait(&serial);
-//			printf("lidar 0: %d mm\n\r", lidar_data[0]);
-//			OS_bSignal(&serial);
 		}
 }
 
@@ -68,9 +65,6 @@ void lidar_task1(void)
 				lidar_data[1] = 8191;
 			}
 
-//			OS_bWait(&serial);
-//			printf("lidar 1: %d mm\n\r", lidar_data[1]);
-//			OS_bSignal(&serial);
 			}
 }
 

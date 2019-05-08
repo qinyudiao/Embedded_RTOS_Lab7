@@ -115,9 +115,9 @@ void cr4_fft_64_stm32(void *pssOUT, void *pssIN, unsigned short Nbin);
 // cosTHETA * 1000 value
 
 // Configurable via interpreter
-int KP = 27;
+int KP = 35;
 int KD = 9;
-int KI = 11;
+int KI = 13;
 
 static FATFS g_sFatFs;
 
@@ -466,7 +466,7 @@ void SW1Push(void)
     U = 0;
     break;
   case 1:
-	  KP = (KP >= 20) ? 1 : (KP+1);
+	  KP = (KP >= 35) ? 1 : (KP+1);
     break;
   case 2:
 	  KD = (KD >= 50) ? 1 : (KD+2);  
@@ -738,7 +738,6 @@ int Sensor_main(void)
   IR_Init();
   lidar_Init();
   NumCreated = 0;
-  NumCreated += OS_AddThread(&Interpreter,128, 5);
   NumCreated += OS_AddThread(&sensor_task,128,0);
   NumCreated += OS_AddThread(&sensor_debug_task, 128, 4);
 	OS_AddRightBumperTask(&right_bumper_push, &right_bumper_release, 0);
