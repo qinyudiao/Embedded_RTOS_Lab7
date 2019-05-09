@@ -440,6 +440,7 @@ int __OS_AddThread(void (*task)(void),
     if (tcb_pool[i].magic != TCB_MAGIC)
     {
       if(strcmp(task_name,"&checkpoint_entire" )!=0 && strcmp(task_name,"&restart_entire" )!=0){
+        memcpy(stack_pool[i], 0xA5, MAX_STACK_DWORDS*8);
         tcb = &tcb_pool[i];
         tcb->sp = (long *)&stack_pool[i][stackDWords];
         break;
