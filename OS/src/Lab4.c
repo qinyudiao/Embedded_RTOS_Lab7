@@ -658,7 +658,7 @@ void sensor_task(void)
           if(U<0) {
             tmp = -U/10;
             if(Front_Left_angle > ANGELRIGHT_OFFSET+430)
-              tmp = tmp>149? 149:tmp;
+              tmp = tmp>50? 50:tmp;
             SlightRight(tmp);
             state = 0;
           }
@@ -670,7 +670,7 @@ void sensor_task(void)
           if(U>0) {
             tmp = U/10;
             if(Front_Right_angle > ANGELRIGHT_OFFSET+430)
-              tmp = tmp>149? 149:tmp;
+              tmp = tmp>50? 50:tmp;
             SlightLeft(tmp);
             state = 1;
           }
@@ -679,17 +679,7 @@ void sensor_task(void)
         {
           Straight();
           state = 2;
-                                
-          if(Front_Left_angle<ANGLELEFT_OFFSET+40 || Left<LEFT_OFFSET+40)
-          {
-              SlightRight(80);
-              state = 6;
-          }
-          else if(Front_Right_angle<ANGLELEFT_OFFSET+40||Right<LEFT_OFFSET+40)
-          {
-              SlightLeft(80);
-              state = 7;
-          }       
+                              
         }
       }
       else
@@ -699,7 +689,7 @@ void sensor_task(void)
           if(U>0) {
             tmp = U/10;
             if(Front_Left_angle > ANGELRIGHT_OFFSET+430)
-              tmp = tmp>149? 149:tmp;
+              tmp = tmp>50? 50:tmp;
             SlightRight(tmp);
             state = 3;
           }          
@@ -709,7 +699,7 @@ void sensor_task(void)
           if(U<0) {
             tmp = -U/10;
             if(Front_Right_angle > ANGELRIGHT_OFFSET+430)
-              tmp = tmp>149? 149:tmp;
+              tmp = tmp>50? 50:tmp;
             SlightLeft(tmp);
             state = 4;
           }
@@ -718,31 +708,32 @@ void sensor_task(void)
         {
             Straight();
             state = 5;
-                          
-            if(Front_Left_angle<ANGLELEFT_OFFSET+40 || Left<LEFT_OFFSET+40)
-            {
-                SlightRight(80);
-                state = 6;
-            }
-            else if(Front_Right_angle<ANGLELEFT_OFFSET+40||Right<LEFT_OFFSET+40)
-            {
-                SlightLeft(80);
-                state = 7;
-            }
+                        
         }
       }
     }
     
-    if(Front <300)
+    if(Front_Left_angle<ANGLELEFT_OFFSET+40 || Left<LEFT_OFFSET+40)
     {
-      if(Front + ANGELRIGHT_OFFSET > Front_Right_angle)
+        SlightRight(80);
+        state = 6;
+    }
+    else if(Front_Right_angle<ANGLELEFT_OFFSET+40||Right<LEFT_OFFSET+40)
+    {
+        SlightLeft(80);
+        state = 7;
+    }
+    
+    if(Front <250)
+    {
+      if(Front_Left_angle > Front_Right_angle)
       {
-        SlightLeft(300);
+        SlightLeft(350-Front);
         state = 8;
       }
-      else if(Front + ANGELRIGHT_OFFSET > Front_Left_angle)
+      else if(Front_Right_angle > Front_Left_angle)
       {
-        SlightRight(300);
+        SlightRight(350-Front);
         state = 9;
       }
     }
