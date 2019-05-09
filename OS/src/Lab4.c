@@ -560,7 +560,7 @@ void sensor_task(void)
       if(Right>250+RIGHT_OFFSET){
         if(Front_Right_angle+Right > Front_Left_angle+Left)
         {
-          LED_RED_ON();
+          //LED_RED_ON();
           FlagL =1;
           FlagR=0;
           Ui = Ui/100;
@@ -572,7 +572,7 @@ void sensor_task(void)
 
         if(Front_Right_angle+Right < Front_Left_angle+Left)
         {
-          LED_RED_OFF();
+          //LED_RED_OFF();
           FlagL = 0;
           FlagR = 1;
           Ui = Ui/100;
@@ -805,8 +805,8 @@ int Sensor_main(void)
   lidar_Init();
   
   
-  LED_Init();  
-  LED_RED_OFF();
+ // LED_Init();  
+ // LED_RED_OFF();
   
   NumCreated = 0;
   //NumCreated += OS_AddPeriodicThread(&sensor_task,SENSOR_TASK_PERIOD*TIME_1MS,0);

@@ -105,7 +105,7 @@ int lidar_Init(void)
 //			LED_BLUE_TOGGLE();
 //			return -1;
 //		}
-		OS_AddThread(&lidar_task0, 128, 1);
+		OS_AddThread(&lidar_task0, 256, 1);
 	}
 	else
 	{
@@ -130,7 +130,7 @@ int lidar_Init(void)
 
 	if (VL53L0X_Init(VL53L0X_I2C_ADDR, 1))
 	{
-		OS_AddThread(&lidar_task1, 128, 1);
+		OS_AddThread(&lidar_task1, 256, 1);
 	}
 	else
 	{
