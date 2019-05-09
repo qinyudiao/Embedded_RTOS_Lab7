@@ -382,7 +382,7 @@ static void insert_tcb(tcb_t *new_tcb) // priority insert
   EndCritical(sr);
 }
 
-#define MAX_TASKS (7)
+#define MAX_TASKS (14)
 #define MAX_STACK_DWORDS (128) // 256 * 10tasks * 8Bytes = ~20K
 
 static int next_id = 0;

@@ -48,10 +48,10 @@ void SlightRight(int n)
   
   if(n>150){
     int i = n/15;
-    CAN_Servo(80-i);
+    CAN_Servo(90-i);
   }
   else
-    CAN_Servo(85);
+    CAN_Servo(90);
   if(n>300)
     n = 300;
   CAN_MotorTorch(250,250-n);

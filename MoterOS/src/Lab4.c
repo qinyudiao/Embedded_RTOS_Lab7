@@ -101,7 +101,7 @@ void cr4_fft_64_stm32(void *pssOUT, void *pssIN, unsigned short Nbin);
 #define PD2 (*((volatile unsigned long *)0x40007010))
 #define PD3 (*((volatile unsigned long *)0x40007020))
 
-#define TIMESLICE 2 * TIME_1MS // thread switch time in system time units
+#define TIMESLICE TIME_1MS // thread switch time in system time units
 
 int NumCreated = 0;
 volatile int flag = 1;
@@ -214,7 +214,7 @@ void stop(void)
 {
   while(flag == 0)
   {
-    Motors_SetTorque(0,0);
+    Motors_SetTorque(1,1);
   }
 }
 
