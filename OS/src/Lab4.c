@@ -141,7 +141,7 @@ unsigned long FilterWork; // number of digital filter calculations finished
 
 int Running; // true while robot is running
 
-#define TIMESLICE 10 * TIME_1MS // thread switch time in system time units
+#define TIMESLICE 4 * TIME_1MS // thread switch time in system time units
 long x[64], y[64];             // input and output arrays for FFT
 Sema4Type doFFT;               // set every 64 samples by DAS
 
@@ -523,13 +523,14 @@ void sensor_task(void)
   static int openspaceLeft = 0;
   static int openspaceRight = 0;
 
-  {
-    LED_RED_TOGGLE();
+  while(1){
+    
 		if(((OS_Time() / TIME_1MS) / 1000) > 180){
 			while(1){
 				CAN_MotorTorch(1,1);
-        return;
-				//OS_Sleep(SENSOR_TASK_PERIOD);
+        
+				OS_Sleep(SENSOR_TASK_PERIOD);
+        continue;
 			}
 		}
 			
@@ -559,6 +560,7 @@ void sensor_task(void)
       if(Right>250+RIGHT_OFFSET){
         if(Front_Right_angle+Right > Front_Left_angle+Left)
         {
+          LED_RED_ON();
           FlagL =1;
           FlagR=0;
           Ui = Ui/100;
@@ -567,8 +569,10 @@ void sensor_task(void)
     }else{
       if(Left>250 + LEFT_OFFSET)
       {
+
         if(Front_Right_angle+Right < Front_Left_angle+Left)
         {
+          LED_RED_OFF();
           FlagL = 0;
           FlagR = 1;
           Ui = Ui/100;
@@ -602,27 +606,23 @@ void sensor_task(void)
     if(backTo > 0)
     {
       backTo--;
-      state = 10;
+      state = 12;
 			if(flag_left_back)
 				BackLeft();
 			else if(flag_right_back)
 				BackRight();
 			else 
 				Back();
-    LED_RED_TOGGLE();
-      //OS_Sleep(SENSOR_TASK_PERIOD);
-      //continue;
-      return;
+      OS_Sleep(SENSOR_TASK_PERIOD);
+      continue;
     }
     if(openspaceLeft>0){
       openspaceLeft--;
       if(openspaceLeft<4){
         SlightLeft(250);
-        state = 8;
-    LED_RED_TOGGLE();
-       //OS_Sleep(SENSOR_TASK_PERIOD);
-        //continue;
-        return;
+        state = 10;
+        OS_Sleep(SENSOR_TASK_PERIOD);
+        continue;
       }
     }
     
@@ -630,22 +630,18 @@ void sensor_task(void)
       openspaceRight--;
       if(openspaceRight<4){
         SlightRight(250);
-        state = 9;
-    LED_RED_TOGGLE();
-        //OS_Sleep(SENSOR_TASK_PERIOD);
-        //continue;
-        return;
+        state = 11;
+        OS_Sleep(SENSOR_TASK_PERIOD);
+        continue;
       }
     }
                           
     if(Front_Left_angle<ANGLELEFT_OFFSET+40 || Left<LEFT_OFFSET+40)
     {
-        SlightRight(80);
         state = 6;
     }
     else if(Front_Right_angle<ANGLELEFT_OFFSET+40||Right<LEFT_OFFSET+40)
     {
-        SlightLeft(80);
         state = 7;
     }
 
@@ -659,7 +655,6 @@ void sensor_task(void)
             tmp = -U/10;
             if(Front_Left_angle > ANGELRIGHT_OFFSET+430)
               tmp = tmp>50? 50:tmp;
-            SlightRight(tmp);
             state = 0;
           }
             
@@ -671,13 +666,11 @@ void sensor_task(void)
             tmp = U/10;
             if(Front_Right_angle > ANGELRIGHT_OFFSET+430)
               tmp = tmp>50? 50:tmp;
-            SlightLeft(tmp);
             state = 1;
           }
         }
         else
         {
-          Straight();
           state = 2;
                               
         }
@@ -690,7 +683,6 @@ void sensor_task(void)
             tmp = U/10;
             if(Front_Left_angle > ANGELRIGHT_OFFSET+430)
               tmp = tmp>50? 50:tmp;
-            SlightRight(tmp);
             state = 3;
           }          
         }        
@@ -700,13 +692,13 @@ void sensor_task(void)
             tmp = -U/10;
             if(Front_Right_angle > ANGELRIGHT_OFFSET+430)
               tmp = tmp>50? 50:tmp;
-            SlightLeft(tmp);
+            
             state = 4;
           }
         }
         else
         {
-            Straight();
+            
             state = 5;
                         
         }
@@ -715,31 +707,66 @@ void sensor_task(void)
     
     if(Front_Left_angle<ANGLELEFT_OFFSET+40 || Left<LEFT_OFFSET+40)
     {
-        SlightRight(80);
+        
         state = 6;
     }
     else if(Front_Right_angle<ANGLELEFT_OFFSET+40||Right<LEFT_OFFSET+40)
     {
-        SlightLeft(80);
+        
         state = 7;
     }
     
     if(Front <250)
     {
-      if(Front_Left_angle > Front_Right_angle)
+      if(Front_Left_angle > Front_Right_angle+40)
       {
-        SlightLeft(350-Front);
+        
         state = 8;
       }
-      else if(Front_Right_angle > Front_Left_angle)
+      else if(Front_Right_angle > Front_Left_angle+40)
       {
-        SlightRight(350-Front);
+        
         state = 9;
       }
     }
+    switch(state)
+    {
+      
+      case 0:
+        SlightRight(tmp);
+        break;
+      case 1:
+        SlightLeft(tmp);
+        break;
+      case 2:
+        Straight();
+        break;
+      case 3:
+        SlightRight(tmp);
+        break;
+      case 4:
+        SlightLeft(tmp);
+        break;
+      case 5:
+        Straight();
+        break;
+      case 6:
+        SlightRight(80);
+        break;
+      case 7:
+        SlightLeft(80);
+        break;
+      case 8:
+        SlightLeft(350-Front);
+        break;
+      case 9:
+        SlightRight(350-Front);
+        break;
+    }
 
-    LED_RED_TOGGLE();
-    //OS_Sleep(SENSOR_TASK_PERIOD);
+        
+
+    OS_Sleep(SENSOR_TASK_PERIOD);
     
   }  
 }
@@ -782,7 +809,8 @@ int Sensor_main(void)
   LED_RED_OFF();
   
   NumCreated = 0;
-  NumCreated += OS_AddPeriodicThread(&sensor_task,SENSOR_TASK_PERIOD*TIME_1MS,0);
+  //NumCreated += OS_AddPeriodicThread(&sensor_task,SENSOR_TASK_PERIOD*TIME_1MS,0);
+  NumCreated += OS_AddThread(&sensor_task,128,0);
   NumCreated += OS_AddThread(&sensor_debug_task, 128, 4);
 	OS_AddRightBumperTask(&right_bumper_push, &right_bumper_release, 0);
 	OS_AddLeftBumperTask(&left_bumper_push, &left_bumper_release, 0);
